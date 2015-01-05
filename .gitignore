@@ -5,8 +5,8 @@
 *-Ex.R
 .Rproj.user
 
-.log
-.pdf
-.synctex.gz
-.tex
-.toc
+*.log
+*.pdf
+*.synctex.gz
+*.tex
+*.toc
