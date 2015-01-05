@@ -1,0 +1,26 @@
+\documentclass{book}
+
+\begin{document}
+
+\title{Notes on Statistical Theory}
+\author{Benjamin Nutter}
+\maketitle
+
+\tableofcontents
+
+\part{Probability Distributions and Theory}
+
+<<r, child="I-ProbabilityDistributions/Bernoulli.Rnw">>=
+@
+
+\part{Frequentist Hypothesis Testing}
+
+\part{Supplemental Subjects}
+
+\part{Non-Statistical Proofs}
+
+
+
+
+
+\end{document}
