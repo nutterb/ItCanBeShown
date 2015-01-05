@@ -1,0 +1,24 @@
+---
+title: "Notes on Statistical Theory"
+author: "Benjamin Nutter"
+output: 
+  html_document:
+  toc: true
+---
+
+# Probability Distributions and Theory
+
+## Bernoulli Distribution
+
+# Frequentist Hypothesis Testing
+## T-test
+### One Sample T-Test
+### Two Sample T-Test
+  
+# Supplemental Subjects
+## Expected Value
+## Variance
+
+
+# Non-Statistical Proofs
+## Real Numbers
