@@ -1,0 +1,25 @@
+---
+title: "Notes on Statistical Theory"
+author: "Benjamin Nutter"
+output:
+  pdf_document:
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+documentclass: book
+---
+```{r, echo=FALSE}
+library(ggplot2)
+library(RColorBrewer)
+greens.pal <- rev(brewer.pal(9, "Greens"))
+```
+
+\part{Probability Distributions}
+```{r, child="I-ProbabilityDistributions/Bernoulli.Rmd"}
+```
+
+\part{Frequentist Hypothesis Testing}
+
+\part{Supplemental Subjects}
+
+\part{Non-Statistical Proofs}

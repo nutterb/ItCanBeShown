@@ -1,0 +1,75 @@
+```{r, echo=FALSE}
+library(ggplot2)
+library(RColorBrewer)
+greens.pal <- rev(brewer.pal(9, "Greens"))
+```
+
+\chapter{The Bernoulli Distribution}
+  \label{Bernoulli}
+
+A random variable is said to have a Bernoulli Distribution with parameter $p$ if its probability mass function is:
+$$
+p(x)=\left\{ 
+  	\begin{array}{ll}
+			p^x(1-p)^{1-x},	& x=0,1\\
+			0 		& \mathrm{otherwise}
+		\end{array} 
+	\right. 
+$$
+Where  $p$ is the probability of a sucess.
+
+\section{Cumulative Distribution Function}
+\label{Bernoulli_cdf}
+
+$$
+P(x)=\left\{
+  	\begin{array}{lll}
+			0   & x<0\\
+			1-p & x=0\\
+			1   & 1\leq x
+		\end{array}
+	\right. 
+$$
+
+```{r, echo=FALSE, fig.cap='The graphs on the left and right show a Binomial Probability Distribution and Cumulative Distribution Function, respectively, with $p=.4$.  Note that this is identical to a Binomial Distribution with parameters $n=1$ and $p=.4$.', fig.width=6, fig.height=3}
+Bern <- data.frame(x=c(0:1, 0:1), 
+                   p = c(.4, .6, .4, 1.0), 
+                   display = factor(rep(c("PMF", "CDF"), c(2, 2)),
+                                    c("PMF", "CDF")))
+ggplot(Bern, aes(x=x, y=p)) + 
+  geom_bar(stat="identity", position="dodge", fill=greens.pal[1]) + 
+  scale_x_continuous(breaks=0:1) +
+  scale_y_continuous(breaks=seq(0, 1, by=.2)) + 
+  facet_grid(~ display) + xlab("x") + ylab("Probability") 
+```
+
+\section{Expected Values}
+  \label{Bernoulli_expected_values}
+$$
+\begin{align} 
+E(X)&=\sum\limits_{i=0}^{1} x\cdot p(x)\\
+	  &=\sum\limits_{i=0}^{1} x \cdot p^{x} (1-p)^{1-x}\\
+    &=0 \cdot p^{0} (1-p)^{1-0} + 1 \cdot p^{1} (1-p)^{1-1}\\
+    &=0 + p (1-p)^{0}	\\
+    &= p
+\end{align}
+$$
+
+$$
+\begin{align}
+E(X^{2}) &= \sum\limits_{i=0}^{1} x^2 \cdot p(x)\\
+  &= \sum\limits_{i=0}^{1} x^{2} \cdot p^x (1-p)^{1-x}\\
+  &= \sum\limits_{i=0}^{1} 0^{2} \cdot p^0 (1-p)^{1-0} + 1^2 \cdot p^1 (1-p)^{1-1}\\
+  &= 0 \cdot 1 \cdot 1 + 1 \cdot p \cdot 1\\
+  &= 0 + p \\
+  &= p
+\end{align}
+$$
+
+$\mu = E(X) = p$
+
+$\sigma^2 
+  = E(X^2) - E(X)^2
+	= p-p^2
+	= p(1-p)
+$
