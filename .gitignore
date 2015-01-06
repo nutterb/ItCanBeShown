@@ -5,6 +5,9 @@
 *-Ex.R
 .Rproj.user
 
+# Ignore Rmd files in md_to_html folder
+/md_to_html/*.Rmd
+
 *.log
 *.pdf
 *.synctex.gz

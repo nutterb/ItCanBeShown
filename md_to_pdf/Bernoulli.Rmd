@@ -1,19 +1,19 @@
 ---
-output:
-  html_document:
-    fig_caption: yes
-    number_sections: yes
+  title: The Bernoulli Distribution
+  output:
+    html_document:
+      fig_caption: true
+      number_sections: true
 ---
 
+\chapter{The Bernoulli Distribution}
+  \label{Bernoulli}
+  
 ```{r, echo=FALSE}
 library(ggplot2)
 library(RColorBrewer)
 greens.pal <- rev(brewer.pal(9, "Greens"))
 ```
-
-The Bernoulli Distribution
-\chapter{The Bernoulli Distribution}
-  \label{Bernoulli}
 
 A random variable is said to have a Bernoulli Distribution with parameter $p$ if its probability mass function is:
 $$

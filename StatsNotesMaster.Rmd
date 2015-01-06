@@ -2,6 +2,10 @@
 title: "Notes on Statistical Theory"
 author: "Benjamin Nutter"
 header-includes:
+  - \usepackage{chngcntr}
+  - \counterwithout{section}{chapter}
+  - \renewcommand{\chaptername}{}
+  - \renewcommand{\thechapter}{}
 output:
   pdf_document:
     fig_caption: yes
@@ -16,7 +20,7 @@ greens.pal <- rev(brewer.pal(9, "Greens"))
 ```
 
 \part{Probability Distributions}
-```{r, child="I-ProbabilityDistributions/Bernoulli.Rmd"}
+```{r, child="md_to_pdf/Bernoulli.Rmd"}
 ```
 
 \part{Frequentist Hypothesis Testing}
