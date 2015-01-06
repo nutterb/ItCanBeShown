@@ -1,6 +1,7 @@
 ---
 title: "Notes on Statistical Theory"
 author: "Benjamin Nutter"
+header-includes:
 output:
   pdf_document:
     fig_caption: yes
@@ -23,3 +24,4 @@ greens.pal <- rev(brewer.pal(9, "Greens"))
 \part{Supplemental Subjects}
 
 \part{Non-Statistical Proofs}
+

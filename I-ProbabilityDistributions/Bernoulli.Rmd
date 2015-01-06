@@ -1,9 +1,17 @@
+---
+output:
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+---
+
 ```{r, echo=FALSE}
 library(ggplot2)
 library(RColorBrewer)
 greens.pal <- rev(brewer.pal(9, "Greens"))
 ```
 
+The Bernoulli Distribution
 \chapter{The Bernoulli Distribution}
   \label{Bernoulli}
 
@@ -44,32 +52,34 @@ ggplot(Bern, aes(x=x, y=p)) +
 ```
 
 \section{Expected Values}
-  \label{Bernoulli_expected_values}
+  \label{Bernoulli-expected-values}
 $$
-\begin{align} 
-E(X)&=\sum\limits_{i=0}^{1} x\cdot p(x)\\
-	  &=\sum\limits_{i=0}^{1} x \cdot p^{x} (1-p)^{1-x}\\
-    &=0 \cdot p^{0} (1-p)^{1-0} + 1 \cdot p^{1} (1-p)^{1-1}\\
-    &=0 + p (1-p)^{0}	\\
-    &= p
-\end{align}
+\begin{aligned}
+E(X) &= \sum\limits_{i=0}^{1} x\cdot p(x)\\
+     &= \sum\limits_{i=0}^{1} x \cdot p^{x} (1-p)^{1-x}\\
+     &= 0 \cdot p^{0} (1-p)^{1-0} + 1 \cdot p^{1} (1-p)^{1-1}\\
+     &= 0 + p (1-p)^{0}  \\
+     &= p
+\end{aligned}
+$$ 
+  
+  
 $$
-
-$$
-\begin{align}
+\begin{aligned}
 E(X^{2}) &= \sum\limits_{i=0}^{1} x^2 \cdot p(x)\\
-  &= \sum\limits_{i=0}^{1} x^{2} \cdot p^x (1-p)^{1-x}\\
-  &= \sum\limits_{i=0}^{1} 0^{2} \cdot p^0 (1-p)^{1-0} + 1^2 \cdot p^1 (1-p)^{1-1}\\
-  &= 0 \cdot 1 \cdot 1 + 1 \cdot p \cdot 1\\
-  &= 0 + p \\
-  &= p
-\end{align}
+    &= \sum\limits_{i=0}^{1} x^{2} \cdot p^x (1-p)^{1-x}\\
+    &= \sum\limits_{i=0}^{1} 0^{2} \cdot p^0 (1-p)^{1-0} + 
+        1^2 \cdot p^1 (1-p)^{1-1}\\
+    &= 0 \cdot 1 \cdot 1 + 1 \cdot p \cdot 1\\
+    &= 0 + p \\
+    &= p
+\end{aligned}
 $$
-
+  
 $\mu = E(X) = p$
-
+  
 $\sigma^2 
   = E(X^2) - E(X)^2
-	= p-p^2
-	= p(1-p)
+  = p-p^2
+  = p(1-p)
 $
