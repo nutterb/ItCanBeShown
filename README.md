@@ -16,6 +16,12 @@ commands to the markdown style commands, as opposed to the other direction.
 more intuitive to present the chapters in alphabetical order, and so I can't guarantee the
 order of the chapters will remain the same forever.  Instead, I've ommitted chapter number, and
 sections should be referenced as "Bernoulli Distribution 1.1," for example.
+3. Section labels need to have the same name as the section title, but with the following
+conditions
+    * Lower case letters
+    * Spaces replaced with a dash
+    * Special characters removed
+    * example "MLE for \mathbf{\nu}" becomes "mle-for-mathbfnu"
 
 
 ## Rendering the PDF
@@ -44,7 +50,12 @@ code:
 ```r
 RepoDir <- ""
 source(file.path(RepoDir, "utility_scripts/markdown_pdf_to_html.R"))
+source(file.path(RepoDir, "utility_scripts/master_to_html.R"))
 ConvertPDFtoHTML(RepoDir)
+master_to_html(RepoDir)
 ```
+
+After running this code, the 'index.html' file will appear in the project's directory.
+The HTML files can then be browsed.
 
 Please remember that changes to the files in the `/md_to_html` subdirectory are *not* tracked and will not be committed.  Changes must be made to the files in `/md_to_pdf` subdirectory.
