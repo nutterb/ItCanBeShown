@@ -16,6 +16,9 @@ library(RColorBrewer)
 greens.pal <- rev(brewer.pal(9, "Greens"))
 ```
 
+\section{Probability Mass Function}
+\label{BinomialDistribution_pmf}
+
 A random variable is said to follow a Binomial distribution with parameters $n$ and $p$ if its probability mass function is:\\
 $$p(x)=
 	\left\{

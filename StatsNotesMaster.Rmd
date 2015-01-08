@@ -62,7 +62,8 @@ greens.pal <- rev(brewer.pal(9, "Greens"))
 \part{Non-Statistical Proofs}
 
 \chapter{ The Binomial Theorem}
-\chapter{ Functions}
+```{r, child="md_to_pdf/Functions.Rmd"}
+```
 \chapter{ The Geometric Series}
 \chapter{ Integraion: Techniques and Theorems}
 \chapter{ Logarithmic and Exponential Functions}

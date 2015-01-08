@@ -56,17 +56,20 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="TOC">
 <ul>
-<li><a href="#cumulative-distribution-function"><span class="toc-section-number">1</span> Cumulative Distribution Function</a></li>
-<li><a href="#expected-values"><span class="toc-section-number">2</span> Expected Values</a></li>
-<li><a href="#moment-generating-function"><span class="toc-section-number">3</span> Moment Generating Function</a></li>
-<li><a href="#theorems-for-the-bernoulli-distribution"><span class="toc-section-number">4</span> Theorems for the Bernoulli Distribution</a><ul>
-<li><a href="#validity-of-the-distribution"><span class="toc-section-number">4.1</span> Validity of the Distribution</a></li>
-<li><a href="#sum-of-bernoulli-random-variables"><span class="toc-section-number">4.2</span> Sum of Bernoulli Random Variables</a></li>
+<li><a href="#probability-mass-function"><span class="toc-section-number">1</span> Probability Mass Function</a></li>
+<li><a href="#cumulative-distribution-function"><span class="toc-section-number">2</span> Cumulative Distribution Function</a></li>
+<li><a href="#expected-values"><span class="toc-section-number">3</span> Expected Values</a></li>
+<li><a href="#moment-generating-function"><span class="toc-section-number">4</span> Moment Generating Function</a></li>
+<li><a href="#theorems-for-the-bernoulli-distribution"><span class="toc-section-number">5</span> Theorems for the Bernoulli Distribution</a><ul>
+<li><a href="#validity-of-the-distribution"><span class="toc-section-number">5.1</span> Validity of the Distribution</a></li>
+<li><a href="#sum-of-bernoulli-random-variables"><span class="toc-section-number">5.2</span> Sum of Bernoulli Random Variables</a></li>
 </ul></li>
 </ul>
 </div>
 
 
+<div id="probability-mass-function" class="section level1">
+<h1><span class="header-section-number">1</span> Probability Mass Function</h1>
 <p>A random variable is said to have a Bernoulli Distribution with parameter <span class="math">\(p\)</span> if its probability mass function is: <span class="math">\[
 p(x)=\left\{ 
     \begin{array}{ll}
@@ -75,8 +78,9 @@ p(x)=\left\{
         \end{array} 
     \right. 
 \]</span> Where <span class="math">\(p\)</span> is the probability of a sucess.</p>
+</div>
 <div id="cumulative-distribution-function" class="section level1">
-<h1><span class="header-section-number">1</span> Cumulative Distribution Function</h1>
+<h1><span class="header-section-number">2</span> Cumulative Distribution Function</h1>
 <p><span class="math">\[
 P(x)=\left\{
     \begin{array}{lll}
@@ -91,7 +95,7 @@ P(x)=\left\{
 </div>
 </div>
 <div id="expected-values" class="section level1">
-<h1><span class="header-section-number">2</span> Expected Values</h1>
+<h1><span class="header-section-number">3</span> Expected Values</h1>
 <p><span class="math">\[
 \begin{align}
 E(X) &amp;= \sum\limits_{i=0}^{1} x\cdot p(x)\\
@@ -120,7 +124,7 @@ E(X^{2}) &amp;= \sum\limits_{i=0}^{1} x^2 \cdot p(x)\\
 <hr />
 </div>
 <div id="moment-generating-function" class="section level1">
-<h1><span class="header-section-number">3</span> Moment Generating Function</h1>
+<h1><span class="header-section-number">4</span> Moment Generating Function</h1>
 <p><span class="math">\[
 \begin{align}
 M_{X}(t)
@@ -156,9 +160,9 @@ M_{X}(t)
     = p (1-p)\]</span></p>
 </div>
 <div id="theorems-for-the-bernoulli-distribution" class="section level1">
-<h1><span class="header-section-number">4</span> Theorems for the Bernoulli Distribution</h1>
+<h1><span class="header-section-number">5</span> Theorems for the Bernoulli Distribution</h1>
 <div id="validity-of-the-distribution" class="section level2">
-<h2><span class="header-section-number">4.1</span> Validity of the Distribution</h2>
+<h2><span class="header-section-number">5.1</span> Validity of the Distribution</h2>
 <p><span class="math">\[\sum\limits_{x=0}^{1}p^x(1-p)^{1-x}=1\]</span></p>
 <p><em>Proof:</em></p>
 <p><span class="math">\[
@@ -168,7 +172,7 @@ M_{X}(t)
     = 1\]</span> </p>
 </div>
 <div id="sum-of-bernoulli-random-variables" class="section level2">
-<h2><span class="header-section-number">4.2</span> Sum of Bernoulli Random Variables</h2>
+<h2><span class="header-section-number">5.2</span> Sum of Bernoulli Random Variables</h2>
 <p>Let <span class="math">\(X_1,X_2,\ldots,X_n\)</span> be independent and identically distributed random variables from a Bernoulli distribution with parameter <span class="math">\(p\)</span>. Let <span class="math">\(Y=\sum\limits_{i=1}^{n}X_i\)</span>.<br />Then <span class="math">\(Y\sim\)</span> Binomial<span class="math">\((n,p)\)</span></p>
 <p><em>Proof:</em> <span class="math">\[
 \begin{align}

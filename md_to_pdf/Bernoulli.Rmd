@@ -9,12 +9,15 @@
 
 \chapter{The Bernoulli Distribution}
   \label{Bernoulli}
-  
+
 ```{r, echo=FALSE}
 library(ggplot2)
 library(RColorBrewer)
 greens.pal <- rev(brewer.pal(9, "Greens"))
 ```
+
+\section{Probability Mass Function}
+\label{Bernoulli_pmf}
 
 A random variable is said to have a Bernoulli Distribution with parameter $p$ if its probability mass function is:
 $$

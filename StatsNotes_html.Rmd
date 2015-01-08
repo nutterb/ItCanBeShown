@@ -24,6 +24,7 @@ greens.pal <- rev(brewer.pal(9, "Greens"))
 
 # Probability Distributions
 * [The Bernoulli Distribution](html_files/Bernoulli.html)
+    * [Probability Mass Function](html_files/Bernoulli.html#probability-mass-function)
     * [Cumulative Distribution Function](html_files/Bernoulli.html#cumulative-distribution-function)
     * [Expected Values](html_files/Bernoulli.html#expected-values)
     * [Moment Generating Function](html_files/Bernoulli.html#moment-generating-function)
@@ -33,6 +34,7 @@ greens.pal <- rev(brewer.pal(9, "Greens"))
 
 
 * [The Binomial Distribution](html_files/BinomialDistribution.html)
+    * [Probability Mass Function](html_files/BinomialDistribution.html#probability-mass-function)
     * [Cumulative Distribution Function](html_files/BinomialDistribution.html#cumulative-distribution-function)
     * [Expected Values](html_files/BinomialDistribution.html#expected-values)
     * [Moment Generating Function](html_files/BinomialDistribution.html#moment-generating-function)
@@ -47,6 +49,7 @@ greens.pal <- rev(brewer.pal(9, "Greens"))
 
 
 * [The Chi-Square Distribution](html_files/ChiSquareDistribution.html)
+    * [Probability Distribution Function](html_files/ChiSquareDistribution.html#probability-distribution-function)
     * [Cumulative Distribution Function](html_files/ChiSquareDistribution.html#cumulative-distribution-function)
     * [Expected Values](html_files/ChiSquareDistribution.html#expected-values)
     * [Moment Generating Function](html_files/ChiSquareDistribution.html#moment-generating-function)
@@ -90,7 +93,18 @@ greens.pal <- rev(brewer.pal(9, "Greens"))
 # Non-Statistical Proofs
 
 \chapter{ The Binomial Theorem}
-\chapter{ Functions}
+* [Functions](html_files/Functions.html)
+    * [Fundamental Concepts and Definitions](html_files/Functions.html#fundamental-concepts-and-definitions)
+        * [Function Operations](html_files/Functions.html#function-operations)
+    * [Identities and Inverses](html_files/Functions.html#identities-and-inverses)
+    * [Odd and Even Functions](html_files/Functions.html#odd-and-even-functions)
+    * [Theorems for Functions](html_files/Functions.html#theorems-for-functions)
+        * [Operations on Even Functions](html_files/Functions.html#operations-on-even-functions)
+        * [Operations on Odd Functions](html_files/Functions.html#operations-on-odd-functions)
+        * [Operations on an Odd and Even Function](html_files/Functions.html#operations-on-an-odd-and-even-function)
+        * [Derivatives and Anti-derivatives of Odd Functions](html_files/Functions.html#derivatives-and-anti-derivatives-of-odd-functions)
+        * [Derivatives and Anti-derivatives of Even Functions](html_files/Functions.html#derivatives-and-anti-derivatives-of-even-functions)
+
 \chapter{ The Geometric Series}
 \chapter{ Integraion: Techniques and Theorems}
 \chapter{ Logarithmic and Exponential Functions}

@@ -18,6 +18,9 @@ library(RColorBrewer)
 greens.pal <- rev(brewer.pal(9, "Greens"))
 ```
 
+\section{Probability Distribution Function}
+\label{ChiSquareDistribution_pdf}
+
 A random variable $X$ is said to have a Chi-Square Distribution with parameter 
 $\nu$ if its probability distribution function is
 
