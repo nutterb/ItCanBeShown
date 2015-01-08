@@ -10,7 +10,7 @@
 ---
 
 \chapter{The Chi-Square Distribution}
-\label{ChiSquareDistribution#the-chi-square-distribution}
+\label{ChiSquareDistribution_the-chi-square-distribution}
 ```{r, echo=FALSE}
 library(ggplot2)
 library(plyr)
@@ -33,7 +33,7 @@ $\nu$ is commonly referred to as the _degrees of freedom_.
 
 
 \section{Cumulative Distribution Function}
-\label{ChiSquareDistribution#cumulative-distribution-function}
+\label{ChiSquareDistribution_cumulative-distribution-function}
 
 The cumulative distribution function for the Chi-Square Distribution cannot be written in closed form.  It's integral form is expressed as
 $$F(x)= \left\{
@@ -60,7 +60,7 @@ ggplot(Chi, aes(x=x, y=p, colour=factor(nu))) + geom_line() +
 ```
 
 \section{Expected Values}
-\label{ChiSquareDistribution#expected-values}
+\label{ChiSquareDistribution_expected-values}
 $$
 \begin{aligned}
 E(X)
@@ -123,7 +123,7 @@ $$\sigma^2
 	= 2\nu$$
 
 \section{Moment Generating Function}
-\label{ChiSquareDistribution#moment-generating-function}
+\label{ChiSquareDistribution_moment-generating-function}
 $$
 \begin{aligned}
 M_X(t)
@@ -239,11 +239,11 @@ $$\sigma^2
 	= 2\nu$$
 
 \section{Maximum Likelihood Function}
-\label{ChiSquareDistribution#maximum-likelihood-function}
+\label{ChiSquareDistribution_maximum-likelihood-function}
 Let $x_1,x_2,\ldots,x_n$ be a random sample from a Chi-square distribution with parameter $\nu$.
 
 \subsection{Likelihood Function}
-\label{ChiSquareDistribution#likelihood-function}
+\label{ChiSquareDistribution_likelihood-function}
 $$
 \begin{aligned}
 L(\theta)
@@ -264,7 +264,7 @@ L(\theta)
 $$
 
 \subsection{Log-likelihood Function}
-\label{ChiSquareDistribution#log-likelihood-function}
+\label{ChiSquareDistribution_log-likelihood-function}
 $$
 \begin{aligned}
 \ell(\theta)
@@ -291,7 +291,7 @@ $$
 $$
 
 \subsection{MLE for $\mathbf{\nu}$}
-\label{ChiSquareDistribution#mle-for-mathbfnu}
+\label{ChiSquareDistribution_mle-for-mathbfnu}
 $$
 \begin{aligned}
 \frac{d\ell}{d\nu}
@@ -323,10 +323,10 @@ $$
 Due to the complexity of the Gamma function in this equation, no solution can be developed for $\nu$ in closed form.  Thus, we have to rely on numerical methods to obtain a solution to the equation and find the maximum likelihood estimator.
 
 \section{Theorems for the Chi-Square Distribution}
-\label{ChiSquareDistribution#theorems-for-the-chi-square-distribution}
+\label{ChiSquareDistribution_theorems-for-the-chi-square-distribution}
 
 \subsection{Validity of the Distribution}
-\label{ChiSquareDistribution#validity-of-the-distribution}
+\label{ChiSquareDistribution_validity-of-the-distribution}
 $$
 \int\limits_{0}^{\infty}\frac{x^{\frac{\nu}{2}-1}e^{-\frac{x}{2}}}
 		{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}dx = 1$$
@@ -349,7 +349,7 @@ $$
 $$ \rule{.05in}{.05in}
 
 \subsection{Sum of Chi-Square Random Variables}
-\label{ChiSquareDistribution#sum-of-chi-square-random-variables}
+\label{ChiSquareDistribution_sum-of-chi-square-random-variables}
 
 Let $X_1 , X_2 , \ldots , X_n$ be independent Chi-Square random variables with parameter $\nu_i$, that is $X_i\sim\chi^2(\nu_i),\ i=1,2,\ldots,n$.
 
@@ -376,7 +376,7 @@ Thus $Y\sim\chi^2\bigg(\sum\limits_{i=1}^{n}\nu_i\bigg)$. \rule{.05in}{.05in}
 
 
 \subsection{Square of a Standard Normal Random Variable}
-\label{ChiSquareDistribution#square-of-a-standard-normal-random-variable}
+\label{ChiSquareDistribution_square-of-a-standard-normal-random-variable}
 
 If $Z\sim N(0,1)$, then $Z^2\sim\chi^2(1)$.
 
