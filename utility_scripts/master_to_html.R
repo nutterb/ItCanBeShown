@@ -5,14 +5,14 @@ master_to_html <- function(RepoDir){
   #* Modify YAML header
   text[grepl("pdf_document:", text)] <- 
     sub("pdf_document", "html_document", text[grepl("pdf_document:", text)])
+  text[grepl("number_sections: yes", text)] <- 
+    sub("yes", "no", text[grepl("number_sections: yes", text)])
   text[grepl("fig_caption: yes", text)] <- 
     sub("yes", "no", text[grepl("fig_caption: yes", text)])
-  text[grepl("toc: yes", text)] <- 
-    sub("yes", "no", text[grepl("toc: yes", text)])
   
   #* Convert \part to # 
   part_lines <- grep("\\\\part[{]", text)
-  text[part_lines] <- gsub("\\\\part[{]", "* ", text[part_lines])
+  text[part_lines] <- gsub("\\\\part[{]", "# ", text[part_lines])
   text[part_lines] <- sub("\\s+$", "", text[part_lines], perl=TRUE)
   text[part_lines] <- substr(text[part_lines], 1, nchar(text[part_lines])-1)
   
@@ -29,7 +29,7 @@ master_to_html <- function(RepoDir){
                        heads <- child[c(2, which(substr(child, 1, 1) == "#"))]
                        heads[1] <- sub("  title:", "", heads[1])
                        heads <- sub(" ", " [", heads)
-                       heads <- paste0("##", heads, "]")
+                       heads <- paste0("#", heads, "]")
                        heads <- sub("# ", "* ", heads)
                        heads <- gsub("#", "    ", heads)
                        heads
