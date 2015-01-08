@@ -9,6 +9,8 @@
 
 \chapter{The Binomial Distribution}
   \label{Binomial}
+  \setcounter{section}{0}
+  
 ```{r, echo=FALSE}
 library(ggplot2)
 library(plyr)

@@ -9,7 +9,8 @@
 
 \chapter{The Bernoulli Distribution}
   \label{Bernoulli}
-
+  \setcounter{section}{0}
+  
 ```{r, echo=FALSE}
 library(ggplot2)
 library(RColorBrewer)

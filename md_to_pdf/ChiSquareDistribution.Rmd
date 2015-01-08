@@ -11,6 +11,8 @@
 
 \chapter{The Chi-Square Distribution}
 \label{ChiSquareDistribution_the-chi-square-distribution}
+\setcounter{section}{0}
+
 ```{r, echo=FALSE}
 library(ggplot2)
 library(plyr)

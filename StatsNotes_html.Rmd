@@ -22,6 +22,20 @@ library(RColorBrewer)
 greens.pal <- rev(brewer.pal(9, "Greens"))
 ```
 
+The content of these pages is intended to make explicit the development of
+mathematical and statistical theory while avoiding the nebulous "It can be shown."
+As much as possible, the equations are developed step-by-step so that each 
+step can be followed and understood.  
+
+In instances where the changes are not obvious, explanations are provided in 
+red.  Originally, these explanations were intended to be footnotes, but footnotes
+are not well suited to the web page format.  For consistency, the PDF version
+of these pages is produced in an identical format.  The PDF may be downloaded
+from the [https://github.com/nutterb/ItCanBeShown](It Can Be Shown) GitHub 
+repository.  
+
+Additions, corrections, and suggestions are welcome on GitHub.
+
 # Probability Distributions
 * [The Bernoulli Distribution](html_files/Bernoulli.html)
     * [Probability Mass Function](html_files/Bernoulli.html#probability-mass-function)

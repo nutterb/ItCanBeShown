@@ -9,6 +9,7 @@
 
 \chapter{Functions}
 \label{Functions}
+\setcounter{section}{0}
 
 ```{r, echo=FALSE}
 library(ggplot2)
