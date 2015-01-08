@@ -9,6 +9,7 @@ I really wanted two different formats for these notes.  On the one hand, a PDF t
 both options with just some minor adjustments from the PDF to the HTML design.
 
 Some of the decisions I had to make for this:
+
 1. All of the design is done in the files in the `/md_to_pdf` subdirectory.  These files are
 rendered to PDFs and it seemed easier to convert section headings from the LaTeX style 
 commands to the markdown style commands, as opposed to the other direction.
