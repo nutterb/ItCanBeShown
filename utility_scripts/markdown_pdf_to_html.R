@@ -29,7 +29,8 @@ ConvertPDFtoHTML <- function(RepoDir){
     sec <- paste0("\\\\", sec, "[{]")
     sec.line <- grep(sec, t)
     t[sec.line] <- gsub(sec, hash, t[sec.line])
-    t[sec.line] <- gsub("[}]", "", t[sec.line])
+    t[sec.line] <- sub("\\s+$", "", t[sec.line], perl = TRUE)
+    t[sec.line] <- substr(t[sec.line], 1, nchar(t[sec.line]) - 1)
     return(t)
   }
 
@@ -44,6 +45,9 @@ ConvertPDFtoHTML <- function(RepoDir){
                                                  "\\\\begin{align}", text))
   Md_html <- lapply(Md_html, function(text) gsub("\\\\end[{]aligned[}]",
                                                  "\\\\end{align}", text))
+  Md_html <- lapply(Md_html, 
+                    function(text) text[!grepl("\\\\label[{]", text)])
+    
 
   #* Write the new HTML markdown files to the "md_to_html" directory
   for(i in 1:length(Md_html)){

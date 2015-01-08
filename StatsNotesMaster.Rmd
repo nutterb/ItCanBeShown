@@ -2,10 +2,13 @@
 title: "Notes on Statistical Theory"
 author: "Benjamin Nutter"
 header-includes:
+  - \usepackage{color}
   - \usepackage{chngcntr}
   - \counterwithout{section}{chapter}
   - \renewcommand{\chaptername}{}
   - \renewcommand{\thechapter}{}
+  - \usepackage{pifont}
+  - \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
 output:
   pdf_document:
     fig_caption: yes
@@ -23,9 +26,46 @@ greens.pal <- rev(brewer.pal(9, "Greens"))
 ```{r, child="md_to_pdf/Bernoulli.Rmd"}
 ```
 
+```{r, child="md_to_pdf/BinomialDistribution.Rmd"}
+```
+
+```{r, child="md_to_pdf/ChiSquareDistribution.Rmd"}
+```
+
+\chapter{ The Exponential Distribution}
+\chapter{ The Gamma Distribution}
+\chapter{ The Geometric Distribution}
+\chapter{ The Hypergeometric Distribution}
+\chapter{ The Multinomial Distribution}
+\chapter{ The Normal Distribution}
+\chapter{ The Poisson Distribution}
+\chapter{ The Skew-Normal Distribution}
+\chapter{ The Uniform Distribution}
+\chapter{ The Weibull Distribution}
+
 \part{Frequentist Hypothesis Testing}
+
+\chapter{ Mantel-Haenszel Test}
 
 \part{Supplemental Subjects}
 
+\chapter{ Chebychev's Theorem}
+\chapter{ Combinations}
+\chapter{ The Correlation Coefficient}
+\chapter{ Covariance}
+\chapter{ Experimental Designs}
+\chapter{ Moments and Moment Generating Functions}
+\chapter{ Summation}
+\chapter{ The Method of Transformations}
+\chapter{ Variance Paramter}
+
 \part{Non-Statistical Proofs}
+
+\chapter{ The Binomial Theorem}
+\chapter{ Functions}
+\chapter{ The Geometric Series}
+\chapter{ Integraion: Techniques and Theorems}
+\chapter{ Logarithmic and Exponential Functions}
+\chapter{ The Real Number System}
+
 
