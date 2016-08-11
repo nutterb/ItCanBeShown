@@ -1,0 +1,60 @@
+# Binomial Distribution
+
+## Probability Mass Function
+A random variable is said to follow a Binomial distribution with parameters $n$ and $p$ if its probability mass function is:
+
+\[p(x)=
+	\left\{
+		\begin{array}{ll}
+			{n \choose x} p^x (1-p)^{n-x},	& x=0,1,2,\ldots,n\\
+			0 				& \mathrm{otherwise}
+		\end{array}
+	\right. \]
+	
+Where $n$ is the number of trials performed and $p$ is the probability of a success on each individual trial.
+
+## Cumulative Mass Function
+
+\[ P(x)=
+	\left\{
+		\begin{array} {lll}
+			0							& x<0\\
+			\sum\limits_{i=0}^{x} {n \choose i} p^i (1-p)^{n-i} 	& 0 \leq x=0,1,2,\ldots,n\\
+			1 							& n\leq x
+		\end{array}
+	\right. \]
+	
+A recursive form of the cdf can be derived and has some usefulness in computer applications.  With it, one need only initiate the first value and additional cumulative probabilities can be calculated.  It is derived as follows:
+
+$$\begin{align*} 
+F(x+1)
+	&= {n\choose x+1} p^{x+1} (1-p)^{n-(x+1)} \\
+	&= \frac{n!}{(x+1)!(n-(x+1))!} p^{x+1} (1-p)^{n-(x+1)} \\
+  &= \frac{n!}{(x+1)!(n-x-1)!} p^{x+1} (1-p)^{n-x-1} \\
+  &= \frac{(n-x)n!}{(x+1)x!(n-x)(n-x-1)!} p \cdot p^x \frac{(1-p)^{n-x}}{(1-p)} \\
+  &= \frac{(n-x)n!}{(x+1)x!(n-x)!} \cdot \frac{p}{1-p} p^x (1-p)^{n-x} \\
+  &= \frac{p}{1-p} \cdot \frac{n-x}{x+1} \cdot \frac{n!}{x!(n-x)!} p^x (1-p)^{n-x} \\
+  &= \frac{p}{1-p} \cdot \frac{n-x}{x+1} \cdot {n\choose x} p^x (1-p)^{n-x} \\
+	&= \frac{p}{1-p} \cdot \frac{n-x}{x+1} \cdot F(x)
+\end{align*}$$
+
+```{r, echo = FALSE, fig.cap = 'The graphs on the left and right show a Binomial Probability Distribution and Cumulative Distribution Function, respectively, with $n=10$ and $p=.4$.'}
+Binomial <- 
+  data.frame(x = 0:10) %>%
+  mutate(dbinom = dbinom(x, size = 10, p = 0.4),
+         pbinom = pbinom(x, size = 10, p = 0.4)) %>%
+  gather(cumulative, prob, -x) %>%
+  mutate(cumulative = factor(cumulative,
+                             levels = c("dbinom", "pbinom"),
+                             labels = c("Probability Mass", "Cumulative Mass")))
+
+ggplot(data = Binomial,
+       mapping = aes(x = x)) + 
+  geom_bar(mapping = aes(y = prob),
+           stat = "identity",
+           fill = pallette[1]) + 
+  facet_grid(~ cumulative) + 
+  scale_x_continuous(breaks = 0:10) + 
+  ylab("P(x)") + 
+  theme_bw()
+```
