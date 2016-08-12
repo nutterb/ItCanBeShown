@@ -1,0 +1,311 @@
+# Analysis of Variance
+
+## One-Way Design
+
+### Decomposition of Sums of Squares
+
+$$\begin{align*}
+SS_{Total}
+	&= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{++})^2 \\
+	&= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{i+} + \bar x_{i+} -
+	        x_{++})^2 \\
+  &= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} 
+		\big[ (x_{ij} - \bar x{i+}) + (\bar x_{i+} - \bar x_{++}) \big]^2 \\
+	&= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} 
+		\big[ (\bar x_{i+} - \bar x_{++}) + (x_{ij} - \bar x{i+}) \big]^2 \\
+  &= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} 
+      \big[ (\bar x_{i+} - \bar x_{++})^2
+		  + 2(\bar x_{i+} - \bar x_{++})(x_{ij} - \bar x_{i+})
+		  + (x_{ij} - \bar x_{i+})^2 \big] \\
+  &= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (\bar x_{i+} - \bar x_{++})^2
+	  	+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} 2(\bar x_{i+} 
+	  	- \bar x_{++})(x_{ij} - \bar x_{i+})
+		  + \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{i+})^2 \\
+  &= \sum\limits_{i=1}^{a} n_i(\bar x_{i+} - \bar x_{++})^2
+	  	+ 2\sum\limits_{i=1}^{a} n_i (\bar x_{i+} - \bar x_{++})
+			\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{i+})
+		  + \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{i+})^2 \\
+  &= \sum\limits_{i=1}^{a} n_i(\bar x_{i+} - \bar x_{++})^2
+  		+ 2\sum\limits_{i=1}^{a} n_i (\bar x_{i+} - \bar x_{++})
+	  		\bigg(\sum\limits_{j=1}^{n_i} x_{ij} - \sum\limits_{j=1}^{n_i}\bar x_{i+}\bigg) 
+	  	 + \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{i+})^2 \\
+  &= \sum\limits_{i=1}^{a} n_i(\bar x_{i+} - \bar x_{++})^2
+		+ 2\sum\limits_{i=1}^{a} n_i (\bar x_{i+} - \bar x_{++})
+			(x_{i+} - n_i \bar x_{i+})
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{i+})^2 \\
+  &= \sum\limits_{i=1}^{a} n_i(\bar x_{i+} - \bar x_{++})^2
+		+ 2\sum\limits_{i=1}^{a} n_i (\bar x_{i+} - \bar x_{++})
+			\big(x_{i+} - n_i \frac{x_{i+}}{n_i}\big)
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{i+})^2 \\
+  &= \sum\limits_{i=1}^{a} n_i(\bar x_{i+} - \bar x_{++})^2
+		+ 2\sum\limits_{i=1}^{a} n_i (\bar x_{i+} - \bar x_{++})
+			(x_{i+} - x_{i+})
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{i+})^2 \\
+  &= \sum\limits_{i=1}^{a} n_i(\bar x_{i+} - \bar x_{++})^2
+		+ 2\sum\limits_{i=1}^{a} n_i (\bar x_{i+} - \bar x_{++}) \cdot 0
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{i+})^2 \\
+  &= \sum\limits_{i=1}^{a} n_i(\bar x_{i+} - \bar x_{++})^2
+		+ 0
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{i+})^2 \\
+  &= \sum\limits_{i=1}^{a} n_i(\bar x_{i+} - \bar x_{++})^2
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{i+})^2\\
+\end{align*}$$
+
+The components are commonly referred to as
+
+$$
+SS_{Factor}
+	= \sum\limits_{i=1}^{a} n_i(\bar x_{i+} - \bar x_{++})^2$ and 
+$$
+
+$$
+SS_{Error}
+	= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{i+})^2$
+$$
+
+Notice that $SS_{Factor}$ compares the factor means to the overall mean, and it can be said that $SS_{Factor}$ measures the variation _between_ factors.  $SS_{Error}$ compares each observation to the overall mean, and can be said to describe the variation _within_ factors.
+
+When $n_1 = n_2 = \cdots n_i = n$, the design is said to be balanced.
+
+## Computational Formulas
+
+$SS_{Total}$ and $SS_{Factor}$ can be simplified for convenient computation.
+
+$$\begin{align*}
+SS_{Total} 
+	        &= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{++})^2 \\
+  ^{[1]}  &= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} x_{ij}^2 - 
+                x_{++} \sum\limits_{j=1}^{n_i}\frac{1}{n_i}\\
+\end{align*}$$
+
+> 1. See Theorem \@ref(computational-formula-population-variance)
+
+$$\begin{align*}
+SS_{Factor}
+	        &= \sum\limits_{i=1}^{a} n_i(\bar x_{i+} - \bar x_{++})^2  \\
+  ^{[1]}  &= \sum\limits_{i=1}^{a}\frac{\bar x_{i+}^2}{n_i} 
+                - \bar x_{++} \sum\limits_{i=1}^{a}\frac{1}{n_i}
+\end{align*}$$
+
+> 1. See Theorem \@ref(computational-formula-population-variance)
+
+$SS_{Error}$ does not simplify to a convenient form, but  
+$$\begin{align*}
+SS_{Total} 
+                       &= SS_{Factor} + SS_{Error}  \\
+\Rightarrow SS_{Error} &= SS_{Total} - SS_{Factor}
+\end{align*}$$
+
+
+
+
+## Randomized Complete Block Design
+
+Blocking in ANOVA is a method of eliminate the effect of a controllable nuisance variable.  To implement this design, suppose we have $a$ treatments we want to compare, and $b$ blocks.  We may analyze the data by use of the sums of squares, similar to the one-way design.
+
+### Decomposition of Sums of Squares
+
+$$\begin{align*}
+SS_{Total}
+	    &= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}(x_{ij} - \bar x_{++})^2 \\
+	    	    &= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}(x_{ij} + \bar x_{i+} - \bar x_{i+} 
+		      + \bar x_{+ j} - \bar x_{+ j} + \bar x_{++} - \bar x_{+ +} - \bar x_{++})^2 \\
+      &= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}\big[ (\bar x_{i+} - \bar x_{++})
+    		+ (\bar x_{+ j} - \bar x_{++})
+    		+ (x_{ij} - \bar x_{i+} - \bar x_{+ j} + \bar x_{++}) \big]^2 \\
+      &= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}\big[
+    		(\bar x_{i+} - \bar x_{++})^2
+    		+ 2(\bar x_{i+} - \bar x_{++})(\bar x_{+ j} - \bar x_{++}) \\
+      &	\ \ \ \ + 2(\bar x_{i+} - \bar x_{++})(x_{ij} - \bar x_{i+} - \bar x_{+ j} + \bar x_{++})
+    		+ (\bar x_{+ j} - \bar x_{++})^2 \\
+      & \ \ \ \ + 2(\bar x_{+ j} - \bar x_{++})
+                   (x_{ij} - \bar x_{i+} - \bar x_{+ j} + \bar x_{++}) \\
+    	& \ \ \ \	+ (x_{ij} - \bar x_{i+} - \bar x_{+ j} + \bar x_{++})^2 \big] \\
+      &= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}\big[
+    		    (\bar x_{i+} - \bar x_{++})^2
+    		    + (\bar x_{+ j} - \bar x_{++})^2
+    		    + (x_{ij} - \bar x_{i+} - \bar x_{+ j} + \bar x_{++})^2 \\
+    	& \ \ \ \ + 2(\bar x_{i+} - \bar x_{++})(\bar x_{+ j} - \bar x_{++})
+    		    + 2(\bar x_{i+} - \bar x_{++})(x_{ij} - \bar x_{i+} - \bar x_{+ j} + \bar x_{++}) \\
+    	& \ \ \ \ 
+            + 2(\bar x_{+ j} - \bar x_{++})(x_{ij} - \bar x_{i+} - \bar x_{+ j} + \bar x_{++}) \big] \\
+      ^{[1]} &= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}\big[
+    		(\bar x_{i+} - \bar x_{++})^2
+    		+ (\bar x_{+ j} - \bar x_{++})^2
+    		+ (x_{ij} - \bar x_{i+} - \bar x_{+ j} + \bar x_{++})^2
+        + 0 + 0 + 0 \big] \\
+      &= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b} (\bar x_{i+} - \bar x_{++})^2
+    		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b} (\bar x_{+ j} - \bar x_{++})^2
+        + \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}
+    			(x_{ij} - \bar x_{i+} - \bar x_{+ j} + \bar x_{++})^2 \\
+      &= b \sum\limits_{i=1}^{a} (\bar x_{i+} - \bar x_{++})^2
+    		+ a \sum\limits_{j=1}^{b} (\bar x_{+ j} - \bar x_{++})^2
+        + \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}
+    			(x_{ij} - \bar x_{i+} - \bar x_{+ j} + \bar x_{++})^2
+\end{align*}$$
+
+> 1. It is shown that the cross products are equal to zero in Section \@ref(anova-rcbd-cross-products)
+
+These terms are commonly referred to as 
+$$\begin{align*}
+SS_{Factor}
+	&= b \sum\limits_{i=1}^{a} (\bar x_{i+} - \bar x_{++})^2 \\
+SS_{Block}
+	&= a \sum\limits_{j=1}^{b} (\bar x_{+ j} - \bar x_{++})^2 \\
+SS_{Error}
+	&= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}
+		(x_{ij} - \bar x_{i+} - \bar x_{+ j} + \bar x_{++})^2
+\end{align*}$$
+
+
+### Computational Formulae
+
+$SS_{Total}$, $SS_{Factor}$, and $SS_{Block}$ can all be simplified for convenient computation.
+
+$$\begin{align*}
+SS_{Total} 
+          &= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}(x_{ij} - \bar x_{++})^2 \\
+  ^{[1]}  &= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b} x_{ij}^2 - \frac{x_{++}}{ab}\\
+\\
+SS_{Factor} 
+          &= b \sum\limits_{i=1}^{a} (\bar x_{i+} - \bar x_{++})^2 \\
+  ^{[1]}  &= \frac{1}{b}\sum\limits_{i=1}^{a}x_{i+}^2 - \frac{x_{++}^2}{ab} \\
+\\
+SS_{Block} 
+          &= a \sum\limits_{j=1}^{b} (\bar x_{+ j} - \bar x_{++})^2 \\
+  ^{[1]}  &= \frac{1}{a}\sum\limits_{j=1}^{b} x_{+ j}^2 - \frac{x_{++}^2}{ab}
+\end{align*}$$
+
+> 1. See Theorem \@ref(computational-formula-population-variance)
+
+$SS_{Error}$ does not simplify to any convenient form, but may be calculated from the other terms as  
+$SS_{Error} = SS_{Total} - SS_{Factor} - SS_{Block}$
+
+
+### RCBD Cross Products {#anova-rcbd-cross-products}
+
+The cross products of the RCBD design
+
+$$\begin{align*}
+2\sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}	(\bar x_{i+}-\bar x_{++})
+						(\bar x_{+ j}-\bar x{++}) & \\
+\ \ \ \ + 2\sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}	(\bar x_{+ j}-\bar x_{++})
+							(x_{ij} + \bar x_{i+} + \bar x_{+ j} - \bar x_{++}) & \\
+\ \ \ \ + 2\sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}	(\bar x_{+ i}-\bar x_{++})
+							(x_{ij} + \bar x_{i+} + \bar x_{+ j} - \bar x_{++})
+	&= 0
+\end{align*}$$
+
+_Proof:_
+
+$$
+2\sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}	(\bar x_{i+}-\bar x_{++})
+						(\bar x_{+ j}-\bar x{++}) 
+	+ 2\sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}	(\bar x_{+ j}-\bar x_{++})
+							(x_{ij} + \bar x_{i+} + \bar x_{+ j} - \bar x_{++}) \\
+\ \ \ \ 	+ 2\sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}	(\bar x_{+ i}-\bar x_{++})
+							(x_{ij} + \bar x_{i+} + \bar x_{+ j} - \bar x_{++})\\
+\ \  = 2\bigg(\sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}	(\bar x_{i+}-\bar x_{++})
+						(\bar x_{+ j}-\bar x{++})
+	+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}	(\bar x_{+ j}-\bar x_{++})
+							(x_{ij} + \bar x_{i+} + \bar x_{+ j} - \bar x_{++}) \\
+\ \ \ \ 	+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}	(\bar x_{+ i}-\bar x_{++})
+							(x_{ij} + \bar x_{i+} + \bar x_{+ j} - \bar x_{++})\bigg)\\
+\ \  = 2\sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}\big[
+		(\bar x_{i+}-\bar x_{++}) (\bar x_{+ j}-\bar x{++})
+		+ (\bar x_{+ j}-\bar x_{++}) (x_{ij} + \bar x_{i+} + \bar x_{+ j} - \bar x_{++}) \\
+\ \ \ \ 	+ (\bar x_{+ i}-\bar x_{++}) (x_{ij} + \bar x_{i+} + \bar x_{+ j} - \bar x_{++}) \big] \\
+\ \  = 2\sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}\big[
+		\bar x_{i+}\bar x_{+ j} - \bar x_{i+}\bar x_{++} 
+			- \bar x_{+ j}\bar x_{++} + \bar x_{++}^2 \\
+\ \ \ \ 	+ x_{ij}\bar x_{+ j} - \bar x_{i +}\bar x_{+ j} - \bar x_{+ j}^2 + \bar x_{+ j}\bar x_{++}
+			- x_{ij}\bar x_{++} + \bar x_{i+}\bar x_{++}
+			+ \bar x_{+ j}\bar x_{++} - \bar x_{++}^2 \\
+\ \ \ \ 	+ x_{ij}\bar x_{+ j} - \bar x_{i +}^2 - \bar x_{i+}\bar x_{+ j} + \bar x_{+ j}\bar x_{++}
+			- x_{ij}\bar x_{++} + \bar x_{i+}\bar x_{++}
+			+ \bar x_{+ j}\bar x_{++} - \bar x_{++}^2 \big] \\
+\ \  = 2\sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}(
+		-\bar x_{++}^2 - \bar x_{i+}^2 - \bar x_{+ j}^2
+		+ x_{ij}\bar x_{i+} + x_{ij}\bar x_{+ j} - 2 x_{ij}\bar x_{++} - \bar x_{i+}\bar x_{+ j} \\
+\ \ \ \ 	+ 2\bar x_{i+}\bar x_{++} + 2\bar x_{+ j}\bar x_{++} ) \\
+\ \ = 2\bigg(-\sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}\bar x_{++}^2
+		- \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}\bar x_{i+}^2
+		- \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}\bar x_{+ j}^2
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}x_{ij}\bar x_{i+}
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}x_{ij}\bar x_{+ j} \\ 
+\ \ \ \	- \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}2 x_{ij}\bar x_{++} 
+		- \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}\bar x_{i+}\bar x_{+ j}
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}2\bar x_{i+}\bar x_{++} 
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}2\bar x_{+ j}\bar x_{++} \bigg) \\
+\ \  = 2\bigg( \frac{ab\bar x_{++}^2}{a^2b^2}
+		- \frac{b}{b^2}\sum\limits_{i=1}^{a}\bar x_{i+}^2
+		- \frac{a}{a^2}\sum\limits_{j=1}^{b}\bar x_{+ j}^2
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}x_{ij}\bar x_{i+}
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}x_{ij}\bar x_{+ j}\\ 
+\ \ \ \ 	- \frac{2\bar x{++}^2}{ab} 
+		- \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}\bar x_{i+}\bar x_{+ j}
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}2\bar x_{i+}\bar x_{++} 
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}2\bar x_{+ j}\bar x_{++} \bigg)\\
+\ \ ^{[1]} =2\bigg( \frac{\bar x_{++}^2}{ab}
+		- \frac{1}{b}\sum\limits_{i=1}^{a}\bar x_{i+}^2
+		- \frac{1}{a}\sum\limits_{j=1}^{b}\bar x_{+ j}^2
+		+ \frac{1}{b}\sum\limits_{i=1}^{a}\bar x_{i+}^2
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}x_{ij}\bar x_{+ j}\\ 
+\ \ \ \ 	- \frac{2\bar x{++}^2}{ab} 
+		- \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}\bar x_{i+}\bar x_{+ j}
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}2\bar x_{i+}\bar x_{++} 
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}2\bar x_{+ j}\bar x_{++} \bigg)\\
+\ \ ^{[2]} = 2\bigg( \frac{\bar x_{++}^2}{ab}
+		- \frac{1}{b}\sum\limits_{i=1}^{a}\bar x_{i+}^2
+		- \frac{1}{a}\sum\limits_{j=1}^{b}\bar x_{+ j}^2
+		+ \frac{1}{b}\sum\limits_{i=1}^{a}\bar x_{i+}^2
+		+ \frac{1}{a}\sum\limits_{j=1}^{b}\bar x_{+ j}^2\\ 
+\ \ \ \ 	- \frac{2\bar x{++}^2}{ab} 
+		- \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}\bar x_{i+}\bar x_{+ j}
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}2\bar x_{i+}\bar x_{++} 
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}2\bar x_{+ j}\bar x_{++} \bigg)\\
+\ \ ^{[3]} = 2\bigg( \frac{\bar x_{++}^2}{ab}
+		- \frac{1}{b}\sum\limits_{i=1}^{a}\bar x_{i+}^2
+		- \frac{1}{a}\sum\limits_{j=1}^{b}\bar x_{+ j}^2
+		+ \frac{1}{b}\sum\limits_{i=1}^{a}\bar x_{i+}^2
+		+ \frac{1}{a}\sum\limits_{j=1}^{b}\bar x_{+ j}^2\\ 
+\ \ \ \ 	- \frac{2\bar x{++}^2}{ab} 
+		- \frac{\bar x_{++}}{ab}
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}2\bar x_{i+}\bar x_{++} 
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}2\bar x_{+ j}\bar x_{++} \bigg) \\
+\ \ ^{[4]} = 2\bigg( \frac{\bar x_{++}^2}{ab}
+		- \frac{1}{b}\sum\limits_{i=1}^{a}\bar x_{i+}^2
+		- \frac{1}{a}\sum\limits_{j=1}^{b}\bar x_{+ j}^2
+		+ \frac{1}{b}\sum\limits_{i=1}^{a}\bar x_{i+}^2
+		+ \frac{1}{a}\sum\limits_{j=1}^{b}\bar x_{+ j}^2
+$$
+
+$$
+\ \ \ \ - \frac{2\bar x{++}^2}{ab} 
+		- \frac{\bar x_{++}}{ab}
+		+ \frac{2\bar x_{++}^2}{ab}
+		+ \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}2\bar x_{+ j}\bar x_{++} \bigg)\\
+\ \ ^{[5]} = 2\bigg( \frac{\bar x_{++}^2}{ab}
+		- \frac{1}{b}\sum\limits_{i=1}^{a}\bar x_{i+}^2
+		- \frac{1}{a}\sum\limits_{j=1}^{b}\bar x_{+ j}^2
+		+ \frac{1}{b}\sum\limits_{i=1}^{a}\bar x_{i+}^2
+		+ \frac{1}{a}\sum\limits_{j=1}^{b}\bar x_{+ j}^2\\ 
+\ \ \ \ 	- \frac{2\bar x{++}^2}{ab} 
+		- \frac{\bar x_{++}}{ab}
+		+ \frac{2\bar x_{++}^2}{ab}
+		+ \frac{2\bar x_{++}^2}{ab} \bigg)\\
+\ \  = 2\bigg(\frac{4\bar x_{++}^2}{ab} - \frac{4\bar x_{++}^2}{ab}
+		+ \frac{1}{b}\sum\limits_{i=1}^{a}\bar x_{i+}^2 - \frac{1}{b}\sum\limits_{i=1}^{a}\bar x_{i+}^2
+		+ \frac{1}{a}\sum\limits_{j=1}^{b}\bar x_{+ j}^2 - \frac{1}{a}\sum\limits_{j=1}^{b}\bar x_{+ j}^2 \bigg)\\
+\ \  = 2(0 + 0 + 0) \\
+	= 2(0) \\
+	= 0 
+$$
+
+> 1. See Summation Theorem \@ref(summation-theorem-7)
+> 2. See Summation Theorem \@ref(summation-theorem-8)
+> 3. See Summation Theorem \@ref(summation-theorem-4)
+> 4. See Summation Theorem \@ref(summation-theorem-5)
+> 5. See Summation Theorem \@ref(summation-theorem-6)
+
+Using the theorems in Chapter \ref{Summation} it is can be shown that each of the three cross products is equal to zero.  However, the physical tedium of reducing each cross product is much greater than the approach taken above.

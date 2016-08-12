@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="analysis-of-variance.html">
-<link rel="next" href="binomial-distribution.html">
+<link rel="prev" href="summation.html">
+
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -157,132 +157,174 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bernoulli-distribution" class="section level1">
-<h1><span class="header-section-number">3</span> Bernoulli Distribution</h1>
-<div id="probability-mass-function" class="section level2">
-<h2><span class="header-section-number">3.1</span> Probability Mass Function</h2>
-<p>A random variable is said to have a Bernoulli Distribution with parameter <span class="math inline">\(p\)</span> if its probability mass function is: <span class="math display">\[p(x)=\left\{ 
-        \begin{array}{ll}
-            p^x(1-p)^{1-x}, &amp; x=0,1\\
-            0       &amp; \mathrm{otherwise}
-        \end{array} 
-    \right. \]</span> Where <span class="math inline">\(p\)</span> is the probability of a success.</p>
-</div>
-<div id="cumulative-mass-function" class="section level2">
-<h2><span class="header-section-number">3.2</span> Cumulative Mass Function</h2>
-<p> <span class="math display">\[P(x)=\left\{
-        \begin{array}{lll}
-            0   &amp; x&lt;0\\
-            1-p &amp; x=0\\
-            1   &amp; 1\leq x
-        \end{array}
-    \right. \]</span></p>
-<div class="figure"><span id="fig:unnamed-chunk-2"></span>
-<img src="_main_files/figure-html/unnamed-chunk-2-1.png" alt="The graphs on the left and right show a Binomial Probability Distribution and Cumulative Distribution Function, respectively, with $p=.4$.  Note that this is identical to a Binomial Distribution with parameters $n=1$ and $p=.4$." width="672" />
-<p class="caption">
-Figure 3.1: The graphs on the left and right show a Binomial Probability Distribution and Cumulative Distribution Function, respectively, with <span class="math inline">\(p=.4\)</span>. Note that this is identical to a Binomial Distribution with parameters <span class="math inline">\(n=1\)</span> and <span class="math inline">\(p=.4\)</span>.
-</p>
-</div>
-</div>
-<div id="expected-values" class="section level2">
-<h2><span class="header-section-number">3.3</span> Expected Values</h2>
-<p><span class="math display">\[ 
-\begin{align*}
-E(X) 
-  &amp;= \sum\limits_{i=0}^{1} x\cdot p(x) \\
-    &amp;= \sum\limits_{i=0}^{1} x \cdot p^{x} (1-p)^{1-x}\\
-  &amp;= 0 \cdot p^{0} (1-p)^{1-0} + 1 \cdot p^{1} (1-p)^{1-1}\\
-  &amp;= 0 + p (1-p)^{0}\\
-    &amp;= p\\
-    \\
-    \\
-E(X^{2}) 
-  &amp;= \sum\limits_{i=0}^{1} x^2 \cdot p(x)\\
-  &amp;= \sum\limits_{i=0}^{1} x^{2} \cdot p^x (1-p)^{1-x}\\
-  &amp;= \sum\limits_{i=0}^{1} 0^{2} \cdot p^0 (1-p)^{1-0} + 1^2 \cdot p^1 (1-p)^{1-1}\\
-  &amp;= 0 \cdot 1 \cdot 1 + 1 \cdot p \cdot 1 \\
-    &amp;= 0 + p\\
-    &amp;= p\\
-    \\
-    \\
-\mu &amp;= E(X) = p\\
-  \\
-  \\
-\sigma^2 
-  &amp;= E(X^2) - E(X)^2 \\
-  &amp;= p-p^2 \\
-  &amp;= p(1-p)
-\end{align*}
-\]</span></p>
-</div>
-<div id="moment-generating-function" class="section level2">
-<h2><span class="header-section-number">3.4</span> Moment Generating Function</h2>
-<p><span class="math display">\[\begin{align*}
-M_{X}(t)
-    &amp;= E(e^{tX}) \\
-    &amp;= \sum\limits_{i=0}^{1} e^{tx} p(x) \\
-    &amp;= \sum\limits_{i=0}^{1} e^{tx} p^{x} (1-p)^{1-x}\\
-    &amp;= e^{t0} p^0 (1-p)^{1-0} + e^t p^t (1-p)^{1-1}\\
-    &amp;= (1-p) + e^t p\\
-    &amp;=pe^t + (1-p) \\
-    \\
-    \\
-M^{(1)}_X(t) &amp;= pe^t\\
-  \\
-  \\
-M^{(2)}_X(t) &amp;= pe^t\\
-  \\
-  \\
-E(X)
-    &amp;=M^{(1)}_X(0)\\
-    &amp;= pe^0\\
-    &amp;= pe^0\\
-    &amp;= p\\
-    \\
-    \\
-E(X^2)
-    &amp;= M^{(2)}_X(0)\\
-    &amp;= pe^0\\
-    &amp;= p\\
-    \\
-    \\
-\mu
-  &amp;= E(X)\\
-    &amp;= p\\
-  \\
-  \\
+<div id="concerning-the-variance-parameter" class="section level1">
+<h1><span class="header-section-number">7</span> Concerning the Variance Parameter</h1>
+<div id="defining-variance-with-expected-values" class="section level2">
+<h2><span class="header-section-number">7.1</span> Defining Variance With Expected Values</h2>
+<p>In the case of a discrete random variable, the variance is <span class="math display">\[\begin{align*} 
 \sigma^2
-    &amp;= E(X^2) - E(X)^2 \\
-    &amp;= p - p^2 \\
-    &amp;= p (1-p)
-\end{align*}
-\]</span></p>
+    &amp;= \sum\limits_{x=0}^{\infty}(x-\mu)^2p(x) \\
+    &amp;= \sum\limits_{x=0}^{\infty}(x^2-2\mu x+\mu^2)p(x) \\
+    &amp;= \sum\limits_{x=0}^{\infty}(x^2p(x)-2\mu x\cdot p(x)+\mu^2p(x)) \\
+  &amp;= \sum\limits_{x=0}^{\infty}x^2p(x)-\sum\limits_{x=0}^{\infty}2\mu x\cdot p(x)
+        + \sum\limits_{x=0}^{\infty}\mu^2p(x) \\
+  &amp;= \sum\limits_{x=0}^{\infty}x^2p(x)-2\mu\sum\limits_{x=0}^{\infty}x\cdot p(x)
+        + \mu^2\sum\limits_{x=0}^{\infty}p(x) \\
+  &amp;= \sum\limits_{x=0}^{\infty}x^2p(x)-2\mu\cdot\mu+\mu^2 \\
+    &amp;= \sum\limits_{x=0}^{\infty}x^2p(x)-\mu^2 \\
+    &amp;= E(X^2)-E(X)^2\\
+\end{align*}\]</span></p>
+<p>In the case of a continuous random variable, the variance is <span class="math display">\[\begin{align*}
+\sigma^2 
+    &amp;= \int\limits_{-\infty}^{\infty}(x-\mu)^2f(x)dx \\
+    &amp;= \int\limits_{-\infty}^{\infty}(x^2-2\mu x+\mu^2)f(x)dx \\
+  &amp;= \int\limits_{-\infty}^{\infty}(x^2f(x)-2\mu x\cdot f(x)+\mu^2f(x))dx \\
+  &amp;= \int\limits_{-\infty}^{\infty}x^2f(x)dx-\int\limits_{-\infty}^{\infty}2\mu x\cdot f(x)dx
+        + \int\limits_{-\infty}^{\infty}\mu^2f(x)dx \\
+  &amp;= \int\limits_{-\infty}^{\infty}x^2f(x)dx-2\mu\int\limits_{-\infty}^{\infty}x\cdot f(x)dx
+        + \mu^2\int\limits_{-\infty}^{\infty}f(x)dx \\
+  &amp;= \int\limits_{-\infty}^{\infty}x^2f(x)dx-2\mu\cdot\mu+\mu^2 \\
+    &amp;= \int\limits_{-\infty}^{\infty}x^2f(x)dx-\mu^2 \\
+    &amp;= E(X^2)-E(X)^2
+\end{align*}\]</span></p>
+<p>In general, these results may be summarized as follows:\ <span class="math display">\[\begin{align*}
+\sigma^2
+    &amp;= E[(X-\mu)^2] \\
+    &amp;= E[(X^2-2\mu X+\mu^2)] \\
+    &amp;= E(X^2) - E(2\mu X) + E(\mu^2) \\
+    &amp;= E(X^2) - 2\mu E(X) + \mu^2 \\
+  &amp;= E(X^2) - 2\mu\cdot\mu + \mu^2 \\
+    &amp;= E(X^2) - 2\mu^2 + \mu \\
+  &amp;= E(X^2) - \mu^2 \\
+    &amp;= E(X^2) - E(X)^2
+\end{align*}\]</span></p>
 </div>
-<div id="theorems-for-the-bernoulli-distribution" class="section level2">
-<h2><span class="header-section-number">3.5</span> Theorems for the Bernoulli Distribution</h2>
-<div id="validity-of-the-distribution" class="section level3">
-<h3><span class="header-section-number">3.5.1</span> Validity of the Distribution</h3>
-<p><span class="math display">\[\sum\limits_{x=0}^{1}p^x(1-p)^{1-x}=1\]</span></p>
-<p><em>Proof:</em></p>
+<div id="unbiased-estimator" class="section level2">
+<h2><span class="header-section-number">7.2</span> Unbiased Estimator</h2>
 <p><span class="math display">\[\begin{align*}
-\sum\limits_{x=0}^{1} p^x (1-p)^{1-x}
-    &amp;= p^0 (1-p)^1 + p^1 (1-p)^0 \\
-    &amp;= (1-p) + p \\
-    &amp;= 1
+E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n}\Bigg)
+        &amp;= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}(x_i-\bar x)^2\Big) \\
+        &amp;= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}(x_i^2-2\bar x x_i+\bar x^2)\Big) \\
+        &amp;= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}x_i^2
+            - \sum\limits_{i=1}^{n}2\bar x x_i+\sum\limits_{i=1}^{n}\bar x^2\Big) \\
+        &amp;= \frac{1}{n}
+            E\Big(\sum\limits_{i=1}^{n}x_i^2-2
+                  \frac{\sum\limits_{i=1}^{n}x_i}{n}\sum\limits_{i=1}^{n}   + n\bar x^2\Big) \\
+        &amp;= \frac{1}{n}
+            E\Big(\sum\limits_{i=1}^{n}x_i^2-2
+                  \frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}+n\bar x^2\Big) \\
+        &amp;= \frac{1}{n}
+            E\Big(\sum\limits_{i=1}^{n}x_i^2-2
+                  \frac{n(\sum\limits_{i=1}^{n}x_i)^2}{n^2}+n\bar x^2\Big) \\
+        &amp;= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}x_i^2-2n\bar x^2+n\bar x^2\Big) \\
+        &amp;= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}x_i^2-n\bar x^2\Big) \\
+        &amp;= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}x_i^2\Big)-E(n\bar x^2) \\
+        &amp;= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}x_i^2)-nE(\bar x^2)\Big) \\
+        &amp;= \frac{1}{n}\Big[\sum\limits_{i=1}^{n}E(x_i^2)-nE(\bar x^2)\Big] \\
+^{[1]}  &amp;= \frac{1}{n}\Big[\sum\limits_{i=1}^{n}\Big(\sigma^2+\mu^2\Big) - nE(\bar x^2)\Big] \\
+^{[2]}  &amp;= \frac{1}{n}\Big[\sum\limits_{i=1}^{n}\Big(\sigma^2+\mu^2\Big) - 
+            n(\frac{\sigma^2}{n}+\mu^2)\Big]\\\\
+        &amp;= \frac{1}{n}(n\sigma^2-n\mu^2+\sigma^2-n\mu^2) \\
+        &amp;=\frac{1}{n}(n\sigma^2-\sigma) \\
+        &amp;= \frac{1}{n}(n-1)\sigma^2 \\
+        &amp;= \frac{n-1}{n}\sigma^2
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(V(X)=E(X^2)-E(X)^2\)</span><br />
+<span class="math inline">\(\ \ \ \ \Rightarrow E(X^2)=V(X)+E(X)^2=\sigma^2+\mu^2\)</span> <span class="math inline">\(V(\bar X)=E(\bar X^2)-E(\bar X)^2\)</span><br />
+<span class="math inline">\(\ \ \ \ \Rightarrow E(\bar X^2)=V(\bar X)+E(\bar X)^2 = \frac{\sigma^2}{n}+\mu^2\)</span></li>
+<li>By the Central Limit Theorem, <span class="math inline">\(V(\bar X)=\frac{\sigma^2}{n}\)</span></li>
+</ol>
+</blockquote>
+<p>Since <span class="math inline">\(E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n}\Bigg)\neq\sigma^2\)</span> it is a biased estimator. Notice, however, that the bias can be eliminated by dividing by <span class="math inline">\(n-1\)</span> instead of by <span class="math inline">\(n\)</span></p>
+<p><span class="math display">\[\begin{align*} 
+E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1}\Bigg)
+        &amp;= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}(x_i-\bar x)^2\Big) \\
+        &amp;= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}(x_i^2-2\bar x x_i+\bar x^2)\Big) \\
+        &amp;= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}x_i^2
+            - \sum\limits_{i=1}^{n}2\bar x x_i+\sum\limits_{i=1}^{n}\bar x^2\Big) \\
+        &amp;= \frac{1}{n-1}
+            E\Big(\sum\limits_{i=1}^{n}x_i^2 -
+                    2\frac{\sum\limits_{i=1}^{n}x_i}{n}\sum\limits_{i=1}^{n} + n\bar x^2\Big) \\
+        &amp;= \frac{1}{n-1}
+            E\Big(\sum\limits_{i=1}^{n}x_i^2-
+              2\frac{(\sum\limits_{i=1}^{n}x_i)^2}{n}+n\bar x^2\Big) \\
+        &amp;= \frac{1}{n-1}
+            E\Big(\sum\limits_{i=1}^{n}x_i^2-
+              2\frac{n\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n^2} + n\bar x^2\Big) \\
+        &amp;= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}x_i^2-2n\bar x^2+n\bar x^2\Big) \\
+        &amp;= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}x_i^2-n\bar x^2\Big) \\
+        &amp;= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}x_i^2\Big)-E(n\bar x^2) \\
+        &amp;= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}x_i^2\Big)-nE(\bar x^2) \\
+        &amp;= \frac{1}{n-1}\Big[\sum\limits_{i=1}^{n}E(x_i^2)-nE(\bar x^2)\Big] \\
+^{[1]}  &amp;= \frac{1}{n-1}\Big[\sum\limits_{i=1}^{n}(\sigma^2+\mu^2)-nE(\bar x^2)\Big] \\
+^{[2]}  &amp;= \frac{1}{n-1}\Big[\sum\limits_{i=1}^{n}(\sigma^2+\mu^2) -
+                n(\frac{\sigma^2}{n}+\mu^2)\Big] \\
+        &amp;= \frac{1}{n-1}(n\sigma^2-n\mu^2+\sigma^2-n\mu^2) \
+        &amp;= \frac{1}{n}(n\sigma^2-\sigma) \\
+        &amp;= \frac{1}{n-1}(n-1)\sigma^2 \\
+        &amp;= \frac{n-1}{n-1}\sigma^2 \\
+        &amp;=\sigma^2
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(V(X)=E(X^2)-E(X)^2\)</span><br />
+<span class="math inline">\(\ \ \ \ \Rightarrow E(X^2)=V(X)+E(X)^2=\sigma^2+\mu^2\)</span> <span class="math inline">\(V(\bar X)=E(\bar X^2)-E(\bar X)^2\)</span><br />
+<span class="math inline">\(\ \ \ \ \Rightarrow E(\bar X^2)=V(\bar X)+E(\bar X)^2 = \frac{\sigma^2}{n}+\mu^2\)</span></li>
+<li>By the Central Limit Theorem, <span class="math inline">\(V(\bar X)=\frac{\sigma^2}{n}\)</span></li>
+</ol>
+</blockquote>
+<p>Thus <span class="math inline">\(E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1}\Bigg)\)</span> is an unbiased estimator of <span class="math inline">\(\sigma^2\)</span>, and we define the estimator</p>
+<p><span class="math display">\[s^2= \frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1}\]</span></p>
+</div>
+<div id="computational-formulae-1" class="section level2">
+<h2><span class="header-section-number">7.3</span> Computational Formulae</h2>
+<div id="computational-formula-population-variance" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Computational Formula for <span class="math inline">\(\sigma\)</span>^2</h3>
+<p><span class="math display">\[\begin{align*} 
+\sigma^2
+    &amp;= \frac{\sum\limits_{i=1}^{N}(x_i-\mu)^2}{N} \\
+    &amp;= \frac{\sum\limits_{i=1}^{N}x_i^2-\frac{\Big(\sum\limits_{i=1}^{N}x_i\Big)^2}{N}}{N}
+\end{align*}\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*} 
+\frac{\sum\limits_{i=1}^{N}(x_i-\mu)^2}{N}
+    &amp;= \frac{\sum\limits_{i=1}^{N}(x_i^2-2\mu x_i+\mu^2)}{N} \\
+    &amp;= \frac{\sum\limits_{i=1}^{N}
+              x_i^2-\sum\limits_{i=1}^{N}2\mu x_i
+              + \sum\limits_{i=1}^{N}\mu^2}{N}  \\
+    &amp;= \frac{\sum\limits_{i=1}^{N}
+              x_i^2-2\mu\sum\limits_{i=1}^{N}x_i+N\mu^2}{N} \\
+    &amp;= \frac{\sum\limits_{i=1}^{N}x_i^2
+              -2\frac{\sum\limits_{i=1}^{N}x_i}{N}\sum\limits_{i=1}^{N}x_i
+                + N\Big(\frac{\sum\limits_{i=1}^{N}x_i}{N}\Big)^2}{N} \\
+  &amp;= \frac{\sum\limits_{i=1}^{N}
+            x_i^2-2\frac{\Big(\sum\limits_{i=1}^{N}x_i\Big)^2}{N}
+            + \frac{\Big(\sum\limits_{i=1}^{N}x_i\Big)^2}{N}}{N} \\
+    &amp;= \frac{\sum\limits_{i=1}^{N}x_i^2-\frac{\Big(\sum\limits_{i=1}^{N}x_i\Big)^2}{N}}{N}
 \end{align*}\]</span></p>
 </div>
-<div id="sum-of-bernoulli-random-variables" class="section level3">
-<h3><span class="header-section-number">3.5.2</span> Sum of Bernoulli Random Variables</h3>
-<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent and identically distributed random variables from a Bernoulli distribution with parameter <span class="math inline">\(p\)</span>. Let <span class="math inline">\(Y=\sum\limits_{i=1}^{n}X_i\)</span>.\ Then <span class="math inline">\(Y\sim\)</span> Binomial<span class="math inline">\((n,p)\)</span></p>
-<p><em>Proof:</em> <span class="math display">\[\begin{align*}
-M_Y(t)
-    &amp;= E(e^{tY}) \\
-    &amp;= E(e^{tX_1} e^{tX_2} \cdots e^{tX_n}) \\
-    &amp;= E(e^{tX_1}) E(e^{tX_2}) \cdots E(e^{tX_n}) \\
-  &amp;= (pe^t+(1-p)) (pe^t+(1-p)) \cdots (pe^t+(1-p)) \\
-    &amp;= (pe^t+(1-p))^n
+<div id="computational-formula-sample-variance" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Computational Formula for <span class="math inline">\(s\)</span>^2</h3>
+<p><span class="math display">\[\begin{align*} 
+s^2
+    &amp;= \frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1} \\
+    &amp;= \frac{\sum\limits_{i=1}^{n}x_i^2-\frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}}{n-1}
 \end{align*}\]</span></p>
-<p>Which is the moment generating function of a Binomial random variable with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>. Thus, <span class="math inline">\(Y\sim\)</span> Binomial<span class="math inline">\((n,p)\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*} 
+\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1}
+    &amp;= \frac{\sum\limits_{i=1}^{n}(x_i^2-2\bar x x_i+\bar x^2)}{n-1} \\
+    &amp;= \frac{\sum\limits_{i=1}^{n}x_i^2-\sum\limits_{i=1}^{n}2\bar x x_i
+        + \sum\limits_{i=1}^{n}\bar x^2}{n-1} \\
+  &amp;= \frac{\sum\limits_{i=1}^{n}x_i^2-2\bar x\sum\limits_{i=1}^{n}x_i+n\bar x^2}{n-1} \\
+    &amp;= \frac{\sum\limits_{i=1}^{n}x_i^2-2\frac{\sum\limits_{i=1}^{n}x_i}{n}\sum\limits_{i=1}^{n}x_i
+        + n\Big(\frac{\sum\limits_{i=1}^{n}x_i}{n}\Big)^2}{n-1} \\
+  &amp;= \frac{\sum\limits_{i=1}^{n}x_i^2-2\frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}
+        + \frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}}{n-1} \\
+    &amp;= \frac{\sum\limits_{i=1}^{n}x_i^2-\frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}}{n-1}
+\end{align*}\]</span></p>
 
 </div>
 </div>
@@ -292,8 +334,8 @@ M_Y(t)
           </div>
         </div>
       </div>
-<a href="analysis-of-variance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="binomial-distribution.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="summation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
