@@ -1,4 +1,4 @@
-# The Binomial Theorem
+# Binomial Theorem
 
 The Binomial Theorem is useful in developing theory around the Binomial and Hypergeometric Distributions.  Two proofs of the Theorem are provided here; one using the traditional approach, and one using a more general approach.  Other useful theorems are provided at the end of this chapter.
 
@@ -113,7 +113,8 @@ Lastly, it remains for us to consider a product of the type $p_1 p_2 \cdots p_n 
 
 ### Corollary: Binomial Theorem
 
-Let $x$ and $y$ be constants and let $n$ be any positive integer.\\
+Let $x$ and $y$ be constants and let $n$ be any positive integer.
+
 Then $\displaystyle (x+y)^n = \sum\limits_{i=0}^{n} {n\choose i} x^{n-i} y^i\\$
 
 _Proof:_

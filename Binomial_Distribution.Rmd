@@ -52,7 +52,7 @@ ggplot(data = Binomial,
        mapping = aes(x = x)) + 
   geom_bar(mapping = aes(y = prob),
            stat = "identity",
-           fill = pallette[1]) + 
+           fill = palette[1]) + 
   facet_grid(~ cumulative) + 
   scale_x_continuous(breaks = 0:10) + 
   ylab("P(x)") + 
@@ -219,6 +219,8 @@ $$\begin{align*}
 $$\begin{align*} 
                 \frac{d\ell(p)}{d p} 
                             &= \frac{X}{p}-\frac{n-X}{1-p} \\
+\\
+\\
                        0   &= \frac{X}{p}-\frac{n-X}{1-p} \\
   \Rightarrow  \frac{X}{p} &= \frac{n-X}{1-p} \\
   \Rightarrow  (1-p)X      &= p(n-X) \\

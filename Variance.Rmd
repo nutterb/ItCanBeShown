@@ -1,4 +1,4 @@
-# Concerning the Variance Parameter 
+# Variance Parameter 
 
 ## Defining Variance With Expected Values
 
@@ -32,7 +32,8 @@ $$\begin{align*}
 	&= E(X^2)-E(X)^2
 \end{align*}$$
 
-In general, these results may be summarized as follows:\\
+In general, these results may be summarized as follows:
+
 $$\begin{align*}
 \sigma^2
 	&= E[(X-\mu)^2] \\
@@ -109,7 +110,7 @@ E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1}\Bigg)
 ^{[1]}  &= \frac{1}{n-1}\Big[\sum\limits_{i=1}^{n}(\sigma^2+\mu^2)-nE(\bar x^2)\Big] \\
 ^{[2]}	&= \frac{1}{n-1}\Big[\sum\limits_{i=1}^{n}(\sigma^2+\mu^2) -
                 n(\frac{\sigma^2}{n}+\mu^2)\Big] \\
-        &= \frac{1}{n-1}(n\sigma^2-n\mu^2+\sigma^2-n\mu^2) \
+        &= \frac{1}{n-1}(n\sigma^2-n\mu^2+\sigma^2-n\mu^2) \\
         &= \frac{1}{n}(n\sigma^2-\sigma) \\
         &= \frac{1}{n-1}(n-1)\sigma^2 \\
         &= \frac{n-1}{n-1}\sigma^2 \\

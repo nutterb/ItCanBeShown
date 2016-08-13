@@ -55,12 +55,14 @@ The components are commonly referred to as
 
 $$
 SS_{Factor}
-	= \sum\limits_{i=1}^{a} n_i(\bar x_{i+} - \bar x_{++})^2$ and 
+	= \sum\limits_{i=1}^{a} n_i(\bar x_{i+} - \bar x_{++})^2 
 $$
+
+and
 
 $$
 SS_{Error}
-	= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{i+})^2$
+	= \sum\limits_{i=1}^{a}\sum\limits_{j=1}^{n_i} (x_{ij} - \bar x_{i+})^2
 $$
 
 Notice that $SS_{Factor}$ compares the factor means to the overall mean, and it can be said that $SS_{Factor}$ measures the variation _between_ factors.  $SS_{Error}$ compares each observation to the overall mean, and can be said to describe the variation _within_ factors.

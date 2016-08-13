@@ -4,7 +4,13 @@ subtitle: "Notes on Statistical Theory"
 author: "Benjamin Nutter"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+bookdown::gitbook:
+  config:
+    toc:
+      collapse: section
+      scroll_highlight: true
+      before: null
+      after: null
 documentclass: book
 bibliography: 
 biblio-style: apalike
@@ -21,7 +27,7 @@ library(pixiedust)
 library(RColorBrewer)
 library(tidyr)
 
-pallette <- brewer.pal(9, "PRGn")
+palette <- brewer.pal(9, "PRGn")
 ```
 
 # Introduction

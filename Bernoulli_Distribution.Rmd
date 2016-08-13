@@ -38,7 +38,7 @@ ggplot(data = Bernoulli,
        mapping = aes(x = x)) + 
   geom_bar(mapping = aes(y = prob), 
            stat = "identity",
-           fill = pallette[1]) + 
+           fill = palette[1]) + 
   facet_grid(~ cumulative) + 
   scale_x_continuous(breaks = 0:1) + 
   ylab("P(x)") + 
