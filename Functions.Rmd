@@ -1,0 +1,279 @@
+# Functions
+
+## Fundamental Concepts and Definitions
+
+_Much of this chapter is taken from the lectures of Dr. John Brunette, University of Southern Maine _
+
+A **function** is a collection of ordered pairs in which no two pairs have the same first element.
+
+The set of all _first_ members of the pairs is called the **domain**.
+
+The set of all _second_ members of the pairs is called the **range**.
+
+Suppose now that for any function $f$ we have two items $x$ and $y$ such that $x\in dom(f)$ and $y\in ran(x)$  where $dom(f)$ and $ran(f)$ denote the domain and range of $f$, respectively.  It is said that $f$ maps $x$ onto $y$, written
+
+\[f:\ x\mapsto y\]
+
+It is common to write the $ran(f)$ as some expression of $x$.  For example, $f: x\mapsto x^2$ takes each element in the domain, and pairs it with it's square.  The common shorthand for this is $f(x)=x^2$, meaning that whatever appears between the parentheses following the $f$ is to be squared.
+
+### Function Operations
+
+The three basic operations that can be performed on functions are addition, multipilication, and composition.  For any two functions $f$ and $g$ these operations are defined as:
+
+|                |      |
+|----------------|------|
+| Addition       | $\lbrack f+g\rbrack(x)=:\big\{\big(x,f(x)+g(x)\big)\mid x\in dom(f)\cap dom(g)\big\}$      |
+| Multiplication |  $\lbrack f\cdot g\rbrack(x):=\big\{\big(x,f(x)\cdot g(x)\big) \mid x\in dom(f)\cap dom(g)\big\}$     |
+| Composition    | $\lbrack f\circ g\rbrack(x)=\big\{\big(x,f\big(g(x)\big) \mid x\in dom(g)$ and  $g(x)\in dom(f)\big\}$      |
+
+
+Notice that the composition $\lbrack f\circ g\rbrack(x)=f \circ g: g(x)\mapsto f(x)$.  In other words, the result of $g$ is then applied to $f$ to produce the result of the composition.
+
+
+## Identities and Inverses
+
+Recall that addition and multiplication have identity properties.  Specifically, for any real number $x$, applying one of these identities returns the value $x$, i.e. $x+0=x$ and $x\cdot 1$=x.  Functions also have an identity, denoted $id(x)$, that is defined as
+
+$$id:\ x\mapsto x$$
+
+Furthermore, the composition of $id$ with $f$ behaves in this way:
+
+$$id\circ f=f\circ id=f$$
+
+Functions may also exhibit the property of inverses that are exhibited by addition and multiplication.  In the latter two, combining any real number $x$ and its inverse returns the identity of that operation, i.e. $x+-x=0$ and $x\cdot x^{-1}=1,\ x\neq 0$.  Likewise, some functions have an inverse function.  If a function $f$ has an inverse $f^{-1}$, then
+
+$$f\circ f^{-1}=f^{-1}\circ f=id$$
+
+On closer observation, we see 
+
+$$f^{-1}\circ f\big(dom(x)\big)=f^{-1}\Big(f\big(dom(x)\big)\Big)=f^{-1}\big(ran(x)\big)=dom(x)$$
+
+So $f^{-1}$ must be the set of all ordered pairs $(y,x)$ where $x\in dom(x)$ and $y\in ran(x)$, i.e. $f^{-1}(x)=\{(y,x) \mid x\in dom(x)$ and $y\in ran(x)\}$.  By the definition of functions, no two first elements in $f^{-1}$ can be the same.  But the first elements in $f^{-1}$ are the second elements in $f$.  So $f^{-1}$ only exists if no two second elements in $f$ are the same.  We thus make the following definition:
+
+A function $f$ is called a **one-to-one** function if it has no two ordered pairs with the same second element.
+
+For any one-to-one function $f$, no two of the first elements are the same, and no two of the second elements are the same.  Thus, $f^{-1}$ is a function, because no two of its first elements are the same, and because the range of $f^{-1}$ is the domain of $f$, no two second elements in $f^{-1}$ are the same, and $f^{-1}$ is a one-to-one function.  Thus, every one-to-one function has an inverse.
+
+If a function $f$ is not one-to-one, however, then there exist two pairs in $f$ that have the same second element.  The inverse $f^{-1}$ therefore has two pairs where the first element is the same.  When such is the case, the definition of a function is violated, and $f^{-1}$ cannot be a function.  Thus, if a function is invertible, it must be one-to-one.
+
+
+## Odd and Even Functions
+
+A function is said to be _even_ if for any real number $x,\ f(-x)=f(x)$.
+
+A function is said to be _odd_ if for any real number $x,\ f(-x)=-f(x)$.
+
+If neither of these criteria are met, the function is simply said to be neither odd nor even.
+
+
+## Theorems
+
+
+### Operations on Even Functions
+
+Let $f$ and $g$ both be even functions.  Then:
+
+i.   $[f+g](x)$ is an even function
+ii.  $[f\cdot g](x)$ is an even function
+iii. $[f\circ g](x)$ is an even function.
+
+_Proof:_
+
+i. $$\begin{align*}
+     [f+g](-x)
+        &= f(-x)+g(-x) \\
+	      &= f(x)+g(x) \\
+	      &= [f+g](x)
+	 \end{align*}$$
+
+so $[f+g](x)$ is an even function.
+
+
+ii. $$\begin{align*}
+      [f\cdot g](-x)
+        &= f(-x)\cdot g(-x) \\
+	      &= f(x)\cdot g(x) \\
+	      &= [f\cdot g](x)
+	  \end{align*}$$
+	  
+so $[f\cdot g](x)$ is an even function.
+
+iii. $$\begin{align*}
+      [f\circ g](-x)
+        &= f\big(g(-x)\big) \\
+	      &= f\big(g(x)\big) \\
+	      &= [f\circ g](x)
+	   \end{align*}$$
+	   
+so $[f\circ g](x)$ is an even function.
+
+
+
+### Operations on Odd Functions
+
+Let $f$ and $g$ both be odd functions.  Then:
+
+i.   $[f+g](x)$ is an odd function
+ii.  $[f\cdot g](x)$ is an even function
+iii. $[f\circ g](x)$ is an odd function.
+
+_Proof:_
+
+i. $$\begin{align*} 
+    [f+g](-x)
+      &= f(-x) + g(-x) \\
+	    &= -f(x) - g(x) \\
+	    &= -[f+g](x)
+	 \end{align*}$$
+	 
+so $[f+g](x)$ is an odd function.
+
+ii. $$\begin{align*}
+      [f\cdot g](-x)
+        &= f(-x)\cdot g(-x) \\
+	      &= -f(x)\cdot -g(x) \\
+	      &= f(x)\cdot g(x) \\
+	      &= [f\cdot g](x)
+	   \end{align*}$$
+	   
+so $[f\cdot g](x)$ is an even function.
+
+iii. $$\begin{align*}
+      [f\circ g](-x)
+        &= f\big(g(-x)\big) \\
+	      &= f\big(-g(x)\big) \\
+	      &= -f\big(g(x)\big) \\
+	      &= -[f\circ g](x)
+	   \end{align*}$$
+	   
+so $[f\circ g](x)$ is an odd function.
+
+
+
+### Operations on an Odd and Even Function
+
+Let $f$ be an even function and let $g$ both be an odd function.  Then:
+
+i.   $[f+g](x)$ is neither an odd nor an even function
+ii.  $[f\cdot g](x)$ is an odd function
+iii. $[f\circ g](x)$ is an even function
+iv.  $[g\circ f](x)$ is an even function.
+
+_Proof:_
+
+i. $$\begin{align*}
+    [f+g](-x)
+      &= f(-x) + g(-x) \\
+	    &= -f(x) - g(x)
+	 \end{align*}$$
+ 
+so $[f+g](x)$ is neither an odd nor an even function.
+
+ii. $$\begin{align*}
+      [f\cdot g](-x)
+        &= f(-x)\cdot g(-x) \\
+	      &= f(x)\cdot -g(x) \\
+	      &= -\big(f(x)\cdot g(x)\big) \\
+	      &= -[f\cdot g](x)
+	   \end{align*}$$
+	   
+so $[f\cdot g](x)$ is an odd function.
+
+iii. $$\begin{align*}
+      [f\circ g](-x)
+        &= f\big(g(-x)\big) \\
+	      &= f\big(-g(x)\big) \\
+	      &= f\big(g(x)\big) \\
+	      &= [f\circ g](x)
+	   \end{align*}$$
+
+so $\lbrack f\circ g\rbrack(x)$ is an even function.
+
+iv. $$\begin{align*}
+      [g\circ f](-x)
+        &= g\big(f(-x)\big) \\
+	      &= g\big(f(x)\big) \\
+	      &= [g\circ f](x)
+	   \end{align*}$$
+
+so $\lbrack f\circ g\rbrack(x)$ is an even function.
+\end{itemize}
+
+
+
+### Derivatives and Anti-derivatives of Odd Functions
+
+Let $f$ be an odd function and let $f^\prime$ and $F$ denote the derivative and anti-derivative of $f$, respectively.  Then $f^\prime$ and $F$ are both even functions.
+
+_Proof:_
+
+$$\begin{align*}
+  f(-x) &= -f(x)\\
+\Rightarrow \frac{d}{dx}\big\lbrack f(-x)\big\rbrack
+		&= \frac{d}{dx}\big\lbrack-f(x)\big\rbrack \\
+\Rightarrow f^\prime(-x)\cdot -1 
+    &= -f^\prime(x) \\
+\Rightarrow -f^\prime(-x) 
+    &= -f^\prime(x) \\
+\Rightarrow f^\prime(-x) 
+    &= f^\prime(x)
+\end{align*}$$
+
+So $f^\prime$ is an even function.
+
+$$\begin{align*}
+f(-x)                    &= -f(x) \\
+\Rightarrow \int f(-x)   &= \int-f(x)\\
+\Rightarrow F(-x)\cdot-1 &= -F(x)\\
+\Rightarrow -F(-x)       &= -F(x)\\
+\Rightarrow F(-x)        &= F(x)
+\end{align*}$$
+
+So $F$ is also an even function.\ \ \rule{.05in}{.05in}
+
+
+
+
+### Derivatives and Anti-derivatives of Even Functions
+
+Let $g$ be an even function, and let $g^\prime$ and $G$ denote the derivative and anti-derivative of $g$, respectively.  Then $g^\prime$ and $G$ are both odd functions.
+
+_Proof:_
+
+$$\begin{align*}
+g(-x) &= g(x) \\
+\Rightarrow \frac{d}{dx}\big\lbrack g(-x)\big\rbrack
+		&= \frac{d}{dx}\big\lbrack g(x)\big\rbrack \\
+\Rightarrow g^\prime(-x)\cdot -1 
+    &= g^\prime(x) \\
+\Rightarrow -g^\prime(-x) 
+    &= g^\prime(x) \\
+\Rightarrow g^\prime(-x) 
+    &= -g^\prime(x)
+\end{align*}$$
+
+So $g^\prime$ is an odd function.
+
+$$\begin{align*}
+g(-x)                    &= g(x)\\
+\Rightarrow \int g(-x)   &= \int g(x)\\
+\Rightarrow G(-x)\cdot-1 &= G(x)\\
+\Rightarrow -G(-x)       &= G(x)\\
+\Rightarrow G(-x)        &= -G(x)
+\end{align*}$$
+
+So $G$ is also an odd function.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

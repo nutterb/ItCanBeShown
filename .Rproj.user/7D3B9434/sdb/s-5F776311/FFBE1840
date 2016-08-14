@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# Correlation (Pearson's)\n\nPearson's correlation coefficient of the variables $X$ and $Y$ is a measure of the linear relationship between $X$ and $Y$.  It is defined\n\\[\\rho\n\t= \\frac{Cov(X,Y)}{\\sqrt{\\sigma_X^2\\cdot \\sigma_Y^2}}\\]\n\nNotice that if $X$ and $Y$ are independent then $Cov(X,Y,)=0$ and $\\rho=0$ and there is no linear relationship between the variables.\n\n## Theorems on Pearson's Correlation\n\n## Computational Formula for $\\rho$\n\n$$\\rho\n\t= \\frac{\\sum\\limits_{i=1}^{n}\\sum\\limits_{j=1}^{m}(x_i-\\mu_X)(y_j-\\mu_Y)}\n\t\t{\\sum\\limits_{i=1}^{n}(x_i-\\mu_X)\\sum\\limits_{j=1}^{m}(y_i-\\mu_Y)}$$\n\n_Proof:_\n\n$$\\begin{align*} \n\\rho\n\t&= \\frac{Cov(X,Y)}{\\sqrt{\\sigma_X^2\\sigma_Y^2}} \\\\\n\t&= \\frac{Cov(X,Y)}{\\sqrt{\\sigma_X^2\\sigma_Y^2}} \\\\\n\t&= \\frac{\\sum\\limits_{i=1}^{N}(x_i-\\mu_X)(y_i-\\mu_Y)\\frac{1}{N}}\n\t\t{\\sqrt{\\frac{\\sum\\limits_{i=1}^{N}(x_i-\\mu_X)^2}{N}\\frac{\\sum\\limits_{i=1}^{N}(y_i-\\mu_Y)^2}{N}}} \\\\\n  &= \\frac{\\frac{1}{N}\\sum\\limits_{i=1}^{N}(x_i-\\mu_X)(y_j-\\mu_Y)}\n\t\t{\\frac{1}{N}\\sqrt{\\sum\\limits_{i=1}^{N}(x_i-\\mu_X)^2\\sum\\limits_{i=1}^{N}(y_i-\\mu_Y)^2}} \\\\\n\t&= \\frac{\\sum\\limits_{i=1}^{N}(x_i-\\mu_X)(y_i-\\mu_Y)}\n\t\t{\\sqrt{\\sum\\limits_{i=1}^{N}(x_i-\\mu_X)\\sum\\limits_{i=1}^{N}(y_i-\\mu_Y)}}\n\\end{align*}$$\n",
+    "created" : 1471134942233.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2867666564",
+    "id" : "FFBE1840",
+    "lastKnownWriteTime" : 1471135165,
+    "last_content_update" : 1471135165341,
+    "path" : "~/GitHub/ItCanBeShown/CorrelationPearson.Rmd",
+    "project_path" : "CorrelationPearson.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

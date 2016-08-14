@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# Experimental Designs\n\n\n## Designs in Categorical Data Analysis\n\nStudies in Categorical Data Analysis can be classified into several designs.  These designs fall into the following two categories:\n\n1. _Retrospective Design_: looks at and analyzes measurements that have already been taken.\n2. _Prospective Design_: specifies the measurements to be collected at a future time.  \n\n### Case Control Study\n\nIn case control studies, the marginal distribution of the _response variable_ is fixed by the sampling design.  In other words, researchers select particular numbers of each category of the response variable in order to ensure that enough of each case are included in the sample.  The result is that the marginal distribution of the response is non-random.\n\nUnfortunately, in order to calculate conditional probabilities, the marginal distribution of interest must be random.  The difference of proportions for the response and the relative risk are both based on the marginal distribution of the response, and are both invalid procedures in case-control studies.\n\nIn taking the measurements, researchers idenitfy people who are already classified into the response variable, making the design retrospective.\n\n### Cross Sectional Study\n\n\n### Cohort Study\n\nIn Cohort Studies, subjects make their own choice about which group in the explanatory variable to join and researchers monitor the subjects with respect to a response variable over a period of time.  Both the explanatory and response variables are random and only the total sample size is fixed by the researcher.  Thus, conditional probabilities may be computed for both the predictor and response variables; differences in proportions may be estimated; and the relative risk is defined for the response variable.\n\nSince subjects select the group in which they will be and a measurement of their response is taken later, cohort studies are prospective.\n\n### Randomized Study\n\nIn randomized Studies, the researcher randomly assigns subjects to the explanatory variable and then observes their response (making this a prospective study).  The marginal distribution of the explanatory variable is therefore fixed, and conditional probabilities may not be computed.\n\nThe response variable, on the other hand, is random and conditional probabilites may be computed, as well as the difference of proportions and relative risk.\n\n\n### Summary of Designs\n\n```{r, echo = FALSE, results = 'asis'}\ndata.frame(type = c(\"\", \"\", \"\", \"Case Control\", \n                    \"Cross-Sectional\", \"Cohort\", \"Randomized\"),\n           col2 = c(\"conditional\", \"probability\", \"explanatory\",\n                    \"xxx\", \"xxx\", \"xxx\", \"\"),\n           col3 = c(\"conditional\", \"probability\", \"response\",\n                    \"\", \"xxx\", \"xxx\", \"xxx\"),\n           col4 = c(\"\", \"difference of\", \"proportions\", \"\",\n                    \"xxx\", \"xxx\", \"xxx\"),\n           col5 = c(\"\", \"Relative\", \"Risk\", \"\",\n                    \"xxx\", \"xxx\", \"xxx\"),\n           col6 = c(\"\", \"Odds\", \"Ratio\", \n                    \"xxx\", \"xxx\", \"xxx\", \"xxx\"),\n           stringsAsFactors = FALSE) %>%\n  dust(bookdown = TRUE) %>%\n  sprinkle_colnames(\"\", \"\", \"\", \"\", \"\", \"\") %>%\n  sprinkle(pad = 3) %>%\n  sprinkle(rows = 1, \n           border = \"top\") %>%\n  sprinkle(rows = c(3:7), \n           border = \"bottom\")\n```",
+    "created" : 1471137472841.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2713749224",
+    "id" : "4296C7BB",
+    "lastKnownWriteTime" : 1471139783,
+    "last_content_update" : 1471139783591,
+    "path" : "~/GitHub/ItCanBeShown/ExperimentalDesign.Rmd",
+    "project_path" : "ExperimentalDesign.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

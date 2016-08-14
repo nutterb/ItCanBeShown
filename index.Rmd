@@ -30,6 +30,8 @@ library(tidyr)
 palette <- brewer.pal(9, "PRGn")
 ```
 
+
+
 # Introduction
 
 There is one phrase that makes me cringe every time I see it.  It's a phrase that embodies feelings of frustration, inadequacy, and failure to understand.  That phrase:
