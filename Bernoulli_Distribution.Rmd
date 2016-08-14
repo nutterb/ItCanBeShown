@@ -23,7 +23,7 @@ Where  $p$ is the probability of a success.
 	\right. \]
 	
 
-```{r, echo = FALSE, fig.cap = 'The graphs on the left and right show a Binomial Probability Distribution and Cumulative Distribution Function, respectively, with $p=.4$.  Note that this is identical to a Binomial Distribution with parameters $n=1$ and $p=.4$.'}
+```{r Bernoulli_Distribution, echo = FALSE, fig.path= 'figures/', fig.cap = 'The graphs on the left and right show a Bernoulli Probability Distribution and Cumulative Distribution Function, respectively, with $p=.4$.  Note that this is identical to a Binomial Distribution with parameters $n=1$ and $p=.4$.'}
 Bernoulli <- 
   data.frame(x = 0:1) %>%
   mutate(pmf = dbinom(x, size = 1, p = 0.4),

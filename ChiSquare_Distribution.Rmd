@@ -24,7 +24,7 @@ The cumulative distribution function for the Chi-Square Distribution cannot be w
 \]
 
 
-```{r, echo = FALSE, fig.cap = 'The graphs on the top and bottom depict the Chi-Square probability distribution and cumulative distribution functions, respectively, for $\\nu=4,7,10$.  As $\\nu$ gets larger, the distribution becomes flatter with thicker tails.'}
+```{r ChiSquare_Distribution, echo = FALSE, fig.path = 'figures/', fig.cap = 'The graphs on the top and bottom depict the Chi-Square probability distribution and cumulative distribution functions, respectively, for $\\nu=4,7,10$.  As $\\nu$ gets larger, the distribution becomes flatter with thicker tails.'}
 ChiSquare <- 
   expand.grid(x = seq(0, 20, by = .01),
               nu = c(4, 7, 10)) %>%

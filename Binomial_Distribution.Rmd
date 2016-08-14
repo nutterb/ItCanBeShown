@@ -38,7 +38,7 @@ F(x+1)
 	&= \frac{p}{1-p} \cdot \frac{n-x}{x+1} \cdot F(x)
 \end{align*}$$
 
-```{r, echo = FALSE, fig.cap = 'The graphs on the left and right show a Binomial Probability Distribution and Cumulative Distribution Function, respectively, with $n=10$ and $p=.4$.'}
+```{r Binomial_Distribution, echo = FALSE, fig.path = 'figures/', fig.cap = 'The graphs on the left and right show a Binomial Probability Distribution and Cumulative Distribution Function, respectively, with $n=10$ and $p=.4$.'}
 Binomial <- 
   data.frame(x = 0:10) %>%
   mutate(dbinom = dbinom(x, size = 10, p = 0.4),
