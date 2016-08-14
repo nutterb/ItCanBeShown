@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="chi-square-distribution.html">
+<link rel="next" href="correlation-pearsons.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -235,30 +235,65 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-13</em></h4>
+<div id="combinations" class="section level1">
+<h1><span class="header-section-number">8</span> Combinations</h1>
+<div id="lemma" class="section level3">
+<h3><span class="header-section-number">8.0.1</span> Lemma</h3>
+<p>A set of <span class="math inline">\(n\)</span> elements may be partitioned into <span class="math inline">\(m\)</span> distinct groups containing <span class="math inline">\(k_1 , k_2 , \ldots , k_m\)</span> objects, respectively, where each object appears in exactly one group and <span class="math inline">\(\sum\limits_{i=1}^{m}k_i=n\)</span>, in <span class="math inline">\(\displaystyle N={n\choose k_1k_2\ldots k_m}=\frac{n!}{k_1!k_2!\ldots k_m!}\)</span> ways.\</p>
+<p><em>Proof:</em></p>
+<p><span class="math inline">\(N\)</span> is the number of ways all <span class="math inline">\(n\)</span> of the elements of the set can be arranged in <span class="math inline">\(m\)</span> groups where the order within each group is not important (i.e. rearrangements of elements in a group do not qualify as distinct groups).</p>
+<p>The number of distinct arrangements of the <span class="math inline">\(n\)</span> elements in which the order of selection is important, <span class="math inline">\(P_k^n\)</span>, is equal to <span class="math inline">\(N\)</span> multiplied by the number of ways each individual group of <span class="math inline">\(k_i\)</span> can be selected in which the order is important, i.e.</p>
+<p><span class="math display">\[\begin{align*}
+P_n^n 
+                  &amp;= N \cdot P_{k_1}^{k_1} P_{k_2}^{k_2} \cdots P_{k_m}^{k_m} \\
+  \Rightarrow n!  &amp;= N \cdot k_1! k_2! \cdots k_m! \\
+  \Rightarrow N   &amp;= \frac{n!}{k_1! k_2! \cdots k_m!}
+\end{align*}\]</span></p>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
-<blockquote>
-<p>It can be shown</p>
-</blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+<div id="combinations-theorem" class="section level3">
+<h3><span class="header-section-number">8.0.2</span> Combinations Theorem</h3>
+<p>Given a set of <span class="math inline">\(n\)</span> elements, the number of possible ways to select a subset of size <span class="math inline">\(k\)</span>, without regard to the order of their selection, is <span class="math inline">\(\frac{n!}{k!(n-k)!}\)</span>.\</p>
+<p><em>Proof:</em></p>
+<p>This theorem is a special case of the Lemma with <span class="math inline">\(n=n\)</span>, <span class="math inline">\(m=2\)</span>, <span class="math inline">\(k_1=k\)</span> and <span class="math inline">\(k_2=n-k\)</span>. thus,</p>
+<p><span class="math display">\[\displaystyle N=\frac{n!}{k!(n-k)!}\]</span></p>
+<p>The formula <span class="math inline">\(\displaystyle \frac{n!}{k!(n-k)!}\)</span> is denoted in a number of ways, depending on the author. Denotations may be <span class="math inline">\(C_k^n\)</span>, <span class="math inline">\(_nC_k\)</span>, <span class="math inline">\(C_{n,k}\)</span>, <span class="math inline">\(C(n,k)\)</span>, and <span class="math inline">\({n\choose k}\)</span>.<br />
+Throughout this book, the form <span class="math inline">\({n\choose k}\)</span> is used and may be read “<span class="math inline">\(n\)</span> choose <span class="math inline">\(k\)</span> objects.”</p>
+</div>
+<div id="theorem-1" class="section level3">
+<h3><span class="header-section-number">8.0.3</span> Theorem</h3>
+<p>For any integer <span class="math inline">\(a\)</span> such that <span class="math inline">\(0\leq a\leq k\)</span>,</p>
+<p><span class="math display">\[
+{n\choose k}
+    = \frac{n(n-1)(n-2)\cdots(n-a+1)}{k(k-1)(k-2)\cdots(k-a+1)}{n-a\choose k-a}
+\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+{n\choose k}    
+    &amp;= \frac{n!}{k!(n-k)!} \\
+    &amp;= \frac{n(n-1)!}{k(k-1)!(n-k)!} \\
+    &amp;= \frac{n(n-1)(n-2)!}{k(k-1)(k-2)!(n-k)!} \\
+  &amp;= \frac{n(n-1)(n-2)\cdots(n-a+1)(n-a)!}{k(k-1)(k-2)\cdots(k-a+1)(k-a)!(n-k)!} \\
+  &amp;= \frac{n(n-1)(n-2)\cdots(n-a+1)}{k(k-1)(k-2)\cdots(k-a+1)}
+        \cdot \frac{(n-a)!}{(k-a)!(n-k)!} \\
+  &amp;= \frac{n(n-1)(n-2)\cdots(n-a+1)}{k(k-1)(k-2)\cdots(k-a+1)}
+        \cdot \frac{(n-a)!}{(k-a)!(n-a+a-k)!} \\
+  &amp;= \frac{n(n-1)(n-2)\cdots(n-a+1)}{k(k-1)(k-2)\cdots(k-a+1)}
+    \cdot \frac{(n-a)!}{(k-a)![(n-a)+(a-k)]!} \\
+  &amp;= \frac{n(n-1)(n-2)\cdots(n-a+1)}{k(k-1)(k-2)\cdots(k-a+1)}
+        \cdot \frac{(n-a)!}{(k-a)![(n-a)-(k-a)]!} \\
+  &amp;= \frac{n(n-1)(n-2)\cdots(n-a+1)}{k(k-1)(k-2)\cdots(k-a+1)}
+        \cdot {n-a\choose k-a}
+\end{align*}\]</span></p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="chi-square-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="correlation-pearsons.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -285,7 +320,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Combinations.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

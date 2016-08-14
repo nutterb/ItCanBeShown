@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="correlation-pearsons.html">
+<link rel="next" href="experimental-designs.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -235,30 +235,101 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-13</em></h4>
+<div id="covariance" class="section level1">
+<h1><span class="header-section-number">10</span> Covariance</h1>
+<div id="definition-of-covariance" class="section level2">
+<h2><span class="header-section-number">10.1</span> Definition of Covariance</h2>
+<p>For any two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, the covariance of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is defined as</p>
+<p><span class="math display">\[Cov(X,Y) = E[(X-\mu_X)(Y-\mu_Y)]\]</span></p>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
-<blockquote>
-<p>It can be shown</p>
-</blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+<div id="theorems-on-covariance" class="section level2">
+<h2><span class="header-section-number">10.2</span> Theorems on Covariance</h2>
+<div id="theorem-2" class="section level3">
+<h3><span class="header-section-number">10.2.1</span> Theorem</h3>
+<p>Let <span class="math inline">\(X\)</span> be a random variable. Then <span class="math display">\[Cov(X,X) = V(X)\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+Cov(X,X)
+    &amp;= E[(X-\mu)(X-\mu)] \\
+    &amp;= E[(X-\mu)^2] \\
+    &amp;= V(X)
+\end{align*}\]</span></p>
+</div>
+<div id="theorem-3" class="section level3">
+<h3><span class="header-section-number">10.2.2</span> Theorem</h3>
+<p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be random variables. Then</p>
+<p><span class="math display">\[Cov(X,Y) = E(XY)-E(X)E(Y)\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+Cov(X,Y)
+  &amp;= E[(X-\mu_x)(Y-\mu_Y)] \\
+  &amp;= E[XY - X\mu_y - Y\mu_X + \mu_X\mu_Y] \\
+  &amp;= E(XY) - E(X)\mu_Y - \mu_XE(Y) + \mu_X\mu_Y \\
+  &amp;= E(XY) - E(X)E(Y) - E(X)E(Y) + E(X)E(Y) \\
+  &amp;= E(XY) - 2E(X)E(Y) + E(X)E(Y) \\
+  &amp;= E(XY) - E(X)E(Y)
+\end{align*}\]</span></p>
+</div>
+<div id="covariance2.3" class="section level3">
+<h3><span class="header-section-number">10.2.3</span> Covariance2.3</h3>
+<p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be random variables and let <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> be constants. Then</p>
+<p><span class="math display">\[Cov(aX,bY) = abCov(X,Y)\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+Cov(aX,bY)
+    &amp;= E(aXbY) - E(aX)E(bY) \\
+  &amp;= abE(XY) - abE(X)E(Y) \\
+    &amp;= ab[E(XY) - E(X)E(Y)] \\
+  &amp;= abCov(X,Y)
+\end{align*}\]</span></p>
+</div>
+<div id="theorem-4" class="section level3">
+<h3><span class="header-section-number">10.2.4</span> Theorem</h3>
+<p>Let <span class="math inline">\(X_1 , X_2 , \ldots , X_n\)</span> be random variables with <span class="math inline">\(E(X_i) = \mu_i\)</span> for <span class="math inline">\(i = 1,2,\ldots,n\)</span> and let <span class="math inline">\(Y_1,Y_2,\ldots,Y_m\)</span> be random variables with <span class="math inline">\(E(Y_j) = \phi_j\)</span> for <span class="math inline">\(j=1,2,\ldots,m\)</span>. Also, let <span class="math inline">\(a_1,a_2,\ldots,a_n\)</span> and <span class="math inline">\(b_1,b_2,\ldots,b_m\)</span> be constants.\</p>
+<p>If <span class="math inline">\(U_1 = \sum\limits_{i=1}^{n}a_iX_i\)</span> and <span class="math inline">\(U_2 = \sum\limits_{i=1}^{m}b_iY_i\)</span>, then</p>
+<p><span class="math display">\[Cov(U_1,U_2) = \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_jCov(X_i,Y_j)\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+Cov(U_1,U_2)
+    &amp;= E[(U_1-E(U_1))(U_2-E(U_2))] \\
+  &amp;= E\Big[\big(\sum\limits_{i=1}^{n}a_iX_i-\sum\limits_{i=1}^{n}a_i\mu_i\big)
+        \big(\sum\limits_{j=1}^{m}b_jY_j-\sum\limits_{j=1}^{m}b_j\phi_j\big)\Big] \\
+  &amp;= E\Big[\big(\sum\limits_{i=1}^{n}a_i(X_i-\mu_i)\big)\big(\sum\limits_{j=1}^{m}b_j(Y_j-\phi_j)\big)\Big] \\
+  &amp;= E\Big[\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_j(X_i-\mu_i)(Y_j-\phi_j)\Big] \\
+  &amp;= \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_jE[(X_i-\mu_i)(Y_j-\phi_j)] \\
+  &amp;= \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_j\ Cov(X_i,Y_j)
+\end{align*}\]</span></p>
+</div>
+<div id="theorem-5" class="section level3">
+<h3><span class="header-section-number">10.2.5</span> Theorem</h3>
+<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be random variables with <span class="math inline">\(E(X_i)=\mu_i\)</span> for <span class="math inline">\(i=1,2,\ldots,n\)</span> and let <span class="math inline">\(a_1,a_2,\ldots,a_n\)</span> be constants.</p>
+<p>If <span class="math inline">\(Y = \sum\limits_{i=1}^{n}a_iX_i\)</span> then</p>
+<p><span class="math display">\[V(Y) = 
+  \sum\limits_{i=1}^{n}a_i^2V(X_i)+2\sum\limits_{\ \ i&lt;}\sum\limits_{j\ \ }a_ia_jCov(X_i,X_j)\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+V(Y)
+    &amp;= E[(Y-\mu_Y)^2] \\
+    &amp;= E[(Y-\mu_Y)(Y-\mu_Y)] \\
+  &amp;= E\Big[\big(\sum\limits_{i=1}^{n}a_iX_i-a_i\mu_i\big)
+      \big(\sum\limits_{n=1}^{n}a_jX_j-a_j\mu_j\big)\Big] \\
+  &amp;= \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}a_ia_jE[(X_i-\mu_i)(X_j-\mu_j)] \\
+  &amp;= \sum\limits_{i=1}^{n}a_i^2Cov(X_i,X_i)+
+        \sum\limits_{\ \ i\neq}\sum\limits_{j\ \ \ \ }a_ia_jE[(X_i-\mu_i)(X_j-\mu_j)] \\
+  &amp;= \sum\limits_{i=1}^{n}a_i^2V(X_i)+
+      2\sum\limits_{\ \ i&lt;}\sum\limits_{j\ \ \ \ }a_ia_jCov(X_i,X_j)
+\end{align*}\]</span></p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="correlation-pearsons.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="experimental-designs.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -285,7 +356,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Covariance.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

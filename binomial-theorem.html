@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="binomial-distribution.html">
+<link rel="next" href="chebychevs-theorem.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -235,30 +235,166 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-13</em></h4>
+<div id="binomial-theorem" class="section level1">
+<h1><span class="header-section-number">5</span> Binomial Theorem</h1>
+<p>The Binomial Theorem is useful in developing theory around the Binomial and Hypergeometric Distributions. Two proofs of the Theorem are provided here; one using the traditional approach, and one using a more general approach. Other useful theorems are provided at the end of this chapter.</p>
+<div id="traditional-proof" class="section level2">
+<h2><span class="header-section-number">5.1</span> Traditional Proof</h2>
+<div id="lemma-pascals-rule" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Lemma: Pascal’s rule</h3>
+<p>Let <span class="math inline">\(n\)</span> and <span class="math inline">\(x\)</span> be non-negative integers such that <span class="math inline">\(x\leq n\)</span>.</p>
+<p>Then <span class="math inline">\({n-1\choose x} + {n-1\choose x-1} = {n\choose x}\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+{n-1\choose x} + {n-1\choose x-1}
+    &amp;= \frac{(n-1)!}{x!(n-1-x)!} + \frac{(n-1)!}{(x-1)!((n-1)-(x-1))!}\\
+  &amp;= \frac{(n-1)!}{x!(n-x-1)!} + \frac{(n-1)!}{(x-1)!(n-1-x+1)!}\\
+  &amp;= \frac{(n-1)!}{x!(n-x-1)!} + \frac{(n-1)!}{(x-1)!(n-x)!}\\
+  &amp;= \frac{(n-1)!}{x(x-1)!(n-x-1)!} + \frac{(n-1)!}{(x-1)!(n-x)(n-x-1)!}\\
+  &amp;= \frac{x(n-1)!}{x(x-1)!(n-x)(n-x-1)!}
+        +\frac{(n-x)(n-1)!}{x(x-1)!(n-x)(n-x-1)!}\\
+  &amp;= \frac{x(n-1)!+(n-x)(n-1)!}{x(x-1)!(n-x)(n-x-1)!} \\
+    &amp;= \frac{(x+n-x)(x-1)!}{x(x-1)!(n-x)(n-x-1)!}\\
+  &amp;= \frac{n(n-1)!}{x(x-1)!(n-x)(n-x-1)!} \\
+    &amp;= \frac{n!}{x!(n-x)!} \\
+    &amp;= {n\choose x}
+\end{align*}\]</span></p>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
+<div id="binomial-theorem-traditional" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> The Binomial Theorem</h3>
+<p>Let <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> be constants and let <span class="math inline">\(n\)</span> be any positive integer. Then</p>
+<p><span class="math display">\[(a+b)^n = \sum\limits_{x=0}^{n} {n\choose x} a^{n-x} b^x\]</span></p>
+<p><em>Proof:</em></p>
+<p>This proof is completed by mathematical induction.</p>
+<p>Base Step: <span class="math inline">\(n=1\)</span></p>
+<p><span class="math display">\[\begin{align*}
+(a+b)^1
+    &amp;= \sum\limits_{x=0}^{1} {1\choose x} a^{1-x} b^x \\
+    &amp;= {1\choose 0} a^{1-0} b^0 + {1\choose 1} a^{1-1} b^1 \\
+    &amp;= 1\cdot a\cdot 1 + 1\cdot 1\cdot b \\
+    &amp;= a+b
+\end{align*}\]</span></p>
+<p>Inductive Step: Assume that the Theorem holds for <span class="math inline">\(n\)</span>, and show it is true for <span class="math inline">\(n+1\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+(a+b)^{n+1}
+        &amp;= (a+b)(a+b)^n \\
+        &amp;= a(a+b)^n + b(a+b)^n \\
+        &amp;= a(a^n + \sum\limits_{x=1}^{n-1}{n\choose x}a^{n-x}b^x + b^n)
+            + b(a^n + \sum\limits_{x=1}^{n-1}{n\choose x}a^{n-x}b^x+b^n) \\
+        &amp;= (a^{n+1}+a\sum\limits_{x=1}^{n-1}{n\choose x}a^{n-x}ab^x)
+            + (a^nb+\sum\limits_{x=1}^{n-1}{n\choose x}a^{n-x}b^x+b^{n+1}) \\
+        &amp;= (a^{n+1}+\sum\limits_{x=1}^{n-1}{n\choose x}a^{n-x+1}ab^x)
+            + (a^nb+\sum\limits_{x=1}^{n-1}{n\choose x}a^{n-x}b^{x+1}+b^{n+1}) \\
+^{[1]}  &amp;= (a^{n+1}+\sum\limits_{x=1}^{n}a^{n-x+1}b^x)
+            + (\sum\limits_{x=0}^{n-1}{n\choose x}a^{n-x}b^{x+1}+b^{n+1}) \\
+^{[2]}  &amp;= (a^{n+1}+\sum\limits_{x=1}^{n}{n\choose x}a^{n-x+1}b^x)
+            + \sum\limits_{x-1}^{n-1}{n\choose x-1}a^{n-x+1}b^{x+1-1}+b^{n+1}) \\
+^{[3]}  &amp;= a^{n+1} + \sum\limits_{x+1}^{n}{n+1\choose x}a^{n-x+1}b^x + b^{n+1} \\
+        &amp;=a^{n+1}+\sum\limits_{x=1}^{n}{n+1\choose x}a^{(n+1)-x}b^x+b^{n+1} \\
+^{[4]}  &amp;= \sum\limits_{x=0}^{n+1}{n+1\choose x}a^{(n+1)-x}b^x
+\end{align*}\]</span></p>
+<p>This completes both the inductive step and the proof.</p>
 <blockquote>
-<p>It can be shown</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(ab^n={n\choose n}a^{n-n+1}b^n\)</span> which is the term for <span class="math inline">\(x=n\)</span> in the first summation.<br />
+<span class="math inline">\(a^nb={n\choose 0}a^{n-0}b^1\)</span> which is the term for <span class="math inline">\(x=0\)</span> in the second summation.</li>
+<li><span class="math inline">\(\sum\limits_{x=0}^{n-1}{n\choose x}a^{n-x}b^{x+1} \\ \ \ \ \ = \sum\limits_{x=1}^{n}{n\choose x-1}a^{n-(x-1)}b^{(x-1)+1} \\ \ \ \ \ = \sum\limits_{x=1}^{n}{n\choose x-1}a^{n-x+1}b^x\)</span></li>
+<li>This step is made using Pascal’s Rule with <span class="math inline">\(n=n-1\)</span>.</li>
+<li><span class="math inline">\(a^{n+1}={n+1\choose 0}a^{(n+1)-0}b^0\)</span> which is the term for <span class="math inline">\(x=0\)</span> in the summation.<br />
+<span class="math inline">\(\ \ b^{n+1}={n+1\choose n+1}a^{(n+1)-(n+1)}b^{n+1}\)</span> which is the term for <span class="math inline">\(x=n+1\)</span> in the summation</li>
+</ol>
 </blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+</div>
+</div>
+<div id="general-approach" class="section level2">
+<h2><span class="header-section-number">5.2</span> General Approach</h2>
+<div id="a-binomial-expansion-theorem" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> A Binomial Expansion Theorem</h3>
+<p>This theorem and its corrolary are provided by Brunette.</p>
+<p>For any positive integer <span class="math inline">\(n\)</span>, let <span class="math inline">\(B_n = (x_1+y_1) (x_2+y_2) \cdots (x_n+y_n)\)</span>. In the expansion <span class="math inline">\(B_n\)</span>, before combining possible like terms, the following are true:</p>
+<ol style="list-style-type: lower-roman">
+<li>There will be <span class="math inline">\(2^n\)</span> terms.</li>
+<li>Each of these terms will be a product of <span class="math inline">\(n\)</span> factors.</li>
+<li>In each such product there will be one factor from each binomial (in <span class="math inline">\(B_n\)</span>).</li>
+<li>Every such product of <span class="math inline">\(n\)</span> factors, one from each binomial, is represented in the expansion.</li>
+</ol>
+<p><em>Proof:</em></p>
+<p>Proof is done by induction.</p>
+<p>For the case <span class="math inline">\(n=1\)</span>, the result is clear.</p>
+<p>Now assume that the theorem is true for a particular <span class="math inline">\(n\)</span> and consider <span class="math inline">\(B_{n+1}\)</span>.</p>
+<p><span class="math display">\[ B_{n+1} = B_n(x_{n+1} + y_{n+1}) = B_nx_{n+1} + B_ny_{n+1} \]</span></p>
+<p>By the inductive assumption, <span class="math inline">\(B_n = T_1 + T_2 + \cdots + T_{2^n}\)</span> where each <span class="math inline">\(T_i\)</span> is a product of <span class="math inline">\(n\)</span> factors, one factor from each binomial. It follows that every term in the expansion of <span class="math inline">\(B_n+1\)</span> is either of the type <span class="math inline">\(T_ix_{n+1}\)</span> or <span class="math inline">\(T_iy_{n+1}\)</span>, for some <span class="math inline">\(1\leq i \leq 2^n\)</span>. But each term of either of the above types is clearly a product of <span class="math inline">\(n+1\)</span> factors with one factor coming from each binomial. thus, if <em>(ii)</em> and <em>(iii)</em> are true for <span class="math inline">\(B_n\)</span>, then they are true for <span class="math inline">\(B_n+1\)</span>.</p>
+<p>Next, by the inductive assumption, the expansion of <span class="math inline">\(B_n\)</span> is a sum of <span class="math inline">\(2^n+2^n\)</span> terms, i.e., <span class="math inline">\(2^{n+1}\)</span> terms. This completes the inductive step for <em>(i)</em>.</p>
+<p>Lastly, it remains for us to consider a product of the type <span class="math inline">\(p_1 p_2 \cdots p_n p_{n+1}\)</span> where, for each <span class="math inline">\(1\leq i\leq n+1\)</span>, <span class="math inline">\(p_i = x_i\)</span> or <span class="math inline">\(p_i = y_i\)</span>. By the inductive hypothesis, <span class="math inline">\(p_1 p_2 \cdots p_n\)</span> is a term in the expansion of <span class="math inline">\(B_n\)</span>. If <span class="math inline">\(p_{n+1} = x_{n+1}\)</span>, then <span class="math inline">\(p_1 p_2 \cdots p_n p_{n+1}\)</span> is a term in the expansion of <span class="math inline">\(B_nx_{n+1}\)</span>, and so of <span class="math inline">\(B_{n+1}\)</span>. Likewise, if <span class="math inline">\(p_{n+1}=y_{n+1}\)</span>, then <span class="math inline">\(p_1 p_2 \cdots p_n p_{n+1}\)</span> is a term in the expansion of <span class="math inline">\(B_n y_{n+1}\)</span>, and so of <span class="math inline">\(B_{n+1}\)</span>. This completes the inductive step and the proof.</p>
+</div>
+<div id="corollary-binomial-theorem" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Corollary: Binomial Theorem</h3>
+<p>Let <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> be constants and let <span class="math inline">\(n\)</span> be any positive integer.</p>
+<p>Then <span class="math inline">\(\displaystyle (x+y)^n = \sum\limits_{i=0}^{n} {n\choose i} x^{n-i} y^i\\\)</span></p>
+<p><em>Proof:</em></p>
+<p>Since each term in the expansion will have <span class="math inline">\(n\)</span> terms, each term must follow the form <span class="math inline">\(x^{n-i} y^i\)</span> for <span class="math inline">\(0 \leq i \leq n\)</span>, and in all, there are <span class="math inline">\(2^n\)</span> such terms. For any given value of <span class="math inline">\(i\)</span>, the number of terms of the form <span class="math inline">\(x^{n-i}y^i\)</span> is clearly the number of ways one can choose the <span class="math inline">\(i\)</span> factors of <span class="math inline">\(y\)</span> from the <span class="math inline">\(n\)</span> available binomials, i.e., <span class="math inline">\({n\choose i}\)</span>, which gives</p>
+<p><span class="math display">\[(x+y)^n = \sum\limits_{i=0}^{n}{n\choose i} x^{n-i} y^i\]</span></p>
+</div>
+</div>
+<div id="other-theorems" class="section level2">
+<h2><span class="header-section-number">5.3</span> Other Theorems</h2>
+<div id="binomialtheorem-other-theorem-1" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> Theorem</h3>
+<p><span class="math display">\[{N_1\choose 0}{N_2\choose n} + {N_1\choose 2}{N_2\choose n-1} + \cdots
+        + {N_1\choose n-1}{N_2\choose 1} + {N_1\choose n}{N_2\choose 0}
+    = {N_1+N_2\choose n}\]</span></p>
+<p>where <span class="math inline">\(0 \leq n \leq N_1 + N_2\)</span>.</p>
+<p><em>Proof:</em></p>
+<p>Using the Binomial Theorem we establish</p>
+<p><span class="math display">\[
+(1+a)^{N-1} (1+a)^{N_2} = (1+a)^{N_1+N_2} \\
+\Rightarrow [{N_1\choose 0}a^0+\cdots+{N_1\choose N_1}a^{N_1}]\cdot
+        [{N_2\choose 0}a^0+\cdots+{N_2\choose N_2}a^{N_2}] \\
+  \ \ \ \ ={N_1+N_2\choose 0}+{N_1+N_2\choose 1}a+\cdots
+        +{N_1+N_2\choose N_1+N_2}a^{N_1+N_2}  
+\]</span></p>
+<p>Expanding the left side of the equation gives</p>
+<p><span class="math display">\[
+{N_1\choose 0}{N_2\choose 0} + {N_1\choose 0}{N_2\choose 1}a + \cdots
+        + {N_1\choose 0}{N_2\choose N_2}a^{N_2} + {N_1\choose 1}{N_2\choose 0}a \\
+\ \ \ \ + \cdots + {N_1\choose 1}{N_2\choose N_2}a^{N_2+1}
+        + \cdots + {N_1\choose N_1}{N_2\choose 0}a^{N_1}
+        + {N_1\choose N_1}{N_2\choose 1}a^{N_1+1}  \\
+\ \ \ \ + \cdots + {N_1\choose N_1}{N_2\choose N_2}a^{N_1+N_2} \\
+= {N_1\choose 0}{N_2\choose 0}+{N_1\choose 0}{N_2\choose 1}a
+        + {N_1\choose 1}{N_2\choose 0}a \\
+\ \ \ \ + {N_1\choose 0}{N_2\choose 2}a^2+{N_1\choose 1}{N_2\choose 1}a^2
+        + {N_1\choose 2}{N_2\choose 0}a^2 \\
+\ \ \ \ + \cdots + {N_1\choose N_1}{N_2\choose N_2}a^{N_1+N_2}
+\]</span></p>
+<p>Notice that for any <span class="math inline">\(n\)</span> where <span class="math inline">\(0 \leq n \leq N_1 + N_2\)</span>, the coefficient for <span class="math inline">\(a^n\)</span>, found by combining like terms, is <span class="math inline">\({N_1\choose 0}{N_2\choose n} + {N_1\choose 1}{N_2\choose n-1} + \cdots+{N_1\choose n-1}{N_2\choose 1} + {N_1\choose 0}{N_2\choose n}\)</span> and, by the equivalence of the first equation in the proof, is equal to the coefficient <span class="math inline">\({N_1 + N_2\choose n}\)</span>.</p>
+</div>
+<div id="theorem" class="section level3">
+<h3><span class="header-section-number">5.3.2</span> Theorem</h3>
+<p><span class="math display">\[\frac{\sum\limits_{i=1}^{n}{N_1\choose i}{N_2\choose n-i}}{{N_1+N_2\choose n}} = 1\]</span></p>
+<p>for <span class="math inline">\(0 \leq n \leq N_1 + N_2\)</span>.\</p>
+<p><em>Proof:</em></p>
+<p>Theorem <a href="binomial-theorem.html#binomialtheorem-other-theorem-1">5.3.1</a> establishes the equality</p>
+<p><span class="math display">\[
+{N_1\choose 0}{N_2\choose n}+{N_1\choose 2}{N_2\choose n-1} + \cdots
+        + {N_1\choose n-1}{N_2\choose 1}+{N_1\choose n}{N_2\choose 0}
+    = {N_1+N_2\choose n} \\
+\Rightarrow\sum\limits_{i=1}^{n}{N_1\choose i}{N_2\choose n-i}
+    = {N_1+N_2\choose n} \\
+\Rightarrow\frac{\sum\limits_{i=1}^{n} {N_1\choose i}{N_2\choose n-i}} {{N_1+N_2\choose n}}
+    = 1
+\]</span></p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="binomial-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chebychevs-theorem.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -285,7 +421,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Binomial_Theorem.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

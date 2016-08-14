@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="binomial-theorem.html">
+<link rel="next" href="chi-square-distribution.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -235,30 +235,111 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-13</em></h4>
-</div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
+<div id="chebychevs-theorem" class="section level1">
+<h1><span class="header-section-number">6</span> Chebychev’s Theorem</h1>
+<div id="chebychevs-theorem-1" class="section level2">
+<h2><span class="header-section-number">6.1</span> Chebychev’s Theorem</h2>
+<p>In any finite set of numbers and for any real number <span class="math inline">\(h &gt; 1\)</span>, at least <span class="math inline">\((1 - \frac{1}{h^2}) \cdot 100\%\)</span> of the numbers lie within <span class="math inline">\(h\)</span> standard deviations of the mean. In other words, they lie within the interval <span class="math inline">\((\mu-h\cdot\sigma , \mu+h\cdot\sigma)\)</span>.</p>
+<p><em>Proof:</em></p>
+<p>For a set <span class="math inline">\(\{x_1,x_2,\ldots,x_r,x_{r+1},\ldots,x_n\}\)</span> where, by choice of labeling, <span class="math inline">\(\{x_1,x_2,\ldots,x_r\}\)</span> lie outside of <span class="math inline">\((\mu-h\cdot\sigma , \mu+h\cdot\sigma)\)</span>. Also, <span class="math inline">\(\{x_{r+1},\ldots,x_n\}\)</span> are within the interval. Under these conditions we know</p>
+<p><span class="math display">\[|x_1-\mu| &gt; h\sigma,\ |x_2-\mu| &gt; h\sigma, \ldots,\ |x_r-\mu| &gt; h\sigma\]</span></p>
+<p>Squaring gives</p>
+<p><span class="math display">\[(x_1-\mu)^2 &gt; h^2\sigma^2,\ (x_2-\mu)^2 &gt; h^2\sigma^2,\ldots,\ (x_r-\mu)^2 &gt; h^2\sigma^2\\
+\ \ \ \ \Rightarrow\sum\limits_{i=1}^{r}(x_1-\mu)^2 &gt; \sum\limits_{i=1}^{r}h^2\sigma^2
+    = rh^2\sigma^2
+\]</span></p>
+<p>Since all <span class="math inline">\((x_i-\mu)^2\)</span> must necessarily be positive,</p>
+<p><span class="math display">\[\begin{align*}
+\sum\limits_{i=1}^{r}(x_i-\mu)^2 &amp;&lt; \sum\limits_{i=1}^{n}(x_i-\mu)^2 \\
+\ \ \ \ \Rightarrow rh^2\sigma^2 &amp;&lt; \sum\limits_{i=1}^{n}(x_i-\mu)^2 \\
+\ \ \ \ ^{[1]} \Rightarrow rh^2\sigma^2 &amp;&lt; n\sigma^2 \\
+\ \ \ \ \Rightarrow rh^2 &amp;&lt; n \\
+\ \ \ \ \Rightarrow\frac{r}{n} &amp;&lt; \frac{1}{h^2}
+\end{align*}\]</span></p>
 <blockquote>
-<p>It can be shown</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\sigma^2 = \frac{1}{n}\sum\limits_{i=1}^{n}(x_i-\mu)^2\)</span><br />
+<span class="math inline">\(\ \ \ \ \Rightarrow n\sigma^2 = \sum\limits_{i=1}^{n}(x_i-\mu)^2\)</span></li>
+</ol>
 </blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+<p>and <span class="math inline">\(\frac{r}{n}\)</span> is the fraction of numbers outside <span class="math inline">\((\mu-h\cdot\sigma , \mu+h\cdot\sigma)\)</span>. By the law of complements, the fraction of numbers inside the interval is <span class="math inline">\(1 - \frac{r}{n}\)</span>, which implies <span class="math inline">\(1 - \frac{r}{n} &gt; 1 - \frac{1}{h^2}\)</span>. Thus, more than <span class="math inline">\((1-\frac{1}{h^2})\cdot 100\%\)</span> of the points lie within <span class="math inline">\(h\)</span> standard deviations of the mean, or within the interval <span class="math inline">\((\mu-h\cdot\sigma , \mu+h\cdot\sigma)\)</span>.</p>
+</div>
+<div id="alternate-proof-of-chebychevs-theorem" class="section level2">
+<h2><span class="header-section-number">6.2</span> Alternate Proof of Chebychev’s Theorem</h2>
+<p>In any finite set of numbers and for any real number <span class="math inline">\(h&gt;1\)</span>, at least <span class="math inline">\((1-\frac{1}{h^2})\cdot 100\%\)</span> of the numbers lie within <span class="math inline">\(h\)</span> standard deviations of the mean. In other words, they lie within the interval <span class="math inline">\((\mu-h\cdot\sigma,\mu+h\cdot\sigma)\)</span>.\</p>
+<p><em>Proof:</em></p>
+<p>The proof here is done for the discrete case, but is applicable also in the continuous case by replacing the summations with integrals (with integrals, the limits will be from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(\infty\)</span>).</p>
+<p><span class="math display">\[\begin{align*}
+\sigma^2
+    &amp;= E(x-\mu)^2 \\
+    &amp;= \sum\limits_{y=0}^{\infty}(y-\mu)^2p(y) \\
+  &amp;= \sum\limits_{y=0}^{\mu-h\sigma}(y-\mu)^2p(y) + 
+        \sum\limits_{y=\mu-h\sigma+1}^{\mu+h\sigma-1}(y-\mu)^2p(y)
+            + \sum\limits_{y=\mu+h\sigma}^{\infty}(y-\mu)^2p(y) \\
+^{[1]} \Rightarrow \sigma^2 &amp;\geq \sum\limits_{y=0}^{\mu-h\sigma}(y-\mu)^2p(y)
+        + \sum\limits_{y=\mu+h\sigma}^{\infty}(y-\mu)^2p(y)\\
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Since all the <span class="math inline">\((y-\mu)^2\)</span> must be positive, removing the middle term will surely result in this inequality.</li>
+</ol>
+</blockquote>
+<p>In both of these summations <span class="math inline">\(y\)</span> is outside the interval <span class="math inline">\((\mu-h\cdot\sigma , \mu+h\cdot\sigma)\)</span>, so</p>
+<p><span class="math display">\[\begin{align*}
+              |y-\mu|   &amp;\geq   h\sigma \\
+\Rightarrow (y-\mu^2)   &amp;\geq   h^2\sigma^2 \\
+\Rightarrow \sigma^2    &amp;\geq   \sum\limits_{y=0}^{\mu-h\sigma}h^2\sigma^2p(y)
+        + \sum\limits_{\mu+h\sigma}^{\infty}h^2\sigma^2p(y) \\
+\Rightarrow\sigma^2     &amp;\geq   h^2\sigma^2\Big[\sum\limits_{y=0}^{\mu-h\sigma}p(y)
+        + \sum\limits_{\mu+h\sigma}^{\infty}p(y)\Big]
+\end{align*}\]</span></p>
+<p>The first summation is the sum of all probabilities that <span class="math inline">\(y-\mu &lt; h\sigma\)</span>, i.e. <span class="math inline">\(P(y-\mu &lt; h\sigma)\)</span>. Likewise, the second summation is <span class="math inline">\(P(y-\mu &gt; h\sigma)\)</span>.</p>
+<p><span class="math display">\[\begin{align*} 
+\Rightarrow \sigma^2         &amp;\geq   h^2\sigma^2[P(y-\mu&lt;h\sigma) + P(y-\mu&gt;h\sigma)] \\
+\Rightarrow \sigma^2         &amp;\geq   h^2\sigma^2[P(|y-\mu|&gt;h\sigma)] \\
+\Rightarrow \frac{1}{h^2}    &amp;\geq   P(|y-\mu|&gt;h\sigma) \\
+\Rightarrow 1-\frac{1}{h^2}  &amp;\leq   P(|y-\mu|&gt;h\sigma)
+\end{align*}\]</span></p>
+</div>
+<div id="chebychevs-theorem-for-absolute-deviation" class="section level2">
+<h2><span class="header-section-number">6.3</span> Chebychev’s Theorem for Absolute Deviation</h2>
+<p>This theorem is provided by Brunette </p>
+<p>In any finite set of numbers, and for any real number <span class="math inline">\(h &gt; 1\)</span>, at least <span class="math inline">\(1 - \frac{1}{h}\)</span> of the numbers lie within <span class="math inline">\(h\)</span> absolute deviations of the mean, where the absolute deviation is defined <span class="math inline">\(Ab = \frac{1}{n}\sum\limits_{i=1}{n}|x_i-\bar x|\)</span>. In other words, <span class="math inline">\(1-\frac{1}{h}\)</span> of the numbers are in the interval <span class="math inline">\((\bar x-h\cdot Ab , \bar x+h\cdot Ab)\)</span>.</p>
+<p><em>Proof:</em></p>
+<p>For a set <span class="math inline">\(\{x_1,x_2,\ldots,x_r,x_{r+1},\ldots,x_n\}\)</span> where, by choice of labeling, <span class="math inline">\(\{x_1,x_2,\ldots,x_r\}\)</span> lie outside of <span class="math inline">\((\mu-h\cdot Ab , \mu+h\cdot Ab)\)</span>. Also, <span class="math inline">\(\{x_{r+1},\ldots,x_n\}\)</span> are within the interval. Accordingly,</p>
+<p><span class="math display">\[h \cdot Ab \leq |x_1-\bar x| ,\ h \cdot Ab \leq |x_1-\bar x| ,\ldots ,\ h \cdot Ab 
+    \leq |x_1-\bar x| \]</span></p>
+<p><span class="math display">\[\begin{align*}
+\Rightarrow r \cdot h \cdot Ab 
+    &amp;\leq \sum\limits_{i=1}^{r}|x_i-\bar x| \\
+\Rightarrow r \cdot h \cdot Ab 
+    &amp;\leq \sum\limits_{i=1}^{n}|x_i-\bar x| \\
+^{[1]} \Rightarrow r \cdot h \cdot Ab 
+    &amp;\leq n \cdot Ab\\
+\Rightarrow \frac{r}{n} 
+    &amp;\leq \frac{1}{h}\\
+\Rightarrow -\frac{r}{n} 
+    &amp;\geq -\frac{1}{h}\\
+\Rightarrow 1-\frac{r}{n} 
+    &amp;\geq 1-\frac{1}{h}
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(Ab = \frac{1}{n}\sum\limits_{i=1}^{n}|x_i-\bar x|\)</span><br />
+<span class="math inline">\(\Rightarrow n \cdot Ab = \sum\limits_{i=1}^{n}|x_i-\bar x|\)</span></li>
+</ol>
+</blockquote>
+<p>Now <span class="math inline">\(\frac{r}{n}\)</span> is the fraction of numbers outside the interval. So <span class="math inline">\(1-\frac{r}{n}\)</span> is the fraction of numbers within <span class="math inline">\(h\)</span> absolute deviations of the mean, or within the interval <span class="math inline">\((\mu-h\cdot Ab , \mu+h\cdot Ab)\)</span>.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="binomial-theorem.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chi-square-distribution.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -285,7 +366,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Chebychev.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],
