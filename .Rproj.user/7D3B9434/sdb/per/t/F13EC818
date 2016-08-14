@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : ".Rproj.user\n.Rhistory\n.RData\n*.Rproj\n",
+    "created" : 1471171393530.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2658748078",
+    "id" : "F13EC818",
+    "lastKnownWriteTime" : 1471021392,
+    "last_content_update" : 1471021392,
+    "path" : "~/GitHub/ItCanBeShown/.gitignore",
+    "project_path" : ".gitignore",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "gitignore"
+}

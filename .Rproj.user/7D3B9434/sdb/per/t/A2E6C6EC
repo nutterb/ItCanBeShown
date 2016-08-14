@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "--- \ntitle: \"It Can Be Shown\"\nsubtitle: \"Notes on Statistical Theory\"\nauthor: \"Benjamin Nutter\"\ndate: \"`r Sys.Date()`\"\nsite: bookdown::bookdown_site\nbookdown::gitbook:\n  config:\n    toc:\n      collapse: section\n      scroll_highlight: true\n      before: null\n      after: null\ndocumentclass: book\nbibliography: \nbiblio-style: apalike\nlink-citations: yes\ngithub-repo: nutterb/ItCanBeShown\ndescription: \"Notes on the Development of Statistical Theory\"\n---\n\n```{r, warning = FALSE, message = FALSE, echo = FALSE}\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(magrittr)\nlibrary(pixiedust)\nlibrary(RColorBrewer)\nlibrary(tidyr)\n\npalette <- brewer.pal(9, \"PRGn\")\n```\n\n\n\n# Introduction\n\nThere is one phrase that makes me cringe every time I see it.  It's a phrase that embodies feelings of frustration, inadequacy, and failure to understand.  That phrase:\n\n> It can be shown\n\nEverytime I read that phrase, I would look at the subsequent result and think \"Really? It can?\"\n\nThis book is a collection of notes that I've put together to avoid having to feel that way in the future.  It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory.  Most imporantly, it spells even the smallest steps along each development so that I don't have to worry about solving it again in the future.\n\nYou won't find much in the way of application.  There are no exercises.  There is only minimal explanation.  My intent is to show development of statistical theory and nothing else.  ",
+    "created" : 1470875310861.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "137921564",
+    "id" : "A2E6C6EC",
+    "lastKnownWriteTime" : 1471140369,
+    "last_content_update" : 1471140369,
+    "path" : "~/GitHub/ItCanBeShown/index.Rmd",
+    "project_path" : "index.Rmd",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
