@@ -1,0 +1,386 @@
+# Gamma Distribution
+
+## Probability Distribution Function
+
+A random variable $X$ is said to have a Gamma Distribution with parameters $\alpha$ and $\beta$ if its probability distribution function is
+\[f(x)=\left\{
+	\begin{array}{ll}
+		\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}{\Gamma(\alpha)\beta^\alpha},
+			& 0<x,\ 0<\alpha,\ 0<\beta\\
+		0 & otherwise 
+	\end{array} \right.
+\]
+Where $\alpha$ is a scale parameter and\\
+\indent $\beta$ is a shape parameter.
+
+## Cumulative Distribution Function
+
+The cumulative distribution function for the Gamma Distribution cannot be expressed in closed form.  It's interval form is expressed here.
+
+\[F(x) = \left\{
+	\begin{array}{ll}
+		\int\limits_{0}^{x}\frac{t^{\alpha-1}e^{-\frac{t}{\beta}}}{\Gamma(\alpha)\beta^\alpha},
+			& 0<t,\ 0<\alpha,\ 0<\beta\\
+		\\
+		0 & otherwise 
+	\end{array} \right.
+\]
+
+```{r Gamma_Distribution, echo = FALSE, fig.path = 'figures/', fig.cap = 'The figures on the left and right display the Gamma probability and cumulative distirubtion functions, respectively, for the combinations of $\\alpha=2,3$ and $\\beta=1,3$.'}
+Gamma <- 
+  expand.grid(x = seq(0, 10, by = .01),
+              alpha = c(2, 3),
+              beta = c(1, 3)) %>%
+  mutate(dgamma = dgamma(x, shape = alpha, rate = beta),
+         pgamma = pgamma(x, shape = alpha, rate = beta)) %>%
+  gather(type, prob, -x, -alpha, -beta) %>%
+  mutate(alpha = factor(alpha),
+         beta = factor(beta),
+         type = factor(type,
+                       levels = c("dgamma",
+                                  "pgamma"),
+                       labels = c("Probability Distribution",
+                                  "Cumulative Distribution")))
+
+ggplot(data = Gamma,
+       mapping = aes(x = x,
+                     y = prob,
+                     colour = alpha,
+                     linetype = beta)) + 
+  geom_line() + 
+  facet_grid(type ~ ., scales = "free_y") + 
+  theme_bw() + 
+  scale_colour_manual(values = palette[c(1, 9)]) + 
+  xlab("X") + 
+  ylab("Probability")
+```
+
+
+## Expected Values
+
+$$\begin{align*} 
+E(X)
+      	&= \int\limits_{0}^{\infty}x\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
+      		{\Gamma(\alpha)\beta^\alpha}dx \\
+      	&= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+      		\int\limits_{0}^{\infty}x\cdot x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
+      	&= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+      		\int\limits_{0}^{\infty}x^{\alpha}e^{-\frac{x}{\beta}}dx \\
+^{[1]}  &= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+		[\Gamma(\alpha+1)\beta^{\alpha+1}] \\
+      	&= \frac{\Gamma(\alpha+1)\beta^{\alpha+1}}{\Gamma(\alpha)\beta^\alpha} \\
+      	&= \frac{\alpha\Gamma(\alpha)\beta^{\alpha+1}}{\Gamma(\alpha)\beta^\alpha} \\
+      	&= \alpha\beta
+\end{align*}$$
+	
+> 1. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
+		=\beta^\alpha\Gamma(\alpha)$
+
+
+$$\begin{align*} 
+E(X^2)
+      	&= \int\limits_{0}^{\infty}x^2\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
+      		{\Gamma(\alpha)\beta^\alpha}dx \\
+      	&= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+      		\int\limits_{0}^{\infty}x^2\cdot 
+      		x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
+      	&= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+      		\int\limits_{0}^{\infty}x^{\alpha+1}e^{-\frac{x}{\beta}}dx \\
+^{[1]}  &= \frac{1}{\Gamma(\alpha)\beta^{\alpha}}
+      		[\Gamma(\alpha+2)\beta^{\alpha+2}] \\
+      	&= \frac{\Gamma(\alpha+2)\beta^{\alpha+2}}{\Gamma(\alpha)\beta^\alpha} \\
+      	&= \frac{(\alpha+1)\Gamma(\alpha+1)\beta^{\alpha+2}}
+      		{\Gamma(\alpha)\beta^\alpha} \\
+        &= \frac{(\alpha+1)\alpha\Gamma(\alpha)\beta^{\alpha+2}}
+      		{\Gamma(\alpha)\beta^\alpha} \\
+      	&= \alpha(\alpha+1)\beta^2 \\
+      	&= (\alpha^2+\alpha)\beta^2 \\
+      	&= \alpha^2\beta^2+\alpha\beta^2 
+\end{align*}$$
+
+> 1. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
+		=\beta^\alpha\Gamma(\alpha)$
+		
+$$\begin{align*}
+\mu
+	&= E(X) \\
+	&= \alpha\beta \\
+\\
+\\
+\sigma^2
+	&= E(X^2) - E(X)^2 \\
+	&= \alpha^2\beta^2 + \alpha\beta^2 - \alpha^2\beta^2 \\
+	&= \alpha\beta^2
+\end{align*}$$
+
+
+
+## Moment Generating Function
+
+$$\begin{align*} 
+M_X(t) 
+      	&= E(e^{tX}) \\
+      	&= \int\limits_{0}^{\infty}e^{tx}
+      		\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
+      		{\Gamma(\alpha)\beta^\alpha}dx \\
+      	&= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+      		\int\limits_{0}^{\infty}e^{tx}
+      		x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
+        &= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+      		\int\limits_{0}^{\infty}x^{\alpha-1}
+      		e^{tx}e^{-\frac{x}{\beta}}dx \\
+      	&= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+      		\int\limits_{0}^{\infty}x^{\alpha-1}
+      		e^{tx-\frac{x}{\beta}}dx \\
+        &= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+      		\int\limits_{0}^{\infty}x^{\alpha-1}
+      		e^{\frac{\beta tx}{\beta}-\frac{x}{\beta}}dx \\
+      	&= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+      		\int\limits_{0}^{\infty}x^{\alpha-1}
+      		e^{\frac{\beta tx-x}{\beta}}dx \\
+        &= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+      		\int\limits_{0}^{\infty}x^{\alpha-1}
+      		e^{-x\frac{-\beta t+1}{\beta}}dx \\
+      	&= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+      		\int\limits_{0}^{\infty}x^{\alpha-1}
+      		e^{-x\frac{1-\beta t}{\beta}}dx \\
+^{[1]}  &= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+      		\Big[\Gamma(\alpha)\Big(\frac{\beta}{1-\beta t}\Big)\alpha)\Big] \\
+      	&= \frac{\Gamma(\alpha)\beta^\alpha}
+      		{\Gamma(\alpha)\beta^\alpha(1-\beta t)^\alpha} \\
+        &= \frac{1}{(1-\beta t)^\alpha}=(1-\beta t)^{-\alpha}
+\end{align*}$$
+
+> 1. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
+	      =\beta^\alpha\Gamma(\alpha)$
+
+$$\begin{align*}
+M_X^{(1)}(t)
+	&= -\alpha(1-\beta t)^{-\alpha-1}(-\beta) \\
+	&= \alpha\beta(1-\beta t)^{-\alpha-1} \\
+M_X^{(2)}(t) 
+	&= (-\alpha-1)\alpha\beta(1-\beta t)^{-\alpha-2}(-\beta) \\
+	&= (\alpha+1)\alpha\beta^2(1-\beta t)^{-\alpha-2} \\
+  &= (\alpha^2\beta^2+\alpha\beta^2)(1-\beta t)^{-\alpha-2} \\
+\\
+\\
+E(X)
+	&= M_X^{(1)}(0)=\alpha\beta(1-\beta\cdot 0)^{-\alpha-1} \\
+	&= \alpha\beta(1-0)^{\alpha-1}=\alpha\beta(1)^{-\alpha-1} \\
+	&= \alpha\beta \\
+\\
+\\
+E(X^2)
+	&= M_X^{(2)}(0)=(\alpha^2\beta^2+\alpha\beta^2)(1-\beta 0)^{-\alpha-2} \\
+	&= (\alpha^2\beta^2+\alpha\beta^2)(1-0)^{-\alpha-2} \\
+  &= (\alpha^2\beta^2+\alpha\beta^2)(1)^{-\alpha-2} \\
+	&= \alpha^2\beta^2+\alpha\beta^2 \\
+\\
+\\
+\mu
+	&= E(X) \\
+	&= \alpha\beta\\
+\\
+\\
+\sigma^2
+	&= E(X^2) - E(X)^2 \\
+	&= \alpha^2\beta^2 + \alpha\beta^2 - \alpha^2\beta^2 \\
+	&= \alpha\beta^2
+\end{align*}$$
+
+
+
+## Maximum Likelihood Estimators
+
+Let $x_1,x_2,\ldots,x_n$ denote a random sample from a Gamma Distribution with parameters $\alpha$ and $\beta$.
+
+
+### Likelihood Function
+
+$$\begin{align*}
+L(\theta)
+	&= L(x_1,x_2,\ldots,x_n|\theta) \\
+	&= f(x_1|\theta) f(x_2|\theta) \cdots f(x_n|\theta) \\
+  &= \frac{x_1^{\alpha-1}e^{-x_1/\beta}}{\Gamma(\alpha)\beta^\alpha}
+		\frac{x_2^{\alpha-1}e^{-x_2/\beta}}{\Gamma(\alpha)\beta^\alpha}
+		\cdots \frac{x_n^{\alpha-1}e^{-x_n/\beta}}{\Gamma(\alpha)\beta^\alpha} \\
+  &= \prod\limits_{i=1}^{n}\frac{x_i^{\alpha-1}e^{-x_i/\beta}}{\Gamma(\alpha)\beta^\alpha} \\
+	&= \bigg(\frac{1}{\Gamma(\alpha)\beta^\alpha}\bigg)^n  
+	      \prod\limits_{i=1}^{n}x_i^{\alpha-1}e^{-x_i/\beta} \\
+  &= \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
+        \prod\limits_{i=1}^{n}x_i^{\alpha-1}e^{-x_i/\beta} \\
+  &= \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
+		\exp\bigg\{\sum\limits_{i=1}^{n}-\frac{x_i}{\beta} \bigg\}
+		\prod\limits_{i=1}^{n}x_i^{\alpha-1} \\
+  &= \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
+		\exp\bigg\{-\frac{1}{\beta}\sum\limits_{i=1}^{n}x_i \bigg\}
+		\prod\limits_{i=1}^{n}x_i^{\alpha-1}
+\end{align*}$$
+
+
+### Log-likelihood Function
+
+$$\begin{align*}
+\ell(\theta)
+	&= \ln\bigg[ \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
+		\exp\bigg\{-\frac{1}{\beta}\sum\limits_{i=1}^{n}x_i \bigg\}
+		\prod\limits_{i=1}^{n}x_i^{\alpha-1} \bigg]  \\
+  &= \ln\big( \Gamma(\alpha) \beta^\alpha \big)^{-n}
+		+ \ln\bigg( \exp \bigg\{ -\frac{1}{\beta}\sum\limits_{i=1}^{n}x_i \bigg\} \bigg)
+		+ \ln\bigg( \prod\limits_{i=1}^{n}x_i^{\alpha-1} \bigg) \\
+  &= -n\ln\big( \Gamma(\alpha) \beta^\alpha \big)
+		- \frac{1}{\beta}\sum\limits_{i=1}^{n}x_i
+		+ \ln\bigg( \prod\limits_{i=1}^{n}x_i^{\alpha-1} \bigg) \\
+  &= -n\big[ \ln\big( \Gamma(\alpha)\beta^\alpha\big) \big]
+		- \frac{1}{\beta}\sum\limits_{i=1}^{n}x_i
+		+ \sum\limits_{i=1}^{n}(\alpha-1)\ln x_i \\
+  &= -n\ln\Gamma(\alpha) - n\alpha\ln\beta
+		- \frac{1}{\beta}\sum\limits_{i=1}^{n}x_i
+		+ (\alpha-1)\sum\limits_{i=1}^{n}\ln x_i
+\end{align*}$$
+
+
+
+### MLE for $\alpha$
+
+$$\begin{align*}
+\frac{d\ell}{d\alpha}
+	&= -n\frac{1}{\Gamma(\alpha)}\Gamma^\prime(\alpha) - n\ln\beta - 0
+		+ \sum\limits_{i=1}^{n}\ln x_i \\
+  &= -n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)} - n\ln\beta
+		+ \sum\limits_{i=1}^{n}\ln x_i\\
+\\
+\\
+0 &= -n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)} - n\ln\beta
+		+ \sum\limits_{i=1}^{n}\ln x_i \\
+\Rightarrow n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)}
+		&= \sum\limits_{i=1}^{n}\ln x_i - n\ln\beta \\
+\Rightarrow \frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)}
+		&= \frac{1}{n}\bigg( \sum\limits_{i=1}^{n}\ln x_i - n\ln\beta \bigg)
+\end{align*}$$
+
+However, this must be solved numerically.  Notice also that the MLE for $\alpha$ depends on $\beta$.
+
+
+
+### MLE for $\beta$
+
+$$\begin{align*}
+\frac{d\ell}{d\beta}
+	&= 0 - n\alpha\frac{1}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i + 0 \\
+	&= -\frac{n\alpha}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i \\
+\\
+\\
+0 &= -\frac{n\alpha}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i \\
+\Rightarrow \frac{n\alpha}{\beta} &= \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i \\
+\Rightarrow n\alpha\beta &= \sum\limits_{i=1}^{n}x_i \\
+\Rightarrow \beta &= \frac{1}{n\alpha} \sum\limits_{i=1}^{n}x_i
+\end{align*}$$
+
+This estimate, however, depends on $\alpha$.  Since each estimator depends on the value of the other parameter, we must maximize the likelihood functions simulatneously.  That is, we must simultaneously solve the system
+\[ \left\{
+	\begin{array}{rl}
+		-n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)} - n\ln\beta
+		+ \sum\limits_{i=1}^{n}\ln x_i 
+			& = 0\\
+		-\frac{n\alpha}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i
+			& = 0\\
+	\end{array} \right.
+\]
+Solving this system will require numerical methods.
+
+
+
+### Approximation of $\hat\alpha$ and $\hat\beta$
+
+Approximations of $\hat\alpha$ and $\hat\beta$ can be obtained by noticing that\\
+$$\begin{align*}
+\frac{d\ell}{d\beta}    &= 0 \\
+\Rightarrow \beta       &= \frac{1}{n\alpha}\sum\limits_{i=1}^{n}x_i\\
+\Rightarrow \alpha\beta &= \frac{1}{n}\sum\limits_{i=1}^{n}x_i
+\end{align*}$$
+
+So $\widehat{\alpha\beta} = \frac{1}{n}\sum\limits_{i=1}^{n}x_i$.  Recall that $\alpha\beta$ and $\alpha\beta^2$ are the mean and variance of the Gamma Distribution, respectively.  We utilize
+\[ \frac{\alpha\beta^2}{\alpha\beta} = \beta \]
+
+If we assume that $\widehat{\alpha\beta^2} = \frac{1}{n-1}\sum\limits_{i=1}^{n}(x_i-\bar x)^2$, then
+
+\[ \frac{\widehat{\alpha\beta^2}}{\widehat{\alpha\beta}} = \beta^* \approx \hat\beta \]
+Where $\beta^*$ denotes an approximation to $\hat\beta$
+
+We now substitute $\beta^*$ into
+
+$$\begin{align*}
+\widehat{\alpha\beta}       &= \frac{1}{n}\sum\limits_{i=1}^{n}x_i\\
+\Rightarrow \alpha^*\beta^* &= \frac{1}{n}\sum\limits_{i=1}^{n}x_i\\
+\Rightarrow \alpha^*        &= \frac{1}{n\beta^*}\sum\limits_{i=1}^{n}x_i \approx \hat\alpha
+\end{align*}$$
+
+Where $\alpha^*$ denotes an approximation to $\hat\alpha$.
+
+This method of estimation is prone to error because $\beta^*$ is found through two levels of estimation and $\alpha^*$ is found through three levels of estimation.  Surely, this process inflates the error of estimation.  At this point, however, I have no information to indicate how badly the error of estimation is inflated, nor have I performed any investigation into this problem.
+
+
+
+## Theorems for the Gamma Distribution
+
+
+### Validity of the Distribution
+
+$$ \int\limits_{0}^{\infty}x\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
+	{\Gamma(\alpha)\beta^\alpha}dx = 1$$
+
+_Proof:_
+
+$$\begin{align*}
+ \int\limits_{0}^{\infty}\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
+		{\Gamma(\alpha)\beta^\alpha}dx 
+      	&= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+      		\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
+^{[1]}	&= \frac{1}{\Gamma(\alpha)\beta^\alpha}[\Gamma(\alpha)\beta^\alpha] \\
+        &= \frac{\Gamma(\alpha)\beta^\alpha}{\Gamma(\alpha)\beta^\alpha} \\
+        &= 1
+\end{align*}$$
+
+> 1. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
+		= \beta^\alpha\Gamma(\alpha)$
+
+
+### Sum of Gamma Random Variables
+
+Let $X_1,X_2,\ldots,X_n$ be Gamma distributed random variables with parameters $\alpha_i$ and $\beta$, that is $X_i\sim$Gamma$(\alpha_i,\beta)$.  Let $Y = \sum\limits_{i=1}^{n}X_i$.\\
+Then $Y\sim$Gamma$(\sum\limits_{i=1}^{n}\alpha_i,\beta)$.
+
+_Proof:_
+
+$$\begin{align*}
+M_Y(t)
+	&= E(e^{tY})=E(e^{t(X_1+X_2+\cdots+X_n)} \\
+	&= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
+	&= E(e^{tX_1})E(e^{tX_2})\cdots E(e^{tX_n}) \\
+  &= (1-\beta t)^{-\alpha_1}(1-\beta t)^{-\alpha_2}\cdots
+		(1-\beta t)^{-\alpha_n}=(1-\beta t)^{-\sum\limits_{i=1}^{n}\alpha_i}
+\end{align*}$$
+
+Which is the moment generating function of a Gamma random variable with parameters $\sum\limits_{i=1}^{n}\alpha_i$ and \nolinebreak$\beta$.  Thus $Y\sim$Gamma$(\sum\limits_{i=1}^{n}\alpha_i,\beta)$. 
+
+
+
+### Sum of Exponential Random Variables
+
+Let $X_1,X_2,\ldots,X_n$ be independent random variables from an Exponential distribution with parameter $\beta$, i.e. $X_i\sim$Exponential$(\beta)$.  Let $Y = \sum\limits_{i=1}^{n}X_i$.  Then $Y\sim$Gamma$(n,\beta)$.
+
+_Proof:_
+
+$$\begin{align*}
+M_Y(t)
+	&= E(e^{tY}) \\
+	&= E(e^{t(X_1+X_2+\cdots+X_n}) \\
+	&= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
+  &= (1-\beta t)^{-1}(1-\beta t)^{-1}\cdots(1-\beta t)^{-1} \\
+	&= (1-\beta t)^{-n}
+\end{align*}$$
+
+Which is the moment generating function for a Gamma random variable with parameters $n$ and $\beta$.  Thus $Y\sim$Gamma$(n,\beta)$. 
+
+

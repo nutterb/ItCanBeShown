@@ -42,4 +42,4 @@ Everytime I read that phrase, I would look at the subsequent result and think "R
 
 This book is a collection of notes that I've put together to avoid having to feel that way in the future.  It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory.  Most imporantly, it spells even the smallest steps along each development so that I don't have to worry about solving it again in the future.
 
-You won't find much in the way of application.  There are no exercises.  There is only minimal explanation.  My intent is to show development of statistical theory and nothing else.  
+You won't find much in the way of application.  There are no exercises.  There is only minimal explanation.  My intent is to show development of statistical theory and nothing else. 

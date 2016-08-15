@@ -264,16 +264,3 @@ g(-x)                    &= g(x)\\
 
 So $G$ is also an odd function.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
