@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="functions.html">
-<link rel="next" href="geometric-distribution.html">
+<link rel="prev" href="gamma-distribution.html">
+<link rel="next" href="geometric-series.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -317,325 +317,301 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="gamma-distribution" class="section level1">
-<h1><span class="header-section-number">14</span> Gamma Distribution</h1>
-<div id="probability-distribution-function-2" class="section level2">
-<h2><span class="header-section-number">14.1</span> Probability Distribution Function</h2>
-<p>A random variable <span class="math inline">\(X\)</span> is said to have a Gamma Distribution with parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> if its probability distribution function is <span class="math display">\[f(x)=\left\{
+<div id="geometric-distribution" class="section level1">
+<h1><span class="header-section-number">15</span> Geometric Distribution</h1>
+<div id="probability-mass-function-2" class="section level2">
+<h2><span class="header-section-number">15.1</span> Probability Mass Function</h2>
+<p>A random variable <span class="math inline">\(X\)</span> is said to have a Geometric Distribution with parameter <span class="math inline">\(p\)</span> if its probability mass function is</p>
+<p><span class="math display">\[p(x) = \left\{
     \begin{array}{ll}
-        \frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}{\Gamma(\alpha)\beta^\alpha},
-            &amp; 0&lt;x,\ 0&lt;\alpha,\ 0&lt;\beta\\
+        p(1-p)^{x-1}, &amp; x=1,2,3,\ldots\\
         0 &amp; otherwise 
-    \end{array} \right.
-\]</span> Where <span class="math inline">\(\alpha\)</span> is a scale parameter and\ <span class="math inline">\(\beta\)</span> is a shape parameter.</p>
-</div>
-<div id="cumulative-distribution-function-2" class="section level2">
-<h2><span class="header-section-number">14.2</span> Cumulative Distribution Function</h2>
-<p>The cumulative distribution function for the Gamma Distribution cannot be expressed in closed form. It’s interval form is expressed here.</p>
-<p><span class="math display">\[F(x) = \left\{
-    \begin{array}{ll}
-        \int\limits_{0}^{x}\frac{t^{\alpha-1}e^{-\frac{t}{\beta}}}{\Gamma(\alpha)\beta^\alpha},
-            &amp; 0&lt;t,\ 0&lt;\alpha,\ 0&lt;\beta\\
-        \\
-        0 &amp; otherwise 
-    \end{array} \right.
+    \end{array} \right. 
 \]</span></p>
-<div class="figure">
-<img src="figures/Gamma_Distribution-1.png" alt="(\#fig:Gamma_Distribution)The figures on the left and right display the Gamma probability and cumulative distirubtion functions, respectively, for the combinations of $\alpha=2,3$ and $\beta=1,3$." width="672" />
+<p>where <span class="math inline">\(p\)</span> is the probability of a success on any given trial and <span class="math inline">\(x\)</span> is the number of trials until the first success.</p>
+</div>
+<div id="cumulative-distribution-function-3" class="section level2">
+<h2><span class="header-section-number">15.2</span> Cumulative Distribution Function</h2>
+<p>The cumulative probability of <span class="math inline">\(x\)</span> is computed as the <span class="math inline">\(x^{th}\)</span> partial sum of the Geometric Series See <a href="geometric-series.html#geometric-series-partial-and-infinite-summations">16.1</a>.</p>
+<p><span class="math display">\[\begin{align*} 
+P(x) 
+    &amp;= \sum\limits_{i=1}^{x}p(1-p)^{x-1} \\
+    &amp;= \frac{p-p(1-p)^{x-1}}{1-(1-p)} \\
+    &amp;= \frac{p[1-(1-p)^{x-1}]}{p} \\
+    &amp;= 1-(1-p)^{x-1}
+\end{align*}\]</span></p>
+<p>So</p>
+<p><span class="math display">\[P(x) = \left\{
+    \begin{array}{ll}
+        1-(1-p)^{x-1},&amp; x=1,2,3,\ldots\\
+        0 &amp; otherwise 
+    \end{array} \right. 
+\]</span></p>
+<p>A recursive form of the cdf can be derived and has some usefulness in computer applications. With it, one need only initiate the first value and additional cumulative probabilities can be calculated. It is derived as follows:</p>
+<p><span class="math display">\[\begin{align*}
+P(X=x+1)
+    &amp;= p(1-p)^x \\
+    &amp;= (1-p)p(1-p)^{x-1} \\
+    &amp;= (1-p)P(X=x)
+\end{align*}\]</span></p>
+<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<img src="figures/unnamed-chunk-3-1.png" alt="The figures on the left and right display the Geometric probability and cumulative distirubtion functions, respectively, for the combinations of $p=.3$." width="672" />
 <p class="caption">
-(#fig:Gamma_Distribution)The figures on the left and right display the Gamma probability and cumulative distirubtion functions, respectively, for the combinations of <span class="math inline">\(\alpha=2,3\)</span> and <span class="math inline">\(\beta=1,3\)</span>.
+Figure 15.1: The figures on the left and right display the Geometric probability and cumulative distirubtion functions, respectively, for the combinations of <span class="math inline">\(p=.3\)</span>.
 </p>
 </div>
 </div>
-<div id="expected-values-4" class="section level2">
-<h2><span class="header-section-number">14.3</span> Expected Values</h2>
+<div id="expected-values-5" class="section level2">
+<h2><span class="header-section-number">15.3</span> Expected Values</h2>
 <p><span class="math display">\[\begin{align*} 
 E(X)
-        &amp;= \int\limits_{0}^{\infty}x\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
-            {\Gamma(\alpha)\beta^\alpha}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x\cdot x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha}e^{-\frac{x}{\beta}}dx \\
-^{[1]}  &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-        [\Gamma(\alpha+1)\beta^{\alpha+1}] \\
-        &amp;= \frac{\Gamma(\alpha+1)\beta^{\alpha+1}}{\Gamma(\alpha)\beta^\alpha} \\
-        &amp;= \frac{\alpha\Gamma(\alpha)\beta^{\alpha+1}}{\Gamma(\alpha)\beta^\alpha} \\
-        &amp;= \alpha\beta
+        &amp;= \sum\limits_{x=1}^{\infty}x\cdot p(1-p)^{x-1} \\
+        &amp;= p\sum\limits_{x=1}^{\infty}x\cdot (1-p)^{x-1} \\
+^{[1]}  &amp;= p\sum\limits_{x=1}^{\infty}x\cdot q^{x-1} \\
+^{[2]}  &amp;= p\frac{d}{dq}\Big(\sum\limits_{x=1}^{\infty}q^x\Big) \\
+        &amp;= p\frac{d}{dq}\Big(\sum\limits_{x=1}^{\infty}q\cdot q^{x-1}\Big) \\
+^{[3]}  &amp;= p\frac{d}{dq}\Big(\frac{q}{1-q}\Big) \\
+^{[4]}  &amp;= p\Big(\frac{(1-q)\cdot 1-q(-1)}{(1-q)^2}\Big) \\
+          &amp;= p\Big(\frac{1-q+q}{(1-q)^2}\Big) \\
+          &amp;= p\Big(\frac{1}{(1-q)^2}\Big) \\
+^{[5]}  &amp;= p\cdot\frac{1}{p^2}
+        &amp;= \frac{p}{p^2}
+        &amp;= \frac{1}{p}
 \end{align*}\]</span></p>
 <blockquote>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx =\beta^\alpha\Gamma(\alpha)\)</span></li>
+<li>Let <span class="math inline">\(1-p = 1\)</span></li>
+<li><span class="math inline">\(a\cdot x^{a-1}=\frac{d}{dx}(x^a)\)</span></li>
+<li><span class="math inline">\(\sum\limits_{k=1}^{\infty}ar^{k-1}=\frac{a}{1-r}\)</span> (Geometric Series <a href="geometric-series.html#geometric-series-partial-and-infinite-summations">16.1</a>).</li>
+<li>Product Rule for Differentiation:<br />
+<span class="math inline">\(\frac{d}{dx}(\frac{f(x)}{g(x)}) = \frac{g\prime(x)\cdot f(x)-f\prime(x)\cdot g(x)}{g^2(x)}\)</span></li>
+<li><span class="math inline">\(1-p=q \ \ \Rightarrow p=1-q\)</span></li>
 </ol>
 </blockquote>
 <p><span class="math display">\[\begin{align*} 
-E(X^2)
-        &amp;= \int\limits_{0}^{\infty}x^2\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
-            {\Gamma(\alpha)\beta^\alpha}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^2\cdot 
-            x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha+1}e^{-\frac{x}{\beta}}dx \\
-^{[1]}  &amp;= \frac{1}{\Gamma(\alpha)\beta^{\alpha}}
-            [\Gamma(\alpha+2)\beta^{\alpha+2}] \\
-        &amp;= \frac{\Gamma(\alpha+2)\beta^{\alpha+2}}{\Gamma(\alpha)\beta^\alpha} \\
-        &amp;= \frac{(\alpha+1)\Gamma(\alpha+1)\beta^{\alpha+2}}
-            {\Gamma(\alpha)\beta^\alpha} \\
-        &amp;= \frac{(\alpha+1)\alpha\Gamma(\alpha)\beta^{\alpha+2}}
-            {\Gamma(\alpha)\beta^\alpha} \\
-        &amp;= \alpha(\alpha+1)\beta^2 \\
-        &amp;= (\alpha^2+\alpha)\beta^2 \\
-        &amp;= \alpha^2\beta^2+\alpha\beta^2 
+E[X(X-1)]
+^{[1]}  &amp;= \sum\limits_{x=2}^{\infty}x(x-1)p(1-p)^{x-1} \\
+          &amp;= p(1-p)\sum\limits_{x=2}^{\infty}x(x-1)(1-p)^{x-2} \\
+^{[2]}  &amp;= pq\sum\limits_{x=2}^{\infty}x(x-1)q^{x-2} \\
+^{[3]}  &amp;= pq\frac{d^2}{dq^2}\Big(\sum\limits_{x=2}^{\infty}q^x\Big) \\
+          &amp;= pq\frac{d^2}{dq^2}\Big(\sum\limits_{x=2}^{\infty}q\cdot q^{x-1}\Big) \\
+^{[4]}  &amp;= pq\frac{d^2}{dq^2}\Big(\frac{2q-1}{1-q}\Big) \\
+^{[5]}  &amp;= pq\frac{d}{dq}(-(1-q)^{-2}) \\
+^{[6]}  &amp;= pq\frac{2}{(1-q)^3} \\
+        &amp;= \frac{2pq}{(1-q)^3} \\
+^{[7]}  &amp;= \frac{2p(1-p)}{p^3} \\
+        &amp; =\frac{2(1-p)}{p^2}
 \end{align*}\]</span></p>
 <blockquote>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx =\beta^\alpha\Gamma(\alpha)\)</span></li>
+<li>We start the summand at <span class="math inline">\(x=2\)</span> because the term for <span class="math inline">\(x=1\)</span> is 0.</li>
+<li>Let <span class="math inline">\(1-p = 1\)</span></li>
+<li><span class="math inline">\(a(a-1)x^{a-2}=\frac{d^2}{dx^2}x^a\)</span></li>
+<li><span class="math inline">\(\sum\limits_{k=1}^{\infty}ar^{k-1} = \frac{a}{1-r}=1+a+ar+ar^2+\cdots.\)</span> The current series leaves out the first term,\   <span class="math inline">\(\sum\limits_{k=2}^{\infty}ar^{k-1}=(\sum\limits_{k=1}^{\infty}ar^{k-1})-1 = \frac{a}{1-r}-1=\frac{1}{1-r}-\frac{1-r}{1-r}=\frac{a-(1-r)}{1-r}=\frac{a+r-1}{r-1}\)</span></li>
+<li><span class="math inline">\(\frac{d}{dx}(\frac{2x-1}{1-x})=\frac{-(2x-1)-2(1-x)}{(1-x)^2} = \frac{2x+1-2+2x}{(1-x)^2}=\frac{-1}{(1-x)^2}=-(1-x)^{-2}\)</span></li>
+<li><span class="math inline">\(\frac{d}{dx}-(1-x)^{-2}=2(1-x)^{-3}=\frac{2}{(1-x)^3}\)</span></li>
+<li>See note number 5.</li>
 </ol>
 </blockquote>
 <p><span class="math display">\[\begin{align*}
 \mu
     &amp;= E(X) \\
-    &amp;= \alpha\beta \\
+    &amp;= \frac{1}{p} \\
 \\
 \\
 \sigma^2
     &amp;= E(X^2) - E(X)^2 \\
-    &amp;= \alpha^2\beta^2 + \alpha\beta^2 - \alpha^2\beta^2 \\
-    &amp;= \alpha\beta^2
+    &amp;= E(X^2) - E(X) + E(X) - E(X)^2 \\
+  &amp;= [E(X^2)-E(X)]+E(X)-E(X)^2 \\
+    &amp;= E(X^2-X)+E(X)-E(X)^2 \\
+  &amp;= E[(X(X-1)]+E(X)-E(X)^2 \\
+  &amp;= \frac{2(1-p)}{p^2} + \frac{1}{p} - \frac{1}{p^2} \\
+    &amp;= \frac{2(1-p)}{p^2} + \frac{p}{p^2} - \frac{1}{p^2} \\
+    &amp;= \frac{2(1-p)+p-1}{p^2} \\
+  &amp;= \frac{2-2p+p-1}{p^2} \\
+    &amp;= \frac{2-1+p-2p}{p^2} \\
+    &amp;= \frac{1-p}{p^2}
 \end{align*}\]</span></p>
 </div>
-<div id="moment-generating-function-4" class="section level2">
-<h2><span class="header-section-number">14.4</span> Moment Generating Function</h2>
-<p><span class="math display">\[\begin{align*} 
-M_X(t) 
+<div id="moment-generating-function-5" class="section level2">
+<h2><span class="header-section-number">15.4</span> Moment Generating Function</h2>
+<p><span class="math display">\[\begin{align*}
+M_X(t)
         &amp;= E(e^{tX}) \\
-        &amp;= \int\limits_{0}^{\infty}e^{tx}
-            \frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
-            {\Gamma(\alpha)\beta^\alpha}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}e^{tx}
-            x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha-1}
-            e^{tx}e^{-\frac{x}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha-1}
-            e^{tx-\frac{x}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha-1}
-            e^{\frac{\beta tx}{\beta}-\frac{x}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha-1}
-            e^{\frac{\beta tx-x}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha-1}
-            e^{-x\frac{-\beta t+1}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha-1}
-            e^{-x\frac{1-\beta t}{\beta}}dx \\
-^{[1]}  &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \Big[\Gamma(\alpha)\Big(\frac{\beta}{1-\beta t}\Big)\alpha)\Big] \\
-        &amp;= \frac{\Gamma(\alpha)\beta^\alpha}
-            {\Gamma(\alpha)\beta^\alpha(1-\beta t)^\alpha} \\
-        &amp;= \frac{1}{(1-\beta t)^\alpha}=(1-\beta t)^{-\alpha}
+        &amp;= \sum\limits_{x=1}^{\infty}e^{tx}p(1-p)^{x-1} \\
+        &amp;= p\sum\limits_{x=1}^{\infty}e^{tx}(1-p)^{x-1} \\
+        &amp;= p\sum\limits_{x=1}^{\infty}e^{t^x}(1-p)^{x-1} \\
+        &amp;= pe^t\sum\limits_{x=1}^{\infty}e^{t^{(x-1)}} \\
+        &amp;= pe^t\sum\limits_{x=1}^{\infty}[(1-p)e^t]^{x-1} \\
+^{[1]}  &amp;= pe^t\frac{1}{1-(1-p)e^t} \\
+        &amp;= \frac{pe^t}{1-(1-p)e^t}
 \end{align*}\]</span></p>
 <blockquote>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx =\beta^\alpha\Gamma(\alpha)\)</span></li>
+<li><span class="math inline">\(\sum\limits_{k=1}^{\infty}ar^{k-1}=\frac{a}{1-r}\)</span>, (Geometric Series <a href="geometric-series.html#geometric-series-partial-and-infinite-summations">16.1</a>)</li>
 </ol>
 </blockquote>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*} 
 M_X^{(1)}(t)
-    &amp;= -\alpha(1-\beta t)^{-\alpha-1}(-\beta) \\
-    &amp;= \alpha\beta(1-\beta t)^{-\alpha-1} \\
-M_X^{(2)}(t) 
-    &amp;= (-\alpha-1)\alpha\beta(1-\beta t)^{-\alpha-2}(-\beta) \\
-    &amp;= (\alpha+1)\alpha\beta^2(1-\beta t)^{-\alpha-2} \\
-  &amp;= (\alpha^2\beta^2+\alpha\beta^2)(1-\beta t)^{-\alpha-2} \\
+    &amp;= \frac{[1-(1-p)e^t]pe^t-pe^t[-(1-p)e^t]}{\big(1-(1-p)e^t\big)^2} \\
+    &amp;= \frac{pe^t[1-(1-p)e^t+(1-pe^t)]}{\big(1-(1-p)e^t\big)^2} \\
+  &amp;= \frac{pe^t(1)}{\big(1-(1-p)e^t\big)^2} \\
+  &amp;= \frac{pe^t}{\big(1-(1-p)e^t\big)^2} \\
+\\
+\\
+M_X^{(2)}(t)
+    &amp;= \frac{(1-(1-p)e^t)^2pe^t-pe^t[-2(1-(1-p)e^t)(1-p)e^t}{\big(1-(1-p)e^t\big)^4} \\
+  &amp;= \frac{pe^t[(1-(1-p)e^t)^2+2(1-(1-p)e^t(1-p)e^t]}{\big(1-(1-p)e^t\big)^4} \\
 \\
 \\
 E(X)
-    &amp;= M_X^{(1)}(0)=\alpha\beta(1-\beta\cdot 0)^{-\alpha-1} \\
-    &amp;= \alpha\beta(1-0)^{\alpha-1}=\alpha\beta(1)^{-\alpha-1} \\
-    &amp;= \alpha\beta \\
+    &amp;= M_X^{(1)}(0) \\
+    &amp;= \frac{pe^0}{\big(1-(1-p)e^0\big)^2} \\
+    &amp;= \frac{p}{\big(1-(1-p)\big)^2} \\
+  &amp;= \frac{p}{(1-1+p)^2} \\
+    &amp;= \frac{p}{p^2} \\
+    &amp;= \frac{1}{p}\\
 \\
 \\
 E(X^2)
-    &amp;= M_X^{(2)}(0)=(\alpha^2\beta^2+\alpha\beta^2)(1-\beta 0)^{-\alpha-2} \\
-    &amp;= (\alpha^2\beta^2+\alpha\beta^2)(1-0)^{-\alpha-2} \\
-  &amp;= (\alpha^2\beta^2+\alpha\beta^2)(1)^{-\alpha-2} \\
-    &amp;= \alpha^2\beta^2+\alpha\beta^2 \\
+    &amp;= M_X^{(2)}(0) \\
+    &amp;= \frac{pe^0[(1-(1-p)e^0)^2+2(1-(1-p)e^0)(1-p)e^0]}{(1-(1-p)e^0)^4} \\
+  &amp;= \frac{p[(1-(1-p))^2+2(1-(1-p))(1-p)]}{(1-(1-p))^4} \\
+  &amp;= \frac{p[(1-1+p)^2+2(1-1+p)(1-p)]}{(1-1+p)^4} \\
+    &amp;= \frac{p[p^2=2p(1-p)]}{p^4} \\
+  &amp;= \frac{p(p^2+2p-2p^2)}{p^4} \\
+    &amp;= \frac{p(2p-p^2)}{p^4} \\
+    &amp;= \frac{p^2(2-p)}{p^4} \\
+    &amp;= \frac{2-p}{p^2} \\
 \\
-\\
-\mu
+\\ 
+\mu 
     &amp;= E(X) \\
-    &amp;= \alpha\beta\\
+    &amp;= \frac{1}{p}\\
 \\
-\\
+\\ 
 \sigma^2
     &amp;= E(X^2) - E(X)^2 \\
-    &amp;= \alpha^2\beta^2 + \alpha\beta^2 - \alpha^2\beta^2 \\
-    &amp;= \alpha\beta^2
+    &amp;= \frac{2-p}{p^2} - \frac{1}{p^2} \\
+    &amp;= \frac{1-p}{p^2}
 \end{align*}\]</span></p>
 </div>
-<div id="maximum-likelihood-estimators" class="section level2">
-<h2><span class="header-section-number">14.5</span> Maximum Likelihood Estimators</h2>
-<p>Let <span class="math inline">\(x_1,x_2,\ldots,x_n\)</span> denote a random sample from a Gamma Distribution with parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>.</p>
-<div id="likelihood-function-3" class="section level3">
-<h3><span class="header-section-number">14.5.1</span> Likelihood Function</h3>
-<p><span class="math display">\[\begin{align*}
+<div id="maximum-likelihood-estimator-2" class="section level2">
+<h2><span class="header-section-number">15.5</span> Maximum Likelihood Estimator</h2>
+<p>Let <span class="math inline">\(x_1, x_2 , \ldots , x_n\)</span> be a random sample from a Geometric distribution with parameter <span class="math inline">\(p\)</span>.</p>
+<div id="likelihood-function-4" class="section level3">
+<h3><span class="header-section-number">15.5.1</span> Likelihood Function</h3>
+<p><span class="math display">\[\begin{align*} 
 L(\theta)
-    &amp;= L(x_1,x_2,\ldots,x_n|\theta) \\
-    &amp;= f(x_1|\theta) f(x_2|\theta) \cdots f(x_n|\theta) \\
-  &amp;= \frac{x_1^{\alpha-1}e^{-x_1/\beta}}{\Gamma(\alpha)\beta^\alpha}
-        \frac{x_2^{\alpha-1}e^{-x_2/\beta}}{\Gamma(\alpha)\beta^\alpha}
-        \cdots \frac{x_n^{\alpha-1}e^{-x_n/\beta}}{\Gamma(\alpha)\beta^\alpha} \\
-  &amp;= \prod\limits_{i=1}^{n}\frac{x_i^{\alpha-1}e^{-x_i/\beta}}{\Gamma(\alpha)\beta^\alpha} \\
-    &amp;= \bigg(\frac{1}{\Gamma(\alpha)\beta^\alpha}\bigg)^n  
-          \prod\limits_{i=1}^{n}x_i^{\alpha-1}e^{-x_i/\beta} \\
-  &amp;= \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
-        \prod\limits_{i=1}^{n}x_i^{\alpha-1}e^{-x_i/\beta} \\
-  &amp;= \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
-        \exp\bigg\{\sum\limits_{i=1}^{n}-\frac{x_i}{\beta} \bigg\}
-        \prod\limits_{i=1}^{n}x_i^{\alpha-1} \\
-  &amp;= \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
-        \exp\bigg\{-\frac{1}{\beta}\sum\limits_{i=1}^{n}x_i \bigg\}
-        \prod\limits_{i=1}^{n}x_i^{\alpha-1}
+    &amp;= P(x_1,x_2,\ldots,x_n|\theta) \\
+    &amp;= p(1-p)^{x-1}
 \end{align*}\]</span></p>
 </div>
-<div id="log-likelihood-function-3" class="section level3">
-<h3><span class="header-section-number">14.5.2</span> Log-likelihood Function</h3>
+<div id="log-likelihood-function-4" class="section level3">
+<h3><span class="header-section-number">15.5.2</span> Log-likelihood Function</h3>
 <p><span class="math display">\[\begin{align*}
 \ell(\theta)
-    &amp;= \ln\bigg[ \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
-        \exp\bigg\{-\frac{1}{\beta}\sum\limits_{i=1}^{n}x_i \bigg\}
-        \prod\limits_{i=1}^{n}x_i^{\alpha-1} \bigg]  \\
-  &amp;= \ln\big( \Gamma(\alpha) \beta^\alpha \big)^{-n}
-        + \ln\bigg( \exp \bigg\{ -\frac{1}{\beta}\sum\limits_{i=1}^{n}x_i \bigg\} \bigg)
-        + \ln\bigg( \prod\limits_{i=1}^{n}x_i^{\alpha-1} \bigg) \\
-  &amp;= -n\ln\big( \Gamma(\alpha) \beta^\alpha \big)
-        - \frac{1}{\beta}\sum\limits_{i=1}^{n}x_i
-        + \ln\bigg( \prod\limits_{i=1}^{n}x_i^{\alpha-1} \bigg) \\
-  &amp;= -n\big[ \ln\big( \Gamma(\alpha)\beta^\alpha\big) \big]
-        - \frac{1}{\beta}\sum\limits_{i=1}^{n}x_i
-        + \sum\limits_{i=1}^{n}(\alpha-1)\ln x_i \\
-  &amp;= -n\ln\Gamma(\alpha) - n\alpha\ln\beta
-        - \frac{1}{\beta}\sum\limits_{i=1}^{n}x_i
-        + (\alpha-1)\sum\limits_{i=1}^{n}\ln x_i
+    &amp;= \ln p(1-p)^{x-1} \\
+    &amp;= \ln p+\ln(1-p)^{x-1} \\
+    &amp;= \ln p+(x-1)\ln(1-p)
 \end{align*}\]</span></p>
 </div>
-<div id="mle-for-alpha" class="section level3">
-<h3><span class="header-section-number">14.5.3</span> MLE for <span class="math inline">\(\alpha\)</span></h3>
-<p><span class="math display">\[\begin{align*}
-\frac{d\ell}{d\alpha}
-    &amp;= -n\frac{1}{\Gamma(\alpha)}\Gamma^\prime(\alpha) - n\ln\beta - 0
-        + \sum\limits_{i=1}^{n}\ln x_i \\
-  &amp;= -n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)} - n\ln\beta
-        + \sum\limits_{i=1}^{n}\ln x_i\\
+<div id="mle-for-p-1" class="section level3">
+<h3><span class="header-section-number">15.5.3</span> MLE for <span class="math inline">\(p\)</span></h3>
+<p><span class="math display">\[\begin{align*} 
+\frac{d\ell}{dp}
+    &amp;= \frac{1}{p} + \frac{-(x-1)}{1-p} \\
+    &amp;= \frac{1}{p} + \frac{1-x}{1-p}\\
 \\
 \\
-0 &amp;= -n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)} - n\ln\beta
-        + \sum\limits_{i=1}^{n}\ln x_i \\
-\Rightarrow n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)}
-        &amp;= \sum\limits_{i=1}^{n}\ln x_i - n\ln\beta \\
-\Rightarrow \frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)}
-        &amp;= \frac{1}{n}\bigg( \sum\limits_{i=1}^{n}\ln x_i - n\ln\beta \bigg)
+0                               &amp;= \frac{1}{p}+\frac{1-x}{1-p}\\
+\Rightarrow \frac{1-x}{1-p}     &amp;= -\frac{1}{p}\\
+\Rightarrow 1-x                 &amp;= \frac{-1+p}{p}\\
+\Rightarrow -x                  &amp;= \frac{-1+p}{p}-1\\
+\Rightarrow x=1-\frac{-1+p}{p}  &amp;= \frac{p}{p}-\frac{-1+p}{p} \\
+                                &amp;= \frac{p+1-p}{p} \\
+                                &amp;= \frac{1}{p}\\
+\Rightarrow p                   &amp;= \frac{1}{x}
 \end{align*}\]</span></p>
-<p>However, this must be solved numerically. Notice also that the MLE for <span class="math inline">\(\alpha\)</span> depends on <span class="math inline">\(\beta\)</span>.</p>
-</div>
-<div id="mle-for-beta-1" class="section level3">
-<h3><span class="header-section-number">14.5.4</span> MLE for <span class="math inline">\(\beta\)</span></h3>
-<p><span class="math display">\[\begin{align*}
-\frac{d\ell}{d\beta}
-    &amp;= 0 - n\alpha\frac{1}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i + 0 \\
-    &amp;= -\frac{n\alpha}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i \\
-\\
-\\
-0 &amp;= -\frac{n\alpha}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i \\
-\Rightarrow \frac{n\alpha}{\beta} &amp;= \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i \\
-\Rightarrow n\alpha\beta &amp;= \sum\limits_{i=1}^{n}x_i \\
-\Rightarrow \beta &amp;= \frac{1}{n\alpha} \sum\limits_{i=1}^{n}x_i
-\end{align*}\]</span></p>
-<p>This estimate, however, depends on <span class="math inline">\(\alpha\)</span>. Since each estimator depends on the value of the other parameter, we must maximize the likelihood functions simulatneously. That is, we must simultaneously solve the system <span class="math display">\[ \left\{
-    \begin{array}{rl}
-        -n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)} - n\ln\beta
-        + \sum\limits_{i=1}^{n}\ln x_i 
-            &amp; = 0\\
-        -\frac{n\alpha}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i
-            &amp; = 0\\
-    \end{array} \right.
-\]</span> Solving this system will require numerical methods.</p>
-</div>
-<div id="approximation-of-hatalpha-and-hatbeta" class="section level3">
-<h3><span class="header-section-number">14.5.5</span> Approximation of <span class="math inline">\(\hat\alpha\)</span> and <span class="math inline">\(\hat\beta\)</span></h3>
-<p>Approximations of <span class="math inline">\(\hat\alpha\)</span> and <span class="math inline">\(\hat\beta\)</span> can be obtained by noticing that\ <span class="math display">\[\begin{align*}
-\frac{d\ell}{d\beta}    &amp;= 0 \\
-\Rightarrow \beta       &amp;= \frac{1}{n\alpha}\sum\limits_{i=1}^{n}x_i\\
-\Rightarrow \alpha\beta &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}x_i
-\end{align*}\]</span></p>
-<p>So <span class="math inline">\(\widehat{\alpha\beta} = \frac{1}{n}\sum\limits_{i=1}^{n}x_i\)</span>. Recall that <span class="math inline">\(\alpha\beta\)</span> and <span class="math inline">\(\alpha\beta^2\)</span> are the mean and variance of the Gamma Distribution, respectively. We utilize <span class="math display">\[ \frac{\alpha\beta^2}{\alpha\beta} = \beta \]</span></p>
-<p>If we assume that <span class="math inline">\(\widehat{\alpha\beta^2} = \frac{1}{n-1}\sum\limits_{i=1}^{n}(x_i-\bar x)^2\)</span>, then</p>
-<p><span class="math display">\[ \frac{\widehat{\alpha\beta^2}}{\widehat{\alpha\beta}} = \beta^* \approx \hat\beta \]</span> Where <span class="math inline">\(\beta^*\)</span> denotes an approximation to <span class="math inline">\(\hat\beta\)</span></p>
-<p>We now substitute <span class="math inline">\(\beta^*\)</span> into</p>
-<p><span class="math display">\[\begin{align*}
-\widehat{\alpha\beta}       &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}x_i\\
-\Rightarrow \alpha^*\beta^* &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}x_i\\
-\Rightarrow \alpha^*        &amp;= \frac{1}{n\beta^*}\sum\limits_{i=1}^{n}x_i \approx \hat\alpha
-\end{align*}\]</span></p>
-<p>Where <span class="math inline">\(\alpha^*\)</span> denotes an approximation to <span class="math inline">\(\hat\alpha\)</span>.</p>
-<p>This method of estimation is prone to error because <span class="math inline">\(\beta^*\)</span> is found through two levels of estimation and <span class="math inline">\(\alpha^*\)</span> is found through three levels of estimation. Surely, this process inflates the error of estimation. At this point, however, I have no information to indicate how badly the error of estimation is inflated, nor have I performed any investigation into this problem.</p>
+<p>So <span class="math display">\[\hat p=\frac{1}{x}\]</span> is the Maximum Likelihood Estimator for <span class="math inline">\(p\)</span>.</p>
 </div>
 </div>
-<div id="theorems-for-the-gamma-distribution" class="section level2">
-<h2><span class="header-section-number">14.6</span> Theorems for the Gamma Distribution</h2>
-<div id="validity-of-the-distribution-4" class="section level3">
-<h3><span class="header-section-number">14.6.1</span> Validity of the Distribution</h3>
-<p><span class="math display">\[ \int\limits_{0}^{\infty}x\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
-    {\Gamma(\alpha)\beta^\alpha}dx = 1\]</span></p>
+<div id="theorems-for-the-geometric-distribution" class="section level2">
+<h2><span class="header-section-number">15.6</span> Theorems for the Geometric Distribution</h2>
+<div id="validity-of-the-distribution-5" class="section level3">
+<h3><span class="header-section-number">15.6.1</span> Validity of the Distribution</h3>
+<p><span class="math display">\[\sum\limits_{i=1}^{\infty}p(1-p)^{x-1} = 1\]</span></p>
 <p><em>Proof:</em></p>
 <p><span class="math display">\[\begin{align*}
- \int\limits_{0}^{\infty}\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
-        {\Gamma(\alpha)\beta^\alpha}dx 
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
-^{[1]}  &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}[\Gamma(\alpha)\beta^\alpha] \\
-        &amp;= \frac{\Gamma(\alpha)\beta^\alpha}{\Gamma(\alpha)\beta^\alpha} \\
-        &amp;= 1
+\sum\limits_{i=1}^{\infty}p(1-p)^{x-1}
+    &amp;= \frac{p}{1-(1-p)} \\
+    &amp;= \frac{p}{p} \\
+    &amp;= 1
 \end{align*}\]</span></p>
 <blockquote>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx = \beta^\alpha\Gamma(\alpha)\)</span></li>
+<li><span class="math inline">\(S=\lim\limits_{k\rightarrow\infty}S_k =\lim\limits_{k\rightarrow\infty}\frac{a-ar^k}{1-r}\)</span> (Geometric Series <a href="geometric-series.html#geometric-series-partial-and-infinite-summations">16.1</a>)</li>
 </ol>
 </blockquote>
 </div>
-<div id="sum-of-gamma-random-variables" class="section level3">
-<h3><span class="header-section-number">14.6.2</span> Sum of Gamma Random Variables</h3>
-<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be Gamma distributed random variables with parameters <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\beta\)</span>, that is <span class="math inline">\(X_i\sim\)</span>Gamma<span class="math inline">\((\alpha_i,\beta)\)</span>. Let <span class="math inline">\(Y = \sum\limits_{i=1}^{n}X_i\)</span>.\ Then <span class="math inline">\(Y\sim\)</span>Gamma<span class="math inline">\((\sum\limits_{i=1}^{n}\alpha_i,\beta)\)</span>.</p>
+<div id="sum-of-geometric-random-variables" class="section level3">
+<h3><span class="header-section-number">15.6.2</span> Sum of Geometric Random Variables</h3>
+<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent random variables from a Geometric Distribution with parameter <span class="math inline">\(p\)</span>, that is, <span class="math inline">\(X_i\sim\)</span>Geometric<span class="math inline">\((p)\)</span>, <span class="math inline">\(i=1,2,3,\ldots\)</span>. Let <span class="math inline">\(Y=\sum\limits_{i=1}^{n}X_i\)</span>. Then <span class="math inline">\(Y\sim\)</span>Negative Binomial<span class="math inline">\((n,p)\)</span>.</p>
 <p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*} 
 M_Y(t)
-    &amp;= E(e^{tY})=E(e^{t(X_1+X_2+\cdots+X_n)} \\
-    &amp;= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
-    &amp;= E(e^{tX_1})E(e^{tX_2})\cdots E(e^{tX_n}) \\
-  &amp;= (1-\beta t)^{-\alpha_1}(1-\beta t)^{-\alpha_2}\cdots
-        (1-\beta t)^{-\alpha_n}=(1-\beta t)^{-\sum\limits_{i=1}^{n}\alpha_i}
+  &amp;= E(e^{tY}) \\
+  &amp;= E(e^{t(X_1+X_2+\cdots+X_n)}) \\
+  &amp;= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
+  &amp;= E(e^{tX_1})E(e^{tX_2})\cdots E(e^{tX_n}) \\
+    &amp;=\frac{pe^t}{1-(1-p)e^t}\cdot\frac{pe^t}{1-(1-p)e^t}\cdot\ \cdots
+        \ \cdot\frac{pe^t}{1-(1-p)e^t} \\
+  &amp;= \Big(\frac{pe^t}{1-(1-p)e^t}\Big)^n
 \end{align*}\]</span></p>
-<p>Which is the moment generating function of a Gamma random variable with parameters <span class="math inline">\(\sum\limits_{i=1}^{n}\alpha_i\)</span> and <span class="math inline">\(\beta\)</span>. Thus <span class="math inline">\(Y\sim\)</span>Gamma<span class="math inline">\((\sum\limits_{i=1}^{n}\alpha_i,\beta)\)</span>.</p>
+<p>Which is the mgf of a Negative Binomial random variable with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>. Thus <span class="math inline">\(Y\sim\)</span>Negative Binomial<span class="math inline">\((n,p)\)</span>.</p>
 </div>
-<div id="sum-of-exponential-random-variables-1" class="section level3">
-<h3><span class="header-section-number">14.6.3</span> Sum of Exponential Random Variables</h3>
-<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent random variables from an Exponential distribution with parameter <span class="math inline">\(\beta\)</span>, i.e. <span class="math inline">\(X_i\sim\)</span>Exponential<span class="math inline">\((\beta)\)</span>. Let <span class="math inline">\(Y = \sum\limits_{i=1}^{n}X_i\)</span>. Then <span class="math inline">\(Y\sim\)</span>Gamma<span class="math inline">\((n,\beta)\)</span>.</p>
+<div id="geometric-distribution-memoryless-lemma" class="section level3">
+<h3><span class="header-section-number">15.6.3</span> Lemma</h3>
+<p>Let <span class="math inline">\(X\)</span> be a Geometric random variable with parameter <span class="math inline">\(p\)</span>. Then <span class="math inline">\(P(X&gt;a)=(1-p)^a\)</span>.</p>
 <p><em>Proof:</em></p>
 <p><span class="math display">\[\begin{align*}
-M_Y(t)
-    &amp;= E(e^{tY}) \\
-    &amp;= E(e^{t(X_1+X_2+\cdots+X_n}) \\
-    &amp;= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
-  &amp;= (1-\beta t)^{-1}(1-\beta t)^{-1}\cdots(1-\beta t)^{-1} \\
-    &amp;= (1-\beta t)^{-n}
+P(X&gt;a)
+  &amp;= 1-P(X\leq a)=1-\sum\limits_{i=1}^{a}p(1-p)^i-1 \\
+^{[1]}  &amp;= 1-\frac{p-p(1-p)^a}{1-(1-p)} \\
+        &amp;= 1-\frac{p\big(1-(1-p)^a\big)}{1-1+p} \\
+        &amp;= 1-\frac{p\big(1-(1-p)^a\big)}{p} \\
+        &amp;= 1-\big(1-(1-p)^a\big) \\
+        &amp;= 1-1+(1-p)^a \\
+        &amp;= (1-p)^a
 \end{align*}\]</span></p>
-<p>Which is the moment generating function for a Gamma random variable with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\beta\)</span>. Thus <span class="math inline">\(Y\sim\)</span>Gamma<span class="math inline">\((n,\beta)\)</span>.</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(S_k=\lim\limits_{k\rightarrow\infty}\frac{a-ar^k}{1-r}\)</span> (Geometric Series <a href="geometric-series.html#geometric-series-partial-and-infinite-summations">16.1</a>)</li>
+</ol>
+</blockquote>
+</div>
+<div id="memoryless-property" class="section level3">
+<h3><span class="header-section-number">15.6.4</span> Memoryless Property</h3>
+<p><span class="math display">\[P(X\geq k+j|X\geq k)=P(X\geq k)\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+P(X &gt; a+b)
+^{[1]}  &amp;= (1-p)^{a+b}=(1-p)^a(1-p)^b \\
+\\
+\\
+P(X &gt; k+j|X &gt; k)
+        &amp;=\frac{P(X &gt; k+j\cap X &gt; k)}{P(X &gt; k)} \\
+^{[2]}  &amp;= \frac{P(X &gt; k+j)}{P(X &gt; k)} \\
+        &amp;= \frac{(1-p)^k(1-p)^j}{(1-p)^k} \\
+        &amp;= (1-p)^j \\
+        &amp;= P(X &gt; j)
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Geometric Distribution <a href="geometric-distribution.html#geometric-distribution-memoryless-lemma">15.6.3</a></li>
+<li>Since <span class="math inline">\(j\)</span> must be a positive integer in the Geometric Distribution, it is certain that \<span class="math inline">\((k+j)\cap k=k+j\)</span>.</li>
+</ol>
+</blockquote>
 
 </div>
 </div>
@@ -645,8 +621,8 @@ M_Y(t)
           </div>
         </div>
       </div>
-<a href="functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="geometric-distribution.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="gamma-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="geometric-series.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -673,7 +649,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Gamma_Distribution.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Geometric_Distribution.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

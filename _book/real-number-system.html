@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="functions.html">
-<link rel="next" href="geometric-distribution.html">
+<link rel="prev" href="integration-techniques-and-theorems.html">
+<link rel="next" href="summation.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -317,325 +317,245 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="gamma-distribution" class="section level1">
-<h1><span class="header-section-number">14</span> Gamma Distribution</h1>
-<div id="probability-distribution-function-2" class="section level2">
-<h2><span class="header-section-number">14.1</span> Probability Distribution Function</h2>
-<p>A random variable <span class="math inline">\(X\)</span> is said to have a Gamma Distribution with parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> if its probability distribution function is <span class="math display">\[f(x)=\left\{
-    \begin{array}{ll}
-        \frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}{\Gamma(\alpha)\beta^\alpha},
-            &amp; 0&lt;x,\ 0&lt;\alpha,\ 0&lt;\beta\\
-        0 &amp; otherwise 
-    \end{array} \right.
-\]</span> Where <span class="math inline">\(\alpha\)</span> is a scale parameter and\ <span class="math inline">\(\beta\)</span> is a shape parameter.</p>
+<div id="real-number-system" class="section level1">
+<h1><span class="header-section-number">18</span> Real Number System</h1>
+<p>This chapter was prepared by Steve MacDonald.</p>
+<div id="historical-note" class="section level2">
+<h2><span class="header-section-number">18.1</span> Historical Note</h2>
+<p>The first axiom system known in the history of mathematics was Euclid’s aximoatic development of plane geometry. Euclid’s treatment began with some <em>primitive</em> or <em>undefined</em> terms and some assumed statements, which he called <em>axioms</em> and <em>postulates</em>. For Euclid an <em>axiom</em> was a general “self-evident” truth, such as “The whole is greater than any of its parts” or “equals added to equals are equal,” whereas a <em>postulate</em> was an assumed statement about the relationships among the primitives of his system, such as “Two points determine exactly one line.” From these undefined terms and basic assumptions a whole body of other statements, called <em>theorems</em> was deduced. For centuries Euclidean Geometry, which was assumed to be the true description of physical reality, remained the only mathematical systems with such an axiomatic foundation.</p>
+<p>Then in the nineteenth century, spurred by Lobatchevsky and others who discovered that by modifying the postulates another logically consistent geometry could be constructed, matematicians began to apply this deductive approach to other branches of mathematics. Not only did this work do much to organize and clarify such familiar disciplines as number theory, analysis, and algebra, but it helped develop new areas of mathematics such as topology. Note that today we do not make Euclid’s distinction between <em>axiom</em> and <em>postulate</em>, using the terms synonymously.</p>
+<p>As an example of this deductive approach, we now want to give an axiomatic description of the real numbers system and thus place a logical foundation under many of the “rules” you learned in high school algebra.</p>
 </div>
-<div id="cumulative-distribution-function-2" class="section level2">
-<h2><span class="header-section-number">14.2</span> Cumulative Distribution Function</h2>
-<p>The cumulative distribution function for the Gamma Distribution cannot be expressed in closed form. It’s interval form is expressed here.</p>
-<p><span class="math display">\[F(x) = \left\{
-    \begin{array}{ll}
-        \int\limits_{0}^{x}\frac{t^{\alpha-1}e^{-\frac{t}{\beta}}}{\Gamma(\alpha)\beta^\alpha},
-            &amp; 0&lt;t,\ 0&lt;\alpha,\ 0&lt;\beta\\
-        \\
-        0 &amp; otherwise 
-    \end{array} \right.
+<div id="the-field-of-real-numbers" class="section level2">
+<h2><span class="header-section-number">18.2</span> The Field of Real Numbers</h2>
+<div id="definition-the-field-of-real-numbers" class="section level3">
+<h3><span class="header-section-number">18.2.1</span> Definition: The Field of Real Numbers</h3>
+<p>The Field of Real Numbers is a set <span class="math inline">\(\Re\)</span> of objects called <em>numbers</em> together with two well-defined binary operations, called <em>addition</em>, denoted by <code>+</code>, and <em>multiplication</em>, denoted by <span class="math inline">\(\cdot\)</span> or juxtaposition, satisfying the Field Axioms. (By well-defined, we mean that if <span class="math inline">\(s=s^\prime\)</span> and <span class="math inline">\(t=t^\prime\)</span>, then <span class="math inline">\(s+t=s^\prime + t^\prime\)</span>.)</p>
+</div>
+<div id="field-axioms" class="section level3">
+<h3><span class="header-section-number">18.2.2</span> Field Axioms</h3>
+<ol style="list-style-type: decimal">
+<li>(Closure for addition) For each pair <span class="math inline">\(x,y,\in\Re\)</span>, there exists a unique object in <span class="math inline">\(\Re\)</span>, called the <em>sum</em> of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> denoted by <span class="math inline">\(x+y\)</span>.</li>
+<li>(Associative law for addition) For all <span class="math inline">\(x,y,z\in\Re,\ (x+y)=z=x+(y+z)\)</span>.</li>
+<li>(Additive identity) There exists and object <span class="math inline">\(0\in\Re\)</span> such that for all <span class="math inline">\(x\in\Re,\ x+0=x=0+x\)</span>.</li>
+<li>(Additive inverse) For each <span class="math inline">\(x\in\Re\)</span>, there exists some <span class="math inline">\(y\in\Re\)</span> such that <span class="math inline">\(x+y=0=y+x\)</span>. We will usually denote the additive inverse of <span class="math inline">\(x\)</span> by <span class="math inline">\(-x\)</span>.</li>
+<li>(Commutative law of addition) For all <span class="math inline">\(x,y\in\Re,\ x+y=y+x\)</span>.</li>
+<li>(Closure for multiplication) For each pair <span class="math inline">\(,y,\in\Re\)</span>, there exists a unique object in <span class="math inline">\(\Re\)</span>, called the <em>product</em> of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> and denoted by <span class="math inline">\(x\cdot y\)</span> or <span class="math inline">\(xy\)</span>.</li>
+<li>(Associative law of multiplication) For all <span class="math inline">\(x,y,z\in\Re,\ x\cdot(y\cdot z)=(x\cdot y)\cdot z\)</span>.</li>
+<li>(Multiplicative identity) There exists an object <span class="math inline">\(1\in\Re\)</span> such that for all <span class="math inline">\(x\in\Re,\ 1\cdot x=x=x\cdot 1\)</span>.</li>
+<li>(Multiplicative inverse) For each <span class="math inline">\(x\in\Re\)</span> such that <span class="math inline">\(x\neq 0\)</span>, there exists an object <span class="math inline">\(y\in\Re\)</span> such that <span class="math inline">\(x\cdot y=1=y\cdot x\)</span>. We will usually denote the multiplicative inverse of <span class="math inline">\(x\)</span> by <span class="math inline">\(x^{-1}\)</span>.</li>
+<li>(Commutative law of multiplication) For all <span class="math inline">\(x,y\in\Re,\ x\cdot y=y\cdot x\)</span>.</li>
+<li>(Distributive law of multiplication over addition) For all <span class="math inline">\(x,y,z\in\Re, x\cdot(y+z)=x\cdot y+x\cdot z\)</span>.</li>
+<li>(Positive Elements) There exists a nonempty subset <span class="math inline">\(\Re^+\subset\Re\)</span> closed under <span class="math inline">\(+\)</span> and <span class="math inline">\(\cdot\)</span>. That is, for all <span class="math inline">\(x,y\in\Re^+,\ x+y\in\Re\)</span> and <span class="math inline">\(x\cdot y\in\Re^+\)</span>.</li>
+<li>(Trichotomy) For any <span class="math inline">\(x\in\Re\)</span>, exactly one of these three cases holds: <span class="math inline">\(x\in\Re^+,\ -x\in\Re^+\)</span>, or <span class="math inline">\(x=0\)</span>.</li>
+</ol>
+</div>
+<div id="real-numbers-definition-less-than-equal-to" class="section level3">
+<h3><span class="header-section-number">18.2.3</span> Definiton: Less Than (or Equal To)</h3>
+<p>Let <span class="math inline">\(x,y\in\Re\)</span>. We say that <span class="math inline">\(x\)</span> <em>is less than</em> <span class="math inline">\(y\)</span>, written <span class="math inline">\(x&lt;y\)</span>, provided <span class="math inline">\(y+-x\in\Re^+\)</span>. We say that <span class="math inline">\(x\)</span> is <em>less than or equal</em> <span class="math inline">\(y\)</span> iff and only iff <span class="math inline">\(x&lt;y\)</span> or <span class="math inline">\(x=y\)</span>. (Also, <span class="math inline">\(x\)</span> is said to be greater than <span class="math inline">\(y\)</span> if <span class="math inline">\(y&lt;x\)</span>.)</p>
+</div>
+<div id="definition-bounded-above-and-below" class="section level3">
+<h3><span class="header-section-number">18.2.4</span> Definition: Bounded Above (and Below)</h3>
+<p>A set <span class="math inline">\(A\)</span> of real numbers is said to be <em>bounded above</em> if there exists some <span class="math inline">\(b\in\Re\)</span> such that <span class="math inline">\(x\leq b,\ \forall x\in A\)</span>. In this case, <span class="math inline">\(b\)</span> is called an <em>upper bound</em> for <span class="math inline">\(A\)</span>. (Bounded below and lower bound are defined similarly.)</p>
+</div>
+<div id="definition-least-upper-and-lower-bound" class="section level3">
+<h3><span class="header-section-number">18.2.5</span> Definition: Least Upper (and Lower) Bound</h3>
+<p>Let <span class="math inline">\(A\)</span> be a set of real numbers bounded above. An element <span class="math inline">\(\beta\in\Re\)</span> is called the <em>least upper bound</em>, often written <em>lub</em> for <span class="math inline">\(A\)</span> iff and only if</p>
+<ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(\beta\)</span> is an upper bound for <span class="math inline">\(A\)</span> and</li>
+<li><span class="math inline">\(\beta\leq b\)</span> for every <span class="math inline">\(b\)</span> which is an upper bound for <span class="math inline">\(A\)</span>. (A greatest lower bound is defined similarly.)</li>
+</ol>
+</div>
+<div id="completeness-axiom" class="section level3">
+<h3><span class="header-section-number">18.2.6</span> Completeness Axiom</h3>
+<p>Every nonempty subset of <span class="math inline">\(\Re\)</span> having an upper bound has a least upper bound.</p>
+</div>
+</div>
+<div id="proof-that-the-field-of-rationals-is-not-complete" class="section level2">
+<h2><span class="header-section-number">18.3</span> Proof that the Field of Rationals is not Complete</h2>
+<p>Let <span class="math inline">\(A=\left\{p\in Q^+|p^2&lt;2\right\}\)</span> and <span class="math inline">\(B=\left\{p\in Q^+|p^2&gt;2\right\}\)</span>.</p>
+<p>We claim that <span class="math inline">\(A\)</span> has no largest element and that <span class="math inline">\(B\)</span> has no smallest element; i.e., given that <span class="math inline">\(p\in A\)</span>, we can find some <span class="math inline">\(q\in A\)</span> with <span class="math inline">\(q&gt;p\)</span>; and given any <span class="math inline">\(p\in B\)</span>, we can find some <span class="math inline">\(q\in B\)</span> with <span class="math inline">\(q&lt;p\)</span>.</p>
+<p>For any <span class="math inline">\(p\in Q^+\)</span>, let</p>
+<p><span class="math display">\[q
+  &amp;=p-\frac{p^2-2}{p+2}
+  &amp;=\frac{p^2+2p-p^2+2}{p+2}
+  &amp;=\frac{2p+2}{p+2}\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[q^2-2
+  &amp;=\frac{4p^2+8p+r-2p^2-8p-8}{(p+2)^2}
+  &amp;=\frac{2p^2-4}{(p+2)^2}
+  &amp;=\frac{2(p+2)}{(p+2)^2}\]</span></p>
+<p>Now if <span class="math inline">\(p\in A,\ p^2-2&lt;0\)</span>,</p>
+<p>so <span class="math inline">\(-\frac{p^2-2}{p+2}&gt;0\)</span>,</p>
+<p>whence <span class="math inline">\(q=p-\frac{p^2-2}{p+2}&gt;p\)</span>.</p>
+<p>But <span class="math inline">\(q^2-2=\frac{2(p^2-2)}{(p+2)^2}&lt;0\)</span></p>
+<p>implies that <span class="math inline">\(q^2&lt;2\)</span>. Thus <span class="math inline">\(q\in A\)</span> and <span class="math inline">\(q&gt;p\)</span>.</p>
+<p>On the other hand, if <span class="math inline">\(p\in B\)</span>, then <span class="math inline">\(p^2-2&gt;0\)</span>,</p>
+<p>so <span class="math inline">\(q=p-\frac{p^2-2}{p+2}&lt;p\)</span>.</p>
+<p>But <span class="math inline">\(q^2-2=\frac{2(p^2-2)}{(p+2)^2}&gt;0\)</span> implies that <span class="math inline">\(q\in B\)</span>.</p>
+<p>Here <span class="math inline">\(q\in B\)</span> and <span class="math inline">\(q&lt;p\)</span>.</p>
+<p>Now it is clear that every member of <span class="math inline">\(B\)</span> is an upper bound for <span class="math inline">\(A\)</span>, and every member of <span class="math inline">\(A\)</span> is a lower bound for set <span class="math inline">\(B\)</span>. It is also clear from the above demonstration that <em>among the rationals Q,</em> the nonempty set <span class="math inline">\(A\)</span> has <em>no least upper bound</em>; and the nonempty set <span class="math inline">\(B\)</span> has <em>no greatest lower bound</em> <em>among the rationals</em> . Therefore we have shown that the ordered field of rational numbers does not satisfy the conditions of the <em>Completeness Axiom</em> . Thus it is the <em>Completeness Axiom</em> that distinguishes the ordered field of real numbers from the ordered field of rational numbers.</p>
+</div>
+<div id="preliminary-results-in-the-field-of-real-numbers" class="section level2">
+<h2><span class="header-section-number">18.4</span> Preliminary Results in the Field of Real Numbers</h2>
+<div id="theorem-uniqueness-of-identities" class="section level3">
+<h3><span class="header-section-number">18.4.1</span> Theorem: Uniqueness of Identities</h3>
+<p>Identity elements are unique.</p>
+<p><em>Proof:</em> Suppose <span class="math inline">\(u \star a=a\star u=a\)</span> and <span class="math inline">\(e\star a=a\star e=a,\ \forall a\in\Re\)</span>. Then <span class="math inline">\(u=u\star e=e\)</span>.</p>
+</div>
+<div id="theorem-2-uniqueness-of-inverses" class="section level3">
+<h3><span class="header-section-number">18.4.2</span> Theorem 2: Uniqueness of Inverses</h3>
+<p>If <span class="math inline">\(\star\)</span> is an associative operation, inverse elements for <span class="math inline">\(\star\)</span> are unique.</p>
+<p><em>Proof:</em></p>
+<p>Suppose <span class="math inline">\(a\star a_1=a_1\star a=e\)</span> and <span class="math inline">\(a\star a_2=a_2\star a=e\)</span>, where <span class="math inline">\(e\)</span> is the identity element for the operation <span class="math inline">\(\star\)</span>.</p>
+<p>Then <span class="math inline">\(a_1=a_1\star e=a_1\star(a\star a_2)=(a_1\star a)\star a_2)=e\star a_2=a_2\)</span>.</p>
+</div>
+<div id="theorem-left-cancellation-law" class="section level3">
+<h3><span class="header-section-number">18.4.3</span> Theorem: Left Cancellation Law</h3>
+<p>If <span class="math inline">\(a\)</span> has an inverse <span class="math inline">\(a^\prime\)</span> with respect to the associative operation <span class="math inline">\(\star\)</span>, and <span class="math inline">\(a\star b=a\star c\)</span>, then <span class="math inline">\(b=c\)</span>.</p>
+<p><em>Proof:</em></p>
+<p>Suppose <span class="math inline">\(a\star b=a\star c\)</span>. Then</p>
+<p><span class="math display">\[
+a^\prime\star(a\star b)             &amp;= a^\prime\star(a\star c)\\
+\Rightarrow(a^\prime\star a)\star b &amp;= (a^\prime\star a)\star c\\
+\Rightarrow e\star b                &amp;= e\star c\\
+\Rightarrow b                       &amp;= c
 \]</span></p>
-<div class="figure">
-<img src="figures/Gamma_Distribution-1.png" alt="(\#fig:Gamma_Distribution)The figures on the left and right display the Gamma probability and cumulative distirubtion functions, respectively, for the combinations of $\alpha=2,3$ and $\beta=1,3$." width="672" />
-<p class="caption">
-(#fig:Gamma_Distribution)The figures on the left and right display the Gamma probability and cumulative distirubtion functions, respectively, for the combinations of <span class="math inline">\(\alpha=2,3\)</span> and <span class="math inline">\(\beta=1,3\)</span>.
-</p>
 </div>
+<div id="corollary-right-cancellation" class="section level3">
+<h3><span class="header-section-number">18.4.4</span> Corollary: Right Cancellation</h3>
+<p>In the field <span class="math inline">\((\Re,+,\cdot),\ a+b=a+c\Rightarrow b=c\)</span>, and if <span class="math inline">\(a\neq 0\)</span> and <span class="math inline">\(ab=ac\)</span>, then <span class="math inline">\(b=c\)</span>.</p>
+<p><em>Proof:</em> The Corollary is proved using commutativity and Left Cancellation.</p>
 </div>
-<div id="expected-values-4" class="section level2">
-<h2><span class="header-section-number">14.3</span> Expected Values</h2>
-<p><span class="math display">\[\begin{align*} 
-E(X)
-        &amp;= \int\limits_{0}^{\infty}x\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
-            {\Gamma(\alpha)\beta^\alpha}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x\cdot x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha}e^{-\frac{x}{\beta}}dx \\
-^{[1]}  &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-        [\Gamma(\alpha+1)\beta^{\alpha+1}] \\
-        &amp;= \frac{\Gamma(\alpha+1)\beta^{\alpha+1}}{\Gamma(\alpha)\beta^\alpha} \\
-        &amp;= \frac{\alpha\Gamma(\alpha)\beta^{\alpha+1}}{\Gamma(\alpha)\beta^\alpha} \\
-        &amp;= \alpha\beta
-\end{align*}\]</span></p>
-<blockquote>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx =\beta^\alpha\Gamma(\alpha)\)</span></li>
-</ol>
-</blockquote>
-<p><span class="math display">\[\begin{align*} 
-E(X^2)
-        &amp;= \int\limits_{0}^{\infty}x^2\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
-            {\Gamma(\alpha)\beta^\alpha}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^2\cdot 
-            x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha+1}e^{-\frac{x}{\beta}}dx \\
-^{[1]}  &amp;= \frac{1}{\Gamma(\alpha)\beta^{\alpha}}
-            [\Gamma(\alpha+2)\beta^{\alpha+2}] \\
-        &amp;= \frac{\Gamma(\alpha+2)\beta^{\alpha+2}}{\Gamma(\alpha)\beta^\alpha} \\
-        &amp;= \frac{(\alpha+1)\Gamma(\alpha+1)\beta^{\alpha+2}}
-            {\Gamma(\alpha)\beta^\alpha} \\
-        &amp;= \frac{(\alpha+1)\alpha\Gamma(\alpha)\beta^{\alpha+2}}
-            {\Gamma(\alpha)\beta^\alpha} \\
-        &amp;= \alpha(\alpha+1)\beta^2 \\
-        &amp;= (\alpha^2+\alpha)\beta^2 \\
-        &amp;= \alpha^2\beta^2+\alpha\beta^2 
-\end{align*}\]</span></p>
-<blockquote>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx =\beta^\alpha\Gamma(\alpha)\)</span></li>
-</ol>
-</blockquote>
-<p><span class="math display">\[\begin{align*}
-\mu
-    &amp;= E(X) \\
-    &amp;= \alpha\beta \\
-\\
-\\
-\sigma^2
-    &amp;= E(X^2) - E(X)^2 \\
-    &amp;= \alpha^2\beta^2 + \alpha\beta^2 - \alpha^2\beta^2 \\
-    &amp;= \alpha\beta^2
-\end{align*}\]</span></p>
-</div>
-<div id="moment-generating-function-4" class="section level2">
-<h2><span class="header-section-number">14.4</span> Moment Generating Function</h2>
-<p><span class="math display">\[\begin{align*} 
-M_X(t) 
-        &amp;= E(e^{tX}) \\
-        &amp;= \int\limits_{0}^{\infty}e^{tx}
-            \frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
-            {\Gamma(\alpha)\beta^\alpha}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}e^{tx}
-            x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha-1}
-            e^{tx}e^{-\frac{x}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha-1}
-            e^{tx-\frac{x}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha-1}
-            e^{\frac{\beta tx}{\beta}-\frac{x}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha-1}
-            e^{\frac{\beta tx-x}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha-1}
-            e^{-x\frac{-\beta t+1}{\beta}}dx \\
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha-1}
-            e^{-x\frac{1-\beta t}{\beta}}dx \\
-^{[1]}  &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \Big[\Gamma(\alpha)\Big(\frac{\beta}{1-\beta t}\Big)\alpha)\Big] \\
-        &amp;= \frac{\Gamma(\alpha)\beta^\alpha}
-            {\Gamma(\alpha)\beta^\alpha(1-\beta t)^\alpha} \\
-        &amp;= \frac{1}{(1-\beta t)^\alpha}=(1-\beta t)^{-\alpha}
-\end{align*}\]</span></p>
-<blockquote>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx =\beta^\alpha\Gamma(\alpha)\)</span></li>
-</ol>
-</blockquote>
-<p><span class="math display">\[\begin{align*}
-M_X^{(1)}(t)
-    &amp;= -\alpha(1-\beta t)^{-\alpha-1}(-\beta) \\
-    &amp;= \alpha\beta(1-\beta t)^{-\alpha-1} \\
-M_X^{(2)}(t) 
-    &amp;= (-\alpha-1)\alpha\beta(1-\beta t)^{-\alpha-2}(-\beta) \\
-    &amp;= (\alpha+1)\alpha\beta^2(1-\beta t)^{-\alpha-2} \\
-  &amp;= (\alpha^2\beta^2+\alpha\beta^2)(1-\beta t)^{-\alpha-2} \\
-\\
-\\
-E(X)
-    &amp;= M_X^{(1)}(0)=\alpha\beta(1-\beta\cdot 0)^{-\alpha-1} \\
-    &amp;= \alpha\beta(1-0)^{\alpha-1}=\alpha\beta(1)^{-\alpha-1} \\
-    &amp;= \alpha\beta \\
-\\
-\\
-E(X^2)
-    &amp;= M_X^{(2)}(0)=(\alpha^2\beta^2+\alpha\beta^2)(1-\beta 0)^{-\alpha-2} \\
-    &amp;= (\alpha^2\beta^2+\alpha\beta^2)(1-0)^{-\alpha-2} \\
-  &amp;= (\alpha^2\beta^2+\alpha\beta^2)(1)^{-\alpha-2} \\
-    &amp;= \alpha^2\beta^2+\alpha\beta^2 \\
-\\
-\\
-\mu
-    &amp;= E(X) \\
-    &amp;= \alpha\beta\\
-\\
-\\
-\sigma^2
-    &amp;= E(X^2) - E(X)^2 \\
-    &amp;= \alpha^2\beta^2 + \alpha\beta^2 - \alpha^2\beta^2 \\
-    &amp;= \alpha\beta^2
-\end{align*}\]</span></p>
-</div>
-<div id="maximum-likelihood-estimators" class="section level2">
-<h2><span class="header-section-number">14.5</span> Maximum Likelihood Estimators</h2>
-<p>Let <span class="math inline">\(x_1,x_2,\ldots,x_n\)</span> denote a random sample from a Gamma Distribution with parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>.</p>
-<div id="likelihood-function-3" class="section level3">
-<h3><span class="header-section-number">14.5.1</span> Likelihood Function</h3>
-<p><span class="math display">\[\begin{align*}
-L(\theta)
-    &amp;= L(x_1,x_2,\ldots,x_n|\theta) \\
-    &amp;= f(x_1|\theta) f(x_2|\theta) \cdots f(x_n|\theta) \\
-  &amp;= \frac{x_1^{\alpha-1}e^{-x_1/\beta}}{\Gamma(\alpha)\beta^\alpha}
-        \frac{x_2^{\alpha-1}e^{-x_2/\beta}}{\Gamma(\alpha)\beta^\alpha}
-        \cdots \frac{x_n^{\alpha-1}e^{-x_n/\beta}}{\Gamma(\alpha)\beta^\alpha} \\
-  &amp;= \prod\limits_{i=1}^{n}\frac{x_i^{\alpha-1}e^{-x_i/\beta}}{\Gamma(\alpha)\beta^\alpha} \\
-    &amp;= \bigg(\frac{1}{\Gamma(\alpha)\beta^\alpha}\bigg)^n  
-          \prod\limits_{i=1}^{n}x_i^{\alpha-1}e^{-x_i/\beta} \\
-  &amp;= \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
-        \prod\limits_{i=1}^{n}x_i^{\alpha-1}e^{-x_i/\beta} \\
-  &amp;= \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
-        \exp\bigg\{\sum\limits_{i=1}^{n}-\frac{x_i}{\beta} \bigg\}
-        \prod\limits_{i=1}^{n}x_i^{\alpha-1} \\
-  &amp;= \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
-        \exp\bigg\{-\frac{1}{\beta}\sum\limits_{i=1}^{n}x_i \bigg\}
-        \prod\limits_{i=1}^{n}x_i^{\alpha-1}
-\end{align*}\]</span></p>
-</div>
-<div id="log-likelihood-function-3" class="section level3">
-<h3><span class="header-section-number">14.5.2</span> Log-likelihood Function</h3>
-<p><span class="math display">\[\begin{align*}
-\ell(\theta)
-    &amp;= \ln\bigg[ \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
-        \exp\bigg\{-\frac{1}{\beta}\sum\limits_{i=1}^{n}x_i \bigg\}
-        \prod\limits_{i=1}^{n}x_i^{\alpha-1} \bigg]  \\
-  &amp;= \ln\big( \Gamma(\alpha) \beta^\alpha \big)^{-n}
-        + \ln\bigg( \exp \bigg\{ -\frac{1}{\beta}\sum\limits_{i=1}^{n}x_i \bigg\} \bigg)
-        + \ln\bigg( \prod\limits_{i=1}^{n}x_i^{\alpha-1} \bigg) \\
-  &amp;= -n\ln\big( \Gamma(\alpha) \beta^\alpha \big)
-        - \frac{1}{\beta}\sum\limits_{i=1}^{n}x_i
-        + \ln\bigg( \prod\limits_{i=1}^{n}x_i^{\alpha-1} \bigg) \\
-  &amp;= -n\big[ \ln\big( \Gamma(\alpha)\beta^\alpha\big) \big]
-        - \frac{1}{\beta}\sum\limits_{i=1}^{n}x_i
-        + \sum\limits_{i=1}^{n}(\alpha-1)\ln x_i \\
-  &amp;= -n\ln\Gamma(\alpha) - n\alpha\ln\beta
-        - \frac{1}{\beta}\sum\limits_{i=1}^{n}x_i
-        + (\alpha-1)\sum\limits_{i=1}^{n}\ln x_i
-\end{align*}\]</span></p>
-</div>
-<div id="mle-for-alpha" class="section level3">
-<h3><span class="header-section-number">14.5.3</span> MLE for <span class="math inline">\(\alpha\)</span></h3>
-<p><span class="math display">\[\begin{align*}
-\frac{d\ell}{d\alpha}
-    &amp;= -n\frac{1}{\Gamma(\alpha)}\Gamma^\prime(\alpha) - n\ln\beta - 0
-        + \sum\limits_{i=1}^{n}\ln x_i \\
-  &amp;= -n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)} - n\ln\beta
-        + \sum\limits_{i=1}^{n}\ln x_i\\
-\\
-\\
-0 &amp;= -n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)} - n\ln\beta
-        + \sum\limits_{i=1}^{n}\ln x_i \\
-\Rightarrow n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)}
-        &amp;= \sum\limits_{i=1}^{n}\ln x_i - n\ln\beta \\
-\Rightarrow \frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)}
-        &amp;= \frac{1}{n}\bigg( \sum\limits_{i=1}^{n}\ln x_i - n\ln\beta \bigg)
-\end{align*}\]</span></p>
-<p>However, this must be solved numerically. Notice also that the MLE for <span class="math inline">\(\alpha\)</span> depends on <span class="math inline">\(\beta\)</span>.</p>
-</div>
-<div id="mle-for-beta-1" class="section level3">
-<h3><span class="header-section-number">14.5.4</span> MLE for <span class="math inline">\(\beta\)</span></h3>
-<p><span class="math display">\[\begin{align*}
-\frac{d\ell}{d\beta}
-    &amp;= 0 - n\alpha\frac{1}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i + 0 \\
-    &amp;= -\frac{n\alpha}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i \\
-\\
-\\
-0 &amp;= -\frac{n\alpha}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i \\
-\Rightarrow \frac{n\alpha}{\beta} &amp;= \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i \\
-\Rightarrow n\alpha\beta &amp;= \sum\limits_{i=1}^{n}x_i \\
-\Rightarrow \beta &amp;= \frac{1}{n\alpha} \sum\limits_{i=1}^{n}x_i
-\end{align*}\]</span></p>
-<p>This estimate, however, depends on <span class="math inline">\(\alpha\)</span>. Since each estimator depends on the value of the other parameter, we must maximize the likelihood functions simulatneously. That is, we must simultaneously solve the system <span class="math display">\[ \left\{
-    \begin{array}{rl}
-        -n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)} - n\ln\beta
-        + \sum\limits_{i=1}^{n}\ln x_i 
-            &amp; = 0\\
-        -\frac{n\alpha}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i
-            &amp; = 0\\
-    \end{array} \right.
-\]</span> Solving this system will require numerical methods.</p>
-</div>
-<div id="approximation-of-hatalpha-and-hatbeta" class="section level3">
-<h3><span class="header-section-number">14.5.5</span> Approximation of <span class="math inline">\(\hat\alpha\)</span> and <span class="math inline">\(\hat\beta\)</span></h3>
-<p>Approximations of <span class="math inline">\(\hat\alpha\)</span> and <span class="math inline">\(\hat\beta\)</span> can be obtained by noticing that\ <span class="math display">\[\begin{align*}
-\frac{d\ell}{d\beta}    &amp;= 0 \\
-\Rightarrow \beta       &amp;= \frac{1}{n\alpha}\sum\limits_{i=1}^{n}x_i\\
-\Rightarrow \alpha\beta &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}x_i
-\end{align*}\]</span></p>
-<p>So <span class="math inline">\(\widehat{\alpha\beta} = \frac{1}{n}\sum\limits_{i=1}^{n}x_i\)</span>. Recall that <span class="math inline">\(\alpha\beta\)</span> and <span class="math inline">\(\alpha\beta^2\)</span> are the mean and variance of the Gamma Distribution, respectively. We utilize <span class="math display">\[ \frac{\alpha\beta^2}{\alpha\beta} = \beta \]</span></p>
-<p>If we assume that <span class="math inline">\(\widehat{\alpha\beta^2} = \frac{1}{n-1}\sum\limits_{i=1}^{n}(x_i-\bar x)^2\)</span>, then</p>
-<p><span class="math display">\[ \frac{\widehat{\alpha\beta^2}}{\widehat{\alpha\beta}} = \beta^* \approx \hat\beta \]</span> Where <span class="math inline">\(\beta^*\)</span> denotes an approximation to <span class="math inline">\(\hat\beta\)</span></p>
-<p>We now substitute <span class="math inline">\(\beta^*\)</span> into</p>
-<p><span class="math display">\[\begin{align*}
-\widehat{\alpha\beta}       &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}x_i\\
-\Rightarrow \alpha^*\beta^* &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}x_i\\
-\Rightarrow \alpha^*        &amp;= \frac{1}{n\beta^*}\sum\limits_{i=1}^{n}x_i \approx \hat\alpha
-\end{align*}\]</span></p>
-<p>Where <span class="math inline">\(\alpha^*\)</span> denotes an approximation to <span class="math inline">\(\hat\alpha\)</span>.</p>
-<p>This method of estimation is prone to error because <span class="math inline">\(\beta^*\)</span> is found through two levels of estimation and <span class="math inline">\(\alpha^*\)</span> is found through three levels of estimation. Surely, this process inflates the error of estimation. At this point, however, I have no information to indicate how badly the error of estimation is inflated, nor have I performed any investigation into this problem.</p>
-</div>
-</div>
-<div id="theorems-for-the-gamma-distribution" class="section level2">
-<h2><span class="header-section-number">14.6</span> Theorems for the Gamma Distribution</h2>
-<div id="validity-of-the-distribution-4" class="section level3">
-<h3><span class="header-section-number">14.6.1</span> Validity of the Distribution</h3>
-<p><span class="math display">\[ \int\limits_{0}^{\infty}x\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
-    {\Gamma(\alpha)\beta^\alpha}dx = 1\]</span></p>
+<div id="lemma-1" class="section level3">
+<h3><span class="header-section-number">18.4.5</span> Lemma</h3>
+<p><span class="math display">\[-0=0\]</span>.</p>
 <p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{align*}
- \int\limits_{0}^{\infty}\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
-        {\Gamma(\alpha)\beta^\alpha}dx 
-        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
-            \int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
-^{[1]}  &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}[\Gamma(\alpha)\beta^\alpha] \\
-        &amp;= \frac{\Gamma(\alpha)\beta^\alpha}{\Gamma(\alpha)\beta^\alpha} \\
-        &amp;= 1
-\end{align*}\]</span></p>
+<p>By axiom 4 <span class="math inline">\(-0+0=0\)</span>. Because 0 is the additive identity, <span class="math inline">\(-0+0=-0\)</span>. Therefore <span class="math inline">\(-0=-0+0=0\)</span>.</p>
+</div>
+<div id="theorem-6" class="section level3">
+<h3><span class="header-section-number">18.4.6</span> Theorem</h3>
+<p><span class="math inline">\(\forall a\in\Re,\ a&gt;0\)</span> if and only if <span class="math inline">\(a\in\Re^+\)</span>.</p>
+<p><em>Proof:</em> Suppose <span class="math inline">\(0&lt;a\)</span>. Then <span class="math inline">\(a-0\in\Re^+\)</span>, but <span class="math inline">\(a-0=a\)</span>, so <span class="math inline">\(a\in\Re^+\)</span>. Conversely, suppose <span class="math inline">\(a\in\Re^+\)</span>. Then <span class="math inline">\(a-0=a\in\Re^+\)</span>, so <span class="math inline">\(0&lt;a\)</span>.</p>
+</div>
+<div id="theorem-7" class="section level3">
+<h3><span class="header-section-number">18.4.7</span> Theorem</h3>
+<p><span class="math inline">\(\forall x\in\Re,\ x\cdot 0=0\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[
+0 + x\cdot 0    &amp;= x\cdot 0\\
+                &amp;= x\cdot(0+0)\\
+                &amp;= x\cdot 0 + x\cdot 0\\
+  Rightarrow 0  &amp;= x\cdot 0
+\]</span></p>
+</div>
+<div id="theorem-8" class="section level3">
+<h3><span class="header-section-number">18.4.8</span> Theorem</h3>
+<p><span class="math inline">\(\forall x\in\Re,\ -(-x)=x\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math inline">\(-(-x)+(-x) = 0\)</span> and <span class="math inline">\(0 = x+(-x)\)</span>. So</p>
+<p><span class="math display">\[-(-x)+(-x) &amp;= x+(-x)
+  \Rightarrow -(-x) &amp;= x \]</span></p>
+</div>
+<div id="real-numbers-theorem-4-9" class="section level3">
+<h3><span class="header-section-number">18.4.9</span> Theorem</h3>
+<p><span class="math display">\[\forall x,y\in\Re,\ x\cdot(-y) = -(x\cdot y)=(-x)\cdot y\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[
+            x(-y)+xy  &amp;= x(-y+y) 
+                      &amp;= x\cdot 0 \\
+                      &amp;= 0 \\
+                      &amp;= -(xy)+xy\\
+\Rightarrow x(-y)+xy  &amp;= -(xy)+xy\\
+\Rightarrow x(-y)     &amp;= -(xy)
+\]</span></p>
+<p>Similarly,</p>
+<p><span class="math display">\[
+          (-x)y+xy &amp;= (-x+x)y \\
+                   &amp;= 0\cdot y \\
+                   &amp;= 0 \\
+                   &amp;= -(xy)+xy\\
+\Rightarrow (-x)y   &amp;= -(xy)
+\]</span></p>
+<p>By transitivity, <span class="math inline">\((-x)y = -(xy) = x(-y)\)</span>.</p>
+</div>
+<div id="real-numbers-theorem-4-10" class="section level3">
+<h3><span class="header-section-number">18.4.10</span> Theorem</h3>
+<p><span class="math display">\[\forall x\in\Re,\ (-1)\cdot x=-x\]</span></p>
+<p><em>Proof:</em></p>
+<p>By Theorem <a href="real-number-system.html#real-numbers-theorem-4-9">18.4.9</a> <span class="math display">\[
+(-1)x &amp;= -(1x)
+      &amp;= -x
+\]</span></p>
+</div>
+<div id="real-numbers-theorem-4-11" class="section level3">
+<h3><span class="header-section-number">18.4.11</span> Corollary</h3>
+<p><span class="math display">\[\forall x\in\Re,\ (-1)\cdot(-x)=x\]</span></p>
+<p><em>Proof:</em></p>
+<p>By <a href="real-number-system.html#real-numbers-theorem-4-10">18.4.10</a> <span class="math display">\[(-1)(-x) =  -(-x) = x \]</span></p>
+</div>
+<div id="theorem-9" class="section level3">
+<h3><span class="header-section-number">18.4.12</span> Theorem</h3>
+<p><span class="math display">\[\forall x\in\Re,\ (-x)(-x)=x\cdot x\]</span></p>
+<p><em>Proof:</em></p>
+<p>By Corollary <a href="real-number-system.html#real-numbers-theorem-4-11">18.4.11</a></p>
+<p><span class="math display">\[(-x)(-x) 
+  &amp;= -(x(-x)) \\
+  &amp;= -((-x)x) \\
+  &amp;= -(-(x\cdot x)) \\
+  &amp;= (x\cdot x) \\
+  &amp;= x\cdot x
+\]</span></p>
+</div>
+<div id="theorem-10" class="section level3">
+<h3><span class="header-section-number">18.4.13</span> Theorem</h3>
+<p>Let <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> be any real numbers. Then exactly one of the following is true:</p>
+<ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(x&gt;y\)</span></li>
+<li><span class="math inline">\(x=y\)</span></li>
+<li><span class="math inline">\(x&lt;y\)</span></li>
+</ol>
+<p><em>Proof:</em></p>
+<p>By Axiom 1, <span class="math inline">\(\Re\)</span> is closed under addition. Thus, since <span class="math inline">\(x,y\in\Re\)</span> , <span class="math inline">\(x+(-y)\in\Re\)</span>. By Trichotomy, <span class="math inline">\(x+(-y)\in\Re,\ -(x+(-y))\in\Re\)</span>, or <span class="math inline">\(x+(-y)=0\)</span>.</p>
+<p><span class="math inline">\(x+(-y)\in\Re\ \Rightarrow x&gt;y\)</span> (Definition <a href="real-number-system.html#real-numbers-definition-less-than-equal-to">18.2.3</a>)</p>
+<p><span class="math inline">\(-(x+(-y))=(-x)+y\in\Re\ \Rightarrow x&lt;y\)</span> (Axiom 4)</p>
+<p><span class="math inline">\(x+(-y)=0\ \Rightarrow x=y\)</span> (Definition <a href="real-number-system.html#real-numbers-definition-less-than-equal-to">18.2.3</a>).</p>
+</div>
+<div id="theorem-11" class="section level3">
+<h3><span class="header-section-number">18.4.14</span> Theorem</h3>
+<p><span class="math display">\[\forall a,b,c\in\Re,\ (a&lt;b \wedge b&lt;c)\Rightarrow a&lt;c\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[
+              a&lt;b &amp;\wedge b&lt;c \\ 
+\Rightarrow b-a&gt;0 &amp;\wedge c-b&gt;0 \\ 
+\Rightarrow^{[1]}(b-a)+(c-b)&gt;0 \\
+\Rightarrow (c-b)+(b-a)&gt;0 \\ 
+\Rightarrow c-b+b-a&gt;0 \\ 
+\Rightarrow c-a&gt;0 \\ 
+\Rightarrow a&lt;c 
+\]</span></p>
 <blockquote>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx = \beta^\alpha\Gamma(\alpha)\)</span></li>
+<li>Axiom 12  <span class="math inline">\(\forall a,b,c \in\Re,\ (a&lt;b \ \Rightarrow a+c&lt;b+c)\)</span>.\ \ <em>Proof:</em> \ \ <span class="math inline">\(a&lt;b\ \Rightarrow\ b-a&gt;0\\\\ \indent\Rightarrow b-c+c-a&gt;0\ \Rightarrow b+c-a-c&gt;0\\\\ \indent\Rightarrow (b+c)-(a+c)&gt;0\ \Rightarrow a+c&lt;b+c\ \)</span></li>
 </ol>
 </blockquote>
-</div>
-<div id="sum-of-gamma-random-variables" class="section level3">
-<h3><span class="header-section-number">14.6.2</span> Sum of Gamma Random Variables</h3>
-<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be Gamma distributed random variables with parameters <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\beta\)</span>, that is <span class="math inline">\(X_i\sim\)</span>Gamma<span class="math inline">\((\alpha_i,\beta)\)</span>. Let <span class="math inline">\(Y = \sum\limits_{i=1}^{n}X_i\)</span>.\ Then <span class="math inline">\(Y\sim\)</span>Gamma<span class="math inline">\((\sum\limits_{i=1}^{n}\alpha_i,\beta)\)</span>.</p>
-<p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{align*}
-M_Y(t)
-    &amp;= E(e^{tY})=E(e^{t(X_1+X_2+\cdots+X_n)} \\
-    &amp;= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
-    &amp;= E(e^{tX_1})E(e^{tX_2})\cdots E(e^{tX_n}) \\
-  &amp;= (1-\beta t)^{-\alpha_1}(1-\beta t)^{-\alpha_2}\cdots
-        (1-\beta t)^{-\alpha_n}=(1-\beta t)^{-\sum\limits_{i=1}^{n}\alpha_i}
-\end{align*}\]</span></p>
-<p>Which is the moment generating function of a Gamma random variable with parameters <span class="math inline">\(\sum\limits_{i=1}^{n}\alpha_i\)</span> and <span class="math inline">\(\beta\)</span>. Thus <span class="math inline">\(Y\sim\)</span>Gamma<span class="math inline">\((\sum\limits_{i=1}^{n}\alpha_i,\beta)\)</span>.</p>
-</div>
-<div id="sum-of-exponential-random-variables-1" class="section level3">
-<h3><span class="header-section-number">14.6.3</span> Sum of Exponential Random Variables</h3>
-<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent random variables from an Exponential distribution with parameter <span class="math inline">\(\beta\)</span>, i.e. <span class="math inline">\(X_i\sim\)</span>Exponential<span class="math inline">\((\beta)\)</span>. Let <span class="math inline">\(Y = \sum\limits_{i=1}^{n}X_i\)</span>. Then <span class="math inline">\(Y\sim\)</span>Gamma<span class="math inline">\((n,\beta)\)</span>.</p>
-<p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{align*}
-M_Y(t)
-    &amp;= E(e^{tY}) \\
-    &amp;= E(e^{t(X_1+X_2+\cdots+X_n}) \\
-    &amp;= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
-  &amp;= (1-\beta t)^{-1}(1-\beta t)^{-1}\cdots(1-\beta t)^{-1} \\
-    &amp;= (1-\beta t)^{-n}
-\end{align*}\]</span></p>
-<p>Which is the moment generating function for a Gamma random variable with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\beta\)</span>. Thus <span class="math inline">\(Y\sim\)</span>Gamma<span class="math inline">\((n,\beta)\)</span>.</p>
+
+<p><span class="math inline">\(\forall a,b,c\in\Re,\ (a&lt;b\wedge c&gt;0)\Rightarrow ac&lt;bc\)</span>.\ \ <em>Proof:</em> \ \ $a<b\Rightarrow b-a>0    c(b-a)&gt;0  bc-ac&gt;0  ac<bc$ \rule{.05in}{.05in}
+
+\subsection{Theorem}
+\label{RealNumbers4.17}
+$\forall a,b,c\in\Re,\ (a<b\wedge c<0)\Rightarrow bc<ba$.\\
+\\
+_Proof:_\ \\
+\\
+$a<b\ \Rightarrow b-a>0   c(b-a)&lt;0 bc-ba&lt;0 bc&lt;ba$.</p>
+
+<p>If <span class="math inline">\(a&gt;b&gt;0\)</span> and <span class="math inline">\(c&gt;d&gt;0\)</span>, then <span class="math inline">\(ac&gt;bd\)</span>.\ \ <em>Proof:</em> \ \ <span class="math inline">\(a&gt;b\wedge c&gt;d\ \Rightarrow a-b&gt;0\wedge c-d&gt;0\\ \indent\Rightarrow c(a-b)&gt;0\wedge b(c-d)&gt;0\ \Rightarrow ac-bc&gt;0\wedge bc-bd&gt;0\\ \indent\Rightarrow ac-bc+bc-bd&gt;0\ \Rightarrow ac-bd&gt;0\ \Rightarrow ac&gt;bd\)</span>.</p>
+
+
+<p>In a field containing at least two elements, <span class="math inline">\(1\in\Re^+\)</span>.\ \ _Proof:</p>
+
+<p>If <span class="math inline">\(x&gt;0\)</span>, then <span class="math inline">\(x^{-1}&gt;0\)</span>.\ \ <em>Proof:</em> \ \ Since <span class="math inline">\(x^{-1}\)</span> has an inverse <span class="math inline">\(x\)</span>, we know that <span class="math inline">\(x^{-1}\neq 0\)</span>. Hence, by Axiom 13, either <span class="math inline">\(x^{-1}&gt;0\)</span> or <span class="math inline">\(x^{-1}&lt;0\)</span>. Suppose <span class="math inline">\(x^{-1}&lt;0\)</span>. Then <span class="math inline">\(-x^{-1}\in\Re^+\)</span>, and since <span class="math inline">\(\Re^+\)</span> is closed under multiplication, <span class="math inline">\((-x^{-1})\cdot x\in\Re^+\)</span>. Now by Theorem 7, <span class="math inline">\((-x^{-1})\cdot x=-(x^{-1}\cdot x)=-1\)</span>, so this would imply that <span class="math inline">\(-1\in\Re^+\)</span>, in contradction to Theorem . Since <span class="math inline">\(x^{-1}&lt;0\)</span> must be be false, we conclude that <span class="math inline">\(x^{-1}&gt;0\)</span> whenever <span class="math inline">\(x&gt;0\)</span>. </p>
 
 </div>
 </div>
@@ -645,8 +565,8 @@ M_Y(t)
           </div>
         </div>
       </div>
-<a href="functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="geometric-distribution.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="integration-techniques-and-theorems.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summation.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -673,7 +593,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Gamma_Distribution.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/RealNumbers.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],
