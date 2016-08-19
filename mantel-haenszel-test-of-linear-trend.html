@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="logistic-regression.html">
+<link rel="next" href="mcnemar-test.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -389,21 +389,195 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-19</em></h4>
-</div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
-<blockquote>
-<p>It can be shown</p>
-</blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+<div id="mantel-haenszel-test-of-linear-trend" class="section level1">
+<h1><span class="header-section-number">20</span> Mantel-Haenszel Test of Linear Trend</h1>
+<p>The Mantel-Haenszel Test is a method for testing independence of categorical variables on an ordinal scale. See Agresti  for more discussion.</p>
+<p>Let <span class="math inline">\(X\)</span> be a categorical variable of ordinal type with <span class="math inline">\(R\)</span> levels.</p>
+<p>Let <span class="math inline">\(Y\)</span> be a categorical variable of ordinal type with <span class="math inline">\(C\)</span> levels.</p>
+<p>Suppose we take a sample of size <span class="math inline">\(n\)</span> and take a measurement on each item in the sample with respect to <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. The presence of a progresive between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> can be tested using the correlation coefficient <span class="math inline">\(\rho\)</span>. We may begin by taking the estimate of <span class="math inline">\(\rho\)</span></p>
+<p><span class="math display">\[\begin{align*} 
+r
+    &amp;= \frac{\widehat{Cov}(X,Y)}{\sqrt{s_X^2 s_Y^2}} \\
+    &amp;= \frac{\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}(x_i-\bar x)(y_j-\bar y)p(x_i,y_j)}
+        {\sqrt{\sum\limits_{i=1}^{n}(x_i-\bar x)^2p(x_i)
+         \sum\limits_{j=1}^{n}(y_j-\bar y)^2p(y_j)}}
+\end{align*}\]</span></p>
+<p>But since <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are categorical, we cannot sensibly perform any of the operations. Instead, we define the variables <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> to be the ordinal scoring of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> respecitively. In other words, <span class="math inline">\(U_i\)</span> is the score for the category of <span class="math inline">\(X_i\)</span> and <span class="math inline">\(V_i\)</span> is the score for the category of <span class="math inline">\(Y_i\)</span>. Using this replacement we get</p>
+<p><span class="math display">\[ 
+r
+    = \frac{\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}(u_i-\bar u)(v_j-\bar v)p(u_i,v_j)}
+        {\sqrt{\sum\limits_{i=1}^{n}(u_i-\bar u)^2p(u_i)
+         \sum\limits_{j=1}^{n}(v_j-\bar v)^2p(v_j)}}
+\]</span></p>
+<p>To obtain the values of <span class="math inline">\(\bar u\)</span> and <span class="math inline">\(\bar v\)</span>, we consider the following table. Recall that there are <span class="math inline">\(R\)</span> levels of the variable <span class="math inline">\(X\)</span> and <span class="math inline">\(C\)</span> levels of the variable <span class="math inline">\(Y\)</span>.</p>
+<p><em>u<sub>1</sub></em></p>
+<table>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Category</td>
+<td>of</td>
+<td><em>V</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Category of <em>U</em></td>
+<td>1</td>
+<td>2</td>
+<td>…</td>
+<td><em>C</em></td>
+<td>Total</td>
+<td><em>U</em></td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td><em>n<sub>11</sub></em></td>
+<td><em>n<sub>12</sub></em></td>
+<td>…</td>
+<td><em>n<sub>1c</sub></em></td>
+<td><em>n<sub>1+</sub></em></td>
+<td><em>U<sub>1</sub></em></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><em>n<sub>21</sub></em></td>
+<td><em>n<sub>22</sub></em></td>
+<td>…</td>
+<td><em>n<sub>2c</sub></em></td>
+<td><em>n<sub>2+</sub></em></td>
+<td><em>U<sub>2</sub></em></td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="even">
+<td><em>R</em></td>
+<td><em>n<sub>r1</sub></em></td>
+<td><em>n<sub>r2</sub></em></td>
+<td>…</td>
+<td><em>n<sub>rc</sub></em></td>
+<td><em>n<sub>r+</sub></em></td>
+<td><em>U<sub>r</sub></em></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td><em>n<sub>+1</sub></em></td>
+<td><em>n<sub>+2</sub></em></td>
+<td>…</td>
+<td><em>n<sub>+c</sub></em></td>
+<td><em>n<sub>++</sub></em></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><em>V</em></td>
+<td><em>V<sub>1</sub></em></td>
+<td><em>V<sub>2</sub></em></td>
+<td>…</td>
+<td><em>V<sub>c</sub></em></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>In the table, <span class="math inline">\(n_{rc},\ r=1,2,\ldots,R,\ c=1,2,\ldots,C\)</span> is the number of observations in the sample with scores <span class="math inline">\(r\)</span> and <span class="math inline">\(c\)</span>. From the table we can understand the marginal distributions of <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span>, and we see that for <span class="math inline">\(r=1,2,\ldots,R,\ c=1,2,\ldots,C\)</span></p>
+<p><span class="math display">\[\begin{align*}
+p(u_r) &amp;= \frac{n_{r+}}{n} \\
+\\
+p(v_c) &amp;= \frac{n_{+ c}}{n} \\
+\\
+p(u_r,v_c) &amp;= \frac{n_{rc}}{n} \\
+\\
+\bar u &amp;= \sum\limits_{r=1}^{R}u_i\frac{n_{r+}}{n} \\
+\\
+\bar v &amp;= \sum\limits_{c=1}^{C}v_i\frac{n_{+ c}}{n}
+\end{align*}\]</span></p>
+<p>With these observations, we can derive the value of <span class="math inline">\(r\)</span> as</p>
+<p><span class="math display">\[\begin{align*} 
+r
+    &amp;= \frac{\widehat{Cov}(U,V)}{\sqrt{s_U^2s_V^2}} \\
+    &amp;= \frac{\frac{\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}
+            (u_r-\bar u)(v_c-\bar v)n_{rc}}{n-1}}
+        {\sqrt{\frac{\sum\limits_{r=1}^{R}(u_r-\bar u)^2}{n-1}
+         \frac{\sum\limits_{c=1}^{C}(v_c-\bar v)^2}{n-1}}} \\
+    &amp;= \frac{\frac{1}{n-1}\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}
+            (u_r-\bar u)(v_c-\bar v)n_{rc}}
+        {\frac{1}{n-1}\sqrt{\sum\limits_{r=1}^{R}(u_r-\bar u)^2
+         \sum\limits_{c=1}^{C}(v_c-\bar v)^2}} \\
+  &amp;= \frac{\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}(u_r-\bar u)(v_c-\bar v)n_{rc}}
+        {\sqrt{\sum\limits_{r=1}^{R}(u_r-\bar u)^2
+         \sum\limits_{c=1}^{C}(v_c-\bar v)^2}} \\
+  &amp;= \frac{\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}
+            (u_rv_c-u_r\bar v-\bar uv_c+\bar u\bar v)n_{rc}}
+        {\sqrt{\bigg(\sum\limits_{r=1}^{R}u_r^2n_{r+}
+            - \frac{1}{n}\Big(\sum\limits_{r=1}^{R}u_rn_{r+}\Big)^2\bigg)
+         \bigg(\sum\limits_{c=1}^{C}v_c^2n_{+ c}
+            - \frac{1}{n}\Big(\sum\limits_{c=1}^{C}v_cn_{+ c}\Big)^2\bigg)}} \\
+  &amp;= \frac{\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}
+            (u_rv_cn_{rc}-u_r\bar vn_{rc}-\bar uv_cn_{rc}+\bar u\bar vn_{rc})}
+        {\sqrt{\bigg(\sum\limits_{r=1}^{R}u_r^2n_{r+}
+            - \frac{1}{n}\Big(\sum\limits_{r=1}^{R}u_rn_{r+}\Big)^2\bigg)
+         \bigg(\sum\limits_{c=1}^{C}v_c^2n_{+ c}
+            - \frac{1}{n}\Big(\sum\limits_{c=1}^{C}v_cn_{+ c}\Big)^2\bigg)}} \\
+  &amp;= \frac{\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}u_rv_cn_{rc}
+            - \sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}u_r\bar vn_{rc}
+            - \sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}\bar uv_cn_{rc}
+            + \sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}\bar u\bar vn_{rc}}
+        {\sqrt{\bigg(\sum\limits_{r=1}^{R}u_r^2n_{r+}
+            - \frac{1}{n}\Big(\sum\limits_{r=1}^{R}u_rn_{r+}\Big)^2\bigg)
+         \bigg(\sum\limits_{c=1}^{C}v_c^2n_{+ c}
+            - \frac{1}{n}\Big(\sum\limits_{c=1}^{C}v_cn_{+ c}\Big)^2\bigg)}} \\
+  &amp;= \frac{\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}u_rv_cn_{rc}
+            - \bar v\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}u_rn_{rc}
+            - \bar u\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}v_cn_{rc}
+            + \bar u\bar v\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}n_{rc}}
+        {\sqrt{\bigg(\sum\limits_{r=1}^{R}u_r^2n_{r+}
+            - \frac{1}{n}\Big(\sum\limits_{r=1}^{R}u_rn_{r+}\Big)^2\bigg)
+         \bigg(\sum\limits_{c=1}^{C}v_c^2n_{+ c}
+            - \frac{1}{n}\Big(\sum\limits_{c=1}^{C}v_cn_{+ c}\Big)^2\bigg)}} \\
+  &amp;= \frac{\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}u_rv_cn_{rc}
+            - \bar v\sum\limits_{r=1}^{R}u_rn_{r+}
+            - \bar u\sum\limits_{c=1}^{C}v_cn_{+ c}
+            + \bar u\bar vn}
+        {\sqrt{\bigg(\sum\limits_{r=1}^{R}u_r^2n_{r+}
+            - \frac{1}{n}\Big(\sum\limits_{r=1}^{R}u_rn_{r+}\Big)^2\bigg)
+         \bigg(\sum\limits_{c=1}^{C}v_c^2n_{+ c}
+            - \frac{1}{n}\Big(\sum\limits_{c=1}^{C}v_cn_{+ c}\Big)^2\bigg)}} \\
+  &amp;= \frac{\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}u_rv_cn_{rc}
+            - \frac{\sum\limits_{c=1}^{C}v_cn_{+ c}\sum\limits_{r=1}^{R}
+                u_rn_{r+}}{n}
+            - \frac{\sum\limits_{r=1}^{R}u_rn_{r+}\sum\limits_{c=1}^{C}
+                v_cn_{+ c}}{n}
+            + n\frac{\sum\limits_{r=1}^{R}u_rn_{r+}\sum\limits_{c=1}^{C}
+                v_cn_{+ c}}{n^2}}
+        {\sqrt{\bigg(\sum\limits_{r=1}^{R}u_r^2n_{r+}
+            - \frac{1}{n}\Big(\sum\limits_{r=1}^{R}u_rn_{r+}\Big)^2\bigg)
+         \bigg(\sum\limits_{c=1}^{C}v_c^2n_{+ c}
+            - \frac{1}{n}\Big(\sum\limits_{c=1}^{C}v_cn_{+ c}\Big)^2\bigg)}} \\
+  &amp;= \frac{\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}u_rv_cn_{rc}
+            - \frac{2\sum\limits_{r=1}^{R}u_rn_{r+}\sum\limits_{c=1}^{C}
+                v_cn_{+ c}}{n}
+            + \frac{\sum\limits_{r=1}^{R}u_rn_{r+}\sum\limits_{c=1}^{C}
+                v_cn_{+ c}}{n}}
+        {\sqrt{\bigg(\sum\limits_{r=1}^{R}u_r^2n_{r+}
+            - \frac{1}{n}\Big(\sum\limits_{r=1}^{R}u_rn_{r+}\Big)^2\bigg)
+         \bigg(\sum\limits_{c=1}^{C}v_c^2n_{+ c}
+            - \frac{1}{n}\Big(\sum\limits_{c=1}^{C}v_cn_{+ c}\Big)^2\bigg)}} \\
+  &amp;= \frac{\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}u_rv_cn_{rc}
+            - \frac{1}{n}(\sum\limits_{r=1}^{R}u_rn_{r+})
+            (\sum\limits_{c=1}^{C}v_cn_{+ c})}
+        {\sqrt{\bigg(\sum\limits_{r=1}^{R}u_r^2n_{r+}
+            - \frac{1}{n}\Big(\sum\limits_{r=1}^{R}u_rn_{r+}\Big)^2\bigg)
+         \bigg(\sum\limits_{c=1}^{C}v_c^2n_{+ c}
+            - \frac{1}{n}\Big(\sum\limits_{c=1}^{C}v_cn_{+ c}\Big)^2\bigg)}}
+\end{align*}\]</span></p>
 
 </div>
             </section>
@@ -411,8 +585,8 @@ MathJax.Hub.Config({
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mcnemar-test.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -439,7 +613,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/MantelHaenszel.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

@@ -1,0 +1,78 @@
+# Geometric Series
+
+A Geometric Series is a series of the form $\sum\limits_{k=1}^{\infty}ar^{k-1}$ 
+where $a\neq 0,\ r\neq 0,1$.  Expanding the series gives $\sum\limits_{k=1}^{\infty}ar^{k-1}=a+ar+ar^2+ar^3+\cdots$.
+
+
+## Partial and Infinite Summations {#geometric-series-partial-and-infinite-summations}
+
+Let $S_k$ denote the sum of a series over $k$ terms (or the $k^{th}$ partial sum).  For the Geometric Series\\
+
+$$\begin{align*}
+S_k
+	&= \sum\limits_{k=1}^{k}ar^{k-1} \\
+	&= a + ar + ar^2 + ar^3 + \cdots + ar^{k-1} \\
+  &= ar^0 + ar^2 + ar^2 + \cdots + ar^{k-1} \\
+	&= a + ar + ar^2 + \cdots + ar^{k-1}
+\end{align*}$$
+
+Notice that $rS_n = ar + ar^2+ a r^3 + \cdots + ar^k$.  So
+
+$$\begin{align*}
+S_k - rS_n
+	&= (a + ar + \cdots + ar^{k-1}) - (ar + ar^2 + \cdots + ar^k) \\
+  &= a + ar - ar + ar^2 - ar^2 + \cdots + ar^{k-2} - ar^{k-2} + ar^{k-1} - ar^{k-1} - ar^k \\
+  &= a - ar^k
+\end{align*}$$
+
+Also 
+
+$$\begin{align*} 
+S_k - rS_k 
+	              &= S_k(1-r) \\
+	              &= a - ar^k \\
+\Rightarrow S_k &= \frac{a-ar^k}{1-r}
+\end{align*}$$
+
+
+
+## Proofs of Convergence
+
+$\sum\limits_{k=1}^{\infty}ar^{k-1}$ converges when $|r|<1$ and diverges when $|r|>1$.
+
+_Proof:_
+
+Recall that the $k^{th}$ partial sum of the Geometric Series is 
+
+$$
+S_k 
+	= \frac{a-ar^k}{1-r}
+$$
+
+And let $S$ denote the sum of the infinite series, i.e. the sum as $k\rightarrow\infty$.
+
+_Case 1:_ $|r|<1$
+
+$$\begin{align*}
+S
+	&= \lim\limits_{k\rightarrow\infty}S_k \\
+	&=  \lim\limits_{k\rightarrow\infty} \frac{a-ar^k}{1-r} \\
+  &= \frac{a-\lim\limits_{k\rightarrow\infty}ar^k}{1-r} \\
+	&= \frac{a}{1-r}
+\end{align*}$$
+
+So $\sum\limits_{k=1}^{\infty}ar^{k-1}$ converges when $|r|<1$ and $S=\frac{a}{1-r}$
+
+
+_Case 2:_ \rm$|r|>1$
+$$\begin{align*}
+S
+	&= \lim\limits_{k\rightarrow\infty}S_k \\
+	&= \lim\limits_{k\rightarrow\infty} \frac{a-ar^k}{1-r} \\
+  &= \frac{a-\lim\limits_{k\rightarrow\infty}ar^k}{1-r} \\
+	&= \frac{a-\infty}{1-r}
+\end{align*}$$
+
+So $\sum\limits_{k=1}^{\infty}ar^{k-1}$ diverges whern $|r|>1$.
+
+

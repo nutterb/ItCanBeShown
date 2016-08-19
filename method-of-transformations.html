@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="summation.html">
+<link rel="next" href="uniform-distribution.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -389,30 +389,60 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-19</em></h4>
-</div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
-<blockquote>
-<p>It can be shown</p>
-</blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+<div id="method-of-transformations" class="section level1">
+<h1><span class="header-section-number">28</span> Method of Transformations</h1>
+<p>Suppose we wish to find the distribution funciton for the random variable <span class="math inline">\(Y\)</span> that is either a strictly increasing or strictly decreasing function (Such a function is sure to have an inverse, whereas a function like <span class="math inline">\(Y=X^2\)</span> does not have an inverse).. If we know the distribution of <span class="math inline">\(X\)</span>, we may use the following to determine the cdf of <span class="math inline">\(Y\)</span>.</p>
+<p><span class="math display">\[\begin{align*} 
+P(Y\leq y)
+    &amp;= P(h(X)\leq y) \\
+    &amp;= P(h^{-1}(h(y))\leq h^{-1}(x)) \\
+    &amp;= P(Y\leq h^{-1}(x)) \\
+\Rightarrow F_Y(y) &amp;= F_X(h^{-1}(x))
+\end{align*}\]</span></p>
+<p>The pdf can now be found by taking the deriviative of the cdf.</p>
+<p><span class="math display">\[\begin{align*}
+f_Y(y)
+    &amp;= \frac{d(F_Y(y))}{d y} \\
+    &amp;= \frac{d F_Y(h^{-1}(y))}{d y} \\
+    &amp;= f_X(h^{-1}(y))\frac{d(h^{-1}(y))}{dy}
+\end{align*}\]</span></p>
+<div id="example-cauchy-distribution" class="section level2">
+<h2><span class="header-section-number">28.1</span> Example: Cauchy Distribution</h2>
+<p>Let <span class="math inline">\(X\)</span> have the Uniform pdf</p>
+<p><span class="math display">\[f(x)=\left\{
+    \begin{array}{ll}
+        \frac{1}{\pi}, &amp; \frac{-\pi}{2}&lt;x&lt;\frac{\pi}{2}\\
+        0 &amp; otherwise  
+    \end{array}\right. 
+\]</span></p>
+<p>Let <span class="math inline">\(Y = \tan (X)\)</span>. The pdf of <span class="math inline">\(Y\)</span> can be found as follows:</p>
+<p><span class="math display">\[\begin{align*} 
+h(x)                                &amp;= \tan (x) \\
+\Rightarrow h^{-1}(x)               &amp;= \tan^{-1}(x) \\
+\Rightarrow \frac{d h^{-1}(x)}{d x} &amp;= \frac{1}{1+x^2} \\
+\Rightarrow f_Y(y)                  &amp;= f_X(h^{-1}(y))\frac{d(h^{-1}(y))}{d y} \\
+                                    &amp;= f_X(tan^{-1}(x))\frac{1}{1+y^2} \\
+                                    &amp;= \frac{1}{\pi}\frac{1}{1+y^2} \\
+                                    &amp;= \frac{1}{\pi(1+y^2)}
+\end{align*}\]</span></p>
+<p>The domain of <span class="math inline">\(Y\)</span> is transformed</p>
+<p><span class="math display">\[
+\frac{-\pi}{2}                            &lt; x        &lt; \frac{-\pi}{2} \\
+\Rightarrow \tan\big(\frac{-\pi}{2}\big)  &lt; \tan(x)  &lt; \tan\big(\frac{-\pi}{2}\big) \\
+\Rightarrow -\infty                       &lt; y        &lt; \infty
+\]</span></p>
+<p>Thus the pdf of the <span class="math inline">\(Y\)</span>, known as the Cauchy distribution, is</p>
+<p><span class="math display">\[f_Y(y) = \frac{1}{\pi(1+y^2)},\ \ -\infty&lt;y&lt;\infty \]</span></p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="summation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="uniform-distribution.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -439,7 +469,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Transformations.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

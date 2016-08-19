@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="analysis-of-variance.html">
+<link rel="next" href="binomial-distribution.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -389,30 +389,143 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-19</em></h4>
+<div id="bernoulli-distribution" class="section level1">
+<h1><span class="header-section-number">3</span> Bernoulli Distribution</h1>
+<div id="probability-mass-function" class="section level2">
+<h2><span class="header-section-number">3.1</span> Probability Mass Function</h2>
+<p>A random variable is said to have a Bernoulli Distribution with parameter <span class="math inline">\(p\)</span> if its probability mass function is: <span class="math display">\[p(x)=\left\{ 
+        \begin{array}{ll}
+            p^x(1-p)^{1-x}, &amp; x=0,1\\
+            0       &amp; \mathrm{otherwise}
+        \end{array} 
+    \right. \]</span> Where <span class="math inline">\(p\)</span> is the probability of a success.</p>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
-<blockquote>
-<p>It can be shown</p>
-</blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+<div id="cumulative-mass-function" class="section level2">
+<h2><span class="header-section-number">3.2</span> Cumulative Mass Function</h2>
+<p> <span class="math display">\[P(x)=\left\{
+        \begin{array}{lll}
+            0   &amp; x&lt;0\\
+            1-p &amp; x=0\\
+            1   &amp; 1\leq x
+        \end{array}
+    \right. \]</span></p>
+<div class="figure">
+<img src="figures/Bernoulli_Distribution-1.png" alt="(\#fig:Bernoulli_Distribution)The graphs on the left and right show a Bernoulli Probability Distribution and Cumulative Distribution Function, respectively, with $p=.4$.  Note that this is identical to a Binomial Distribution with parameters $n=1$ and $p=.4$." width="672" />
+<p class="caption">
+(#fig:Bernoulli_Distribution)The graphs on the left and right show a Bernoulli Probability Distribution and Cumulative Distribution Function, respectively, with <span class="math inline">\(p=.4\)</span>. Note that this is identical to a Binomial Distribution with parameters <span class="math inline">\(n=1\)</span> and <span class="math inline">\(p=.4\)</span>.
+</p>
+</div>
+</div>
+<div id="expected-values" class="section level2">
+<h2><span class="header-section-number">3.3</span> Expected Values</h2>
+<p><span class="math display">\[ 
+\begin{align*}
+E(X) 
+  &amp;= \sum\limits_{i=0}^{1} x\cdot p(x) \\
+    &amp;= \sum\limits_{i=0}^{1} x \cdot p^{x} (1-p)^{1-x}\\
+  &amp;= 0 \cdot p^{0} (1-p)^{1-0} + 1 \cdot p^{1} (1-p)^{1-1}\\
+  &amp;= 0 + p (1-p)^{0}\\
+    &amp;= p\\
+    \\
+    \\
+E(X^{2}) 
+  &amp;= \sum\limits_{i=0}^{1} x^2 \cdot p(x)\\
+  &amp;= \sum\limits_{i=0}^{1} x^{2} \cdot p^x (1-p)^{1-x}\\
+  &amp;= \sum\limits_{i=0}^{1} 0^{2} \cdot p^0 (1-p)^{1-0} + 1^2 \cdot p^1 (1-p)^{1-1}\\
+  &amp;= 0 \cdot 1 \cdot 1 + 1 \cdot p \cdot 1 \\
+    &amp;= 0 + p\\
+    &amp;= p\\
+    \\
+    \\
+\mu &amp;= E(X) = p\\
+  \\
+  \\
+\sigma^2 
+  &amp;= E(X^2) - E(X)^2 \\
+  &amp;= p-p^2 \\
+  &amp;= p(1-p)
+\end{align*}
+\]</span></p>
+</div>
+<div id="moment-generating-function" class="section level2">
+<h2><span class="header-section-number">3.4</span> Moment Generating Function</h2>
+<p><span class="math display">\[\begin{align*}
+M_{X}(t)
+    &amp;= E(e^{tX}) \\
+    &amp;= \sum\limits_{i=0}^{1} e^{tx} p(x) \\
+    &amp;= \sum\limits_{i=0}^{1} e^{tx} p^{x} (1-p)^{1-x}\\
+    &amp;= e^{t0} p^0 (1-p)^{1-0} + e^t p^t (1-p)^{1-1}\\
+    &amp;= (1-p) + e^t p\\
+    &amp;=pe^t + (1-p) \\
+    \\
+    \\
+M^{(1)}_X(t) &amp;= pe^t\\
+  \\
+  \\
+M^{(2)}_X(t) &amp;= pe^t\\
+  \\
+  \\
+E(X)
+    &amp;=M^{(1)}_X(0)\\
+    &amp;= pe^0\\
+    &amp;= pe^0\\
+    &amp;= p\\
+    \\
+    \\
+E(X^2)
+    &amp;= M^{(2)}_X(0)\\
+    &amp;= pe^0\\
+    &amp;= p\\
+    \\
+    \\
+\mu
+  &amp;= E(X)\\
+    &amp;= p\\
+  \\
+  \\
+\sigma^2
+    &amp;= E(X^2) - E(X)^2 \\
+    &amp;= p - p^2 \\
+    &amp;= p (1-p)
+\end{align*}
+\]</span></p>
+</div>
+<div id="theorems-for-the-bernoulli-distribution" class="section level2">
+<h2><span class="header-section-number">3.5</span> Theorems for the Bernoulli Distribution</h2>
+<div id="validity-of-the-distribution" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Validity of the Distribution</h3>
+<p><span class="math display">\[\sum\limits_{x=0}^{1}p^x(1-p)^{1-x}=1\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+\sum\limits_{x=0}^{1} p^x (1-p)^{1-x}
+    &amp;= p^0 (1-p)^1 + p^1 (1-p)^0 \\
+    &amp;= (1-p) + p \\
+    &amp;= 1
+\end{align*}\]</span></p>
+</div>
+<div id="sum-of-bernoulli-random-variables" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Sum of Bernoulli Random Variables</h3>
+<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent and identically distributed random variables from a Bernoulli distribution with parameter <span class="math inline">\(p\)</span>. Let <span class="math inline">\(Y=\sum\limits_{i=1}^{n}X_i\)</span>.\ Then <span class="math inline">\(Y\sim\)</span> Binomial<span class="math inline">\((n,p)\)</span></p>
+<p><em>Proof:</em> <span class="math display">\[\begin{align*}
+M_Y(t)
+    &amp;= E(e^{tY}) \\
+    &amp;= E(e^{tX_1} e^{tX_2} \cdots e^{tX_n}) \\
+    &amp;= E(e^{tX_1}) E(e^{tX_2}) \cdots E(e^{tX_n}) \\
+  &amp;= (pe^t+(1-p)) (pe^t+(1-p)) \cdots (pe^t+(1-p)) \\
+    &amp;= (pe^t+(1-p))^n
+\end{align*}\]</span></p>
+<p>Which is the moment generating function of a Binomial random variable with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>. Thus, <span class="math inline">\(Y\sim\)</span> Binomial<span class="math inline">\((n,p)\)</span>.</p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="analysis-of-variance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="binomial-distribution.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -439,7 +552,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Bernoulli_Distribution.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

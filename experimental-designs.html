@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="covariance.html">
+<link rel="next" href="exponential-distribution.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -389,30 +389,113 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-19</em></h4>
+<div id="experimental-designs" class="section level1">
+<h1><span class="header-section-number">11</span> Experimental Designs</h1>
+<div id="designs-in-categorical-data-analysis" class="section level2">
+<h2><span class="header-section-number">11.1</span> Designs in Categorical Data Analysis</h2>
+<p>Studies in Categorical Data Analysis can be classified into several designs. These designs fall into the following two categories:</p>
+<ol style="list-style-type: decimal">
+<li><em>Retrospective Design</em>: looks at and analyzes measurements that have already been taken.</li>
+<li><em>Prospective Design</em>: specifies the measurements to be collected at a future time.</li>
+</ol>
+<div id="case-control-study" class="section level3">
+<h3><span class="header-section-number">11.1.1</span> Case Control Study</h3>
+<p>In case control studies, the marginal distribution of the <em>response variable</em> is fixed by the sampling design. In other words, researchers select particular numbers of each category of the response variable in order to ensure that enough of each case are included in the sample. The result is that the marginal distribution of the response is non-random.</p>
+<p>Unfortunately, in order to calculate conditional probabilities, the marginal distribution of interest must be random. The difference of proportions for the response and the relative risk are both based on the marginal distribution of the response, and are both invalid procedures in case-control studies.</p>
+<p>In taking the measurements, researchers idenitfy people who are already classified into the response variable, making the design retrospective.</p>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
-<blockquote>
-<p>It can be shown</p>
-</blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+<div id="cross-sectional-study" class="section level3">
+<h3><span class="header-section-number">11.1.2</span> Cross Sectional Study</h3>
+</div>
+<div id="cohort-study" class="section level3">
+<h3><span class="header-section-number">11.1.3</span> Cohort Study</h3>
+<p>In Cohort Studies, subjects make their own choice about which group in the explanatory variable to join and researchers monitor the subjects with respect to a response variable over a period of time. Both the explanatory and response variables are random and only the total sample size is fixed by the researcher. Thus, conditional probabilities may be computed for both the predictor and response variables; differences in proportions may be estimated; and the relative risk is defined for the response variable.</p>
+<p>Since subjects select the group in which they will be and a measurement of their response is taken later, cohort studies are prospective.</p>
+</div>
+<div id="randomized-study" class="section level3">
+<h3><span class="header-section-number">11.1.4</span> Randomized Study</h3>
+<p>In randomized Studies, the researcher randomly assigns subjects to the explanatory variable and then observes their response (making this a prospective study). The marginal distribution of the explanatory variable is therefore fixed, and conditional probabilities may not be computed.</p>
+<p>The response variable, on the other hand, is random and conditional probabilites may be computed, as well as the difference of proportions and relative risk.</p>
+</div>
+<div id="summary-of-designs" class="section level3">
+<h3><span class="header-section-number">11.1.5</span> Summary of Designs</h3>
+<table align = 'center' style = 'border-collapse:collapse;'>
+<tr>
+<th colspan = '1'; rowspan = '1'; style='text-align:left;'></th>
+<th colspan = '1'; rowspan = '1'; style='text-align:left;'></th>
+<th colspan = '1'; rowspan = '1'; style='text-align:left;'></th>
+<th colspan = '1'; rowspan = '1'; style='text-align:left;'></th>
+<th colspan = '1'; rowspan = '1'; style='text-align:left;'></th>
+<th colspan = '1'; rowspan = '1'; style='text-align:left;'></th>
+</tr>
+<tr>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid Black;padding:3px;'></td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid Black;padding:3px;'>conditional</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid Black;padding:3px;'>conditional</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid Black;padding:3px;'></td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid Black;padding:3px;'></td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-top:1px solid Black;padding:3px;'></td>
+</tr>
+<tr>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;padding:3px;'></td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;padding:3px;'>probability</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;padding:3px;'>probability</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;padding:3px;'>difference of</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;padding:3px;'>Relative</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;padding:3px;'>Odds</td>
+</tr>
+<tr>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'></td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>explanatory</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>response</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>proportions</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>Risk</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>Ratio</td>
+</tr>
+<tr>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>Case Control</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'></td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'></td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'></td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+</tr>
+<tr>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>Cross-Sectional</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+</tr>
+<tr>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>Cohort</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+</tr>
+<tr>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>Randomized</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'></td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+<td colspan = '1'; rowspan = '1'; style='text-align:left;border-bottom:1px solid Black;padding:3px;'>xxx</td>
+</tr>
+</table></br></br>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="covariance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exponential-distribution.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -439,7 +522,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/ExperimentalDesign.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

@@ -1,0 +1,185 @@
+# Binomial Theorem
+
+The Binomial Theorem is useful in developing theory around the Binomial and Hypergeometric Distributions.  Two proofs of the Theorem are provided here; one using the traditional approach, and one using a more general approach.  Other useful theorems are provided at the end of this chapter.
+
+## Traditional Proof
+
+### Lemma: Pascal's rule
+
+Let $n$ and $x$ be non-negative integers such that $x\leq n$.
+
+Then ${n-1\choose x} + {n-1\choose x-1} = {n\choose x}$.
+
+_Proof:_
+
+$$\begin{align*}
+{n-1\choose x} + {n-1\choose x-1}
+	&= \frac{(n-1)!}{x!(n-1-x)!} + \frac{(n-1)!}{(x-1)!((n-1)-(x-1))!}\\
+  &= \frac{(n-1)!}{x!(n-x-1)!} + \frac{(n-1)!}{(x-1)!(n-1-x+1)!}\\
+  &= \frac{(n-1)!}{x!(n-x-1)!} + \frac{(n-1)!}{(x-1)!(n-x)!}\\
+  &= \frac{(n-1)!}{x(x-1)!(n-x-1)!} + \frac{(n-1)!}{(x-1)!(n-x)(n-x-1)!}\\
+  &= \frac{x(n-1)!}{x(x-1)!(n-x)(n-x-1)!}
+	  	+\frac{(n-x)(n-1)!}{x(x-1)!(n-x)(n-x-1)!}\\
+  &= \frac{x(n-1)!+(n-x)(n-1)!}{x(x-1)!(n-x)(n-x-1)!} \\
+	&= \frac{(x+n-x)(x-1)!}{x(x-1)!(n-x)(n-x-1)!}\\
+  &= \frac{n(n-1)!}{x(x-1)!(n-x)(n-x-1)!} \\
+	&= \frac{n!}{x!(n-x)!} \\
+	&= {n\choose x}
+\end{align*}$$
+
+
+### The Binomial Theorem {#binomial-theorem-traditional}
+
+Let $a$ and $b$ be constants and let $n$ be any positive integer.  Then
+
+$$(a+b)^n = \sum\limits_{x=0}^{n} {n\choose x} a^{n-x} b^x$$
+
+_Proof:_
+
+This proof is completed by mathematical induction.
+
+Base Step: $n=1$
+
+$$\begin{align*}
+(a+b)^1
+	&= \sum\limits_{x=0}^{1} {1\choose x} a^{1-x} b^x \\
+	&= {1\choose 0} a^{1-0} b^0 + {1\choose 1} a^{1-1} b^1 \\
+	&= 1\cdot a\cdot 1 + 1\cdot 1\cdot b \\
+	&= a+b
+\end{align*}$$
+
+Inductive Step: Assume that the Theorem holds for $n$, and show it is true for $n+1$.
+
+$$\begin{align*}
+(a+b)^{n+1}
+      	&= (a+b)(a+b)^n \\
+      	&= a(a+b)^n + b(a+b)^n \\
+        &= a(a^n + \sum\limits_{x=1}^{n-1}{n\choose x}a^{n-x}b^x + b^n)
+      		+ b(a^n + \sum\limits_{x=1}^{n-1}{n\choose x}a^{n-x}b^x+b^n) \\
+        &= (a^{n+1}+a\sum\limits_{x=1}^{n-1}{n\choose x}a^{n-x}ab^x)
+      		+ (a^nb+\sum\limits_{x=1}^{n-1}{n\choose x}a^{n-x}b^x+b^{n+1}) \\
+        &= (a^{n+1}+\sum\limits_{x=1}^{n-1}{n\choose x}a^{n-x+1}ab^x)
+      		+ (a^nb+\sum\limits_{x=1}^{n-1}{n\choose x}a^{n-x}b^{x+1}+b^{n+1}) \\
+^{[1]}  &= (a^{n+1}+\sum\limits_{x=1}^{n}a^{n-x+1}b^x)
+	      	+ (\sum\limits_{x=0}^{n-1}{n\choose x}a^{n-x}b^{x+1}+b^{n+1}) \\
+^{[2]}  &= (a^{n+1}+\sum\limits_{x=1}^{n}{n\choose x}a^{n-x+1}b^x)
+	      	+ \sum\limits_{x-1}^{n-1}{n\choose x-1}a^{n-x+1}b^{x+1-1}+b^{n+1}) \\
+^{[3]}  &= a^{n+1} + \sum\limits_{x+1}^{n}{n+1\choose x}a^{n-x+1}b^x + b^{n+1} \\
+        &=a^{n+1}+\sum\limits_{x=1}^{n}{n+1\choose x}a^{(n+1)-x}b^x+b^{n+1} \\
+^{[4]}	&= \sum\limits_{x=0}^{n+1}{n+1\choose x}a^{(n+1)-x}b^x
+\end{align*}$$
+
+This completes both the inductive step and the proof.
+
+> 1. $ab^n={n\choose n}a^{n-n+1}b^n$ which is the term for $x=n$ in the first summation.  
+>    $a^nb={n\choose 0}a^{n-0}b^1$ which is the term for $x=0$ in the second summation.
+> 2. $\sum\limits_{x=0}^{n-1}{n\choose x}a^{n-x}b^{x+1} \\
+      \ \ \ \ = \sum\limits_{x=1}^{n}{n\choose x-1}a^{n-(x-1)}b^{(x-1)+1} \\
+      \ \ \ \ = \sum\limits_{x=1}^{n}{n\choose x-1}a^{n-x+1}b^x$
+> 3. This step is made using Pascal's Rule with $n=n-1$.
+> 4. $a^{n+1}={n+1\choose 0}a^{(n+1)-0}b^0$ which is the term for $x=0$ in the summation.  
+>		 $\ \ b^{n+1}={n+1\choose n+1}a^{(n+1)-(n+1)}b^{n+1}$ which is the term for $x=n+1$ in the summation
+      
+
+## General Approach
+
+### A Binomial Expansion Theorem
+
+This theorem and its corrolary are provided by Brunette\cite{Bruneta}.
+
+For any positive integer $n$, let $B_n = (x_1+y_1) (x_2+y_2) \cdots (x_n+y_n)$.  In the expansion $B_n$, before combining possible like terms, the following are true:
+
+i. There will be $2^n$ terms.
+ii. Each of these terms will be a product of $n$ factors.
+iii.  In each such product there will be one factor from each binomial (in $B_n$).
+iv. Every such product of $n$ factors, one from each binomial, is represented in the expansion.
+
+_Proof:_
+
+Proof is done by induction.
+
+For the case $n=1$, the result is clear.
+
+Now assume that the theorem is true for a particular $n$ and consider $B_{n+1}$.
+
+$$ B_{n+1} = B_n(x_{n+1} + y_{n+1}) = B_nx_{n+1} + B_ny_{n+1} $$
+
+By the inductive assumption, $B_n = T_1 + T_2 + \cdots + T_{2^n}$ where each $T_i$ is a product of $n$ factors, one factor from each binomial.  It follows that every term in the expansion of $B_n+1$ is either of the type $T_ix_{n+1}$ or $T_iy_{n+1}$, for some $1\leq i \leq 2^n$.  But each term of either of the above types is clearly a product of $n+1$ factors with one factor coming from each binomial.  thus, if _(ii)_ and _(iii)_ are true for $B_n$, then they are true for $B_n+1$.
+
+Next, by the inductive assumption, the expansion of $B_n$ is a sum of $2^n+2^n$ terms, i.e., $2^{n+1}$ terms.  This completes the inductive step for _(i)_.
+
+Lastly, it remains for us to consider a product of the type $p_1 p_2 \cdots p_n p_{n+1}$ where, for each $1\leq i\leq n+1$, $p_i = x_i$ or $p_i = y_i$.  By the inductive hypothesis, $p_1 p_2 \cdots p_n$ is a term in the expansion of $B_n$.  If $p_{n+1} = x_{n+1}$, then $p_1 p_2 \cdots p_n p_{n+1}$ is a term in the expansion of $B_nx_{n+1}$, and so of $B_{n+1}$.  Likewise, if $p_{n+1}=y_{n+1}$, then $p_1 p_2 \cdots p_n p_{n+1}$ is a term in the expansion of $B_n y_{n+1}$, and so of $B_{n+1}$.  This completes the inductive step and the proof.
+
+
+### Corollary: Binomial Theorem
+
+Let $x$ and $y$ be constants and let $n$ be any positive integer.
+
+Then $\displaystyle (x+y)^n = \sum\limits_{i=0}^{n} {n\choose i} x^{n-i} y^i\\$
+
+_Proof:_
+
+Since each term in the expansion will have $n$ terms, each term must follow the form $x^{n-i} y^i$ for $0 \leq i \leq n$, and in all, there are $2^n$ such terms.  For any given value of $i$, the number of terms of the form $x^{n-i}y^i$ is clearly the number of ways one can choose the $i$ factors of $y$ from the $n$ available binomials, i.e., ${n\choose i}$, which gives
+
+$$(x+y)^n = \sum\limits_{i=0}^{n}{n\choose i} x^{n-i} y^i$$
+
+
+## Other Theorems
+
+### Theorem {#binomialtheorem-other-theorem-1}
+
+$${N_1\choose 0}{N_2\choose n} + {N_1\choose 2}{N_2\choose n-1} + \cdots
+		+ {N_1\choose n-1}{N_2\choose 1} + {N_1\choose n}{N_2\choose 0}
+	= {N_1+N_2\choose n}$$
+
+where $0 \leq n \leq N_1 + N_2$.
+
+_Proof:_
+
+Using the Binomial Theorem we establish
+
+$$
+(1+a)^{N-1} (1+a)^{N_2} = (1+a)^{N_1+N_2} \\
+\Rightarrow [{N_1\choose 0}a^0+\cdots+{N_1\choose N_1}a^{N_1}]\cdot
+		[{N_2\choose 0}a^0+\cdots+{N_2\choose N_2}a^{N_2}] \\
+  \ \ \ \ ={N_1+N_2\choose 0}+{N_1+N_2\choose 1}a+\cdots
+		+{N_1+N_2\choose N_1+N_2}a^{N_1+N_2}  
+$$
+
+Expanding the left side of the equation gives
+
+$$
+{N_1\choose 0}{N_2\choose 0} + {N_1\choose 0}{N_2\choose 1}a + \cdots
+		+ {N_1\choose 0}{N_2\choose N_2}a^{N_2} + {N_1\choose 1}{N_2\choose 0}a \\
+\ \ \ \ + \cdots + {N_1\choose 1}{N_2\choose N_2}a^{N_2+1}
+		+ \cdots + {N_1\choose N_1}{N_2\choose 0}a^{N_1}
+		+ {N_1\choose N_1}{N_2\choose 1}a^{N_1+1}  \\
+\ \ \ \ + \cdots + {N_1\choose N_1}{N_2\choose N_2}a^{N_1+N_2} \\
+= {N_1\choose 0}{N_2\choose 0}+{N_1\choose 0}{N_2\choose 1}a
+		+ {N_1\choose 1}{N_2\choose 0}a \\
+\ \ \ \ + {N_1\choose 0}{N_2\choose 2}a^2+{N_1\choose 1}{N_2\choose 1}a^2
+		+ {N_1\choose 2}{N_2\choose 0}a^2 \\
+\ \ \ \ + \cdots + {N_1\choose N_1}{N_2\choose N_2}a^{N_1+N_2}
+$$
+
+Notice that for any $n$ where $0 \leq n \leq N_1 + N_2$, the coefficient for $a^n$, found by combining like terms, is ${N_1\choose 0}{N_2\choose n} + {N_1\choose 1}{N_2\choose n-1} + \cdots+{N_1\choose n-1}{N_2\choose 1} + {N_1\choose 0}{N_2\choose n}$ and, by the equivalence of the first equation in the proof, is equal to the coefficient ${N_1 + N_2\choose n}$.
+
+
+### Theorem
+$$\frac{\sum\limits_{i=1}^{n}{N_1\choose i}{N_2\choose n-i}}{{N_1+N_2\choose n}} = 1$$ 
+
+for $0 \leq n \leq N_1 + N_2$.\\
+
+_Proof:_
+
+Theorem \@ref(binomialtheorem-other-theorem-1) establishes the equality 
+
+$$
+{N_1\choose 0}{N_2\choose n}+{N_1\choose 2}{N_2\choose n-1} + \cdots
+		+ {N_1\choose n-1}{N_2\choose 1}+{N_1\choose n}{N_2\choose 0}
+	= {N_1+N_2\choose n} \\
+\Rightarrow\sum\limits_{i=1}^{n}{N_1\choose i}{N_2\choose n-i}
+	= {N_1+N_2\choose n} \\
+\Rightarrow\frac{\sum\limits_{i=1}^{n} {N_1\choose i}{N_2\choose n-i}} {{N_1+N_2\choose n}}
+	= 1
+$$

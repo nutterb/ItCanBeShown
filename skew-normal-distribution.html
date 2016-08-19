@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="real-number-system.html">
+<link rel="next" href="somers-d.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -389,30 +389,166 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-19</em></h4>
+<div id="skew-normal-distribution" class="section level1">
+<h1><span class="header-section-number">25</span> Skew-Normal Distribution</h1>
+<div id="preliminary-theorems" class="section level2">
+<h2><span class="header-section-number">25.1</span> Preliminary Theorems</h2>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
+<div id="lemma-a-symmetry-theorem" class="section level2">
+<h2><span class="header-section-number">25.2</span> Lemma: A Symmetry Theorem</h2>
+<p>Suppose the pdf of <span class="math inline">\(X\)</span>, <span class="math inline">\(f_X\)</span> is symmetric about 0. Let <span class="math inline">\(w(\cdot)\)</span> be any odd function. Then the pdf of <span class="math inline">\(Y=w(X)\)</span>, <span class="math inline">\(f_Y\)</span>, is also symmetric about 0.</p>
+<p><em>Proof:</em></p>
+<p>Recall that if a pdf is symmetric about zero, it must demonstrate the property <span class="math inline">\(P(T\leq t)=P(T\geq-t)\)</span>. Since <span class="math inline">\(f_X\)</span> is symmetric, we know</p>
+<p><span class="math display">\[\begin{align*}
+P(X\leq x)                            &amp;= P(X\geq-x) \\
+\Rightarrow P\big[ w(X)\leq w(x)\big] &amp;= P\big[ w(X)\geq w(-x)\big]
+    ^{[1]}                              &amp;= P\big[ w(X)\geq-w(x)\big] \\
+                                      &amp;= P(Y\leq y) \\
+                                        &amp;= P(Y\geq-y)
+\end{align*}\]</span></p>
+<p>Thus <span class="math inline">\(f_Y\)</span> is symmetric about 0.</p>
 <blockquote>
-<p>It can be shown</p>
+<ol style="list-style-type: decimal">
+<li>By the definition of an odd function <span class="math inline">\(f(-x)=-f(x)\)</span>.</li>
+</ol>
 </blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+</div>
+<div id="lemma-1" class="section level2">
+<h2><span class="header-section-number">25.3</span> Lemma</h2>
+<p>Let <span class="math inline">\(f_0\)</span> be a one-dimensional probability density function symmetric over 0.</p>
+<p>Also, let <span class="math inline">\(G\)</span> be a one dimensional probability distribution function such that <span class="math inline">\(G^\prime\)</span> exists and is a density function symmetric over 0. Then</p>
+<p><span class="math display">\[  \begin{array}{rl}
+        f(x) = 2 f_0(x) G\big(w(x)\big) &amp; (-\infty&lt;x&lt;\infty)\\
+    \end{array}
+\]</span></p>
+<p>is a probability density function for any odd fuction <span class="math inline">\(w(\cdot)\)</span>.\</p>
+<p><em>Proof:</em></p>
+<p>Let <span class="math inline">\(X\sim f_0\)</span> and <span class="math inline">\(Y\sim G^\prime\)</span>.</p>
+<p>Now consider the random variable <span class="math inline">\(X-w(Y)|Y\)</span>.</p>
+<p>When <span class="math inline">\(Y\)</span> is fixed, <span class="math inline">\(X-w(Y)\)</span> is an odd function of <span class="math inline">\(X\)</span> and, by Lemma , <span class="math inline">\(X-w(Y)\)</span> is symmetric over 0. Thus,</p>
+<p><span class="math display">\[\begin{align*}
+\frac{1}{2} 
+                        &amp;= P\big(X-w(Y)\leq0|Y\big) \\
+                ^{[1]}  &amp;= E\Big[ P\big(X-w(Y)\leq0|Y\big) \Big] \\
+\Rightarrow \frac{1}{2} &amp;= E\big[ P\big( X\leq w(Y)|Y\big) \big]\\
+\Rightarrow \frac{1}{2} &amp;= \int\limits_{-\infty}^{\infty} P\big(X \leq w(Y)|Y\big) p(x) dx\\
+\Rightarrow \frac{1}{2} &amp;= \int\limits_{-\infty}^{\infty} G\big( w(Y) \big) f_0(x)dx\\
+\Rightarrow 1           &amp;= 2 \int\limits_{-\infty}^{\infty} f_0(X) G\big( w(Y) \big) dx
+\end{align*}\]</span></p>
+<p>So <span class="math inline">\(f(x) = 2 f_0(x)G\big(w(y)\big)\)</span> is a valid density function for all <span class="math inline">\(x,\ x\in\Re\)</span>.</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>The expected value of <span class="math inline">\(P(X\leq 0)=\frac{1}{2}\)</span> when <span class="math inline">\(X\)</span> is distributed symmetric over 0.</li>
+</ol>
+</blockquote>
+</div>
+<div id="expected-values-8" class="section level2">
+<h2><span class="header-section-number">25.4</span> Expected Values</h2>
+<p><span class="math display">\[\begin{align*}
+E(X)
+    &amp;= \int\limits_{-\infty}^{\infty} x \cdot 2 f(x) \Phi(\alpha x)dx \\
+    &amp;= 2 \int\limits_{-\infty}^{\infty} x f(x) \Phi(\alpha x)dx \\
+  &amp;= 2 \int\limits_{-\infty}^{\infty} x \frac{1}{\sqrt{2\pi}} \exp\bigg\{ -\frac{x^2}{2} \bigg\}
+        \Bigg[ \int\limits_{-\infty}^{\alpha x} \frac{1}{\sqrt{s\pi}} 
+            \exp\bigg\{ -\frac{t^2}{2} \bigg\}dt \Bigg]dx \\
+  &amp;= 2\int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\alpha x}
+        x \frac{1}{\sqrt{2\pi}} \exp\bigg\{ -\frac{x^2}{2} \bigg\}
+        \frac{1}{\sqrt{2\pi}} \exp\bigg\{ -\frac{t^2}{2} \bigg\} dt dx \\
+  &amp;= \frac{2}{2\pi} \int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\alpha x}
+        x \exp\bigg\{ -\frac{x^2}{2} \bigg\} \exp\bigg\{ -\frac{t^2}{2} \bigg\} dt dx \\
+  &amp;= \frac{1}{\pi} \int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\alpha x}
+        x \exp\bigg\{ -\frac{x^2}{2} \bigg\} \exp\bigg\{ -\frac{t^2}{2} \bigg\} dt dx
+\end{align*}\]</span></p>
+<p>But <span class="math inline">\(\exp\bigg\{ -\frac{t^2}{2} \bigg\}\)</span> cannot be integrated in closed form, so the solution must be found with numerical methods.</p>
+<p><span class="math display">\[\begin{align*}
+E(X^2)
+    &amp;= \int\limits_{-\infty}^{\infty} x^2 \cdot 2 f(x) \Phi(\alpha x)dx \\
+    &amp;= 2 \int\limits_{-\infty}^{\infty} x^2 f(x) \Phi(\alpha x)dx \\
+  &amp;= 2 \int\limits_{-\infty}^{\infty} x^2 \frac{1}{\sqrt{2\pi}} \exp\bigg\{ -\frac{x^2}{2} \bigg\}
+        \Bigg[ \int\limits_{-\infty}^{\alpha x} \frac{1}{\sqrt{s\pi}} 
+            \exp\bigg\{ -\frac{t^2}{2} \bigg\}dt \Bigg]dx \\
+  &amp;= 2\int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\alpha x}
+        x^2 \frac{1}{\sqrt{2\pi}} \exp\bigg\{ -\frac{x^2}{2} \bigg\}
+        \frac{1}{\sqrt{2\pi}} \exp\bigg\{ -\frac{t^2}{2} \bigg\} dt dx \\
+  &amp;= \frac{2}{2\pi} \int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\alpha x}
+        x^2 \exp\bigg\{ -\frac{x^2}{2} \bigg\} \exp\bigg\{ -\frac{t^2}{2} \bigg\} dt dx \\
+  &amp;= \frac{1}{\pi} \int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\alpha x}
+        x^2 \exp\bigg\{ -\frac{x^2}{2} \bigg\} \exp\bigg\{ -\frac{t^2}{2} \bigg\} dt dx
+\end{align*}\]</span></p>
+<p>But <span class="math inline">\(\exp\bigg\{ -\frac{t^2}{2} \bigg\}\)</span> cannot be integrated in closed form, so the solution must be found with numerical methods.</p>
+</div>
+<div id="estimation-of-lambda" class="section level2">
+<h2><span class="header-section-number">25.5</span> Estimation of <span class="math inline">\(\lambda\)</span></h2>
+<p>Using the Moment Generating Function, it was shown that the skew of the Skew-Normal distribution can be calculated as <span class="math display">\[
+S=sign(\lambda) \bigg(2 - \frac{\pi}{2}\bigg) 
+        \Bigg(\frac{\lambda^2}
+            {\frac{pi}{2}+(\frac{pi}{2}-1)\lambda^2}\Bigg)^{\frac{3}{2}}
+\]</span></p>
+<p>where <span class="math inline">\(S\)</span> denotes the skew of the distribution. Given a value of skew for the distribution, a link can be made back to <span class="math inline">\(\lambda\)</span>. We begin by noticing that the following process is identical regardless of the sign of <span class="math inline">\(\lambda\)</span>. It is presented here as if <span class="math inline">\(\lambda&gt;0\)</span></p>
+<p><span class="math display">\[\begin{align*}
+S
+    &amp;= \bigg( 2-\frac{\pi}{2} \bigg)
+        \Bigg( \frac{\lambda^2} {\frac{\pi}{2}+\big(\frac{\pi}{2}-1\big)
+            \lambda^2} \Bigg)^{3/2} \\
+\Rightarrow \bigg( \frac{S}{2-\frac{\pi}{2}} \bigg)
+        &amp;= \Bigg( \frac{\lambda^2} {\frac{\pi}{2}+\big(\frac{\pi}{2}-1\big)
+            \lambda^2} \Bigg)^{3/2} \\
+\Rightarrow \bigg( \frac{S}{2-\frac{\pi}{2}} \bigg)^{2/3}
+        &amp;= \Bigg( \frac{\lambda^2} {\frac{\pi}{2}+\big(\frac{\pi}{2}-1\big)
+            \lambda^2} \Bigg) \\
+\Rightarrow T 
+        &amp;= \Bigg( \frac{\lambda^2} {\frac{\pi}{2}+\big(\frac{\pi}{2}-1\big)
+            \lambda^2} \Bigg) \\
+\Rightarrow \bigg( \frac{\pi}{2} + \Big(\frac{\pi}{2}-1\Big) \lambda^2 \Bigg)T
+        &amp;= \lambda^2 \\
+\Rightarrow \frac{\pi}{2}T + \Big( \frac{\pi}{2}-1 \Big) \lambda^2 T
+        &amp;= \lambda^2 \\
+\Rightarrow \frac{\pi}{2}T
+        &amp;= \lambda^2 - \Big( \frac{\pi}{2}-1 \Big) \lambda^2 T \\
+\Rightarrow \frac{\pi}{2}T
+        &amp;= \lambda^2 \bigg(1 - \Big( \frac{\pi}{2}-1 \Big) T \bigg) \\
+\Rightarrow \lambda^2
+        &amp;= \frac{ \frac{\pi}{2}T }
+            { 1-\Big( \frac{\pi}{2}-1 \Big) T } \\
+\Rightarrow \lambda^2
+        &amp;=  \frac{ \frac{\pi}{2} \Big( \frac{S}{2-\frac{\pi}{2}} \Big)^{2/3} }
+            { 1-\Big( \frac{\pi}{2}-1 \Big) \frac{S}{2-\frac{\pi}{2}} \bigg)^{2/3}\\ } \\
+\Rightarrow \lambda
+        &amp;= \frac{ \sqrt{\frac{\pi}{2}} \Big( \frac{S}{2-\frac{\pi}{2}} \Big)^{1/3} }
+            { \sqrt{ 1-\Big( \frac{\pi}{2}-1 \Big) 
+                \frac{S}{2-\frac{\pi}{2}} \bigg)^{2/3}} }
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Let <span class="math inline">\(T=\big( \frac{S}{2-\frac{\pi}{2}} \big)^{2/3}\)</span></li>
+</ol>
+</blockquote>
+<p>This equation is only defined for certain values of <span class="math inline">\(S\)</span>. In particular, <span class="math inline">\(S\)</span> cannot be a number such that the denominator is 0, nor can the that which appears under the radical be negative. These two restrictions can be collapsed, and the equation is defined so long as</p>
+<p><span class="math display">\[\begin{align*}
+1-\Big( \frac{\pi}{2}-1 \Big) \bigg(\frac{S}{2-\frac{\pi}{2}}\bigg)^{2/3} &gt; 0 \\
+\Rightarrow 1 
+        &gt; \Big( \frac{\pi}{2}-1 \Big) \bigg(\frac{S}{2-\frac{\pi}{2}}\bigg)^{2/3} \\
+\Rightarrow \Big( \frac{\pi}{2}-1 \Big)^{-1}
+        &gt; \bigg( \frac{S}{2-\frac{\pi}{2}} \bigg)^{2/3} \\
+\Rightarrow \frac{ \Big( 2-\frac{\pi}{2} \Big)^{2/3} }
+            { \frac{\pi}{2}-1 }
+        &gt; S^{2/3} \\
+\Rightarrow \frac{ 2-\frac{\pi}{2} }
+            { \Big( \frac{\pi}{2}-1 \Big)^{3/2} }
+        &gt; S \\
+\Rightarrow -.9952 &lt; S &lt; .9952
+\end{align*}\]</span></p>
+<p>We notice that the endpoints of this interval are approximations. Ideally, the interval would span from -1 to 1, as most estimators of skew provide a value in that interval–values close to negative one denoting a strong left skew; values close to one denoting a strong right skew; 0 denoting perfect symmetry. Although this relationship is not perfect, it is quite close to what we would like, and can be practically implemented.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="real-number-system.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="somers-d.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -439,7 +575,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/SkewNormal.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

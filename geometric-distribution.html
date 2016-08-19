@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="gamma-distribution.html">
+<link rel="next" href="geometric-series.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -389,30 +389,312 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-19</em></h4>
+<div id="geometric-distribution" class="section level1">
+<h1><span class="header-section-number">15</span> Geometric Distribution</h1>
+<div id="probability-mass-function-2" class="section level2">
+<h2><span class="header-section-number">15.1</span> Probability Mass Function</h2>
+<p>A random variable <span class="math inline">\(X\)</span> is said to have a Geometric Distribution with parameter <span class="math inline">\(p\)</span> if its probability mass function is</p>
+<p><span class="math display">\[p(x) = \left\{
+    \begin{array}{ll}
+        p(1-p)^{x-1}, &amp; x=1,2,3,\ldots\\
+        0 &amp; otherwise 
+    \end{array} \right. 
+\]</span></p>
+<p>where <span class="math inline">\(p\)</span> is the probability of a success on any given trial and <span class="math inline">\(x\)</span> is the number of trials until the first success.</p>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
+<div id="cumulative-distribution-function-3" class="section level2">
+<h2><span class="header-section-number">15.2</span> Cumulative Distribution Function</h2>
+<p>The cumulative probability of <span class="math inline">\(x\)</span> is computed as the <span class="math inline">\(x^{th}\)</span> partial sum of the Geometric Series See <a href="geometric-series.html#geometric-series-partial-and-infinite-summations">16.1</a>.</p>
+<p><span class="math display">\[\begin{align*} 
+P(x) 
+    &amp;= \sum\limits_{i=1}^{x}p(1-p)^{x-1} \\
+    &amp;= \frac{p-p(1-p)^{x-1}}{1-(1-p)} \\
+    &amp;= \frac{p[1-(1-p)^{x-1}]}{p} \\
+    &amp;= 1-(1-p)^{x-1}
+\end{align*}\]</span></p>
+<p>So</p>
+<p><span class="math display">\[P(x) = \left\{
+    \begin{array}{ll}
+        1-(1-p)^{x-1},&amp; x=1,2,3,\ldots\\
+        0 &amp; otherwise 
+    \end{array} \right. 
+\]</span></p>
+<p>A recursive form of the cdf can be derived and has some usefulness in computer applications. With it, one need only initiate the first value and additional cumulative probabilities can be calculated. It is derived as follows:</p>
+<p><span class="math display">\[\begin{align*}
+P(X=x+1)
+    &amp;= p(1-p)^x \\
+    &amp;= (1-p)p(1-p)^{x-1} \\
+    &amp;= (1-p)P(X=x)
+\end{align*}\]</span></p>
+<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<img src="figures/unnamed-chunk-3-1.png" alt="The figures on the left and right display the Geometric probability and cumulative distirubtion functions, respectively, for the combinations of $p=.3$." width="672" />
+<p class="caption">
+Figure 15.1: The figures on the left and right display the Geometric probability and cumulative distirubtion functions, respectively, for the combinations of <span class="math inline">\(p=.3\)</span>.
+</p>
+</div>
+</div>
+<div id="expected-values-5" class="section level2">
+<h2><span class="header-section-number">15.3</span> Expected Values</h2>
+<p><span class="math display">\[\begin{align*} 
+E(X)
+        &amp;= \sum\limits_{x=1}^{\infty}x\cdot p(1-p)^{x-1} \\
+        &amp;= p\sum\limits_{x=1}^{\infty}x\cdot (1-p)^{x-1} \\
+^{[1]}  &amp;= p\sum\limits_{x=1}^{\infty}x\cdot q^{x-1} \\
+^{[2]}  &amp;= p\frac{d}{dq}\Big(\sum\limits_{x=1}^{\infty}q^x\Big) \\
+        &amp;= p\frac{d}{dq}\Big(\sum\limits_{x=1}^{\infty}q\cdot q^{x-1}\Big) \\
+^{[3]}  &amp;= p\frac{d}{dq}\Big(\frac{q}{1-q}\Big) \\
+^{[4]}  &amp;= p\Big(\frac{(1-q)\cdot 1-q(-1)}{(1-q)^2}\Big) \\
+          &amp;= p\Big(\frac{1-q+q}{(1-q)^2}\Big) \\
+          &amp;= p\Big(\frac{1}{(1-q)^2}\Big) \\
+^{[5]}  &amp;= p\cdot\frac{1}{p^2}
+        &amp;= \frac{p}{p^2}
+        &amp;= \frac{1}{p}
+\end{align*}\]</span></p>
 <blockquote>
-<p>It can be shown</p>
+<ol style="list-style-type: decimal">
+<li>Let <span class="math inline">\(1-p = 1\)</span></li>
+<li><span class="math inline">\(a\cdot x^{a-1}=\frac{d}{dx}(x^a)\)</span></li>
+<li><span class="math inline">\(\sum\limits_{k=1}^{\infty}ar^{k-1}=\frac{a}{1-r}\)</span> (Geometric Series <a href="geometric-series.html#geometric-series-partial-and-infinite-summations">16.1</a>).</li>
+<li>Product Rule for Differentiation:<br />
+<span class="math inline">\(\frac{d}{dx}(\frac{f(x)}{g(x)}) = \frac{g\prime(x)\cdot f(x)-f\prime(x)\cdot g(x)}{g^2(x)}\)</span></li>
+<li><span class="math inline">\(1-p=q \ \ \Rightarrow p=1-q\)</span></li>
+</ol>
 </blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+<p><span class="math display">\[\begin{align*} 
+E[X(X-1)]
+^{[1]}  &amp;= \sum\limits_{x=2}^{\infty}x(x-1)p(1-p)^{x-1} \\
+          &amp;= p(1-p)\sum\limits_{x=2}^{\infty}x(x-1)(1-p)^{x-2} \\
+^{[2]}  &amp;= pq\sum\limits_{x=2}^{\infty}x(x-1)q^{x-2} \\
+^{[3]}  &amp;= pq\frac{d^2}{dq^2}\Big(\sum\limits_{x=2}^{\infty}q^x\Big) \\
+          &amp;= pq\frac{d^2}{dq^2}\Big(\sum\limits_{x=2}^{\infty}q\cdot q^{x-1}\Big) \\
+^{[4]}  &amp;= pq\frac{d^2}{dq^2}\Big(\frac{2q-1}{1-q}\Big) \\
+^{[5]}  &amp;= pq\frac{d}{dq}(-(1-q)^{-2}) \\
+^{[6]}  &amp;= pq\frac{2}{(1-q)^3} \\
+        &amp;= \frac{2pq}{(1-q)^3} \\
+^{[7]}  &amp;= \frac{2p(1-p)}{p^3} \\
+        &amp; =\frac{2(1-p)}{p^2}
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>We start the summand at <span class="math inline">\(x=2\)</span> because the term for <span class="math inline">\(x=1\)</span> is 0.</li>
+<li>Let <span class="math inline">\(1-p = 1\)</span></li>
+<li><span class="math inline">\(a(a-1)x^{a-2}=\frac{d^2}{dx^2}x^a\)</span></li>
+<li><span class="math inline">\(\sum\limits_{k=1}^{\infty}ar^{k-1} = \frac{a}{1-r}=1+a+ar+ar^2+\cdots.\)</span> The current series leaves out the first term,\   <span class="math inline">\(\sum\limits_{k=2}^{\infty}ar^{k-1}=(\sum\limits_{k=1}^{\infty}ar^{k-1})-1 = \frac{a}{1-r}-1=\frac{1}{1-r}-\frac{1-r}{1-r}=\frac{a-(1-r)}{1-r}=\frac{a+r-1}{r-1}\)</span></li>
+<li><span class="math inline">\(\frac{d}{dx}(\frac{2x-1}{1-x})=\frac{-(2x-1)-2(1-x)}{(1-x)^2} = \frac{2x+1-2+2x}{(1-x)^2}=\frac{-1}{(1-x)^2}=-(1-x)^{-2}\)</span></li>
+<li><span class="math inline">\(\frac{d}{dx}-(1-x)^{-2}=2(1-x)^{-3}=\frac{2}{(1-x)^3}\)</span></li>
+<li>See note number 5.</li>
+</ol>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+\mu
+    &amp;= E(X) \\
+    &amp;= \frac{1}{p} \\
+\\
+\\
+\sigma^2
+    &amp;= E(X^2) - E(X)^2 \\
+    &amp;= E(X^2) - E(X) + E(X) - E(X)^2 \\
+  &amp;= [E(X^2)-E(X)]+E(X)-E(X)^2 \\
+    &amp;= E(X^2-X)+E(X)-E(X)^2 \\
+  &amp;= E[(X(X-1)]+E(X)-E(X)^2 \\
+  &amp;= \frac{2(1-p)}{p^2} + \frac{1}{p} - \frac{1}{p^2} \\
+    &amp;= \frac{2(1-p)}{p^2} + \frac{p}{p^2} - \frac{1}{p^2} \\
+    &amp;= \frac{2(1-p)+p-1}{p^2} \\
+  &amp;= \frac{2-2p+p-1}{p^2} \\
+    &amp;= \frac{2-1+p-2p}{p^2} \\
+    &amp;= \frac{1-p}{p^2}
+\end{align*}\]</span></p>
+</div>
+<div id="moment-generating-function-5" class="section level2">
+<h2><span class="header-section-number">15.4</span> Moment Generating Function</h2>
+<p><span class="math display">\[\begin{align*}
+M_X(t)
+        &amp;= E(e^{tX}) \\
+        &amp;= \sum\limits_{x=1}^{\infty}e^{tx}p(1-p)^{x-1} \\
+        &amp;= p\sum\limits_{x=1}^{\infty}e^{tx}(1-p)^{x-1} \\
+        &amp;= p\sum\limits_{x=1}^{\infty}e^{t^x}(1-p)^{x-1} \\
+        &amp;= pe^t\sum\limits_{x=1}^{\infty}e^{t^{(x-1)}} \\
+        &amp;= pe^t\sum\limits_{x=1}^{\infty}[(1-p)e^t]^{x-1} \\
+^{[1]}  &amp;= pe^t\frac{1}{1-(1-p)e^t} \\
+        &amp;= \frac{pe^t}{1-(1-p)e^t}
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\sum\limits_{k=1}^{\infty}ar^{k-1}=\frac{a}{1-r}\)</span>, (Geometric Series <a href="geometric-series.html#geometric-series-partial-and-infinite-summations">16.1</a>)</li>
+</ol>
+</blockquote>
+<p><span class="math display">\[\begin{align*} 
+M_X^{(1)}(t)
+    &amp;= \frac{[1-(1-p)e^t]pe^t-pe^t[-(1-p)e^t]}{\big(1-(1-p)e^t\big)^2} \\
+    &amp;= \frac{pe^t[1-(1-p)e^t+(1-pe^t)]}{\big(1-(1-p)e^t\big)^2} \\
+  &amp;= \frac{pe^t(1)}{\big(1-(1-p)e^t\big)^2} \\
+  &amp;= \frac{pe^t}{\big(1-(1-p)e^t\big)^2} \\
+\\
+\\
+M_X^{(2)}(t)
+    &amp;= \frac{(1-(1-p)e^t)^2pe^t-pe^t[-2(1-(1-p)e^t)(1-p)e^t}{\big(1-(1-p)e^t\big)^4} \\
+  &amp;= \frac{pe^t[(1-(1-p)e^t)^2+2(1-(1-p)e^t(1-p)e^t]}{\big(1-(1-p)e^t\big)^4} \\
+\\
+\\
+E(X)
+    &amp;= M_X^{(1)}(0) \\
+    &amp;= \frac{pe^0}{\big(1-(1-p)e^0\big)^2} \\
+    &amp;= \frac{p}{\big(1-(1-p)\big)^2} \\
+  &amp;= \frac{p}{(1-1+p)^2} \\
+    &amp;= \frac{p}{p^2} \\
+    &amp;= \frac{1}{p}\\
+\\
+\\
+E(X^2)
+    &amp;= M_X^{(2)}(0) \\
+    &amp;= \frac{pe^0[(1-(1-p)e^0)^2+2(1-(1-p)e^0)(1-p)e^0]}{(1-(1-p)e^0)^4} \\
+  &amp;= \frac{p[(1-(1-p))^2+2(1-(1-p))(1-p)]}{(1-(1-p))^4} \\
+  &amp;= \frac{p[(1-1+p)^2+2(1-1+p)(1-p)]}{(1-1+p)^4} \\
+    &amp;= \frac{p[p^2=2p(1-p)]}{p^4} \\
+  &amp;= \frac{p(p^2+2p-2p^2)}{p^4} \\
+    &amp;= \frac{p(2p-p^2)}{p^4} \\
+    &amp;= \frac{p^2(2-p)}{p^4} \\
+    &amp;= \frac{2-p}{p^2} \\
+\\
+\\ 
+\mu 
+    &amp;= E(X) \\
+    &amp;= \frac{1}{p}\\
+\\
+\\ 
+\sigma^2
+    &amp;= E(X^2) - E(X)^2 \\
+    &amp;= \frac{2-p}{p^2} - \frac{1}{p^2} \\
+    &amp;= \frac{1-p}{p^2}
+\end{align*}\]</span></p>
+</div>
+<div id="maximum-likelihood-estimator-2" class="section level2">
+<h2><span class="header-section-number">15.5</span> Maximum Likelihood Estimator</h2>
+<p>Let <span class="math inline">\(x_1, x_2 , \ldots , x_n\)</span> be a random sample from a Geometric distribution with parameter <span class="math inline">\(p\)</span>.</p>
+<div id="likelihood-function-4" class="section level3">
+<h3><span class="header-section-number">15.5.1</span> Likelihood Function</h3>
+<p><span class="math display">\[\begin{align*} 
+L(\theta)
+    &amp;= P(x_1,x_2,\ldots,x_n|\theta) \\
+    &amp;= p(1-p)^{x-1}
+\end{align*}\]</span></p>
+</div>
+<div id="log-likelihood-function-4" class="section level3">
+<h3><span class="header-section-number">15.5.2</span> Log-likelihood Function</h3>
+<p><span class="math display">\[\begin{align*}
+\ell(\theta)
+    &amp;= \ln p(1-p)^{x-1} \\
+    &amp;= \ln p+\ln(1-p)^{x-1} \\
+    &amp;= \ln p+(x-1)\ln(1-p)
+\end{align*}\]</span></p>
+</div>
+<div id="mle-for-p-1" class="section level3">
+<h3><span class="header-section-number">15.5.3</span> MLE for <span class="math inline">\(p\)</span></h3>
+<p><span class="math display">\[\begin{align*} 
+\frac{d\ell}{dp}
+    &amp;= \frac{1}{p} + \frac{-(x-1)}{1-p} \\
+    &amp;= \frac{1}{p} + \frac{1-x}{1-p}\\
+\\
+\\
+0                               &amp;= \frac{1}{p}+\frac{1-x}{1-p}\\
+\Rightarrow \frac{1-x}{1-p}     &amp;= -\frac{1}{p}\\
+\Rightarrow 1-x                 &amp;= \frac{-1+p}{p}\\
+\Rightarrow -x                  &amp;= \frac{-1+p}{p}-1\\
+\Rightarrow x=1-\frac{-1+p}{p}  &amp;= \frac{p}{p}-\frac{-1+p}{p} \\
+                                &amp;= \frac{p+1-p}{p} \\
+                                &amp;= \frac{1}{p}\\
+\Rightarrow p                   &amp;= \frac{1}{x}
+\end{align*}\]</span></p>
+<p>So <span class="math display">\[\hat p=\frac{1}{x}\]</span> is the Maximum Likelihood Estimator for <span class="math inline">\(p\)</span>.</p>
+</div>
+</div>
+<div id="theorems-for-the-geometric-distribution" class="section level2">
+<h2><span class="header-section-number">15.6</span> Theorems for the Geometric Distribution</h2>
+<div id="validity-of-the-distribution-5" class="section level3">
+<h3><span class="header-section-number">15.6.1</span> Validity of the Distribution</h3>
+<p><span class="math display">\[\sum\limits_{i=1}^{\infty}p(1-p)^{x-1} = 1\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+\sum\limits_{i=1}^{\infty}p(1-p)^{x-1}
+    &amp;= \frac{p}{1-(1-p)} \\
+    &amp;= \frac{p}{p} \\
+    &amp;= 1
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(S=\lim\limits_{k\rightarrow\infty}S_k =\lim\limits_{k\rightarrow\infty}\frac{a-ar^k}{1-r}\)</span> (Geometric Series <a href="geometric-series.html#geometric-series-partial-and-infinite-summations">16.1</a>)</li>
+</ol>
+</blockquote>
+</div>
+<div id="sum-of-geometric-random-variables" class="section level3">
+<h3><span class="header-section-number">15.6.2</span> Sum of Geometric Random Variables</h3>
+<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent random variables from a Geometric Distribution with parameter <span class="math inline">\(p\)</span>, that is, <span class="math inline">\(X_i\sim\)</span>Geometric<span class="math inline">\((p)\)</span>, <span class="math inline">\(i=1,2,3,\ldots\)</span>. Let <span class="math inline">\(Y=\sum\limits_{i=1}^{n}X_i\)</span>. Then <span class="math inline">\(Y\sim\)</span>Negative Binomial<span class="math inline">\((n,p)\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*} 
+M_Y(t)
+  &amp;= E(e^{tY}) \\
+  &amp;= E(e^{t(X_1+X_2+\cdots+X_n)}) \\
+  &amp;= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
+  &amp;= E(e^{tX_1})E(e^{tX_2})\cdots E(e^{tX_n}) \\
+    &amp;=\frac{pe^t}{1-(1-p)e^t}\cdot\frac{pe^t}{1-(1-p)e^t}\cdot\ \cdots
+        \ \cdot\frac{pe^t}{1-(1-p)e^t} \\
+  &amp;= \Big(\frac{pe^t}{1-(1-p)e^t}\Big)^n
+\end{align*}\]</span></p>
+<p>Which is the mgf of a Negative Binomial random variable with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>. Thus <span class="math inline">\(Y\sim\)</span>Negative Binomial<span class="math inline">\((n,p)\)</span>.</p>
+</div>
+<div id="geometric-distribution-memoryless-lemma" class="section level3">
+<h3><span class="header-section-number">15.6.3</span> Lemma</h3>
+<p>Let <span class="math inline">\(X\)</span> be a Geometric random variable with parameter <span class="math inline">\(p\)</span>. Then <span class="math inline">\(P(X&gt;a)=(1-p)^a\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+P(X&gt;a)
+  &amp;= 1-P(X\leq a)=1-\sum\limits_{i=1}^{a}p(1-p)^i-1 \\
+^{[1]}  &amp;= 1-\frac{p-p(1-p)^a}{1-(1-p)} \\
+        &amp;= 1-\frac{p\big(1-(1-p)^a\big)}{1-1+p} \\
+        &amp;= 1-\frac{p\big(1-(1-p)^a\big)}{p} \\
+        &amp;= 1-\big(1-(1-p)^a\big) \\
+        &amp;= 1-1+(1-p)^a \\
+        &amp;= (1-p)^a
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(S_k=\lim\limits_{k\rightarrow\infty}\frac{a-ar^k}{1-r}\)</span> (Geometric Series <a href="geometric-series.html#geometric-series-partial-and-infinite-summations">16.1</a>)</li>
+</ol>
+</blockquote>
+</div>
+<div id="memoryless-property" class="section level3">
+<h3><span class="header-section-number">15.6.4</span> Memoryless Property</h3>
+<p><span class="math display">\[P(X\geq k+j|X\geq k)=P(X\geq k)\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+P(X &gt; a+b)
+^{[1]}  &amp;= (1-p)^{a+b}=(1-p)^a(1-p)^b \\
+\\
+\\
+P(X &gt; k+j|X &gt; k)
+        &amp;=\frac{P(X &gt; k+j\cap X &gt; k)}{P(X &gt; k)} \\
+^{[2]}  &amp;= \frac{P(X &gt; k+j)}{P(X &gt; k)} \\
+        &amp;= \frac{(1-p)^k(1-p)^j}{(1-p)^k} \\
+        &amp;= (1-p)^j \\
+        &amp;= P(X &gt; j)
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Geometric Distribution <a href="geometric-distribution.html#geometric-distribution-memoryless-lemma">15.6.3</a></li>
+<li>Since <span class="math inline">\(j\)</span> must be a positive integer in the Geometric Distribution, it is certain that \<span class="math inline">\((k+j)\cap k=k+j\)</span>.</li>
+</ol>
+</blockquote>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="gamma-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="geometric-series.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -439,7 +721,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Geometric_Distribution.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

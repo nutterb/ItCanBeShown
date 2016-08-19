@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
+<link rel="prev" href="variance-parameter.html">
 
-<link rel="next" href="analysis-of-variance.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -389,30 +389,141 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-19</em></h4>
+<div id="weibull-distribution" class="section level1">
+<h1><span class="header-section-number">31</span> Weibull Distribution</h1>
+<div id="probability-distribution-function-3" class="section level2">
+<h2><span class="header-section-number">31.1</span> Probability Distribution Function</h2>
+<p>A random variable <span class="math inline">\(X\)</span> is said to have a Weibull Distribution with parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> if its probability density function is:</p>
+<p><span class="math display">\[f(x)=\left\{
+    \begin{array}{ll}
+        \alpha\beta x^{\beta-1}e^{-\alpha x^{\beta}},&amp;0&lt;x,\ 0&lt;\alpha,\ 0&lt;\beta\\
+        0 &amp; otherwise 
+    \end{array}\right.
+\]</span></p>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
+<div id="cumulative-distribution-function-5" class="section level2">
+<h2><span class="header-section-number">31.2</span> Cumulative Distribution Function</h2>
+<p><span class="math display">\[\begin{align*} 
+\int\limits_{0}^{x}\alpha\beta t^{\beta-1}e^{-\alpha t^\beta}dt
+    &amp;= \alpha\beta\int\limits_{0}^{x}t^{\beta-1}e^{-\alpha t^\beta}dt \\
+    &amp;= \alpha\beta\Big[\frac{-1}{\alpha\beta}e^{-\alpha t^\beta}\Big]_0^x \\
+  &amp;= \alpha\beta\Big[\frac{-1}{\alpha\beta}e^{-\alpha x^\beta}
+        + \frac{1}{\alpha\beta}\Big] \\
+    &amp;= \frac{\alpha\beta}{\alpha\beta}\big(-e^{-\alpha x^\beta}+1\big) \\
+    &amp;= 1-e^{-\alpha x^\beta}
+\end{align*}\]</span></p>
+<p>Using this result, we can write the Cumulative Distribution Function as</p>
+<p><span class="math display">\[F(x)=\left\{
+    \begin{array}{ll}
+        1-e^{-\alpha x^\beta},&amp; 0&lt;x,\ 0&lt;\alpha,\ 0&lt;\beta\\
+        0 &amp; otherwise 
+    \end{array}\right.
+\]</span></p>
+</div>
+<div id="expected-values-10" class="section level2">
+<h2><span class="header-section-number">31.3</span> Expected Values</h2>
+<p><span class="math display">\[\begin{align*} 
+E(X)
+    &amp;= \int\limits_{0}^{\infty}x\alpha\beta 
+        x^{\beta-1}e^{-\alpha x^{\beta}}dx \\
+    &amp;= \alpha\beta\int\limits_{0}^{\infty}x 
+        x^{\beta-1}e^{-\alpha x^{\beta}}dx \\
+^{[1]}  &amp;= \alpha\beta\int\limits_{0}^{\infty}
+        \Big(\big(\frac{y}{\alpha}\big)^\frac{1}{\beta}\Big)^\beta
+        e^{-y}\frac{1}{\alpha\beta}
+        \Big(\frac{y}{\alpha}\Big)^{\frac{1}{\beta}-1}dy \\
+    &amp;= \frac{\alpha\beta}{\alpha\beta}\int\limits_{0}^{\infty}
+        \Big(\frac{y}{\alpha}\Big)^\frac{\beta+1}{\beta}
+        \Big(\frac{y}{\alpha}\Big)^{\frac{1}{\beta}-1}e^{-y}dy \\
+  &amp;= \int\limits_{0}^{\infty}\Big(\frac{y}{\alpha}\Big)
+        ^{\frac{\beta+1}{\beta}-\frac{1}{\beta}-1}e^{-y}dy \\
+    &amp;= \int\limits_{0}^{\infty}\Big(\frac{y}{\alpha}\Big)
+        ^{\frac{\beta+1}{\beta}-1}e^{-y}dy \\
+    &amp;= \frac{1}{\alpha^{\frac{\beta+1}{\beta}-\frac{\beta}{\beta}}}
+        \int\limits_{0}^{\infty}y^{\frac{\beta+1}{\beta}-1}e^{-y} \\
+  &amp;= \alpha^{-\frac{1}{\beta}}
+        \int\limits_{0}^{\infty}y^{\frac{\beta+1}{\beta}-1}e^{-y} \\
+^{[2]}  &amp;= \alpha^{-\frac{1}{\beta}}\Gamma\Big(\frac{\beta+1}{\beta}\Big)
+\end{align*}\]</span></p>
 <blockquote>
-<p>It can be shown</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(y=\alpha x^\beta\ \Rightarrow x=(\frac{y}{\alpha})^\frac{1}{\beta}\ \Rightarrow dx=\frac{1}{\alpha\beta}(\frac{y}{\alpha})^{\frac{1}{\beta}-1}\)</span></li>
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-x}dx =\Gamma(\alpha)\)</span></li>
+</ol>
 </blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+<p><span class="math display">\[\begin{align*} 
+E(X^2)
+    &amp;= \alpha\beta\int\limits_{0}^{\infty}x^2x^{\beta-1}e^{-\alpha x^\beta}dx \\
+    &amp;= \alpha\beta\int\limits_{0}^{\infty}x^{\beta+1}e^{-\alpha x^\beta}dx \\
+^{[1]} &amp;= \alpha\beta\int\limits_{0}^{\infty}\Big(\big(\frac{y}{\alpha}\big)^\frac{1}{\beta}\Big)^{\beta+1} 
+        e^{-y}\frac{1}{\alpha\beta}\big(\frac{y}{\alpha}\big)^{\frac{1}{\beta}-1}dy \\
+    &amp;= \frac{\alpha\beta}{\alpha\beta}\int\limits_{0}^{\infty}\bigg(\frac{y}{\alpha}\bigg)^{\frac{\beta+1}{\beta}}
+        \bigg(\frac{y}{\alpha}\bigg)^{\frac{1}{\beta}-1}e^{-y}dy \\
+  &amp;= \int\limits_{0}^{\infty}\bigg(\frac{y}{\alpha}\bigg)^{\frac{\beta+1}{\beta}+\frac{1}{\beta}-1}e^{-y}dy \\
+    &amp;= \frac{1}{\alpha^{\frac{\beta+2}{\beta}-\frac{\beta}{\beta}}}
+        \int\limits_{0}^{\infty}y^{\frac{\beta+2}{\beta}-1}e^{-y}dy \\
+    &amp;= \alpha^{-\frac{2}{\beta}}\int\limits_{0}^{\infty}y^{\frac{\beta+2}{\beta}-1}e^{-y}dy \\
+^{[2]} = \alpha^{-\frac{2}{\beta}}\Gamma\Big(\frac{\beta+2}{\beta}\Big)
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(y=\alpha x^\beta\ \Rightarrow x=(\frac{y}{\alpha})^\frac{1}{\beta}\ \Rightarrow dx=\frac{1}{\alpha\beta}(\frac{y}{\alpha})^{\frac{1}{\beta}-1}\)</span></li>
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-x}dx =\Gamma(\alpha)\)</span></li>
+</ol>
+</blockquote>
+<p><span class="math display">\[\begin{align*} 
+\mu
+    &amp;= E(X) \\
+    &amp;= \alpha^{-\frac{1}{\beta}}\Gamma\Big(\frac{\beta+1}{\beta}\Big)\\
+\\
+\\
+\sigma^2
+    &amp;= E(X^2) - E(X)^2 \\
+    &amp;= \alpha^{-\frac{2}{\beta}}\Gamma\Big(\frac{\beta+2}{\beta}\Big)
+        - \alpha^{-\frac{2}{\beta}}\Gamma\Big(\frac{\beta+1}{\beta}\Big)^2 \\
+  &amp;= \alpha^{-\frac{2}{\beta}}\Big[\Gamma\Big(\frac{\beta+2}{\beta}\Big)
+        - \Gamma\Big(\frac{\beta+1}{\beta}\Big)^2\Big]
+\end{align*}\]</span></p>
+</div>
+<div id="theorems-for-the-weibull-distribution" class="section level2">
+<h2><span class="header-section-number">31.4</span> Theorems for the Weibull Distribution</h2>
+<div id="validity-of-the-distribution-8" class="section level3">
+<h3><span class="header-section-number">31.4.1</span> Validity of the Distribution</h3>
+<p><span class="math display">\[ 
+\int\limits_{0}^{\infty}\alpha\beta x^{\beta-1}e^{-\alpha x^\beta}dx
+    = 1
+\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*} 
+\int\limits_{0}^{\infty}\alpha\beta x^{\beta-1}e^{-\alpha x^\beta}dx
+          &amp;= \alpha\beta\int\limits_{0}^{\infty}x^{\beta-1}e^{-\alpha x^\beta}dx \\
+^{[1]}  &amp;= \alpha\beta\int\limits_{0}^{\infty}\Big(\big(\frac{y}{\alpha}\big)^
+            \frac{1}{\beta}\Big)^{\beta-1}
+                e^{-y}\big(\frac{y}{\alpha}\big)^{\frac{1}{\beta}-1}\frac{1}{\alpha\beta}dy
+        &amp;= \frac{\alpha\beta}{\alpha\beta}\int\limits_{0}^{\infty}\big(\frac{y}{\alpha}\big)^\frac{\beta}{-1}
+            \big(\frac{y}{\alpha}\big)^{\frac{1}{\beta}-1}e^{-y}dy \\
+        &amp;= \int\limits_{0}^{\infty}\big(\frac{y}{\alpha}\big)^{\frac{\beta-1}{\beta}+\frac{1-\beta}{\beta}}e^{-y}dy \\
+        &amp;= \int\limits_{0}^{\infty}\frac{y^0}{\alpha^0}e^{-y}dy \\
+        &amp;= \int\limits_{0}^{\infty}y^{1-1}e^{-y}dy \\
+^{[2]}  &amp;= \Gamma(1)=1
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(y=\alpha x^\beta\ \Rightarrow x = (\frac{y}{\alpha})^\frac{1}{\beta}\ \Rightarrow dx = \frac{1}{\alpha\beta}(\frac{y}{\alpha})^{\frac{1}{\beta}-1}\)</span></li>
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-x}dx = \Gamma(\alpha)\)</span></li>
+</ol>
+</blockquote>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="variance-parameter.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -439,7 +550,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Weibull.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

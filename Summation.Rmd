@@ -1,0 +1,155 @@
+# Summation
+
+## Theorems of Summation
+
+### Theorem {#summation-theorem-1}
+If $c$ is a constant then $$\sum\limits_{i=1}^{n}c = nc$$
+
+_Proof:_
+
+$$
+\sum\limits_{i=1}^{n}c
+	= \underbrace{c+c+\cdots+c}_{n\ \rm terms}
+	= nc
+$$
+
+### Theorem {#summation-theorem-2}
+
+If $a_1,a_2,\ldots,a_n$ are real numbers and $c$ is a constant, then 
+$$
+\sum\limits_{i=1}^{n}ca_i
+	= c\sum\limits_{i=1}^{n}a_i
+$$
+
+_Proof:_
+
+$$\begin{align*} 
+\sum\limits_{i=1}^{n}ca_i
+	&= ca_1 + ca_2 + \cdots + ca_n \\
+	&= c(a_1+a_2+\cdots+a_n) \\
+	&= c\sum\limits_{i=1}^{n}a_i
+\end{align*}$$
+
+
+### Theorem {#summation-theorem-3}
+
+If $a_1,_2,\ldots,a_n$ are real numbers and $b_1,b_2,\ldots,b_n$ are real numbers, then
+$$
+\sum\limits_{i=1}^{n}(a_i+b_i)
+	= \sum\limits_{i=1}^{n}a_i + \sum\limits_{i=1}^{n}b_i
+$$
+
+_Proof:_
+
+$$\begin{align*}
+\sum\limits_{i=1}^{n}(a_i+b_i)
+	&= a_1 + b_1 + a_2 + b_2 + \cdots + a_n + b_n \\
+  &= a_1 + a_2 + \cdots + a_n + b_1 + b_2 + \cdots + b_n \\
+	&= \sum\limits_{i=1}^{n}a_i + \sum\limits_{i=1}^{n}b_i
+\end{align*}$$
+
+
+### Theorem {#summation-theorem-4}
+
+If $a_i$ and $b_j$ are real numbers for $i=1,2,\ldots,n$, $j=1,2,\ldots,m$, then
+then 
+
+$$
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_i b_j
+	= a_{+} b_{+}
+$$
+
+_Proof:_
+
+$$\begin{align*}
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_i b_j
+	&= \sum\limits_{i=1}^{n}\bigg(a_i\sum\limits_{j=1}^{m}b_j\bigg) \\
+	&= \sum\limits_{i=1}^{n}a_i b_{+} \\
+	&= b_{+} \sum\limits_{i=1}^{n}a_i \\
+	&= a_{+} b_{+}
+\end{align*}$$
+
+
+
+### Theorem {#summation-theorem-5}
+
+If $a_i$ is a real number for $i=1,2,\ldots,n$ and $b$ is a real number, then 
+$$
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_i b
+	= m a_{+} b
+$$
+
+_Proof:_
+
+$$\begin{align*}
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_i b
+	&= \sum\limits_{i=1}^{n}m a_i b \\
+	&= m b\sum\limits_{i=1}^{n}a_i \\
+	&= m a_{+} b
+\end{align*}$$
+
+
+
+### Theorem {#summation-theorem-6}
+
+If $a_j$ is a real number for $j=1,2,\ldots,m$ and $b$ is a real number, then 
+$$
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_j b
+	= n a_{+} b
+$$
+
+_Proof:_
+
+$$\begin{align*}
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_j b
+	&= \sum\limits_{i=1}^{n}\bigg( b \sum\limits_{j=1}^{m} a_j \bigg) \\
+	&= \sum\limits_{i=1}^{n}a_{+}b \\
+	&= n a_{+} b
+\end{align*}$$
+
+
+### Theorem {#summation-theorem-7}
+
+If $a_i$ and $b_{ij}$ are real numbers for $i=1,2,\ldots,n$, $j=1,2,\ldots,m$, then 
+$$
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_{ij}
+	= \sum\limits_{i=1}^{n}a_ib_{i+}
+$$
+
+_Proof:_
+
+$$\begin{align*}
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_{ij}
+	&= \sum\limits_{i=1}^{n}\bigg(a_i\sum\limits_{j=1}^{m}b_{ij}\bigg) \\
+	&= \sum\limits_{i=1}^{n}a_ib_{i+}
+\end{align*}$$
+
+
+### Theorem {#summation-theorem-8}
+
+If $a_j$ and $b_{ij}$ are real numbers for $i=1,2,\ldots,n$, $j=1,2,\ldots,m$, then 
+
+$$\
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_jb_{ij}
+	= \sum\limits_{i=1}^{n}a_jb_{+ j}
+$$
+
+_Proof:_
+
+$$\begin{align*}
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_jb_{ij}
+  &= a_1b_{11}+a_2b_{12}+\cdots+a_mb_{1m} \\
+  & \ \ \ \  +a_1b_{21}+a_2b_{22}+\cdots+a_mb_{2m} \\
+  & \ \ \ \ \vdots \\
+  & \ \ \ \ +a_1b_{n1}+a_1b_{n1}+\cdots+a_1b_{nm} \\
+  &= a_1b_{11}+a_1b_{21}+\cdots+a_1b_{n1} \\
+  & \ \ \ \ +a_2b_{12}+a_2b_{22}+\cdots+a_2b_{n2} \\
+  & \ \ \ \ \vdots \\
+  & \ \ \ \ +a_mb_{1m}+a_mb_{2m}+\cdots+a_nb_{nm} \\
+  &= a_1(b_{11}+b_{21}+\cdots+b_{n1}) \\
+  & \ \ \ \ +a_2(b_{12}+b_{22}+\cdots+b_{n2}) \\
+  & \ \ \ \ \vdots \\
+  & \ \ \ \ +a_m(b_{1m}+b_{2m}+\cdots+b_{nm}) \\
+  &= a_1b_{+ 1}+a_2b_{+ 2}+\cdots+a_mb_{+ m} \\
+  &=\sum\limits_{j=1}^{m}a_jb_{+ j}
+\end{align*}$$

@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="uniform-distribution.html">
+<link rel="next" href="weibull-distribution.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -389,30 +389,186 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-19</em></h4>
+<div id="variance-parameter" class="section level1">
+<h1><span class="header-section-number">30</span> Variance Parameter</h1>
+<div id="defining-variance-with-expected-values" class="section level2">
+<h2><span class="header-section-number">30.1</span> Defining Variance With Expected Values</h2>
+<p>In the case of a discrete random variable, the variance is <span class="math display">\[\begin{align*} 
+\sigma^2
+    &amp;= \sum\limits_{x=0}^{\infty}(x-\mu)^2p(x) \\
+    &amp;= \sum\limits_{x=0}^{\infty}(x^2-2\mu x+\mu^2)p(x) \\
+    &amp;= \sum\limits_{x=0}^{\infty}(x^2p(x)-2\mu x\cdot p(x)+\mu^2p(x)) \\
+  &amp;= \sum\limits_{x=0}^{\infty}x^2p(x)-\sum\limits_{x=0}^{\infty}2\mu x\cdot p(x)
+        + \sum\limits_{x=0}^{\infty}\mu^2p(x) \\
+  &amp;= \sum\limits_{x=0}^{\infty}x^2p(x)-2\mu\sum\limits_{x=0}^{\infty}x\cdot p(x)
+        + \mu^2\sum\limits_{x=0}^{\infty}p(x) \\
+  &amp;= \sum\limits_{x=0}^{\infty}x^2p(x)-2\mu\cdot\mu+\mu^2 \\
+    &amp;= \sum\limits_{x=0}^{\infty}x^2p(x)-\mu^2 \\
+    &amp;= E(X^2)-E(X)^2\\
+\end{align*}\]</span></p>
+<p>In the case of a continuous random variable, the variance is <span class="math display">\[\begin{align*}
+\sigma^2 
+    &amp;= \int\limits_{-\infty}^{\infty}(x-\mu)^2f(x)dx \\
+    &amp;= \int\limits_{-\infty}^{\infty}(x^2-2\mu x+\mu^2)f(x)dx \\
+  &amp;= \int\limits_{-\infty}^{\infty}(x^2f(x)-2\mu x\cdot f(x)+\mu^2f(x))dx \\
+  &amp;= \int\limits_{-\infty}^{\infty}x^2f(x)dx-\int\limits_{-\infty}^{\infty}2\mu x\cdot f(x)dx
+        + \int\limits_{-\infty}^{\infty}\mu^2f(x)dx \\
+  &amp;= \int\limits_{-\infty}^{\infty}x^2f(x)dx-2\mu\int\limits_{-\infty}^{\infty}x\cdot f(x)dx
+        + \mu^2\int\limits_{-\infty}^{\infty}f(x)dx \\
+  &amp;= \int\limits_{-\infty}^{\infty}x^2f(x)dx-2\mu\cdot\mu+\mu^2 \\
+    &amp;= \int\limits_{-\infty}^{\infty}x^2f(x)dx-\mu^2 \\
+    &amp;= E(X^2)-E(X)^2
+\end{align*}\]</span></p>
+<p>In general, these results may be summarized as follows:</p>
+<p><span class="math display">\[\begin{align*}
+\sigma^2
+    &amp;= E[(X-\mu)^2] \\
+    &amp;= E[(X^2-2\mu X+\mu^2)] \\
+    &amp;= E(X^2) - E(2\mu X) + E(\mu^2) \\
+    &amp;= E(X^2) - 2\mu E(X) + \mu^2 \\
+  &amp;= E(X^2) - 2\mu\cdot\mu + \mu^2 \\
+    &amp;= E(X^2) - 2\mu^2 + \mu \\
+  &amp;= E(X^2) - \mu^2 \\
+    &amp;= E(X^2) - E(X)^2
+\end{align*}\]</span></p>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
+<div id="unbiased-estimator" class="section level2">
+<h2><span class="header-section-number">30.2</span> Unbiased Estimator</h2>
+<p><span class="math display">\[\begin{align*}
+E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n}\Bigg)
+        &amp;= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}(x_i-\bar x)^2\Big) \\
+        &amp;= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}(x_i^2-2\bar x x_i+\bar x^2)\Big) \\
+        &amp;= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}x_i^2
+            - \sum\limits_{i=1}^{n}2\bar x x_i+\sum\limits_{i=1}^{n}\bar x^2\Big) \\
+        &amp;= \frac{1}{n}
+            E\Big(\sum\limits_{i=1}^{n}x_i^2-2
+                  \frac{\sum\limits_{i=1}^{n}x_i}{n}\sum\limits_{i=1}^{n}   + n\bar x^2\Big) \\
+        &amp;= \frac{1}{n}
+            E\Big(\sum\limits_{i=1}^{n}x_i^2-2
+                  \frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}+n\bar x^2\Big) \\
+        &amp;= \frac{1}{n}
+            E\Big(\sum\limits_{i=1}^{n}x_i^2-2
+                  \frac{n(\sum\limits_{i=1}^{n}x_i)^2}{n^2}+n\bar x^2\Big) \\
+        &amp;= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}x_i^2-2n\bar x^2+n\bar x^2\Big) \\
+        &amp;= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}x_i^2-n\bar x^2\Big) \\
+        &amp;= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}x_i^2\Big)-E(n\bar x^2) \\
+        &amp;= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}x_i^2)-nE(\bar x^2)\Big) \\
+        &amp;= \frac{1}{n}\Big[\sum\limits_{i=1}^{n}E(x_i^2)-nE(\bar x^2)\Big] \\
+^{[1]}  &amp;= \frac{1}{n}\Big[\sum\limits_{i=1}^{n}\Big(\sigma^2+\mu^2\Big) - nE(\bar x^2)\Big] \\
+^{[2]}  &amp;= \frac{1}{n}\Big[\sum\limits_{i=1}^{n}\Big(\sigma^2+\mu^2\Big) - 
+            n(\frac{\sigma^2}{n}+\mu^2)\Big]\\\\
+        &amp;= \frac{1}{n}(n\sigma^2-n\mu^2+\sigma^2-n\mu^2) \\
+        &amp;=\frac{1}{n}(n\sigma^2-\sigma) \\
+        &amp;= \frac{1}{n}(n-1)\sigma^2 \\
+        &amp;= \frac{n-1}{n}\sigma^2
+\end{align*}\]</span></p>
 <blockquote>
-<p>It can be shown</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(V(X)=E(X^2)-E(X)^2\)</span><br />
+<span class="math inline">\(\ \ \ \ \Rightarrow E(X^2)=V(X)+E(X)^2=\sigma^2+\mu^2\)</span> <span class="math inline">\(V(\bar X)=E(\bar X^2)-E(\bar X)^2\)</span><br />
+<span class="math inline">\(\ \ \ \ \Rightarrow E(\bar X^2)=V(\bar X)+E(\bar X)^2 = \frac{\sigma^2}{n}+\mu^2\)</span></li>
+<li>By the Central Limit Theorem, <span class="math inline">\(V(\bar X)=\frac{\sigma^2}{n}\)</span></li>
+</ol>
 </blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+<p>Since <span class="math inline">\(E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n}\Bigg)\neq\sigma^2\)</span> it is a biased estimator. Notice, however, that the bias can be eliminated by dividing by <span class="math inline">\(n-1\)</span> instead of by <span class="math inline">\(n\)</span></p>
+<p><span class="math display">\[\begin{align*} 
+E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1}\Bigg)
+        &amp;= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}(x_i-\bar x)^2\Big) \\
+        &amp;= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}(x_i^2-2\bar x x_i+\bar x^2)\Big) \\
+        &amp;= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}x_i^2
+            - \sum\limits_{i=1}^{n}2\bar x x_i+\sum\limits_{i=1}^{n}\bar x^2\Big) \\
+        &amp;= \frac{1}{n-1}
+            E\Big(\sum\limits_{i=1}^{n}x_i^2 -
+                    2\frac{\sum\limits_{i=1}^{n}x_i}{n}\sum\limits_{i=1}^{n} + n\bar x^2\Big) \\
+        &amp;= \frac{1}{n-1}
+            E\Big(\sum\limits_{i=1}^{n}x_i^2-
+              2\frac{(\sum\limits_{i=1}^{n}x_i)^2}{n}+n\bar x^2\Big) \\
+        &amp;= \frac{1}{n-1}
+            E\Big(\sum\limits_{i=1}^{n}x_i^2-
+              2\frac{n\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n^2} + n\bar x^2\Big) \\
+        &amp;= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}x_i^2-2n\bar x^2+n\bar x^2\Big) \\
+        &amp;= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}x_i^2-n\bar x^2\Big) \\
+        &amp;= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}x_i^2\Big)-E(n\bar x^2) \\
+        &amp;= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}x_i^2\Big)-nE(\bar x^2) \\
+        &amp;= \frac{1}{n-1}\Big[\sum\limits_{i=1}^{n}E(x_i^2)-nE(\bar x^2)\Big] \\
+^{[1]}  &amp;= \frac{1}{n-1}\Big[\sum\limits_{i=1}^{n}(\sigma^2+\mu^2)-nE(\bar x^2)\Big] \\
+^{[2]}  &amp;= \frac{1}{n-1}\Big[\sum\limits_{i=1}^{n}(\sigma^2+\mu^2) -
+                n(\frac{\sigma^2}{n}+\mu^2)\Big] \\
+        &amp;= \frac{1}{n-1}(n\sigma^2-n\mu^2+\sigma^2-n\mu^2) \\
+        &amp;= \frac{1}{n}(n\sigma^2-\sigma) \\
+        &amp;= \frac{1}{n-1}(n-1)\sigma^2 \\
+        &amp;= \frac{n-1}{n-1}\sigma^2 \\
+        &amp;=\sigma^2
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(V(X)=E(X^2)-E(X)^2\)</span><br />
+<span class="math inline">\(\ \ \ \ \Rightarrow E(X^2)=V(X)+E(X)^2=\sigma^2+\mu^2\)</span> <span class="math inline">\(V(\bar X)=E(\bar X^2)-E(\bar X)^2\)</span><br />
+<span class="math inline">\(\ \ \ \ \Rightarrow E(\bar X^2)=V(\bar X)+E(\bar X)^2 = \frac{\sigma^2}{n}+\mu^2\)</span></li>
+<li>By the Central Limit Theorem, <span class="math inline">\(V(\bar X)=\frac{\sigma^2}{n}\)</span></li>
+</ol>
+</blockquote>
+<p>Thus <span class="math inline">\(E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1}\Bigg)\)</span> is an unbiased estimator of <span class="math inline">\(\sigma^2\)</span>, and we define the estimator</p>
+<p><span class="math display">\[s^2= \frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1}\]</span></p>
+</div>
+<div id="computational-formulae-1" class="section level2">
+<h2><span class="header-section-number">30.3</span> Computational Formulae</h2>
+<div id="computational-formula-population-variance" class="section level3">
+<h3><span class="header-section-number">30.3.1</span> Computational Formula for <span class="math inline">\(\sigma\)</span>^2</h3>
+<p><span class="math display">\[\begin{align*} 
+\sigma^2
+    &amp;= \frac{\sum\limits_{i=1}^{N}(x_i-\mu)^2}{N} \\
+    &amp;= \frac{\sum\limits_{i=1}^{N}x_i^2-\frac{\Big(\sum\limits_{i=1}^{N}x_i\Big)^2}{N}}{N}
+\end{align*}\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*} 
+\frac{\sum\limits_{i=1}^{N}(x_i-\mu)^2}{N}
+    &amp;= \frac{\sum\limits_{i=1}^{N}(x_i^2-2\mu x_i+\mu^2)}{N} \\
+    &amp;= \frac{\sum\limits_{i=1}^{N}
+              x_i^2-\sum\limits_{i=1}^{N}2\mu x_i
+              + \sum\limits_{i=1}^{N}\mu^2}{N}  \\
+    &amp;= \frac{\sum\limits_{i=1}^{N}
+              x_i^2-2\mu\sum\limits_{i=1}^{N}x_i+N\mu^2}{N} \\
+    &amp;= \frac{\sum\limits_{i=1}^{N}x_i^2
+              -2\frac{\sum\limits_{i=1}^{N}x_i}{N}\sum\limits_{i=1}^{N}x_i
+                + N\Big(\frac{\sum\limits_{i=1}^{N}x_i}{N}\Big)^2}{N} \\
+  &amp;= \frac{\sum\limits_{i=1}^{N}
+            x_i^2-2\frac{\Big(\sum\limits_{i=1}^{N}x_i\Big)^2}{N}
+            + \frac{\Big(\sum\limits_{i=1}^{N}x_i\Big)^2}{N}}{N} \\
+    &amp;= \frac{\sum\limits_{i=1}^{N}x_i^2-\frac{\Big(\sum\limits_{i=1}^{N}x_i\Big)^2}{N}}{N}
+\end{align*}\]</span></p>
+</div>
+<div id="computational-formula-sample-variance" class="section level3">
+<h3><span class="header-section-number">30.3.2</span> Computational Formula for <span class="math inline">\(s\)</span>^2</h3>
+<p><span class="math display">\[\begin{align*} 
+s^2
+    &amp;= \frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1} \\
+    &amp;= \frac{\sum\limits_{i=1}^{n}x_i^2-\frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}}{n-1}
+\end{align*}\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*} 
+\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1}
+    &amp;= \frac{\sum\limits_{i=1}^{n}(x_i^2-2\bar x x_i+\bar x^2)}{n-1} \\
+    &amp;= \frac{\sum\limits_{i=1}^{n}x_i^2-\sum\limits_{i=1}^{n}2\bar x x_i
+        + \sum\limits_{i=1}^{n}\bar x^2}{n-1} \\
+  &amp;= \frac{\sum\limits_{i=1}^{n}x_i^2-2\bar x\sum\limits_{i=1}^{n}x_i+n\bar x^2}{n-1} \\
+    &amp;= \frac{\sum\limits_{i=1}^{n}x_i^2-2\frac{\sum\limits_{i=1}^{n}x_i}{n}\sum\limits_{i=1}^{n}x_i
+        + n\Big(\frac{\sum\limits_{i=1}^{n}x_i}{n}\Big)^2}{n-1} \\
+  &amp;= \frac{\sum\limits_{i=1}^{n}x_i^2-2\frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}
+        + \frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}}{n-1} \\
+    &amp;= \frac{\sum\limits_{i=1}^{n}x_i^2-\frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}}{n-1}
+\end{align*}\]</span></p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="uniform-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="weibull-distribution.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -439,7 +595,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Variance.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="bernoulli-distribution.html">
+<link rel="next" href="binomial-theorem.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -389,30 +389,283 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-19</em></h4>
+<div id="binomial-distribution" class="section level1">
+<h1><span class="header-section-number">4</span> Binomial Distribution</h1>
+<div id="probability-mass-function-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> Probability Mass Function</h2>
+<p>A random variable is said to follow a Binomial distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span> if its probability mass function is:</p>
+<p><span class="math display">\[p(x)=
+    \left\{
+        \begin{array}{ll}
+            {n \choose x} p^x (1-p)^{n-x},  &amp; x=0,1,2,\ldots,n\\
+            0               &amp; \mathrm{otherwise}
+        \end{array}
+    \right. \]</span></p>
+<p>Where <span class="math inline">\(n\)</span> is the number of trials performed and <span class="math inline">\(p\)</span> is the probability of a success on each individual trial.</p>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
+<div id="cumulative-mass-function-1" class="section level2">
+<h2><span class="header-section-number">4.2</span> Cumulative Mass Function</h2>
+<p><span class="math display">\[ P(x)=
+    \left\{
+        \begin{array} {lll}
+            0                           &amp; x&lt;0\\
+            \sum\limits_{i=0}^{x} {n \choose i} p^i (1-p)^{n-i}     &amp; 0 \leq x=0,1,2,\ldots,n\\
+            1                           &amp; n\leq x
+        \end{array}
+    \right. \]</span></p>
+<p>A recursive form of the cdf can be derived and has some usefulness in computer applications. With it, one need only initiate the first value and additional cumulative probabilities can be calculated. It is derived as follows:</p>
+<p><span class="math display">\[\begin{align*} 
+F(x+1)
+    &amp;= {n\choose x+1} p^{x+1} (1-p)^{n-(x+1)} \\
+    &amp;= \frac{n!}{(x+1)!(n-(x+1))!} p^{x+1} (1-p)^{n-(x+1)} \\
+  &amp;= \frac{n!}{(x+1)!(n-x-1)!} p^{x+1} (1-p)^{n-x-1} \\
+  &amp;= \frac{(n-x)n!}{(x+1)x!(n-x)(n-x-1)!} p \cdot p^x \frac{(1-p)^{n-x}}{(1-p)} \\
+  &amp;= \frac{(n-x)n!}{(x+1)x!(n-x)!} \cdot \frac{p}{1-p} p^x (1-p)^{n-x} \\
+  &amp;= \frac{p}{1-p} \cdot \frac{n-x}{x+1} \cdot \frac{n!}{x!(n-x)!} p^x (1-p)^{n-x} \\
+  &amp;= \frac{p}{1-p} \cdot \frac{n-x}{x+1} \cdot {n\choose x} p^x (1-p)^{n-x} \\
+    &amp;= \frac{p}{1-p} \cdot \frac{n-x}{x+1} \cdot F(x)
+\end{align*}\]</span></p>
+<div class="figure">
+<img src="figures/Binomial_Distribution-1.png" alt="(\#fig:Binomial_Distribution)The graphs on the left and right show a Binomial Probability Distribution and Cumulative Distribution Function, respectively, with $n=10$ and $p=.4$." width="672" />
+<p class="caption">
+(#fig:Binomial_Distribution)The graphs on the left and right show a Binomial Probability Distribution and Cumulative Distribution Function, respectively, with <span class="math inline">\(n=10\)</span> and <span class="math inline">\(p=.4\)</span>.
+</p>
+</div>
+</div>
+<div id="expected-values-1" class="section level2">
+<h2><span class="header-section-number">4.3</span> Expected Values</h2>
+<p><span class="math display">\[\begin{align*}
+E(X)
+            &amp;= \sum\limits_{x=0}^n x \cdot p(x) \\
+            &amp;= \sum\limits_{x=0}^n x {n\choose x} p^x (1-p)^{n-x} \\
+    ^{[1]}  &amp;= \sum\limits_{x=0}^n x {n\choose x} p^x q^{n-x} \\
+          &amp;= 0 \cdot {n\choose 0}p^0q^n+1 \cdot {n\choose 1}p^1q^{n-1} 
+                    + \cdots + n{n\choose n}p^nq^{n-n}\\
+            &amp;= 0 + 1{n\choose 1}p^1q^{n-1} + 2{n\choose 2}p^2q^{n-2} 
+                    + \cdots + n{n\choose n}p^nq^{n-n}\\
+            &amp;= np^1 q^{n-1} + n(n-1)p^2q^{n-2} + \cdots + n(n-1)p^{n-1}q^{n-(n-1)} + n p^n\\
+            &amp;= np [q^{n-1} + (n-1)pq^{n-2} + \cdots + p^{n-1}]\\
+            &amp;= np \Big[{n-1\choose 0}p^0q^{n-1} + {n-1\choose 1}p^1q^{(n-1)-1}
+                + \cdots + {n-1\choose n-1}p^{n-1}q^{(n-1)-(n-1)}\Big]\\
+            &amp;= np (\sum\limits_{x=0}^{n-1}{n-1\choose x}p^xq^{(n-1)-x}) \\
+  ^{[2]}    &amp;= np(p+q)^{n-1} \\
+  ^{[1]}    &amp;= np(p+(1-p))^{n-1} \\
+            &amp;= np(p+1-p)^{n-1} \\
+            &amp;= np(1)^{n-1} \\
+            &amp;= np(1) \\
+            &amp;= np
+\end{align*}\]</span></p>
 <blockquote>
-<p>It can be shown</p>
+<ol style="list-style-type: decimal">
+<li>Let <span class="math inline">\(q = (1 - p)\)</span></li>
+<li>By the Binomial Theorem (<a href="binomial-theorem.html#binomial-theorem-traditional">5.1.2</a>), <span class="math inline">\(\sum\limits_{x=0}^n{n\choose x}a^xb^{n-x}=(a+b)^n\)</span></li>
+</ol>
 </blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+<p><span class="math display">\[\begin{align*}
+E(X^2)
+            &amp;= \sum\limits_{x=0}^{n} x^2 p(x) \\
+            &amp;= \sum\limits_{x=0}^{n} x^2 {n\choose x} p^x (1-p)^{n-x} \\
+    ^{[1]}  &amp;= \sum\limits_{x=0}^{n} x^2 {n\choose x} p^x q^{n-x} \\
+          &amp;= 0^2 \frac{n!}{0!(n-0)!} p^0q^n + 1^2 \frac{n!}{1!(n-1)!} p^1q^{n-1}
+                  + \cdots + n^2 \frac{n!}{n!(n-n)!} p^nq^{n-n} \\
+            &amp;= 0 + 1 \frac{n!}{(n-1)!} pq^{n-1} + 2 \frac{n!}{1\cdot(n-2)!} p^2q^{n-2}
+                + \cdots + n \frac{n!}{(n-1)!(n-n)!} p^n \\
+          &amp;= np \Big[1 \frac{(n-1)!}{(n-1)!} p^0q^{n-1}
+                + 2 \frac{(n-1)!}{1(n-2)!} p^2q^{n-2}
+                + \cdots + n \frac{(n-1)!}{(n-1)!(n-n)!} p^{n-1}\Big] \\
+          &amp;= np \Big[1 \frac{(n-1)!}{(1-1)!((n-1)-(-1-1))!} p^{1-1} q^{n-1} + 
+                    \cdots + n \frac{(n-1)!}{(n-1)!((n-1)-(n-1))!} p^{n-1} q^{(n-1)-(n-1)}\Big] \\
+          &amp;= np \sum\limits_{x=1}^{n} x {n-1\choose x-1} p^{x-1}1^{(n-1)-(x-1)} \\
+  ^{[2]}  &amp;= \sum\limits_{y=0}^{m} (y+1) {m \choose y} p^yq^{m-y} \\
+          &amp;= np \Big[ \sum\limits_{y=0}^{m} y {m \choose y} p^yq^{m-y} + {m \choose y} p^yq^{m-y}\Big] \\
+          &amp;= np \Big[ \sum\limits_{y=0}^{m} y {m \choose y} p^yq^{m-y} 
+                + \sum\limits_{y=0}^{m} {m \choose y} p^yq^{m-y}\Big] \\
+  ^{[3]}  &amp;= np(mp+1) \\
+            &amp;= np[(n-1)p+1] \\
+            &amp;=np(np-p+1) \\
+            &amp;=n^2p^2 - np^2 + np
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(q = (1 - p)\)</span></li>
+<li>Let <span class="math inline">\(y = x - 1\)</span> and <span class="math inline">\(n = m + 1\)</span><br />
+<span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(x = y + 1\)</span> and <span class="math inline">\(m = n - 1\)</span></li>
+<li><span class="math inline">\(\sum\limits_{y=0}^{m}y{m \choose y}p^yq^{m-y}\)</span> is of the form of the expected value of <span class="math inline">\(Y\)</span>, and <span class="math inline">\(E(Y)=mp=(n-1)p\)</span>. <span class="math inline">\(\sum\limits_{y=0}^{m}{m \choose y}p^yq^{m-y}\)</span> is the sum of all probabilities over the domain of <span class="math inline">\(Y\)</span> which is 1.</li>
+</ol>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+\mu
+    &amp;= E(X) \\
+    &amp;= np \\
+\\
+\\
+\sigma^2
+    &amp;= E(X^2) - E(X)^2 \\
+    &amp;= n^2p^2 - np^2 + np - n^2p^2 \\
+    &amp;= -np^2 + np \\
+    &amp;= np(-p-1) \\
+  &amp;= np(1-p)
+\end{align*}\]</span></p>
+</div>
+<div id="moment-generating-function-1" class="section level2">
+<h2><span class="header-section-number">4.4</span> Moment Generating Function</h2>
+<p><span class="math display">\[
+\begin{align*} 
+M_X(t)
+          &amp;= E(e^{tX})=\sum\limits_{x=0}^{n}e^{tx}p(x) \\
+            &amp;= \sum\limits_{x=0}^{n}e^{tx}{n\choose x}p^x(1-p)^{n-x} \\
+          &amp;= \sum\limits_{x=0}^{n}{n\choose x}e^{tx}p^x(1-p)^{n-x} \\
+            &amp;= \sum\limits_{x=0}^{n}{n\choose x}(pe^{tx})^x(1-p)^{n-x} \\
+  ^{[1]}  &amp;= [(1-p)+pe^t]^n
+\end{align*}
+\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>By the Binomial Theorem (<a href="binomial-theorem.html#binomial-theorem-traditional">5.1.2</a>), <span class="math inline">\(\sum\limits_{x=0}^n{n\choose x}a^xb^{n-x}=(a+b)^n\)</span></li>
+</ol>
+</blockquote>
+<p><span class="math display">\[
+\begin{align*}
+M_X^{(1)}(t) &amp;= n[(1 - p) + pe^t] ^ {n - 1} pe^t\\
+\\
+M_X^{(2)}(t) &amp;= n[(1-p) + pe^t] ^ {n-1} pe^t + n(n-1)[(1-p) + pe^t] ^ {n-2}(pe^t)^2\\
+             &amp;= npe^t[(1-p) + pe^t] ^ {n-1} + n(n-1)pe^{2t}[(1-p) + pe^t] ^ {n-2}\\
+\\
+\\
+E(X)
+  &amp;= M_X^{(1)}(0) \\
+  &amp;= n[(1-p)+pe^0]^{n-1}pe^0 \\
+  &amp;= n[1-p+p^{n-1}p\\
+  &amp;= n(1)^{n-1}p
+  &amp;= np\\
+\\
+\\
+E(X^2)
+  &amp;= M_X^{(2)}(0) \\
+  &amp;= npe^0 [(1-p) + pe^0]^{n-1} + n(n-2) pe^{2\cdot0}[(1-p) + pe^0]^{n-2} \\
+  &amp;= np(1-p+p)^{n-2}+n(n-1)p^2(1-p+p^{n-2} \\
+  &amp;= np (1)^{n-1} + n(n-1) p^2 (1)^{n-2} \\
+  &amp;= np+n(n-1)p^2 \\
+  &amp;= np+(n^2-n)p^2 \\
+  &amp;= np + n^2 + n^2p^2 - np^2 \\
+\\
+\\
+\mu
+  &amp;= E(X) \\
+  &amp;= np \\
+\\
+\\
+\sigma^2
+  &amp;= E(X^2) - E(X)^2 \\
+  &amp;= np + n^2p^2 - np^2 - n^2p^2 \\
+  &amp;= np - np^2\\
+  &amp;= np(1-p)
+\end{align*}\]</span></p>
+</div>
+<div id="maximum-likelihood-estimator" class="section level2">
+<h2><span class="header-section-number">4.5</span> Maximum Likelihood Estimator</h2>
+<p>Since <span class="math inline">\(n\)</span> is fixed in each Binomial experiment, and must therefore be given, it is unnecessary to develop an estimator for <span class="math inline">\(n\)</span>. The mean and variance can both be estimated from the single parameter <span class="math inline">\(p\)</span>.</p>
+<p>Let <span class="math inline">\(X\)</span> be a Binomial random variable with parameter <span class="math inline">\(p\)</span> and <span class="math inline">\(n\)</span> outcomes <span class="math inline">\((x_1,x_2,\ldots,x_n)\)</span>. Let <span class="math inline">\(x_i=0\)</span> for a failure and <span class="math inline">\(x_i=1\)</span> for a success. In other words, <span class="math inline">\(X\)</span> is the sum of <span class="math inline">\(n\)</span> Bernoulli trials with equal probability of success and <span class="math inline">\(X=\sum\limits_{i=1}^{n}x_i\)</span>.</p>
+<div id="likelihood-function" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> Likelihood Function</h3>
+<p><span class="math display">\[\begin{align*} 
+L(\theta)
+    &amp;= L(x_1,x_2,\ldots,x_n|\theta) \\
+    &amp;= P(x_1|\theta) P(x_2|\theta) \cdots P(x_n|\theta) \\
+  &amp;= [\theta^{x_1}(1-\theta)^{1-x_1}] [\theta^{x_2}(1-\theta)^{1-x_2}] \cdots
+        [\theta^{x_n}(1-\theta)^{1-x_n}]\\
+  &amp;= \exp_\theta\bigg\{\sum\limits_{i=1}^{n}x_i\bigg\}
+        \exp_{(1-\theta)}\bigg\{n-\sum\limits_{i=1}^{n}x_i\bigg\} \\
+  &amp;= \theta^X(1-\theta)^{n-X}
+\end{align*}\]</span></p>
+</div>
+<div id="log-likelihood-function" class="section level3">
+<h3><span class="header-section-number">4.5.2</span> Log-likelihood Function</h3>
+<p><span class="math display">\[\begin{align*}
+\ell(\theta)
+    &amp;= \ln L(\theta) \\
+    &amp;= \ln\big(\theta^X(1-\theta)^{n-X}\big) \\
+    &amp;= X\ln(\theta)+(n-X)\ln(1-\theta)
+\end{align*}\]</span></p>
+</div>
+<div id="mle-for-p" class="section level3">
+<h3><span class="header-section-number">4.5.3</span> MLE for p</h3>
+<p><span class="math display">\[\begin{align*} 
+                \frac{d\ell(p)}{d p} 
+                            &amp;= \frac{X}{p}-\frac{n-X}{1-p} \\
+\\
+\\
+                       0   &amp;= \frac{X}{p}-\frac{n-X}{1-p} \\
+  \Rightarrow  \frac{X}{p} &amp;= \frac{n-X}{1-p} \\
+  \Rightarrow  (1-p)X      &amp;= p(n-X) \\
+  \Rightarrow  X-pX        &amp;= np-pX \\
+  \Rightarrow  X           &amp;= np \\
+  \Rightarrow  \frac{X}{n} &amp;= p \\
+\end{align*}\]</span></p>
+<p>So <span class="math inline">\(\displaystyle \hat p = \frac{X}{n} = \frac{1}{n}\sum\limits_{i=1}^{n}x_i\)</span> is the maximum likelihood estimator for <span class="math inline">\(p\)</span>.</p>
+</div>
+</div>
+<div id="theorems-for-the-binomial-distribution" class="section level2">
+<h2><span class="header-section-number">4.6</span> Theorems for the Binomial Distribution</h2>
+<div id="validity-of-the-distribution-1" class="section level3">
+<h3><span class="header-section-number">4.6.1</span> Validity of the Distribution</h3>
+<p><span class="math display">\[\begin{align*}
+\sum\limits_{x=0}^n{n\choose x}p^x(1-p)^{n-x}   = 1
+\end{align*}\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+\sum\limits_{x=0}^n {n\choose x} p^x (1-p)^{n-x} \\
+    ^{[1]}  &amp;= \big(p + (1-p)\big)^n \\
+            &amp;= (1)^n \\
+            &amp;= 1 
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>By the Binomial Theorem (<a href="binomial-theorem.html#binomial-theorem-traditional">5.1.2</a>), <span class="math inline">\(\sum\limits_{x=0}^n{n\choose x}a^xb^{n-x}=(a+b)^n\)</span></li>
+</ol>
+</blockquote>
+</div>
+<div id="sum-of-binomial-random-variables" class="section level3">
+<h3><span class="header-section-number">4.6.2</span> Sum of Binomial Random Variables</h3>
+<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_k\)</span> be independent random variables where <span class="math inline">\(X_i\)</span> comes from a Binomial distribution with parameters <span class="math inline">\(n_i\)</span> and <span class="math inline">\(p\)</span>. That is <span class="math inline">\(X_i\sim(n_i,p)\)</span>.</p>
+<p>Let <span class="math inline">\(Y = \sum\limits_{i=1}{k} X_i\)</span>. Then <span class="math inline">\(Y\sim\)</span>Binomial<span class="math inline">\((\sum\limits_{i=1}^{k}n_i,p)\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+M_Y(t)
+    &amp;= E(e^{tY}) \\
+    &amp;= E(e^{t(x_1 + X_2 + \cdots + X_k)} \\
+    &amp;= E(e^{tX_1} e^{tX_2} \cdots e^{tX_k}) \\ 
+  &amp;= E(e^{tX_1}) E(e^{tX_2}) \cdots E(e^{tX_k}) \\
+  &amp;= \prod\limits_{i=1}^{k} [(1-p)+pe^t]^{n_i} \\
+    &amp;= [(1-p)+pe^t]^{\sum\limits_{i=1}^{k}n_i}
+\end{align*}\]</span></p>
+<p>Which is the mgf of a Binomial random variable with parameters <span class="math inline">\(\sum\limits_{i=1}^{k}n_i\)</span> and <span class="math inline">\(p\)</span>.<br />
+Thus <span class="math inline">\(Y\sim\)</span>Binomial<span class="math inline">\((\sum\limits_{i=1}^{k}n_i,p)\)</span>.</p>
+</div>
+<div id="sum-of-bernoulli-random-variables-1" class="section level3">
+<h3><span class="header-section-number">4.6.3</span> Sum of Bernoulli Random Variables</h3>
+<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent and identically distributed random variables from a Bernoulli distribution with parameter <span class="math inline">\(p\)</span>. Let <span class="math inline">\(Y = \sum\limits_{i=1}^{n}X_i\)</span>.<br />
+Then <span class="math inline">\(Y\sim\)</span>Binomial<span class="math inline">\((n,p)\)</span></p>
+<p><em>Proof:</em> <span class="math display">\[\begin{align*}
+M_Y(t)
+    &amp;= E(e^{tY}) \\
+    &amp;= E(e^{tX_1} e^{tX_2} \cdots e^{tX_n}) \\
+    &amp;= E(e^{tX_1}) E(e^{tX_2}) \cdots E(e^{tX_n}) \\
+  &amp;= (pe^t+(1-p))(pe^t+(1-p))\cdots (pe^t+(1-p)) \\
+    &amp;= (pe^t+(1-p))^n
+\end{align*}\]</span></p>
+<p>Which is the mgf of a Binomial random variable with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>. Thus, <span class="math inline">\(Y\sim\)</span> Binomial<span class="math inline">\((n,p)\)</span>.</p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="bernoulli-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="binomial-theorem.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -439,7 +692,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Binomial_Distribution.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

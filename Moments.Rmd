@@ -1,0 +1,133 @@
+# Moments and Moment Generating Functions
+
+## Definitions of Moments
+
+### Definition: General Definition of Moments
+
+The $k^{th}$ moment of a random variable $X$ about some point $c$ is defined to be $E[(X-c)^k]$.
+
+There are two moments that are of particular use in statistics.  First, the moment of $X$ about the origin; second, the moment of $X$ about the mean.
+
+### Definition: Ordinary Moments
+
+The $k^{th}$ moment of a random variable $X$ about the origin is defined to be $E[(X-0)^k] = E(X^k)$.
+
+
+### Definition: Central Moments
+
+The $k^{th}$ moment of a random variable $X$ about the mean $\mu$ is defined to be $E[(X-\mu)^k]$.
+
+Using these definitions we can derive the first three central moments as follows:
+
+$$\begin{align*}
+E[(X-\mu)^1]
+	&= E(X - \mu) \\
+	&= E(X) - \mu \\
+	&= E(X) - E(X)
+\\
+\\
+E[(X-\mu)^2]
+	&= E[(X-\mu)(X-\mu)] \\
+	&= E(X^2-\mu X-\mu X+\mu^2) \\
+  &= E(X^2-2\mu X+\mu^2) \\
+	&= E(X^2) - E(2\mu X) + E(\mu^2) \\
+	&= E(X^2) - 2\mu E(X) + \mu^2 \\
+  &= E(X^2) - 2\mu\cdot\mu + \mu^2 \\
+	&= E(X^2) - 2\mu^2 + \mu^2 \\
+  &= E(X^2) - \mu^2 \\
+	&= E(X^2) - E(X)^2 \\
+\\
+\\
+E[(X-\mu)^3]
+	&= E[(X-\mu)(X-\mu)(X-\mu)] \\
+	&= E[(X^2-2\mu X+\mu^2)(X-\mu)] \\
+  &= E(X^3-\mu X^2-2\mu X^2+2\mu^2X+\mu^2X+\mu^3) \\
+  &= E(X^3-3\mu X^2+3\mu^2X-\mu^3) \\
+	&= E(X^3) - E(3\mu X^2) + E(3\mu^2X) - E(\mu^3) \\
+  &= E(X^3) - 3\mu E(X^2) + 3\mu^2E(X) - \mu^3 \\
+	&= E(X^3) - 3\mu E(X^2) + 3\mu^3 - \mu^3 \\
+  &= E(X^3) - 3\mu E(X^2) + 2\mu^3
+\end{align*}$$
+
+It should be noticed that with all of these results, the moment about the mean can be evaluated by finding the ordinary moments.  Thus, if we can find a consistent way to generate ordinary moments , we may use these results to find various parameters of a distribution.
+
+## Moment Generating Functions
+
+### Definition: Moment Generating Function
+
+The moment generating function of a random variable, denoted $M_X(t)$, is defined to be:
+
+\[ M_X(t) = E(e^{tX}) \]
+
+The moment generating function of $X$ is said to exist if for any positive constant $c,\ M_X(t)$ is finite for $|t|<c$.  The definition can be expanded to
+
+$$\begin{align*}
+M_X(t)
+	&= E(e^{tX} \\
+	&= \sum\limits_{i=1}^{\infty}e^{tx_i}p(x_i)  \\
+^{[1]}  &= \sum\limits_{i=1}^{\infty}[\frac{(tx_i)^0}{0!}+\frac{(tx_i)^1}{1!}
+		+ \frac{(tx_i)^2}{2!}+\frac{(tx_i)^3}{3!}+\cdots]p(x_i) \\
+  &= \sum\limits_{i=1}^{\infty}[1+tx_i+\frac{(tx_i)^2}{2!}
+		+ \frac{(tx_i)^3}{3!}+\cdots]p(x_i) \\
+  &= \sum\limits_{i=1}^{\infty}[p(x_i)+tx_ip(x_i)
+		+ \frac{(tx_i)^2}{2!}p(x_i)+\frac{(tx_i)^3}{3!}p(x_i) + \cdots] \\
+  &= \sum\limits_{i=1}^{\infty}p(x_i)+\sum\limits_{i=1}^{\infty}tx_ip(x_i)
+		+ \sum\limits_{i=1}^{\infty}\frac{(tx_i)^2}{2!}p(x_i)
+		+ \sum\limits_{i=1}^{\infty}\frac{(tx_i)^3}{3!}p(x_i) + \cdots \\
+  &= \sum\limits_{i=1}^{\infty}p(x_i)+t\sum\limits_{i=1}^{\infty}x_ip(x_i)
+		+ \frac{t^2}{2!}\sum\limits_{i=1}^{\infty}x_i^2p(x_i)
+		+ \frac{t^3}{3!}\sum\limits_{i=1}^{\infty}x_i^3p(x_i)+\cdots \\
+  &= 1 + tE(X) \\
+	&= \frac{t^2}{2!}E(X^2) + \frac{t^3}{3!} + \cdots
+\end{align*}$$
+	
+> 1. Taylor Series Expansion: 
+		$e^x=\frac{x^0}{0!}+\frac{x^1}{1!}+\frac{x^2}{2!}\cdots
+		= 1+x+\frac{x^2}{2!}+\cdots$
+
+
+### Theorem: Extraction of Moments from Moment Generating Functions
+
+Let $M_X^{(k)}(t)$ denote the $k^{th}$ derivative of $M_X(t)$ with respect to $t$. Then $M_X^{(k)}(0)=E(X^k)$.
+
+_Proof:_
+
+$$\begin{align*} 
+M_X(t)
+	&= 1 + tE(X) \\
+	&= \frac{t^2}{2!}E(X^2) + \frac{t^3}{3!} + \cdots \\
+\\
+\\
+M_X^{(1)}(t)
+	&= 0 + E(X) + \frac{2t}{2!}E(X^2) + \frac{3t^2}{3!}E(X^3) + \cdots \\
+  &= E(X) + tE(X^2) + \frac{t^2}{2!}E(X^3) + \cdots \\
+\\
+\\
+M_X^{(2)}(t)
+	&= 0 + E(X^2) + \frac{2t}{2!}E(X^3) + \frac{3t^2}{3!}E(X^4) + \cdots \\
+  &= E(X^2) + tE(X^3) + \frac{t^2}{2!}E(X^4) + \cdots \\
+\vdots \\
+\\
+\\
+M_X^{(k)}(t)
+	&= 0 + E(X^k) + \frac{2t}{2!}E(X^{k+1}) + \frac{3t^2}{3!}E(X^{k+2}) + \cdots \\
+  &= E(X^k) + tE(X^{k+1}) + \frac{t^2}{2!}E(X^{k+2}) + \cdots \\
+\\
+\\
+M_X^{(1)}(0)
+	&= 0 + E(X) + \frac{2\cdot 0}{2!}E(X^2) + \frac{3\cdot 0t^2}{3!}E(X^3) + \cdots \\
+	&= E(X)\\
+\\
+\\
+M_X^{(2)}(0)
+	&= 0 + E(X^2) + \frac{2\cdot 0}{2!}E(X^3) + \frac{3\cdot 0^2}{3!}E(X^4) + \cdots \\
+	&= E(X^2) \\
+\\
+\\
+\vdots \\
+\\
+\\
+M_X^{(0)}(t)
+	&= 0 + E(X^k) + \frac{2\cdot 0}{2!}E(X^{k+1}) + \frac{3\cdot 0^2}{3!}E(X^{k+2}) + \cdots \\
+	&= E(X^k)
+\end{align*}$$

@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="functions.html">
+<link rel="next" href="geometric-distribution.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -389,30 +389,336 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-19</em></h4>
+<div id="gamma-distribution" class="section level1">
+<h1><span class="header-section-number">14</span> Gamma Distribution</h1>
+<div id="probability-distribution-function-2" class="section level2">
+<h2><span class="header-section-number">14.1</span> Probability Distribution Function</h2>
+<p>A random variable <span class="math inline">\(X\)</span> is said to have a Gamma Distribution with parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> if its probability distribution function is <span class="math display">\[f(x)=\left\{
+    \begin{array}{ll}
+        \frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}{\Gamma(\alpha)\beta^\alpha},
+            &amp; 0&lt;x,\ 0&lt;\alpha,\ 0&lt;\beta\\
+        0 &amp; otherwise 
+    \end{array} \right.
+\]</span> Where <span class="math inline">\(\alpha\)</span> is a scale parameter and\ <span class="math inline">\(\beta\)</span> is a shape parameter.</p>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
+<div id="cumulative-distribution-function-2" class="section level2">
+<h2><span class="header-section-number">14.2</span> Cumulative Distribution Function</h2>
+<p>The cumulative distribution function for the Gamma Distribution cannot be expressed in closed form. It’s interval form is expressed here.</p>
+<p><span class="math display">\[F(x) = \left\{
+    \begin{array}{ll}
+        \int\limits_{0}^{x}\frac{t^{\alpha-1}e^{-\frac{t}{\beta}}}{\Gamma(\alpha)\beta^\alpha},
+            &amp; 0&lt;t,\ 0&lt;\alpha,\ 0&lt;\beta\\
+        \\
+        0 &amp; otherwise 
+    \end{array} \right.
+\]</span></p>
+<div class="figure">
+<img src="figures/Gamma_Distribution-1.png" alt="(\#fig:Gamma_Distribution)The figures on the left and right display the Gamma probability and cumulative distirubtion functions, respectively, for the combinations of $\alpha=2,3$ and $\beta=1,3$." width="672" />
+<p class="caption">
+(#fig:Gamma_Distribution)The figures on the left and right display the Gamma probability and cumulative distirubtion functions, respectively, for the combinations of <span class="math inline">\(\alpha=2,3\)</span> and <span class="math inline">\(\beta=1,3\)</span>.
+</p>
+</div>
+</div>
+<div id="expected-values-4" class="section level2">
+<h2><span class="header-section-number">14.3</span> Expected Values</h2>
+<p><span class="math display">\[\begin{align*} 
+E(X)
+        &amp;= \int\limits_{0}^{\infty}x\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
+            {\Gamma(\alpha)\beta^\alpha}dx \\
+        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+            \int\limits_{0}^{\infty}x\cdot x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
+        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+            \int\limits_{0}^{\infty}x^{\alpha}e^{-\frac{x}{\beta}}dx \\
+^{[1]}  &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+        [\Gamma(\alpha+1)\beta^{\alpha+1}] \\
+        &amp;= \frac{\Gamma(\alpha+1)\beta^{\alpha+1}}{\Gamma(\alpha)\beta^\alpha} \\
+        &amp;= \frac{\alpha\Gamma(\alpha)\beta^{\alpha+1}}{\Gamma(\alpha)\beta^\alpha} \\
+        &amp;= \alpha\beta
+\end{align*}\]</span></p>
 <blockquote>
-<p>It can be shown</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx =\beta^\alpha\Gamma(\alpha)\)</span></li>
+</ol>
 </blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+<p><span class="math display">\[\begin{align*} 
+E(X^2)
+        &amp;= \int\limits_{0}^{\infty}x^2\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
+            {\Gamma(\alpha)\beta^\alpha}dx \\
+        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+            \int\limits_{0}^{\infty}x^2\cdot 
+            x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
+        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+            \int\limits_{0}^{\infty}x^{\alpha+1}e^{-\frac{x}{\beta}}dx \\
+^{[1]}  &amp;= \frac{1}{\Gamma(\alpha)\beta^{\alpha}}
+            [\Gamma(\alpha+2)\beta^{\alpha+2}] \\
+        &amp;= \frac{\Gamma(\alpha+2)\beta^{\alpha+2}}{\Gamma(\alpha)\beta^\alpha} \\
+        &amp;= \frac{(\alpha+1)\Gamma(\alpha+1)\beta^{\alpha+2}}
+            {\Gamma(\alpha)\beta^\alpha} \\
+        &amp;= \frac{(\alpha+1)\alpha\Gamma(\alpha)\beta^{\alpha+2}}
+            {\Gamma(\alpha)\beta^\alpha} \\
+        &amp;= \alpha(\alpha+1)\beta^2 \\
+        &amp;= (\alpha^2+\alpha)\beta^2 \\
+        &amp;= \alpha^2\beta^2+\alpha\beta^2 
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx =\beta^\alpha\Gamma(\alpha)\)</span></li>
+</ol>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+\mu
+    &amp;= E(X) \\
+    &amp;= \alpha\beta \\
+\\
+\\
+\sigma^2
+    &amp;= E(X^2) - E(X)^2 \\
+    &amp;= \alpha^2\beta^2 + \alpha\beta^2 - \alpha^2\beta^2 \\
+    &amp;= \alpha\beta^2
+\end{align*}\]</span></p>
+</div>
+<div id="moment-generating-function-4" class="section level2">
+<h2><span class="header-section-number">14.4</span> Moment Generating Function</h2>
+<p><span class="math display">\[\begin{align*} 
+M_X(t) 
+        &amp;= E(e^{tX}) \\
+        &amp;= \int\limits_{0}^{\infty}e^{tx}
+            \frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
+            {\Gamma(\alpha)\beta^\alpha}dx \\
+        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+            \int\limits_{0}^{\infty}e^{tx}
+            x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
+        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+            \int\limits_{0}^{\infty}x^{\alpha-1}
+            e^{tx}e^{-\frac{x}{\beta}}dx \\
+        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+            \int\limits_{0}^{\infty}x^{\alpha-1}
+            e^{tx-\frac{x}{\beta}}dx \\
+        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+            \int\limits_{0}^{\infty}x^{\alpha-1}
+            e^{\frac{\beta tx}{\beta}-\frac{x}{\beta}}dx \\
+        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+            \int\limits_{0}^{\infty}x^{\alpha-1}
+            e^{\frac{\beta tx-x}{\beta}}dx \\
+        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+            \int\limits_{0}^{\infty}x^{\alpha-1}
+            e^{-x\frac{-\beta t+1}{\beta}}dx \\
+        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+            \int\limits_{0}^{\infty}x^{\alpha-1}
+            e^{-x\frac{1-\beta t}{\beta}}dx \\
+^{[1]}  &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+            \Big[\Gamma(\alpha)\Big(\frac{\beta}{1-\beta t}\Big)\alpha)\Big] \\
+        &amp;= \frac{\Gamma(\alpha)\beta^\alpha}
+            {\Gamma(\alpha)\beta^\alpha(1-\beta t)^\alpha} \\
+        &amp;= \frac{1}{(1-\beta t)^\alpha}=(1-\beta t)^{-\alpha}
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx =\beta^\alpha\Gamma(\alpha)\)</span></li>
+</ol>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+M_X^{(1)}(t)
+    &amp;= -\alpha(1-\beta t)^{-\alpha-1}(-\beta) \\
+    &amp;= \alpha\beta(1-\beta t)^{-\alpha-1} \\
+M_X^{(2)}(t) 
+    &amp;= (-\alpha-1)\alpha\beta(1-\beta t)^{-\alpha-2}(-\beta) \\
+    &amp;= (\alpha+1)\alpha\beta^2(1-\beta t)^{-\alpha-2} \\
+  &amp;= (\alpha^2\beta^2+\alpha\beta^2)(1-\beta t)^{-\alpha-2} \\
+\\
+\\
+E(X)
+    &amp;= M_X^{(1)}(0)=\alpha\beta(1-\beta\cdot 0)^{-\alpha-1} \\
+    &amp;= \alpha\beta(1-0)^{\alpha-1}=\alpha\beta(1)^{-\alpha-1} \\
+    &amp;= \alpha\beta \\
+\\
+\\
+E(X^2)
+    &amp;= M_X^{(2)}(0)=(\alpha^2\beta^2+\alpha\beta^2)(1-\beta 0)^{-\alpha-2} \\
+    &amp;= (\alpha^2\beta^2+\alpha\beta^2)(1-0)^{-\alpha-2} \\
+  &amp;= (\alpha^2\beta^2+\alpha\beta^2)(1)^{-\alpha-2} \\
+    &amp;= \alpha^2\beta^2+\alpha\beta^2 \\
+\\
+\\
+\mu
+    &amp;= E(X) \\
+    &amp;= \alpha\beta\\
+\\
+\\
+\sigma^2
+    &amp;= E(X^2) - E(X)^2 \\
+    &amp;= \alpha^2\beta^2 + \alpha\beta^2 - \alpha^2\beta^2 \\
+    &amp;= \alpha\beta^2
+\end{align*}\]</span></p>
+</div>
+<div id="maximum-likelihood-estimators" class="section level2">
+<h2><span class="header-section-number">14.5</span> Maximum Likelihood Estimators</h2>
+<p>Let <span class="math inline">\(x_1,x_2,\ldots,x_n\)</span> denote a random sample from a Gamma Distribution with parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>.</p>
+<div id="likelihood-function-3" class="section level3">
+<h3><span class="header-section-number">14.5.1</span> Likelihood Function</h3>
+<p><span class="math display">\[\begin{align*}
+L(\theta)
+    &amp;= L(x_1,x_2,\ldots,x_n|\theta) \\
+    &amp;= f(x_1|\theta) f(x_2|\theta) \cdots f(x_n|\theta) \\
+  &amp;= \frac{x_1^{\alpha-1}e^{-x_1/\beta}}{\Gamma(\alpha)\beta^\alpha}
+        \frac{x_2^{\alpha-1}e^{-x_2/\beta}}{\Gamma(\alpha)\beta^\alpha}
+        \cdots \frac{x_n^{\alpha-1}e^{-x_n/\beta}}{\Gamma(\alpha)\beta^\alpha} \\
+  &amp;= \prod\limits_{i=1}^{n}\frac{x_i^{\alpha-1}e^{-x_i/\beta}}{\Gamma(\alpha)\beta^\alpha} \\
+    &amp;= \bigg(\frac{1}{\Gamma(\alpha)\beta^\alpha}\bigg)^n  
+          \prod\limits_{i=1}^{n}x_i^{\alpha-1}e^{-x_i/\beta} \\
+  &amp;= \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
+        \prod\limits_{i=1}^{n}x_i^{\alpha-1}e^{-x_i/\beta} \\
+  &amp;= \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
+        \exp\bigg\{\sum\limits_{i=1}^{n}-\frac{x_i}{\beta} \bigg\}
+        \prod\limits_{i=1}^{n}x_i^{\alpha-1} \\
+  &amp;= \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
+        \exp\bigg\{-\frac{1}{\beta}\sum\limits_{i=1}^{n}x_i \bigg\}
+        \prod\limits_{i=1}^{n}x_i^{\alpha-1}
+\end{align*}\]</span></p>
+</div>
+<div id="log-likelihood-function-3" class="section level3">
+<h3><span class="header-section-number">14.5.2</span> Log-likelihood Function</h3>
+<p><span class="math display">\[\begin{align*}
+\ell(\theta)
+    &amp;= \ln\bigg[ \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
+        \exp\bigg\{-\frac{1}{\beta}\sum\limits_{i=1}^{n}x_i \bigg\}
+        \prod\limits_{i=1}^{n}x_i^{\alpha-1} \bigg]  \\
+  &amp;= \ln\big( \Gamma(\alpha) \beta^\alpha \big)^{-n}
+        + \ln\bigg( \exp \bigg\{ -\frac{1}{\beta}\sum\limits_{i=1}^{n}x_i \bigg\} \bigg)
+        + \ln\bigg( \prod\limits_{i=1}^{n}x_i^{\alpha-1} \bigg) \\
+  &amp;= -n\ln\big( \Gamma(\alpha) \beta^\alpha \big)
+        - \frac{1}{\beta}\sum\limits_{i=1}^{n}x_i
+        + \ln\bigg( \prod\limits_{i=1}^{n}x_i^{\alpha-1} \bigg) \\
+  &amp;= -n\big[ \ln\big( \Gamma(\alpha)\beta^\alpha\big) \big]
+        - \frac{1}{\beta}\sum\limits_{i=1}^{n}x_i
+        + \sum\limits_{i=1}^{n}(\alpha-1)\ln x_i \\
+  &amp;= -n\ln\Gamma(\alpha) - n\alpha\ln\beta
+        - \frac{1}{\beta}\sum\limits_{i=1}^{n}x_i
+        + (\alpha-1)\sum\limits_{i=1}^{n}\ln x_i
+\end{align*}\]</span></p>
+</div>
+<div id="mle-for-alpha" class="section level3">
+<h3><span class="header-section-number">14.5.3</span> MLE for <span class="math inline">\(\alpha\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+\frac{d\ell}{d\alpha}
+    &amp;= -n\frac{1}{\Gamma(\alpha)}\Gamma^\prime(\alpha) - n\ln\beta - 0
+        + \sum\limits_{i=1}^{n}\ln x_i \\
+  &amp;= -n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)} - n\ln\beta
+        + \sum\limits_{i=1}^{n}\ln x_i\\
+\\
+\\
+0 &amp;= -n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)} - n\ln\beta
+        + \sum\limits_{i=1}^{n}\ln x_i \\
+\Rightarrow n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)}
+        &amp;= \sum\limits_{i=1}^{n}\ln x_i - n\ln\beta \\
+\Rightarrow \frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)}
+        &amp;= \frac{1}{n}\bigg( \sum\limits_{i=1}^{n}\ln x_i - n\ln\beta \bigg)
+\end{align*}\]</span></p>
+<p>However, this must be solved numerically. Notice also that the MLE for <span class="math inline">\(\alpha\)</span> depends on <span class="math inline">\(\beta\)</span>.</p>
+</div>
+<div id="mle-for-beta-1" class="section level3">
+<h3><span class="header-section-number">14.5.4</span> MLE for <span class="math inline">\(\beta\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+\frac{d\ell}{d\beta}
+    &amp;= 0 - n\alpha\frac{1}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i + 0 \\
+    &amp;= -\frac{n\alpha}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i \\
+\\
+\\
+0 &amp;= -\frac{n\alpha}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i \\
+\Rightarrow \frac{n\alpha}{\beta} &amp;= \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i \\
+\Rightarrow n\alpha\beta &amp;= \sum\limits_{i=1}^{n}x_i \\
+\Rightarrow \beta &amp;= \frac{1}{n\alpha} \sum\limits_{i=1}^{n}x_i
+\end{align*}\]</span></p>
+<p>This estimate, however, depends on <span class="math inline">\(\alpha\)</span>. Since each estimator depends on the value of the other parameter, we must maximize the likelihood functions simulatneously. That is, we must simultaneously solve the system <span class="math display">\[ \left\{
+    \begin{array}{rl}
+        -n\frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)} - n\ln\beta
+        + \sum\limits_{i=1}^{n}\ln x_i 
+            &amp; = 0\\
+        -\frac{n\alpha}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i
+            &amp; = 0\\
+    \end{array} \right.
+\]</span> Solving this system will require numerical methods.</p>
+</div>
+<div id="approximation-of-hatalpha-and-hatbeta" class="section level3">
+<h3><span class="header-section-number">14.5.5</span> Approximation of <span class="math inline">\(\hat\alpha\)</span> and <span class="math inline">\(\hat\beta\)</span></h3>
+<p>Approximations of <span class="math inline">\(\hat\alpha\)</span> and <span class="math inline">\(\hat\beta\)</span> can be obtained by noticing that\ <span class="math display">\[\begin{align*}
+\frac{d\ell}{d\beta}    &amp;= 0 \\
+\Rightarrow \beta       &amp;= \frac{1}{n\alpha}\sum\limits_{i=1}^{n}x_i\\
+\Rightarrow \alpha\beta &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}x_i
+\end{align*}\]</span></p>
+<p>So <span class="math inline">\(\widehat{\alpha\beta} = \frac{1}{n}\sum\limits_{i=1}^{n}x_i\)</span>. Recall that <span class="math inline">\(\alpha\beta\)</span> and <span class="math inline">\(\alpha\beta^2\)</span> are the mean and variance of the Gamma Distribution, respectively. We utilize <span class="math display">\[ \frac{\alpha\beta^2}{\alpha\beta} = \beta \]</span></p>
+<p>If we assume that <span class="math inline">\(\widehat{\alpha\beta^2} = \frac{1}{n-1}\sum\limits_{i=1}^{n}(x_i-\bar x)^2\)</span>, then</p>
+<p><span class="math display">\[ \frac{\widehat{\alpha\beta^2}}{\widehat{\alpha\beta}} = \beta^* \approx \hat\beta \]</span> Where <span class="math inline">\(\beta^*\)</span> denotes an approximation to <span class="math inline">\(\hat\beta\)</span></p>
+<p>We now substitute <span class="math inline">\(\beta^*\)</span> into</p>
+<p><span class="math display">\[\begin{align*}
+\widehat{\alpha\beta}       &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}x_i\\
+\Rightarrow \alpha^*\beta^* &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}x_i\\
+\Rightarrow \alpha^*        &amp;= \frac{1}{n\beta^*}\sum\limits_{i=1}^{n}x_i \approx \hat\alpha
+\end{align*}\]</span></p>
+<p>Where <span class="math inline">\(\alpha^*\)</span> denotes an approximation to <span class="math inline">\(\hat\alpha\)</span>.</p>
+<p>This method of estimation is prone to error because <span class="math inline">\(\beta^*\)</span> is found through two levels of estimation and <span class="math inline">\(\alpha^*\)</span> is found through three levels of estimation. Surely, this process inflates the error of estimation. At this point, however, I have no information to indicate how badly the error of estimation is inflated, nor have I performed any investigation into this problem.</p>
+</div>
+</div>
+<div id="theorems-for-the-gamma-distribution" class="section level2">
+<h2><span class="header-section-number">14.6</span> Theorems for the Gamma Distribution</h2>
+<div id="validity-of-the-distribution-4" class="section level3">
+<h3><span class="header-section-number">14.6.1</span> Validity of the Distribution</h3>
+<p><span class="math display">\[ \int\limits_{0}^{\infty}x\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
+    {\Gamma(\alpha)\beta^\alpha}dx = 1\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+ \int\limits_{0}^{\infty}\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
+        {\Gamma(\alpha)\beta^\alpha}dx 
+        &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}
+            \int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx \\
+^{[1]}  &amp;= \frac{1}{\Gamma(\alpha)\beta^\alpha}[\Gamma(\alpha)\beta^\alpha] \\
+        &amp;= \frac{\Gamma(\alpha)\beta^\alpha}{\Gamma(\alpha)\beta^\alpha} \\
+        &amp;= 1
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx = \beta^\alpha\Gamma(\alpha)\)</span></li>
+</ol>
+</blockquote>
+</div>
+<div id="sum-of-gamma-random-variables" class="section level3">
+<h3><span class="header-section-number">14.6.2</span> Sum of Gamma Random Variables</h3>
+<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be Gamma distributed random variables with parameters <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\beta\)</span>, that is <span class="math inline">\(X_i\sim\)</span>Gamma<span class="math inline">\((\alpha_i,\beta)\)</span>. Let <span class="math inline">\(Y = \sum\limits_{i=1}^{n}X_i\)</span>.\ Then <span class="math inline">\(Y\sim\)</span>Gamma<span class="math inline">\((\sum\limits_{i=1}^{n}\alpha_i,\beta)\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+M_Y(t)
+    &amp;= E(e^{tY})=E(e^{t(X_1+X_2+\cdots+X_n)} \\
+    &amp;= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
+    &amp;= E(e^{tX_1})E(e^{tX_2})\cdots E(e^{tX_n}) \\
+  &amp;= (1-\beta t)^{-\alpha_1}(1-\beta t)^{-\alpha_2}\cdots
+        (1-\beta t)^{-\alpha_n}=(1-\beta t)^{-\sum\limits_{i=1}^{n}\alpha_i}
+\end{align*}\]</span></p>
+<p>Which is the moment generating function of a Gamma random variable with parameters <span class="math inline">\(\sum\limits_{i=1}^{n}\alpha_i\)</span> and <span class="math inline">\(\beta\)</span>. Thus <span class="math inline">\(Y\sim\)</span>Gamma<span class="math inline">\((\sum\limits_{i=1}^{n}\alpha_i,\beta)\)</span>.</p>
+</div>
+<div id="sum-of-exponential-random-variables-1" class="section level3">
+<h3><span class="header-section-number">14.6.3</span> Sum of Exponential Random Variables</h3>
+<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent random variables from an Exponential distribution with parameter <span class="math inline">\(\beta\)</span>, i.e. <span class="math inline">\(X_i\sim\)</span>Exponential<span class="math inline">\((\beta)\)</span>. Let <span class="math inline">\(Y = \sum\limits_{i=1}^{n}X_i\)</span>. Then <span class="math inline">\(Y\sim\)</span>Gamma<span class="math inline">\((n,\beta)\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+M_Y(t)
+    &amp;= E(e^{tY}) \\
+    &amp;= E(e^{t(X_1+X_2+\cdots+X_n}) \\
+    &amp;= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
+  &amp;= (1-\beta t)^{-1}(1-\beta t)^{-1}\cdots(1-\beta t)^{-1} \\
+    &amp;= (1-\beta t)^{-n}
+\end{align*}\]</span></p>
+<p>Which is the moment generating function for a Gamma random variable with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\beta\)</span>. Thus <span class="math inline">\(Y\sim\)</span>Gamma<span class="math inline">\((n,\beta)\)</span>.</p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="geometric-distribution.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -439,7 +745,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Gamma_Distribution.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

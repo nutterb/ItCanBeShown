@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="integration-techniques-and-theorems.html">
+<link rel="next" href="mantel-haenszel-test-of-linear-trend.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -389,30 +389,59 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-19</em></h4>
+<div id="logistic-regression" class="section level1">
+<h1><span class="header-section-number">19</span> Logistic Regression</h1>
+<div id="the-logit-transformation" class="section level2">
+<h2><span class="header-section-number">19.1</span> The Logit Transformation</h2>
+<p>Logistic regression intends to model the probability that a given response will occur based on the characteristics in the predictor variables. The response, therefore, is a probability; a value between zero and one. This is in contrast to typical linear regression where the response lies range of real numbers. This is further complicated by the fact that in the observed data, a subject does not have a probabilistic response, but the response is the dichotomous occurrence of an event. The nature of the response variable in logistic regression, therefore, necessitates that a transformation be applied.</p>
+<div id="obtaining-the-logit-transformation" class="section level3">
+<h3><span class="header-section-number">19.1.1</span> Obtaining the Logit Transformation</h3>
+<p>Let us call the response for our logistic model the probability <span class="math inline">\(p\)</span> that an event will occur. Since <span class="math inline">\(p\)</span> is a probability, by definition, it’s domain is from 0 to 1. Ideally, we would like to have a response whose domain is <span class="math inline">\(\Re\)</span>. First, let us consider the transformation <span class="math inline">\(\frac{p}{1-p}\)</span> (also called the odds of <span class="math inline">\(p\)</span>) and it’s limits as <span class="math inline">\(p\)</span> approaches 0 and 1.</p>
+<p><span class="math display">\[\begin{align*}
+\lim\limits_{p\rightarrow 0} \frac{p}{1-p} 
+    = \frac{0}{1-0} 
+    = 0
+\end{align*}\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\begin{align*}
+\lim\limits_{p\rightarrow 1} \frac{p}{1-p} 
+    = \infty
+\end{align*}\]</span></p>
+<p>So the domain of <span class="math inline">\(\frac{p}{1-p}\)</span> is <span class="math inline">\((0,\infty)\)</span>. This is handy, as we do know that the <span class="math inline">\(\ln\)</span> function takes a variable on the domain <span class="math inline">\((0,\infty)\)</span> and maps it onto the range <span class="math inline">\((-\infty,\infty)\)</span>. Thus, the equation for our logistic model the transformation (called the logit, or log-odds):</p>
+<p><span class="math display">\[\ln\bigg(\frac{p}{1-p}\bigg) = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n\]</span></p>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
+</div>
+<div id="retrieving-the-modelled-probability" class="section level2">
+<h2><span class="header-section-number">19.2</span> Retrieving the Modelled Probability</h2>
+<p>While the logit transformation allows us to perform the logistic regression, the resulting measure tells us about the risk of an event associated with a predictor, but does not tell us directly about the probability of the event occuring. If we need to know the probability of the event ocurring, we must back transform the results of our regression equation. Essentially, we extract <span class="math inline">\(\hat p\)</span> from the modelled log-odds. This is done as by:</p>
+<p><span class="math display">\[\begin{align*}
+\ln\bigg(\frac{\hat{p}}{1-\hat{p}}\bigg)  
+            &amp;= \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n \\
+^{[1]}  &amp;= B \\
+\Rightarrow \frac{\hat{p}}{1-\hat{p}} &amp;= \exp(B) \\
+\Rightarrow \hat{p} &amp;= (1-\hat{p})\exp(B) \\
+\Rightarrow \hat{p} &amp;= \exp(B) - \hat{p} \cdot \exp(B) \\
+\Rightarrow \hat{p} + \hat{p} \cdot \exp(B) &amp;= \exp(B) \\
+\Rightarrow \hat{p}(1+\exp(B)) &amp;= \exp(B) \\
+\Rightarrow \hat{p} &amp;= \frac{\exp(B)}{1 + \exp(B)} \\
+\Rightarrow \hat{p} &amp;= \frac{\exp(\beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n)}
+                     {1 + \exp(\beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n)}
+\end{align*}\]</span></p>
 <blockquote>
-<p>It can be shown</p>
+<ol style="list-style-type: decimal">
+<li>Let <span class="math inline">\(B = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n\)</span></li>
+</ol>
 </blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="integration-techniques-and-theorems.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mantel-haenszel-test-of-linear-trend.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -439,7 +468,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/LogisticRegression.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

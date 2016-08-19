@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="analysis-of-variance.html">
+<link rel="prev" href="geometric-series.html">
+<link rel="next" href="integration-techniques-and-theorems.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -389,30 +389,152 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">It Can Be Shown</h1>
-<h3 class="subtitle"><em>Notes on Statistical Theory</em></h3>
-<h4 class="author"><em>Benjamin Nutter</em></h4>
-<h4 class="date"><em>2016-08-19</em></h4>
+<div id="hypergeometric-distribution" class="section level1">
+<h1><span class="header-section-number">17</span> Hypergeometric Distribution</h1>
+<div id="probability-mass-function-3" class="section level2">
+<h2><span class="header-section-number">17.1</span> Probability Mass Function</h2>
+<p>A random variable <span class="math inline">\(X\)</span> is said to follow a Hypergeometric Distribution if its probability mass function is</p>
+<p><span class="math display">\[p(x) = \left\{
+    \begin{array}{ll}
+        \frac{{r\choose x}{N-r\choose n-x}}{{N\choose n}}, &amp; x=0,1,2,\ldots\\
+        0 &amp; otherwise 
+    \end{array} \right. 
+\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(N\)</span> is the number of objects available to choose from</li>
+<li><span class="math inline">\(n\)</span> is the number of objects chosen from <span class="math inline">\(N\)</span></li>
+<li><span class="math inline">\(r\)</span> is the number of objects in <span class="math inline">\(N\)</span> that posses a desired characteristic (successes)</li>
+<li><span class="math inline">\(x\)</span> is the number of objects in <span class="math inline">\(n\)</span> that possess the desired characterstic</li>
+</ul>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There is one phrase that makes me cringe every time I see it. It’s a phrase that embodies feelings of frustration, inadequacy, and failure to understand. That phrase:</p>
+<div id="cumulative-mass-function-2" class="section level2">
+<h2><span class="header-section-number">17.2</span> Cumulative Mass Function</h2>
+<p><span class="math display">\[P(x) = \left\{
+    \begin{array}{ll}
+        \sum\limits_{i=0}^{x}\frac{{r\choose i}{N-r\choose n-i}}{{N\choose n}}, &amp; x=0,1,2,\ldots\\
+        0 &amp; otherwise 
+    \end{array} \right. 
+\]</span></p>
+</div>
+<div id="expected-values-6" class="section level2">
+<h2><span class="header-section-number">17.3</span> Expected Values</h2>
+<p><span class="math display">\[\begin{align*} 
+E(X)
+        &amp;= \sum\limits_{x=0}^{n}x\frac{{r\choose x}{N-r\choose n-x}}{{N\choose n}} \\
+        &amp;= \sum\limits_{x=0}^{n}x{r\choose x}\frac{{N-r\choose n-x}}{{N\choose n}} \\
+^{[1]}  &amp;= \sum\limits_{x=0}^{n}x\frac{r}{x}{r-1\choose x-1}\frac{{N-r\choose n-x}}
+            {\frac{N}{n}{N-1\choose n-1}} \\
+        &amp;= \frac{rn}{N}\sum\limits_{x=0}^{n}
+          \frac{{r-1\choose x-1}{N-r\choose n-x}}{{N-1\choose n-1}} \\
+^{[2]}  &amp;= \frac{rn}{N}\sum\limits_{y=0}^{n-1}
+           \frac{{r-1\choose y}{N-r\choose n-y-1}}{{N-1\choose n-1}}
+               \frac{rn}{N}\sum\limits_{y=0}^{n-1}
+               \frac{{r-1\choose y}{N-r\choose n-y-1}}{{N-1\choose n-1}} \\
+        &amp;= \frac{\frac{rn}{N}\cdot n}{N}r\sum\limits_{y=0}^{n-1}
+            \frac{{r-1\choose y}{N-r\choose n-y-1}}{{N-1\choose n-1}} \\
+^{[3]}  &amp;= \frac{rn}{N}\cdot 1 \\
+        &amp;= \frac{rn}{N}
+\end{align*}\]</span></p>
 <blockquote>
-<p>It can be shown</p>
+<ol style="list-style-type: decimal">
+<li>For any integer <span class="math inline">\(a\)</span> such that <span class="math inline">\(0\leq a\leq k,\  {n\choose k}=\frac{n(n-1)\cdots(n-a+1)}{k(k-1)\cdots(k-a+1)}{n-a\choose k-a}\)</span> (Theorem @ref(Combinations1.3)).</li>
+<li>Let <span class="math inline">\(y=x-1\)</span>  <span class="math inline">\(\Rightarrow x=y+1\)</span>.</li>
+<li><span class="math inline">\(\frac{\sum\limits_{i=1}^{n}{N_1\choose i}{N_2\choose n-i}}{{N_1+N_2\choose n}}=1\)</span>\ with <span class="math inline">\(N_1=r,\ N_2=N-r,\ i=x\)</span>. (Theorem @ref(BinomialTheor3.2)</li>
+</ol>
 </blockquote>
-<p>Everytime I read that phrase, I would look at the subsequent result and think “Really? It can?”</p>
-<p>This book is a collection of notes that I’ve put together to avoid having to feel that way in the future. It is, essentially, a collection of definitions and proofs that have helped me understand and apply mathematical and statistical theory. Most imporantly, it spells even the smallest steps along each development so that I don’t have to worry about solving it again in the future.</p>
-<p>You won’t find much in the way of application. There are no exercises. There is only minimal explanation. My intent is to show development of statistical theory and nothing else.</p>
+<p><span class="math display">\[\begin{align*} 
+E[X(X-1)]
+          &amp;= \sum\limits_{x=0}^{n}x(x-1)\frac{{r\choose x}{N-r\choose n-x}}{{N\choose n}} \\
+^{[1]}  &amp;= \sum\limits_{x=0}^{n}\frac{x(x-1)r(r-1)}{x(x-1)}\frac{{r-2\choose x-2}
+            {N-r\choose n-x}}{\frac{N(N-1)}{n(n-1)}{N-2\choose n-2}} \\
+        &amp;= \frac{r(r-1)n(n-1)}{N(N-1)}\sum\limits_{x=0}^{n}
+          \frac{{r-2\choose x-2}{N-r\choose n-x}}{{N-2\choose n-2}} \\
+^{[2]}  &amp;= \frac{r(r-1)n(n-1)}{N(N-1)}\sum\limits_{y=0}^{n-2}
+          \frac{{r-2\choose y}{N-r\choose n-y-2}}{{N-2\choose n-2}} \\
+^{[3]}  &amp;= \frac{r(r-1)n(n-1)}{N(N-1)}\cdot 1 \\
+        &amp;=\frac{r(r-1)n(n-1)}{N(N-1)}
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>For any integer <span class="math inline">\(a\)</span> such that <span class="math inline">\(0\leq a\leq k,\  {n\choose k}=\frac{n(n-1)\cdots(n-a+1)}{k(k-1)\cdots(k-a+1)}{n-a\choose k-a}\)</span> (Theorem @ref(Combinations1.3)).</li>
+<li>Let <span class="math inline">\(y=x-1\)</span>  <span class="math inline">\(\Rightarrow x=y+1\)</span>.</li>
+<li><span class="math inline">\(\frac{\sum\limits_{i=1}^{n}{N_1\choose i}{N_2\choose n-i}}{{N_1+N_2\choose n}}=1\)</span>\ with <span class="math inline">\(N_1=r,\ N_2=N-r,\ i=x\)</span>. (Theorem @ref(BinomialTheor3.2)</li>
+</ol>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+\mu
+    &amp;= E(X) \\
+    &amp;= \frac{rn}{N} \\
+\\
+\\
+\sigma^2
+    &amp;= E(X^2) - E(X)^2 \\
+    &amp;= E(X^2) - E(X) + E(X) - E(X)^2 \\
+  &amp;= (E(X^2) - E(X) + E(X) - E(X)^2 \\
+    &amp;= E(X^2-X) + E(X) - E(X)^2 \\
+  &amp;= E[X(X-1)] + E(X) - E(X)^2\\
+    &amp;= \frac{r(r-1)n(n-1)}{N(N-1)} + \frac{rn}{N} - \frac{r^2n^2}{N^2} \\
+  &amp;= \frac{r(r-1)n(n-1)N}{N^2(N-1)} + \frac{rnN(N-1)}{N^2(N-1)}
+        - \frac{r^2n^2(N-1)}{N^2(N-1)} \\
+  &amp;= \frac{(r^2-r)(n^2-n)N rn(N^2-N)-r^2n^2(N-1)}{N^2(N-1)} \\
+  &amp;= \frac{(r^2n^2N-r^2n^2N-rn^2N+rnN+rnN^2-rnN-r^2n^2N+r^2n^2}{N^2(N-1)} \\
+  &amp;= \frac{-r^2nN-rn^2N+rnN^2+r^2n^2}{N^2(N-1)} \\
+    &amp;= \frac{nr(-rN-nN+N^2+rn}{N^2(N-1)} \\
+  &amp;= \frac{nr(N^2-nN-rN+rn}{N^2(N-1)} \\
+    &amp;= \frac{nr(N-r)(N-n)}{N^2(N-1)} \\
+    &amp;= \frac{nr(N-r)(N-n)}{N\cdot N(N-1)} \\
+  &amp;= \frac{nr}{N}\cdot\frac{N-r}{N}\cdot\frac{N-n}{N-1}
+\end{align*}\]</span></p>
+</div>
+<div id="moment-generating-function-6" class="section level2">
+<h2><span class="header-section-number">17.4</span> Moment Generating Function</h2>
+<p><span class="math display">\[\begin{align*}
+M_X(t)
+    &amp;= E(e^{tX}) \\
+    &amp;= \sum\limits_{x=0}^{n}e^{tx}\frac{{r\choose x}{N-r\choose n-x}}{{N\choose n}} \\
+    &amp;= \frac{1}{{N\choose n}}\sum\limits_{x=0}^{n}e^{tx}{r\choose x}{N-r\choose n-x} \\
+  &amp;= \frac{1}{{N\choose n}}[e^{0t}{r\choose 0}{N-r\choose n-0} + 
+      e^{1t}{r\choose 1}{N-r\choose n-1} + 
+      e^{2t}{r\choose 2}{N-r\choose n-2} + \cdots + 
+      e^{nt}{r\choose n}{N-r\choose n-n}] \\
+  &amp;= \frac{1}{{N\choose n}}[{N-r\choose n-0}+e^{t}{r\choose 1}{N-r\choose n-1}
+        + e^{2t}{r\choose 2}{N-r\choose n-2}+\cdots+e^{nt}{r\choose n}{N-r\choose n-n}]
+\end{align*}\]</span></p>
+<p>This mgf does not reduce to any form which can be differentiated, and we cannot use it to generate moments for the distribution.</p>
+</div>
+<div id="theorems-for-the-hypergeometric-distribution" class="section level2">
+<h2><span class="header-section-number">17.5</span> Theorems for the Hypergeometric Distribution</h2>
+<div id="validity-of-the-distribution-6" class="section level3">
+<h3><span class="header-section-number">17.5.1</span> Validity of the Distribution</h3>
+<p><span class="math display">\[ 
+\sum\limits_{x=0}^{n}\frac{{r\choose x}{N-r\choose n-x}}{{N\choose n}} = 1
+\]</span></p>
+<p><em>Proof:</em></p>
+<p>Theorem @ref(BinomialTheor3.1) states</p>
+<p><span class="math display">\[ 
+{N_1\choose 0}{N_2\choose n}+{N_1\choose 2}{N_2\choose n-1}+\cdots
+        +{N_1\choose n-1}{N_2\choose 1}+{N_1\choose n}{N_2\choose 0} \\
+  = \sum\limits_{x=0}^{n}{N_1\choose x}{N_2\choose n-x} \\
+    = {N_1+N_2\choose n}
+\]</span></p>
+<p>Using <span class="math inline">\(N_1 = r\)</span> and <span class="math inline">\(N_2 = N-r\)</span> we have <span class="math display">\[\begin{align*}
+\sum\limits_{x=0}^{n}\frac{{r\choose x}{N-r\choose n-x}}{{N\choose n}}
+    &amp;= \frac{{r+N-r\choose n}}{{N\choose n}} \\
+    &amp;= \frac{{N\choose n}}{{N\choose n}} \\
+    &amp;= 1
+\end{align*}\]</span></p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="analysis-of-variance.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="geometric-series.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="integration-techniques-and-theorems.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -439,7 +561,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/index.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/HyperGeometric_Distribution.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],
