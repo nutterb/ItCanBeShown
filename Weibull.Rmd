@@ -1,0 +1,131 @@
+# Weibull Distribution
+
+## Probability Distribution Function
+A random variable $X$ is said to have a Weibull Distribution with parameters $\alpha$ and $\beta$ if its probability density function is:
+
+\[f(x)=\left\{
+	\begin{array}{ll}
+		\alpha\beta x^{\beta-1}e^{-\alpha x^{\beta}},&0<x,\ 0<\alpha,\ 0<\beta\\
+		0 & otherwise 
+	\end{array}\right.
+\]
+
+## Cumulative Distribution Function
+
+$$\begin{align*} 
+\int\limits_{0}^{x}\alpha\beta t^{\beta-1}e^{-\alpha t^\beta}dt
+	&= \alpha\beta\int\limits_{0}^{x}t^{\beta-1}e^{-\alpha t^\beta}dt \\
+	&= \alpha\beta\Big[\frac{-1}{\alpha\beta}e^{-\alpha t^\beta}\Big]_0^x \\
+  &= \alpha\beta\Big[\frac{-1}{\alpha\beta}e^{-\alpha x^\beta}
+		+ \frac{1}{\alpha\beta}\Big] \\
+	&= \frac{\alpha\beta}{\alpha\beta}\big(-e^{-\alpha x^\beta}+1\big) \\
+	&= 1-e^{-\alpha x^\beta}
+\end{align*}$$
+
+Using this result, we can write the Cumulative Distribution Function as
+
+\[F(x)=\left\{
+	\begin{array}{ll}
+		1-e^{-\alpha x^\beta},& 0<x,\ 0<\alpha,\ 0<\beta\\
+		0 & otherwise 
+	\end{array}\right.
+\]
+
+## Expected Values
+
+$$\begin{align*} 
+E(X)
+	&= \int\limits_{0}^{\infty}x\alpha\beta 
+	 	x^{\beta-1}e^{-\alpha x^{\beta}}dx \\
+	&= \alpha\beta\int\limits_{0}^{\infty}x 
+		x^{\beta-1}e^{-\alpha x^{\beta}}dx \\
+^{[1]}  &= \alpha\beta\int\limits_{0}^{\infty}
+		\Big(\big(\frac{y}{\alpha}\big)^\frac{1}{\beta}\Big)^\beta
+		e^{-y}\frac{1}{\alpha\beta}
+		\Big(\frac{y}{\alpha}\Big)^{\frac{1}{\beta}-1}dy \\
+	&= \frac{\alpha\beta}{\alpha\beta}\int\limits_{0}^{\infty}
+		\Big(\frac{y}{\alpha}\Big)^\frac{\beta+1}{\beta}
+		\Big(\frac{y}{\alpha}\Big)^{\frac{1}{\beta}-1}e^{-y}dy \\
+  &= \int\limits_{0}^{\infty}\Big(\frac{y}{\alpha}\Big)
+		^{\frac{\beta+1}{\beta}-\frac{1}{\beta}-1}e^{-y}dy \\
+	&= \int\limits_{0}^{\infty}\Big(\frac{y}{\alpha}\Big)
+		^{\frac{\beta+1}{\beta}-1}e^{-y}dy \\
+	&= \frac{1}{\alpha^{\frac{\beta+1}{\beta}-\frac{\beta}{\beta}}}
+		\int\limits_{0}^{\infty}y^{\frac{\beta+1}{\beta}-1}e^{-y} \\
+  &= \alpha^{-\frac{1}{\beta}}
+		\int\limits_{0}^{\infty}y^{\frac{\beta+1}{\beta}-1}e^{-y} \\
+^{[2]}	&= \alpha^{-\frac{1}{\beta}}\Gamma\Big(\frac{\beta+1}{\beta}\Big)
+\end{align*}$$
+
+> 1. $y=\alpha x^\beta\ \Rightarrow 
+		x=(\frac{y}{\alpha})^\frac{1}{\beta}\ \Rightarrow
+		dx=\frac{1}{\alpha\beta}(\frac{y}{\alpha})^{\frac{1}{\beta}-1}$
+> 2. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-x}dx
+		=\Gamma(\alpha)$
+		
+$$\begin{align*} 
+E(X^2)
+	&= \alpha\beta\int\limits_{0}^{\infty}x^2x^{\beta-1}e^{-\alpha x^\beta}dx \\
+	&= \alpha\beta\int\limits_{0}^{\infty}x^{\beta+1}e^{-\alpha x^\beta}dx \\
+^{[1]} &= \alpha\beta\int\limits_{0}^{\infty}\Big(\big(\frac{y}{\alpha}\big)^\frac{1}{\beta}\Big)^{\beta+1} 
+		e^{-y}\frac{1}{\alpha\beta}\big(\frac{y}{\alpha}\big)^{\frac{1}{\beta}-1}dy \\
+	&= \frac{\alpha\beta}{\alpha\beta}\int\limits_{0}^{\infty}\bigg(\frac{y}{\alpha}\bigg)^{\frac{\beta+1}{\beta}}
+		\bigg(\frac{y}{\alpha}\bigg)^{\frac{1}{\beta}-1}e^{-y}dy \\
+  &= \int\limits_{0}^{\infty}\bigg(\frac{y}{\alpha}\bigg)^{\frac{\beta+1}{\beta}+\frac{1}{\beta}-1}e^{-y}dy \\
+	&= \frac{1}{\alpha^{\frac{\beta+2}{\beta}-\frac{\beta}{\beta}}}
+		\int\limits_{0}^{\infty}y^{\frac{\beta+2}{\beta}-1}e^{-y}dy \\
+	&= \alpha^{-\frac{2}{\beta}}\int\limits_{0}^{\infty}y^{\frac{\beta+2}{\beta}-1}e^{-y}dy \\
+^{[2]} = \alpha^{-\frac{2}{\beta}}\Gamma\Big(\frac{\beta+2}{\beta}\Big)
+\end{align*}$$
+
+> 1. $y=\alpha x^\beta\ \Rightarrow 
+		x=(\frac{y}{\alpha})^\frac{1}{\beta}\ \Rightarrow
+		dx=\frac{1}{\alpha\beta}(\frac{y}{\alpha})^{\frac{1}{\beta}-1}$
+> 2. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-x}dx
+		=\Gamma(\alpha)$
+		
+
+$$\begin{align*} 
+\mu
+	&= E(X) \\
+	&= \alpha^{-\frac{1}{\beta}}\Gamma\Big(\frac{\beta+1}{\beta}\Big)\\
+\\
+\\
+\sigma^2
+	&= E(X^2) - E(X)^2 \\
+	&= \alpha^{-\frac{2}{\beta}}\Gamma\Big(\frac{\beta+2}{\beta}\Big)
+		- \alpha^{-\frac{2}{\beta}}\Gamma\Big(\frac{\beta+1}{\beta}\Big)^2 \\
+  &= \alpha^{-\frac{2}{\beta}}\Big[\Gamma\Big(\frac{\beta+2}{\beta}\Big)
+		- \Gamma\Big(\frac{\beta+1}{\beta}\Big)^2\Big]
+\end{align*}$$
+
+## Theorems for the Weibull Distribution
+
+### Validity of the Distribution
+
+$$ 
+\int\limits_{0}^{\infty}\alpha\beta x^{\beta-1}e^{-\alpha x^\beta}dx
+	= 1
+$$
+
+_Proof:_
+
+$$\begin{align*} 
+\int\limits_{0}^{\infty}\alpha\beta x^{\beta-1}e^{-\alpha x^\beta}dx
+	      &= \alpha\beta\int\limits_{0}^{\infty}x^{\beta-1}e^{-\alpha x^\beta}dx \\
+^{[1]}  &= \alpha\beta\int\limits_{0}^{\infty}\Big(\big(\frac{y}{\alpha}\big)^
+            \frac{1}{\beta}\Big)^{\beta-1}
+		        e^{-y}\big(\frac{y}{\alpha}\big)^{\frac{1}{\beta}-1}\frac{1}{\alpha\beta}dy
+      	&= \frac{\alpha\beta}{\alpha\beta}\int\limits_{0}^{\infty}\big(\frac{y}{\alpha}\big)^\frac{\beta}{-1}
+      		\big(\frac{y}{\alpha}\big)^{\frac{1}{\beta}-1}e^{-y}dy \\
+        &= \int\limits_{0}^{\infty}\big(\frac{y}{\alpha}\big)^{\frac{\beta-1}{\beta}+\frac{1-\beta}{\beta}}e^{-y}dy \\
+      	&= \int\limits_{0}^{\infty}\frac{y^0}{\alpha^0}e^{-y}dy \\
+      	&= \int\limits_{0}^{\infty}y^{1-1}e^{-y}dy \\
+^{[2]}	&= \Gamma(1)=1
+\end{align*}$$
+
+> 1. $y=\alpha x^\beta\ \Rightarrow 
+		x = (\frac{y}{\alpha})^\frac{1}{\beta}\ \Rightarrow
+		dx = \frac{1}{\alpha\beta}(\frac{y}{\alpha})^{\frac{1}{\beta}-1}$
+> 2. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-x}dx
+		= \Gamma(\alpha)$
