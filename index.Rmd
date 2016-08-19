@@ -12,7 +12,7 @@ bookdown::gitbook:
       before: null
       after: null
 documentclass: book
-bibliography: 
+bibliography: Zbib.bib
 biblio-style: apalike
 link-citations: yes
 github-repo: nutterb/ItCanBeShown

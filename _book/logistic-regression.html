@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="exponential-distribution.html">
-<link rel="next" href="gamma-distribution.html">
+<link rel="prev" href="integration-techniques-and-theorems.html">
+<link rel="next" href="mantel-haenszel-test-of-linear-trend.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -363,241 +363,50 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="functions" class="section level1">
-<h1><span class="header-section-number">13</span> Functions</h1>
-<div id="fundamental-concepts-and-definitions" class="section level2">
-<h2><span class="header-section-number">13.1</span> Fundamental Concepts and Definitions</h2>
-<p><em>Much of this chapter is taken from the lectures of Dr. John Brunette, University of Southern Maine </em></p>
-<p>A <strong>function</strong> is a collection of ordered pairs in which no two pairs have the same first element.</p>
-<p>The set of all <em>first</em> members of the pairs is called the <strong>domain</strong>.</p>
-<p>The set of all <em>second</em> members of the pairs is called the <strong>range</strong>.</p>
-<p>Suppose now that for any function <span class="math inline">\(f\)</span> we have two items <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> such that <span class="math inline">\(x\in dom(f)\)</span> and <span class="math inline">\(y\in ran(x)\)</span> where <span class="math inline">\(dom(f)\)</span> and <span class="math inline">\(ran(f)\)</span> denote the domain and range of <span class="math inline">\(f\)</span>, respectively. It is said that <span class="math inline">\(f\)</span> maps <span class="math inline">\(x\)</span> onto <span class="math inline">\(y\)</span>, written</p>
-<p><span class="math display">\[f:\ x\mapsto y\]</span></p>
-<p>It is common to write the <span class="math inline">\(ran(f)\)</span> as some expression of <span class="math inline">\(x\)</span>. For example, <span class="math inline">\(f: x\mapsto x^2\)</span> takes each element in the domain, and pairs it with it’s square. The common shorthand for this is <span class="math inline">\(f(x)=x^2\)</span>, meaning that whatever appears between the parentheses following the <span class="math inline">\(f\)</span> is to be squared.</p>
-<div id="function-operations" class="section level3">
-<h3><span class="header-section-number">13.1.1</span> Function Operations</h3>
-<p>The three basic operations that can be performed on functions are addition, multipilication, and composition. For any two functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> these operations are defined as:</p>
-<table style="width:33%;">
-<colgroup>
-<col width="23%" />
-<col width="9%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Addition</td>
-<td><span class="math inline">\(\lbrack f+g\rbrack(x)=:\big\{\big(x,f(x)+g(x)\big)\mid x\in dom(f)\cap dom(g)\big\}\)</span></td>
-</tr>
-<tr class="even">
-<td>Multiplication</td>
-<td><span class="math inline">\(\lbrack f\cdot g\rbrack(x):=\big\{\big(x,f(x)\cdot g(x)\big) \mid x\in dom(f)\cap dom(g)\big\}\)</span></td>
-</tr>
-<tr class="odd">
-<td>Composition</td>
-<td><span class="math inline">\(\lbrack f\circ g\rbrack(x)=\big\{\big(x,f\big(g(x)\big) \mid x\in dom(g)\)</span> and <span class="math inline">\(g(x)\in dom(f)\big\}\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>Notice that the composition <span class="math inline">\(\lbrack f\circ g\rbrack(x)=f \circ g: g(x)\mapsto f(x)\)</span>. In other words, the result of <span class="math inline">\(g\)</span> is then applied to <span class="math inline">\(f\)</span> to produce the result of the composition.</p>
-</div>
-</div>
-<div id="identities-and-inverses" class="section level2">
-<h2><span class="header-section-number">13.2</span> Identities and Inverses</h2>
-<p>Recall that addition and multiplication have identity properties. Specifically, for any real number <span class="math inline">\(x\)</span>, applying one of these identities returns the value <span class="math inline">\(x\)</span>, i.e. <span class="math inline">\(x+0=x\)</span> and <span class="math inline">\(x\cdot 1\)</span>=x. Functions also have an identity, denoted <span class="math inline">\(id(x)\)</span>, that is defined as</p>
-<p><span class="math display">\[id:\ x\mapsto x\]</span></p>
-<p>Furthermore, the composition of <span class="math inline">\(id\)</span> with <span class="math inline">\(f\)</span> behaves in this way:</p>
-<p><span class="math display">\[id\circ f=f\circ id=f\]</span></p>
-<p>Functions may also exhibit the property of inverses that are exhibited by addition and multiplication. In the latter two, combining any real number <span class="math inline">\(x\)</span> and its inverse returns the identity of that operation, i.e. <span class="math inline">\(x+-x=0\)</span> and <span class="math inline">\(x\cdot x^{-1}=1,\ x\neq 0\)</span>. Likewise, some functions have an inverse function. If a function <span class="math inline">\(f\)</span> has an inverse <span class="math inline">\(f^{-1}\)</span>, then</p>
-<p><span class="math display">\[f\circ f^{-1}=f^{-1}\circ f=id\]</span></p>
-<p>On closer observation, we see</p>
-<p><span class="math display">\[f^{-1}\circ f\big(dom(x)\big)=f^{-1}\Big(f\big(dom(x)\big)\Big)=f^{-1}\big(ran(x)\big)=dom(x)\]</span></p>
-<p>So <span class="math inline">\(f^{-1}\)</span> must be the set of all ordered pairs <span class="math inline">\((y,x)\)</span> where <span class="math inline">\(x\in dom(x)\)</span> and <span class="math inline">\(y\in ran(x)\)</span>, i.e. <span class="math inline">\(f^{-1}(x)=\{(y,x) \mid x\in dom(x)\)</span> and <span class="math inline">\(y\in ran(x)\}\)</span>. By the definition of functions, no two first elements in <span class="math inline">\(f^{-1}\)</span> can be the same. But the first elements in <span class="math inline">\(f^{-1}\)</span> are the second elements in <span class="math inline">\(f\)</span>. So <span class="math inline">\(f^{-1}\)</span> only exists if no two second elements in <span class="math inline">\(f\)</span> are the same. We thus make the following definition:</p>
-<p>A function <span class="math inline">\(f\)</span> is called a <strong>one-to-one</strong> function if it has no two ordered pairs with the same second element.</p>
-<p>For any one-to-one function <span class="math inline">\(f\)</span>, no two of the first elements are the same, and no two of the second elements are the same. Thus, <span class="math inline">\(f^{-1}\)</span> is a function, because no two of its first elements are the same, and because the range of <span class="math inline">\(f^{-1}\)</span> is the domain of <span class="math inline">\(f\)</span>, no two second elements in <span class="math inline">\(f^{-1}\)</span> are the same, and <span class="math inline">\(f^{-1}\)</span> is a one-to-one function. Thus, every one-to-one function has an inverse.</p>
-<p>If a function <span class="math inline">\(f\)</span> is not one-to-one, however, then there exist two pairs in <span class="math inline">\(f\)</span> that have the same second element. The inverse <span class="math inline">\(f^{-1}\)</span> therefore has two pairs where the first element is the same. When such is the case, the definition of a function is violated, and <span class="math inline">\(f^{-1}\)</span> cannot be a function. Thus, if a function is invertible, it must be one-to-one.</p>
-</div>
-<div id="odd-and-even-functions" class="section level2">
-<h2><span class="header-section-number">13.3</span> Odd and Even Functions</h2>
-<p>A function is said to be <em>even</em> if for any real number <span class="math inline">\(x,\ f(-x)=f(x)\)</span>.</p>
-<p>A function is said to be <em>odd</em> if for any real number <span class="math inline">\(x,\ f(-x)=-f(x)\)</span>.</p>
-<p>If neither of these criteria are met, the function is simply said to be neither odd nor even.</p>
-</div>
-<div id="theorems" class="section level2">
-<h2><span class="header-section-number">13.4</span> Theorems</h2>
-<div id="operations-on-even-functions" class="section level3">
-<h3><span class="header-section-number">13.4.1</span> Operations on Even Functions</h3>
-<p>Let <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> both be even functions. Then:</p>
-<ol style="list-style-type: lower-roman">
-<li><span class="math inline">\([f+g](x)\)</span> is an even function</li>
-<li><span class="math inline">\([f\cdot g](x)\)</span> is an even function</li>
-<li><span class="math inline">\([f\circ g](x)\)</span> is an even function.</li>
-</ol>
-<p><em>Proof:</em></p>
-<ol style="list-style-type: lower-roman">
-<li><span class="math display">\[\begin{align*}
- [f+g](-x)
-    &amp;= f(-x)+g(-x) \\
-      &amp;= f(x)+g(x) \\
-      &amp;= [f+g](x)
- \end{align*}\]</span></li>
-</ol>
-<p>so <span class="math inline">\([f+g](x)\)</span> is an even function.</p>
-<ol start="2" style="list-style-type: lower-roman">
-<li><span class="math display">\[\begin{align*}
-  [f\cdot g](-x)
-    &amp;= f(-x)\cdot g(-x) \\
-      &amp;= f(x)\cdot g(x) \\
-      &amp;= [f\cdot g](x)
-  \end{align*}\]</span></li>
-</ol>
-<p>so <span class="math inline">\([f\cdot g](x)\)</span> is an even function.</p>
-<ol start="3" style="list-style-type: lower-roman">
-<li><span class="math display">\[\begin{align*}
-  [f\circ g](-x)
-    &amp;= f\big(g(-x)\big) \\
-      &amp;= f\big(g(x)\big) \\
-      &amp;= [f\circ g](x)
-   \end{align*}\]</span></li>
-</ol>
-<p>so <span class="math inline">\([f\circ g](x)\)</span> is an even function.</p>
-</div>
-<div id="operations-on-odd-functions" class="section level3">
-<h3><span class="header-section-number">13.4.2</span> Operations on Odd Functions</h3>
-<p>Let <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> both be odd functions. Then:</p>
-<ol style="list-style-type: lower-roman">
-<li><span class="math inline">\([f+g](x)\)</span> is an odd function</li>
-<li><span class="math inline">\([f\cdot g](x)\)</span> is an even function</li>
-<li><span class="math inline">\([f\circ g](x)\)</span> is an odd function.</li>
-</ol>
-<p><em>Proof:</em></p>
-<ol style="list-style-type: lower-roman">
-<li><span class="math display">\[\begin{align*} 
-[f+g](-x)
-  &amp;= f(-x) + g(-x) \\
-    &amp;= -f(x) - g(x) \\
-    &amp;= -[f+g](x)
- \end{align*}\]</span></li>
-</ol>
-<p>so <span class="math inline">\([f+g](x)\)</span> is an odd function.</p>
-<ol start="2" style="list-style-type: lower-roman">
-<li><span class="math display">\[\begin{align*}
-  [f\cdot g](-x)
-    &amp;= f(-x)\cdot g(-x) \\
-      &amp;= -f(x)\cdot -g(x) \\
-      &amp;= f(x)\cdot g(x) \\
-      &amp;= [f\cdot g](x)
-   \end{align*}\]</span></li>
-</ol>
-<p>so <span class="math inline">\([f\cdot g](x)\)</span> is an even function.</p>
-<ol start="3" style="list-style-type: lower-roman">
-<li><span class="math display">\[\begin{align*}
-  [f\circ g](-x)
-    &amp;= f\big(g(-x)\big) \\
-      &amp;= f\big(-g(x)\big) \\
-      &amp;= -f\big(g(x)\big) \\
-      &amp;= -[f\circ g](x)
-   \end{align*}\]</span></li>
-</ol>
-<p>so <span class="math inline">\([f\circ g](x)\)</span> is an odd function.</p>
-</div>
-<div id="operations-on-an-odd-and-even-function" class="section level3">
-<h3><span class="header-section-number">13.4.3</span> Operations on an Odd and Even Function</h3>
-<p>Let <span class="math inline">\(f\)</span> be an even function and let <span class="math inline">\(g\)</span> both be an odd function. Then:</p>
-<ol style="list-style-type: lower-roman">
-<li><span class="math inline">\([f+g](x)\)</span> is neither an odd nor an even function</li>
-<li><span class="math inline">\([f\cdot g](x)\)</span> is an odd function</li>
-<li><span class="math inline">\([f\circ g](x)\)</span> is an even function</li>
-<li><span class="math inline">\([g\circ f](x)\)</span> is an even function.</li>
-</ol>
-<p><em>Proof:</em></p>
-<ol style="list-style-type: lower-roman">
-<li><span class="math display">\[\begin{align*}
-[f+g](-x)
-  &amp;= f(-x) + g(-x) \\
-    &amp;= -f(x) - g(x)
- \end{align*}\]</span></li>
-</ol>
-<p>so <span class="math inline">\([f+g](x)\)</span> is neither an odd nor an even function.</p>
-<ol start="2" style="list-style-type: lower-roman">
-<li><span class="math display">\[\begin{align*}
-  [f\cdot g](-x)
-    &amp;= f(-x)\cdot g(-x) \\
-      &amp;= f(x)\cdot -g(x) \\
-      &amp;= -\big(f(x)\cdot g(x)\big) \\
-      &amp;= -[f\cdot g](x)
-   \end{align*}\]</span></li>
-</ol>
-<p>so <span class="math inline">\([f\cdot g](x)\)</span> is an odd function.</p>
-<ol start="3" style="list-style-type: lower-roman">
-<li><span class="math display">\[\begin{align*}
-  [f\circ g](-x)
-    &amp;= f\big(g(-x)\big) \\
-      &amp;= f\big(-g(x)\big) \\
-      &amp;= f\big(g(x)\big) \\
-      &amp;= [f\circ g](x)
-   \end{align*}\]</span></li>
-</ol>
-<p>so <span class="math inline">\(\lbrack f\circ g\rbrack(x)\)</span> is an even function.</p>
-<ol start="4" style="list-style-type: lower-roman">
-<li><span class="math display">\[\begin{align*}
-  [g\circ f](-x)
-    &amp;= g\big(f(-x)\big) \\
-      &amp;= g\big(f(x)\big) \\
-      &amp;= [g\circ f](x)
-   \end{align*}\]</span></li>
-</ol>
-<p>so <span class="math inline">\(\lbrack f\circ g\rbrack(x)\)</span> is an even function. \end{itemize}</p>
-</div>
-<div id="derivatives-and-anti-derivatives-of-odd-functions" class="section level3">
-<h3><span class="header-section-number">13.4.4</span> Derivatives and Anti-derivatives of Odd Functions</h3>
-<p>Let <span class="math inline">\(f\)</span> be an odd function and let <span class="math inline">\(f^\prime\)</span> and <span class="math inline">\(F\)</span> denote the derivative and anti-derivative of <span class="math inline">\(f\)</span>, respectively. Then <span class="math inline">\(f^\prime\)</span> and <span class="math inline">\(F\)</span> are both even functions.</p>
-<p><em>Proof:</em></p>
+<div id="logistic-regression" class="section level1">
+<h1><span class="header-section-number">19</span> Logistic Regression</h1>
+<div id="the-logit-transformation" class="section level2">
+<h2><span class="header-section-number">19.1</span> The Logit Transformation</h2>
+<p>Logistic regression intends to model the probability that a given response will occur based on the characteristics in the predictor variables. The response, therefore, is a probability; a value between zero and one. This is in contrast to typical linear regression where the response lies range of real numbers. This is further complicated by the fact that in the observed data, a subject does not have a probabilistic response, but the response is the dichotomous occurrence of an event. The nature of the response variable in logistic regression, therefore, necessitates that a transformation be applied.</p>
+<div id="obtaining-the-logit-transformation" class="section level3">
+<h3><span class="header-section-number">19.1.1</span> Obtaining the Logit Transformation</h3>
+<p>Let us call the response for our logistic model the probability <span class="math inline">\(p\)</span> that an event will occur. Since <span class="math inline">\(p\)</span> is a probability, by definition, it’s domain is from 0 to 1. Ideally, we would like to have a response whose domain is <span class="math inline">\(\Re\)</span>. First, let us consider the transformation <span class="math inline">\(\frac{p}{1-p}\)</span> (also called the odds of <span class="math inline">\(p\)</span>) and it’s limits as <span class="math inline">\(p\)</span> approaches 0 and 1.</p>
 <p><span class="math display">\[\begin{align*}
-  f(-x) &amp;= -f(x)\\
-\Rightarrow \frac{d}{dx}\big\lbrack f(-x)\big\rbrack
-        &amp;= \frac{d}{dx}\big\lbrack-f(x)\big\rbrack \\
-\Rightarrow f^\prime(-x)\cdot -1 
-    &amp;= -f^\prime(x) \\
-\Rightarrow -f^\prime(-x) 
-    &amp;= -f^\prime(x) \\
-\Rightarrow f^\prime(-x) 
-    &amp;= f^\prime(x)
+\lim\limits_{p\rightarrow 0} \frac{p}{1-p} 
+    = \frac{0}{1-0} 
+    = 0
 \end{align*}\]</span></p>
-<p>So <span class="math inline">\(f^\prime\)</span> is an even function.</p>
+<p>and</p>
 <p><span class="math display">\[\begin{align*}
-f(-x)                    &amp;= -f(x) \\
-\Rightarrow \int f(-x)   &amp;= \int-f(x)\\
-\Rightarrow F(-x)\cdot-1 &amp;= -F(x)\\
-\Rightarrow -F(-x)       &amp;= -F(x)\\
-\Rightarrow F(-x)        &amp;= F(x)
+\lim\limits_{p\rightarrow 1} \frac{p}{1-p} 
+    = \infty
 \end{align*}\]</span></p>
-<p>So <span class="math inline">\(F\)</span> is also an even function.  </p>
+<p>So the domain of <span class="math inline">\(\frac{p}{1-p}\)</span> is <span class="math inline">\((0,\infty)\)</span>. This is handy, as we do know that the <span class="math inline">\(\ln\)</span> function takes a variable on the domain <span class="math inline">\((0,\infty)\)</span> and maps it onto the range <span class="math inline">\((-\infty,\infty)\)</span>. Thus, the equation for our logistic model the transformation (called the logit, or log-odds):</p>
+<p><span class="math display">\[\ln\bigg(\frac{p}{1-p}\bigg) = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n\]</span></p>
 </div>
-<div id="derivatives-and-anti-derivatives-of-even-functions" class="section level3">
-<h3><span class="header-section-number">13.4.5</span> Derivatives and Anti-derivatives of Even Functions</h3>
-<p>Let <span class="math inline">\(g\)</span> be an even function, and let <span class="math inline">\(g^\prime\)</span> and <span class="math inline">\(G\)</span> denote the derivative and anti-derivative of <span class="math inline">\(g\)</span>, respectively. Then <span class="math inline">\(g^\prime\)</span> and <span class="math inline">\(G\)</span> are both odd functions.</p>
-<p><em>Proof:</em></p>
+</div>
+<div id="retrieving-the-modelled-probability" class="section level2">
+<h2><span class="header-section-number">19.2</span> Retrieving the Modelled Probability</h2>
+<p>While the logit transformation allows us to perform the logistic regression, the resulting measure tells us about the risk of an event associated with a predictor, but does not tell us directly about the probability of the event occuring. If we need to know the probability of the event ocurring, we must back transform the results of our regression equation. Essentially, we extract <span class="math inline">\(\hat p\)</span> from the modelled log-odds. This is done as by:</p>
 <p><span class="math display">\[\begin{align*}
-g(-x) &amp;= g(x) \\
-\Rightarrow \frac{d}{dx}\big\lbrack g(-x)\big\rbrack
-        &amp;= \frac{d}{dx}\big\lbrack g(x)\big\rbrack \\
-\Rightarrow g^\prime(-x)\cdot -1 
-    &amp;= g^\prime(x) \\
-\Rightarrow -g^\prime(-x) 
-    &amp;= g^\prime(x) \\
-\Rightarrow g^\prime(-x) 
-    &amp;= -g^\prime(x)
+\ln\bigg(\frac{\hat{p}}{1-\hat{p}}\bigg)  
+            &amp;= \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n \\
+^{[1]}  &amp;= B \\
+\Rightarrow \frac{\hat{p}}{1-\hat{p}} &amp;= \exp(B) \\
+\Rightarrow \hat{p} &amp;= (1-\hat{p})\exp(B) \\
+\Rightarrow \hat{p} &amp;= \exp(B) - \hat{p} \cdot \exp(B) \\
+\Rightarrow \hat{p} + \hat{p} \cdot \exp(B) &amp;= \exp(B) \\
+\Rightarrow \hat{p}(1+\exp(B)) &amp;= \exp(B) \\
+\Rightarrow \hat{p} &amp;= \frac{\exp(B)}{1 + \exp(B)} \\
+\Rightarrow \hat{p} &amp;= \frac{\exp(\beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n)}
+                     {1 + \exp(\beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n)}
 \end{align*}\]</span></p>
-<p>So <span class="math inline">\(g^\prime\)</span> is an odd function.</p>
-<p><span class="math display">\[\begin{align*}
-g(-x)                    &amp;= g(x)\\
-\Rightarrow \int g(-x)   &amp;= \int g(x)\\
-\Rightarrow G(-x)\cdot-1 &amp;= G(x)\\
-\Rightarrow -G(-x)       &amp;= G(x)\\
-\Rightarrow G(-x)        &amp;= -G(x)
-\end{align*}\]</span></p>
-<p>So <span class="math inline">\(G\)</span> is also an odd function.</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Let <span class="math inline">\(B = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n\)</span></li>
+</ol>
+</blockquote>
 
-</div>
 </div>
 </div>
             </section>
@@ -605,8 +414,8 @@ g(-x)                    &amp;= g(x)\\
           </div>
         </div>
       </div>
-<a href="exponential-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="gamma-distribution.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="integration-techniques-and-theorems.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mantel-haenszel-test-of-linear-trend.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -633,7 +442,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Functions.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/LogisticRegression.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

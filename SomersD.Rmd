@@ -1,0 +1,29 @@
+# Somers' D
+
+Somers' $D$ has an asymptotically $Normal$ Distribution \ref{}.  It may take any value between -1 and 1.  It is used to measure classification agreement between a predictor and outcome variable.
+
+Somers' $D$ is related to a form of a concordance index.  Concrodance in measured between 0 and 1 and can effectively be calculated by rescaling Somers' $D$.  The rescaling can be accomplished by:
+
+$$ C = \frac{D+1}{2} $$
+
+## Theorems for Somers' $D$
+
+### Theorem: Distribution of Somers' Derived Concordance
+
+Let $D \sim$ Normal$(\mu, \sigma^2)$.  Then $C \sim $Normal$(\frac{\mu+1}{2},\frac{\sigma^2}{4})$.
+
+_Proof:_
+
+$$
+D \sim Normal(\mu,\sigma^2) 
+		\Rightarrow (D+1) \sim Normal(\mu+1,\sigma^2) \\
+(D+1) \sim Normal(\mu+1,\sigma^2) 
+		\Rightarrow \frac{D+1}{2} \sim Normal(\frac{\mu+1}{2}, \frac{\sigma^2}{4})
+$$
+
+By definition, $C=\frac{D+1}{2}$, so $C \sim Normal(\frac{\mu+1}{2},\frac{\sigma^2}{4})$. 
+
+Note: when the dependent variable is a binary response, the Concordance Index is equal to the area under the Receiver Operator Characteristic (ROC) curve, or AUC.  
+
+
+

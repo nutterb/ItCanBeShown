@@ -1,0 +1,103 @@
+# Multinomial Distribution
+
+Let $E_1,E_2,\ldots,E_k$ be mutually exclusive and exhaustive events and define a multinomial experiment to have the following characteristics:
+
+i. The experiment consists of $N$ indepedendent trials.
+ii. The outcome of each trial belongs to exactly one $E_j,\ j=1,2,\ldots,k$.
+iii. The probability that an outcome belongs to event $E_j$ is $p_j$.
+
+Let $X_{ij}=\left\{
+	\begin{array}{ll}
+		1& \rm if\ the\ outcome\ of\ the\ \it i^{th}\ \rm trial\ belongs\ to\ \it E_j.\\
+		0& otherwise 
+	\end{array} \right.$
+	
+and let $n_j=\sum\limits_{i=1}^{N}X_{ij}$.  Under these conditions, $N=\sum\limits_{j=1}^{k}n_j$.
+
+By Lemma \@ref(combinations-lemma) the number of ways to partition $N$ into the $k$ events, without respect to order, is $\frac{N!}{n_1!n_2!\cdots n_k!}$.  So the probabilitiy of any particular outcome of the experiment is
+
+\[p(n_1,n_2,\ldots,n_{k-1})
+	= \frac{N!}{n_1!n_2!\cdots n_{k-1}!n^\prime!}
+		p_1^{n_1}p_2^{n_2}\cdots p_{(k-1)}p^{\prime n^\prime}
+\] 
+
+where $n^\prime = N - n_1 - n_2 - \cdots - n_{k-1}$ and 
+
+$p^\prime = 1 - p_1 - p_2 - \cdots - p_{k-1}$.  
+
+In other words, the entire distribution is defined by the first $k-1$ terms.
+
+## Cumulative Distribution Function
+
+\[P(n_1,n_2,\ldots,n_{k-1}) 
+	= \sum\limits_{n_1=0}^{N} \sum\limits_{n_2=0}^{N-n_1} \cdots \sum\limits_{n_{k-1}=0}^{N^\prime}
+		\frac{N!}{n_1!n_2!\cdots n_{k-1}!n^\prime!} p_1^{n_1}p_2^{n_2}\cdots p_{k-1}^{n_{k-1}}p^{\prime n^\prime}\]
+
+where $N^\prime=N-n_1-n_2-\cdots n_{k-1}$.
+
+## Expected Values
+
+Since this is a multivariate distribution, we discuss finding the expected values for each variate $n_j$ as opposed to an overall mean.\\
+
+$n_j$ is a random variable from a multinomial distribution that specifies how many of the $N$ observations were of type $j$.  Each of the $N$ observations willf all into exactly one type, so we can conclude that an observation is either of type $j$ or it isn't.  Also, it is of type $j$ with probability $p_j$, and each trial is independent.  Thus, we may consider $n_j$ a binomial random variable and $E(n_j)=Np_j$ and $V(n_j)=Np_j(1-p_j)$.  Now we must derive the Covariance of $n_j$.
+
+We begin by defnining the random variables for $j\neq m$:
+
+\[X_i=\left\{
+	\begin{array}{ll}
+		1 & \rm if\ trial \it\ i\ \rm results\ in\ type\ \it j.\\
+		0 & otherwise 
+	\end{array} \right.
+\]
+
+\[Y_i=\left\{
+	\begin{array}{ll}
+		1 & \rm if\ trial \it\ i\ \rm results\ in\ type\ \it m.\\
+		0 & otherwise 
+	\end{array} \right.
+\]
+
+and let $n_j=\sum\limits_{i=1}^{n}X_i$ and $n_m=\sum\limits_{i=1}^{n}Y_i$.  Since $X_i$ and $Y_i$ cannot simultaneously equal 1, $X_i\cdot Y_i=0$ for all $i$.  We thus have the following results so far:
+
+$$E(X_i\cdot Y_i) = 0$$
+
+$$E(X_i) = p_j$$
+
+$$E(Y_i) = p_m$$
+
+$Cov(X_i,Y_i) = 0$ if $i\neq j$ because the trials are independent
+
+$Cov(X_i,Y_i) = E(X_i\cdot Y_i) - E(X_i)E(Y_i) = 0 - p_j p_m = -p_j p_m$. ($Cov(X,Y) = E(XY) - E(X)E(Y)$ (Theorem \@ref(covariance-theorem2))
+
+Using these results we find the Covariance of $n_j$ and $n_m$.
+
+$$\begin{align*}
+Cov(n_j,n_m) 
+  &= \sum\limits_{j=1}^{N}\sum\limits_{m=1}^{N}Cov(X_i,Y_i) \\
+  &= \sum\limits_{i=1}^{N}Cov(X_iY_i) + \sum\sum\limits_{i\neq j}Cov(X_i,Y_i) \\
+  &= \sum\limits_{i=1}^{n}-p_jp_m + \sum\sum\limits_{i\neq j}0=-np_jp_m
+\end{align*}$$
+
+The Expected Values of the $p_j$'s can be found by
+
+$$\begin{align*} 
+E(\hat p_j)
+	&= E(\frac{n_j}{N}) \\
+	&= \frac{1}{N}E(n_j) \\
+	&= \frac{1}{N}Np_j \\
+	&= p_j \\
+\\
+\\
+V(\hat p_j)
+	&= V(\frac{n_j}{N}) \\
+	&= \frac{1}{N^2}V(n_j) \\
+	&= \frac{1}{N^2}Np_j(1-p_j) \\
+	&= \frac{p_j(1-p_j)}{N} \\
+\\
+\\
+Cov(\hat p_j,\hat p_m)
+	&= Cov(\frac{n_j}{N},\frac{n_m}{N}) \\
+	&= \frac{1}{N^2}Cov(n_j,n_m) \\
+	&= \frac{1}{N^2}(-Np_jp_m) \\
+	&= \frac{-p_jp_m}{N}
+\end{align*}$$

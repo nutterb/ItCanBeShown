@@ -23,7 +23,7 @@ Cov(X,X)
 \end{align*}$$
 
 
-### Theorem
+### Theorem {#covariance-theorem2}
 
 Let $X$ and $Y$ be random variables.  Then
 
@@ -43,7 +43,7 @@ Cov(X,Y)
 
 
 
-### Covariance2.3
+### Covariance
 
 Let $X$ and $Y$ be random variables and let $a$ and $b$ be constants.  Then
 
