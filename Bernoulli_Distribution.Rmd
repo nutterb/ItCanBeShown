@@ -1,0 +1,154 @@
+# Bernoulli Distribution
+
+## Probability Mass Function
+
+A random variable is said to have a Bernoulli Distribution with parameter $p$ if its probability mass function is:
+\[p(x)=\left\{ 
+		\begin{array}{ll}
+			p^x(1-p)^{1-x},	& x=0,1\\
+			0 		& \mathrm{otherwise}
+		\end{array} 
+	\right. \]
+Where  $p$ is the probability of a success.
+
+## Cumulative Mass Function
+
+\label{Bernoulli1}
+\[P(x)=\left\{
+		\begin{array}{lll}
+			0   & x<0\\
+			1-p & x=0\\
+			1   & 1\leq x
+		\end{array}
+	\right. \]
+	
+
+```{r Bernoulli_Distribution, echo = FALSE, fig.path= 'figures/', fig.cap = 'The graphs on the left and right show a Bernoulli Probability Distribution and Cumulative Distribution Function, respectively, with $p=.4$.  Note that this is identical to a Binomial Distribution with parameters $n=1$ and $p=.4$.'}
+Bernoulli <- 
+  data.frame(x = 0:1) %>%
+  mutate(pmf = dbinom(x, size = 1, p = 0.4),
+         cmf = pbinom(x, size = 1, p = 0.4)) %>%
+  gather(cumulative, prob, -x) %>%
+  mutate(cumulative = factor(cumulative,
+                             c("pmf", "cmf"),
+                             c("Probability Mass",
+                               "Cumulative Mass")))
+
+ggplot(data = Bernoulli,
+       mapping = aes(x = x)) + 
+  geom_bar(mapping = aes(y = prob), 
+           stat = "identity",
+           fill = palette[1]) + 
+  facet_grid(~ cumulative) + 
+  scale_x_continuous(breaks = 0:1) + 
+  ylab("P(x)") + 
+  theme_bw()
+```
+
+## Expected Values
+
+$$ 
+\begin{align*}
+E(X) 
+  &= \sum\limits_{i=0}^{1} x\cdot p(x) \\
+	&= \sum\limits_{i=0}^{1} x \cdot p^{x} (1-p)^{1-x}\\
+  &= 0 \cdot p^{0} (1-p)^{1-0} + 1 \cdot p^{1} (1-p)^{1-1}\\
+  &= 0 + p (1-p)^{0}\\
+	&= p\\
+	\\
+	\\
+E(X^{2}) 
+  &= \sum\limits_{i=0}^{1} x^2 \cdot p(x)\\
+  &= \sum\limits_{i=0}^{1} x^{2} \cdot p^x (1-p)^{1-x}\\
+  &= \sum\limits_{i=0}^{1} 0^{2} \cdot p^0 (1-p)^{1-0} + 1^2 \cdot p^1 (1-p)^{1-1}\\
+  &= 0 \cdot 1 \cdot 1 + 1 \cdot p \cdot 1 \\
+	&= 0 + p\\
+ 	&= p\\
+ 	\\
+ 	\\
+\mu	&= E(X) = p\\
+  \\
+  \\
+\sigma^2 
+  &= E(X^2) - E(X)^2 \\
+  &= p-p^2 \\
+  &= p(1-p)
+\end{align*}
+$$
+
+## Moment Generating Function
+
+$$\begin{align*}
+M_{X}(t)
+	&= E(e^{tX}) \\
+	&= \sum\limits_{i=0}^{1} e^{tx} p(x) \\
+	&= \sum\limits_{i=0}^{1} e^{tx} p^{x} (1-p)^{1-x}\\
+	&= e^{t0} p^0 (1-p)^{1-0} + e^t p^t (1-p)^{1-1}\\
+	&= (1-p) + e^t p\\
+	&=pe^t + (1-p) \\
+	\\
+	\\
+M^{(1)}_X(t) &= pe^t\\
+  \\
+  \\
+M^{(2)}_X(t) &= pe^t\\
+  \\
+  \\
+E(X)
+	&=M^{(1)}_X(0)\\
+	&= pe^0\\
+	&= pe^0\\
+	&= p\\
+	\\
+	\\
+E(X^2)
+	&= M^{(2)}_X(0)\\
+	&= pe^0\\
+	&= p\\
+	\\
+	\\
+\mu
+  &= E(X)\\
+	&= p\\
+  \\
+  \\
+\sigma^2
+	&= E(X^2) - E(X)^2 \\
+	&= p - p^2 \\
+	&= p (1-p)
+\end{align*}
+$$
+
+
+## Theorems for the Bernoulli Distribution
+
+### Validity of the Distribution
+
+$$\sum\limits_{x=0}^{1}p^x(1-p)^{1-x}=1$$
+
+_Proof:_
+
+$$\begin{align*}
+\sum\limits_{x=0}^{1} p^x (1-p)^{1-x}
+	&= p^0 (1-p)^1 + p^1 (1-p)^0 \\
+	&= (1-p) + p \\
+	&= 1
+\end{align*}$$
+
+
+### Sum of Bernoulli Random Variables
+
+Let $X_1,X_2,\ldots,X_n$ be independent and identically distributed random variables from a Bernoulli distribution with parameter $p$.  Let $Y=\sum\limits_{i=1}^{n}X_i$.\\
+Then $Y\sim$ Binomial$(n,p)$
+
+_Proof:_
+$$\begin{align*}
+M_Y(t)
+	&= E(e^{tY}) \\
+	&= E(e^{tX_1} e^{tX_2} \cdots e^{tX_n}) \\
+	&= E(e^{tX_1}) E(e^{tX_2}) \cdots E(e^{tX_n}) \\
+  &= (pe^t+(1-p)) (pe^t+(1-p)) \cdots (pe^t+(1-p)) \\
+	&= (pe^t+(1-p))^n
+\end{align*}$$
+
+Which is the moment generating function of a Binomial random variable with parameters $n$ and $p$.  Thus, $Y\sim$ Binomial$(n,p)$. 
