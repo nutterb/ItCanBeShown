@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="geometric-distribution.html">
-<link rel="next" href="hypergeometric-distribution.html">
+<link rel="prev" href="multinomial-distribution.html">
+<link rel="next" href="real-number-system.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -402,55 +402,282 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="geometric-series" class="section level1">
-<h1><span class="header-section-number">16</span> Geometric Series</h1>
-<p>A Geometric Series is a series of the form <span class="math inline">\(\sum\limits_{k=1}^{\infty}ar^{k-1}\)</span> where <span class="math inline">\(a\neq 0,\ r\neq 0,1\)</span>. Expanding the series gives <span class="math inline">\(\sum\limits_{k=1}^{\infty}ar^{k-1}=a+ar+ar^2+ar^3+\cdots\)</span>.</p>
-<div id="geometric-series-partial-and-infinite-summations" class="section level2">
-<h2><span class="header-section-number">16.1</span> Partial and Infinite Summations</h2>
-<p>Let <span class="math inline">\(S_k\)</span> denote the sum of a series over <span class="math inline">\(k\)</span> terms (or the <span class="math inline">\(k^{th}\)</span> partial sum). For the Geometric Series\</p>
+<div id="normal-distribution" class="section level1">
+<h1><span class="header-section-number">24</span> Normal Distribution</h1>
+<div id="probability-distribution-function-3" class="section level2">
+<h2><span class="header-section-number">24.1</span> Probability Distribution Function</h2>
+<p>A random variable <span class="math inline">\(X\)</span> is said to have a Normal Distribution with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> if its probability density function is</p>
+<p><span class="math display">\[f(x)
+    = \frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2},\ \  x\in\Re,\ \mu\in\Re,\ 0&lt;\sigma^2 \]</span></p>
+</div>
+<div id="cumulative-distribution-function-5" class="section level2">
+<h2><span class="header-section-number">24.2</span> Cumulative Distribution Function</h2>
+<p>The cdf of the Normal Distribution cannot be written in closed form.</p>
+<p>It is not uncommon in statistical practice to denote the cdf of the Standard Normal Distribution, that is, the Normal distribution with <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span> to be denoted by <span class="math inline">\(\Phi(\cdot)\)</span>. Although it is rare, the <span class="math inline">\(\Phi(\cdot)\)</span> notation is sometimes used to denote any cumulative density function. Because such citations are rare they are usually accompanied by a statement about the distribution <span class="math inline">\(\Phi(\cdot)\)</span> represents. If no such statement is given, it is reasonably safe to assume that the function refers to the Standard Normal Distribution.</p>
+<p>The importance of the Standard Normal Distribution is made evident by the fact that the area under any Normal curve is proportional to the distribution’s variance. A proof of this is provided in Theorem </p>
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<img src="figures/unnamed-chunk-4-1.png" alt="The graphs on the left show probability distribution functions, and the graphs on the right show cumulative distribution functions.  The effect of changing the variance, a vertical rescaling of the distribution, is evident" width="672" />
+<p class="caption">
+Figure 24.1: The graphs on the left show probability distribution functions, and the graphs on the right show cumulative distribution functions. The effect of changing the variance, a vertical rescaling of the distribution, is evident
+</p>
+</div>
+<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<img src="figures/unnamed-chunk-5-1.png" alt="The graphs on the left show probability distribution functions, and the graphs on the right show cumulative distribution functions. The effect of changing the mean, a horizontal shift in location, is illustrated" width="672" />
+<p class="caption">
+Figure 24.2: The graphs on the left show probability distribution functions, and the graphs on the right show cumulative distribution functions. The effect of changing the mean, a horizontal shift in location, is illustrated
+</p>
+</div>
+</div>
+<div id="expected-values-8" class="section level2">
+<h2><span class="header-section-number">24.3</span> Expected Values</h2>
 <p><span class="math display">\[\begin{align*}
-S_k
-    &amp;= \sum\limits_{k=1}^{k}ar^{k-1} \\
-    &amp;= a + ar + ar^2 + ar^3 + \cdots + ar^{k-1} \\
-  &amp;= ar^0 + ar^2 + ar^2 + \cdots + ar^{k-1} \\
-    &amp;= a + ar + ar^2 + \cdots + ar^{k-1}
+E(X)
+    &amp;= \int\limits_{-\infty}^{\infty}x\frac{1}{\sqrt{2\pi}\sigma}\exp\Big\{-\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\} \\
+^{[1]}  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}x\exp\Big\{-\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\} \\
+  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}(z\sigma+\mu)\exp\Big\{-\frac{1}{2}z^2\Big\}\sigma dz \\
+  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}z\sigma^2\exp\Big\{-\frac{1}{2}z^2\Big\}
+        +\mu\sigma\exp\Big\{-\frac{1}{2}z^2\Big\}dz \\
+  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack\int\limits_{-\infty}^{\infty}z\sigma^2\exp\Big\{-\frac{1}{2}z^2\Big\}dz 
+        +\int\limits_{-\infty}^{\infty}\mu\sigma\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack\\
+&amp;= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack-\sigma^2\exp\Big\{-\frac{1}{2}z^2\Big\}\Bigg|_{-\infty}^{\infty}
+        +\int\limits_{-\infty}^{\infty}\mu\sigma\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack\\
+  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack-0+0+\int\limits_{-\infty}^{\infty}\mu\sigma\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack\\
+  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack\mu\sigma\int\limits_{-\infty}^{\infty}\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack \\
+^{[2]}  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack2\mu\sigma\int\limits_{0}^{\infty}\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack \\
+  &amp;= \frac{2\mu\sigma}{\sqrt{2\pi}\sigma}\Bigg\lbrack\int\limits_{0}^{\infty}\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack \\
+^{[3]}  &amp;= \frac{2\mu}{\sqrt{2\pi}}\int\limits_{0}^{\infty}\frac{1}{2}u^{-\frac{1}{2}}e^{-\frac{u}{2}}du\\
+  &amp;= \frac{2\mu}{2\sqrt{2\pi}}\int\limits_{0}^{\infty}u^{-\frac{1}{2}}e^{-\frac{u}{2}}du \\
+    &amp;= \frac{\mu}{\sqrt{2\pi}}\int\limits_{0}^{\infty}u^{\frac{1}{2}-1}e^{-\frac{u}{2}}du\\
+^{[4]}  &amp;= \frac{\mu}{\sqrt{2\pi}}2^{\frac{1}{2}}\Gamma\Big(\frac{1}{2}\Big) \\
+^{[5]}  &amp;= \frac{\mu\sqrt{2\pi}}{\sqrt{2\pi}} \\
+  &amp;= \mu
 \end{align*}\]</span></p>
-<p>Notice that <span class="math inline">\(rS_n = ar + ar^2+ a r^3 + \cdots + ar^k\)</span>. So</p>
-<p><span class="math display">\[\begin{align*}
-S_k - rS_n
-    &amp;= (a + ar + \cdots + ar^{k-1}) - (ar + ar^2 + \cdots + ar^k) \\
-  &amp;= a + ar - ar + ar^2 - ar^2 + \cdots + ar^{k-2} - ar^{k-2} + ar^{k-1} - ar^{k-1} - ar^k \\
-  &amp;= a - ar^k
-\end{align*}\]</span></p>
-<p>Also</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Let <span class="math inline">\(z=\frac{x-\mu}{\sigma}\\ \Rightarrow x=z\sigma+\mu \Rightarrow dx=\sigma dz\)</span></li>
+<li>This change can be made because the function being integrated is an even function. See Theorem </li>
+<li>Let <span class="math inline">\(u=z^2 \Rightarrow z=u^{\frac{1}{2}} \Rightarrow dz=\frac{1}{2}u^{-\frac{1}{2}}\)</span></li>
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx =\beta^\alpha\Gamma(\alpha)\)</span></li>
+<li><span class="math inline">\(\Gamma(\frac{1}{2})=\sqrt{\pi}\)</span></li>
+</ol>
+</blockquote>
 <p><span class="math display">\[\begin{align*} 
-S_k - rS_k 
-                  &amp;= S_k(1-r) \\
-                  &amp;= a - ar^k \\
-\Rightarrow S_k &amp;= \frac{a-ar^k}{1-r}
+E(X^2)
+    &amp;= \int\limits_{-\infty}^{\infty}x^2\frac{1}{\sqrt{2\pi}\sigma}
+        \exp\Big\{\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\}dx \\
+^{[1]}  &amp;= \int\limits_{-\infty}^{\infty}\frac{(z\sigma+\mu)^2}{\sqrt{2\pi}\sigma}
+        \exp\Big\{\frac{z^2}{2}\Big\}\sigma dz \\
+  &amp;= \int\limits_{-\infty}^{\infty}\frac{(z\sigma+\mu)^2}{\sqrt{2\pi}}
+        \exp\Big\{\frac{z^2}{2}\Big\}dz \\
+    &amp;= \int\limits_{-\infty}^{\infty}\frac{z^2\sigma^2+2z\sigma\mu+\mu^2}{\sqrt{2\pi}}
+        \exp\Big\{\frac{z^2}{2}\Big\}dz \\
+  &amp;= \int\limits_{-\infty}^{\infty}\Bigg\lbrack
+        \frac{z^2\sigma^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}
+        +\frac{2z\sigma\mu}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}
+        +\frac{\mu^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\} \Bigg\rbrack dz \\
+  &amp;= \int\limits_{-\infty}^{\infty}\frac{z^2\sigma^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +\int\limits_{-\infty}^{\infty}\frac{2z\sigma\mu}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +\int\limits_{-\infty}^{\infty}\frac{\mu^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz\\
+  &amp;= \sigma^2\int\limits_{-\infty}^{\infty}\frac{z^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +2\sigma\mu\int\limits_{-\infty}^{\infty}\frac{z}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +\mu^2\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz \\
+^{[2]}  &amp;= \sigma^2\int\limits_{-\infty}^{\infty}\frac{z^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +2\sigma\mu\int\limits_{-\infty}^{\infty}\frac{z}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +\mu^2\cdot 1 \\
+^{[3]} &amp;= \sigma^2\int\limits_{-\infty}^{\infty}\frac{z^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +2\sigma\mu E(Z)+\mu^2 \\
+ &amp;= \sigma^2\int\limits_{-\infty}^{\infty}\frac{z^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +2\sigma\mu\cdot0+\mu^2 \\
+^{[4]} &amp;= \sigma^2\Bigg(\frac{z}{\sqrt{2\pi}\cdot-\exp\Big\{-\frac{z^2}{2}\Big\}}
+        -\int\limits_{-\infty}^{\infty}-\exp\Big\{-\frac{z^2}{2}\frac{1}{\sqrt{2\pi}}dz\Bigg)+\mu^2 \\
+ &amp;= \sigma^2\Bigg(-0+0+\int\limits_{-\infty}^{\infty}
+        \frac{1}{\sqrt{2\pi}}\exp\Big\{-\frac{z^2}{2}\Big\}dz\Bigg)+\mu^2 \\
+^{[5]} &amp;= \sigma^2(1)+\mu^2 \\
+  &amp;=\sigma^2+\mu^2
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(z=\frac{x-\mu}{\sigma} \\ \Rightarrow x=z\sigma+\mu\Rightarrow dx=\sigma dz\)</span></li>
+<li>Theorems  and  with <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span></li>
+<li>Using the previous result with <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span>, <span class="math inline">\(E(Z)=0\)</span>.</li>
+<li>Integration by parts: <span class="math inline">\(\int\limits_{a}^{b}u\ dv =\lbrack u\cdot v\rbrack_a^b-\int\limits_{a}^{b}v\ du\)</span> with <span class="math inline">\(u=\frac{z}{\sqrt{2\pi}}\Rightarrow du=\frac{1}{\sqrt{2\pi}}dz\)</span>\ and <span class="math inline">\(dv=z\exp\{-\frac{z^2}{2}\}\Rightarrow v=-\exp\{-\frac{z^2}{2}\}\)</span></li>
+<li>See footnote 2.</li>
+</ol>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+\mu
+    &amp;= E(X) \\
+    &amp;= \mu \\
+\\
+\\
+\sigma^2
+    &amp;= E(X^2)-E(X)^2 \\
+    &amp;= \sigma^2+\mu^2-\mu^2 \\
+    &amp;= \sigma^2
 \end{align*}\]</span></p>
 </div>
-<div id="proofs-of-convergence" class="section level2">
-<h2><span class="header-section-number">16.2</span> Proofs of Convergence</h2>
-<p><span class="math inline">\(\sum\limits_{k=1}^{\infty}ar^{k-1}\)</span> converges when <span class="math inline">\(|r|&lt;1\)</span> and diverges when <span class="math inline">\(|r|&gt;1\)</span>.</p>
-<p><em>Proof:</em></p>
-<p>Recall that the <span class="math inline">\(k^{th}\)</span> partial sum of the Geometric Series is</p>
-<p><span class="math display">\[
-S_k 
-    = \frac{a-ar^k}{1-r}
-\]</span></p>
-<p>And let <span class="math inline">\(S\)</span> denote the sum of the infinite series, i.e. the sum as <span class="math inline">\(k\rightarrow\infty\)</span>.</p>
-<p><em>Case 1:</em> <span class="math inline">\(|r|&lt;1\)</span></p>
-<p><span class="math display">\[\begin{align*}
-S
-    &amp;= \lim\limits_{k\rightarrow\infty}S_k \\
-    &amp;=  \lim\limits_{k\rightarrow\infty} \frac{a-ar^k}{1-r} \\
-  &amp;= \frac{a-\lim\limits_{k\rightarrow\infty}ar^k}{1-r} \\
-    &amp;= \frac{a}{1-r}
+<div id="moment-generating-function-7" class="section level2">
+<h2><span class="header-section-number">24.4</span> Moment Generating Function</h2>
+<p><span class="math display">\[\begin{align*} 
+E(e^{tX})
+    &amp;= \int\limits_{-\infty}^{\infty}\exp\{tx\}\frac{1}{\sqrt{2\pi}\sigma}
+        \exp\Big\{\frac{1}{2\sigma^2}(x-\mu)^2\Big\}dx \\
+    &amp;= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
+        \exp\Big\{tx-\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\}dx \\
+^{[1]} &amp;= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
+        \exp\Big\{t(z\cdot\sigma+\mu-\frac{1}{2}z^2\Big\}\sigma dz \\
+ &amp;= \int\limits_{-\infty}^{\infty}\frac{\sigma}{\sqrt{2\pi}\sigma}
+        \exp\Big\{t(z\cdot\sigma+\mu)-\frac{1}{2}z^2\Big\}dz \\
+ &amp;= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
+        \exp\{\mu t\}\exp\Big\{z\sigma t-\frac{1}{2}z^2\Big\}dz \\
+ &amp;= \exp\{\mu t\}\int\limits_{-\infty}^{\infty}\frac{\sigma}{\sqrt{2\pi}\sigma}
+        \exp\Big\{z\sigma t-\frac{1}{2}z^2\Big\}dz \\
+ &amp;= \exp\{\mu t\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+        \exp\Big\{z\sigma t-\frac{1}{2}z^2-\frac{1}{2}t^2\sigma^2+\frac{1}{2}t^2\sigma^2\Big\}dz \\
+ &amp;= \exp\{\mu t\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+        \exp\Big\{-\frac{1}{2}z^2+z\sigma t-\frac{1}{2}t^2\sigma^2\Big\}
+        \exp\Big\{\frac{1}{2}t^2\sigma^2\Big\}dz \\
+ &amp;= \exp\{\mu t\}\exp\Big\{\frac{1}{2}t^2\sigma^2\Big\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+        \exp\Big\{z^2-2z\sigma t+t^2\sigma^2\Big\}dz \\
+ &amp;= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+        \exp\Big\{\frac{1}{2}(z-\sigma t)^2\Big\}dz \\
+^{[2]} &amp;= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+        \exp\Big\{\frac{1}{2}(u)^2\Big\}du \\
+ &amp;= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\cdot 1 \\
+ &amp;= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}
 \end{align*}\]</span></p>
-<p>So <span class="math inline">\(\sum\limits_{k=1}^{\infty}ar^{k-1}\)</span> converges when <span class="math inline">\(|r|&lt;1\)</span> and <span class="math inline">\(S=\frac{a}{1-r}\)</span></p>
-<p><em>Case 2:</em> </p>
-<p>So <span class="math inline">\(\sum\limits_{k=1}^{\infty}ar^{k-1}\)</span> diverges whern <span class="math inline">\(|r|&gt;1\)</span>.</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(z=\frac{x-\mu}{\sigma}\\ \Rightarrow x=z\cdot\sigma+\mu\Rightarrow dx=\sigma dz\)</span></li>
+<li><span class="math inline">\(u=z-\sigma t\\ \Rightarrow z=u+\sigma t \Rightarrow dz=du\)</span></li>
+<li>See Theorems  and </li>
+</ol>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+M_X^{(1)}(t)
+    &amp;= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\cdot(\mu+t\sigma^2) \\
+\\
+\\
+M_X^{(2)}(t)
+    &amp;= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\cdot\sigma^2
+        +(\mu+t\sigma^2)\exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}(\mu+t\sigma^2) \\
+  &amp;= M_X^{(2)}(t)=\exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\cdot\sigma^2
+        +(\mu+t\sigma^2)^2\exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\} \\
+\\
+\\
+E(X)
+    &amp;= M_X^{(1)}(0)=\exp\Big\{\mu\cdot0+\frac{0^2\sigma^2}{2}\Big\}\cdot(\mu+0\cdot\sigma) \\
+    &amp;= e^0\cdot(\mu+0) \\
+    &amp;= 1\cdot\mu \\
+    &amp;= \mu \\
+\\
+\\
+E(X^2)
+    &amp;= M_X^{(2)}(0) \\
+    &amp;= \exp\Big\{\mu\cdot0+\frac{0^2\sigma^2}{2}\Big\}\cdot\sigma^2 
+        +(\mu+0\cdot \sigma^2)^2\exp\Big\{\mu\cdot0+\frac{0^2\sigma^2}{2}\Big\} \\
+  &amp;= e^0\sigma^2+(\mu+0)^2e^0 \\
+    &amp;= 1\cdot\sigma^2+\mu^2\cdot1 \\
+    &amp;= \sigma^2+\mu^2 \\
+\\
+\\
+\mu
+    &amp;= E(X) \\
+    &amp;= \mu \\
+\\
+\\
+\sigma^2
+    &amp;= E(X^2)-E(X) \\
+    &amp;= \sigma^2+\mu^2-\mu^2 \\
+    &amp;= \sigma^2
+\end{align*}\]</span></p>
+</div>
+<div id="maximum-likelihood-estimators-1" class="section level2">
+<h2><span class="header-section-number">24.5</span> Maximum Likelihood Estimators</h2>
+<p>Let <span class="math inline">\(x_1,x_2,\ldots,x_n\)</span> be a random sample from a Normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<div id="likelihood-function-5" class="section level3">
+<h3><span class="header-section-number">24.5.1</span> Likelihood Function</h3>
+<p><span class="math display">\[\begin{align*}
+L(x_1,x_2,\ldots,x_n|\theta)
+    &amp;= f(x_1|\theta)f(x_2|\theta)\cdots f(x_n|\theta) \\
+  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\exp\bigg\{\frac{-(x_1-\mu)^2}{2\sigma^2}\bigg\}
+        \frac{1}{\sqrt{2\pi}\sigma}\exp\bigg\{\frac{-(x_2-\mu)^2}{2\sigma^2}\bigg\}
+        \cdots \frac{1}{\sqrt{2\pi}\sigma}\exp\bigg\{\frac{-(x_n-\mu)^2}{2\sigma^2}\bigg\} \\
+  &amp;= \prod\limits_{i=1}^{n}\frac{1}{\sqrt{2\pi}\sigma}\exp\bigg\{\frac{-(x_i-\mu)^2}{2\sigma^2}\bigg\} \\
+    &amp;= \bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n  \prod\limits_{i=1}^{n}\exp\bigg\{\frac{-(x_i-\mu)^2}{2\sigma^2} \bigg\} \\
+  &amp;= \bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n \exp\bigg\{ \sum\limits_{i=1}^{n}\frac{-(x_i-\mu)^2}{2\sigma^2} \bigg\} \\
+  &amp;= \bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n \exp\bigg\{ \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \bigg\}
+\end{align*}\]</span></p>
+</div>
+<div id="log-likelihood-function-5" class="section level3">
+<h3><span class="header-section-number">24.5.2</span> Log-likelihood Function</h3>
+<p><span class="math display">\[\begin{align*} 
+\ell(\theta)
+    &amp;= \ln\big(L(\theta)\big) \\
+    &amp;= \ln\Bigg(\bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n 
+        \exp\bigg\{ \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \bigg\}\Bigg) \\
+  &amp;= \ln\bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n 
+        + \ln\bigg(\exp\bigg\{ \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \bigg\}\bigg) \\
+  &amp;= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+  &amp;= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}(x_i^2 - 2\mu x_i + \mu^2) \\
+  &amp;= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2} 
+        \bigg\lbrack \sum\limits_{i=1}^{n}x_i^2 - 2\mu\sum\limits_{i=1}^{n}x_i + \sum\limits_{i=1}^{n}\mu^2\bigg\rbrack \\
+  &amp;= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2}\sum\limits_{i=1}^{n}x_i^2
+        + \frac{2\mu}{2\sigma^2}\sum\limits_{i=1}^{n}x_i - \frac{1}{2\sigma^2}n\mu^2 \\
+  &amp;= n\ln\bigg(\frac{1}{\sqrt{2\pi}}\sigma^{-1}\bigg) - \frac{\sigma^{-2}}{2}\sum\limits_{i=1}^{n}x_i^2
+        + \mu\sigma^{-2}\sum\limits_{i=1}^{n}x_i - \frac{n\mu^2\sigma^{-2}}{2}
+\end{align*}\]</span></p>
+</div>
+<div id="mle-for-mu" class="section level3">
+<h3><span class="header-section-number">24.5.3</span> MLE for <span class="math inline">\(\mu\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+\frac{d\ell}{d\mu}
+    &amp;= 0 - 0 + \sigma^{-2}\sum\limits_{i=1}^{n} - \frac{2n\mu\sigma^{-2}}{2} \\
+    &amp;= \sigma^{-2}\sum\limits_{i=1}^{n} - n\mu\sigma^{-2}\\
+\\
+\\
+0 &amp;= \sigma^{-2}\sum\limits_{i=1}^{n} - n\mu\sigma^{-2}\\
+ \Rightarrow n\mu\sigma^{-2} &amp;= \sigma^{-2}\sum\limits_{i=1}^{n}\\
+ \Rightarrow n\mu\ &amp;= \sum\limits_{i=1}^{n}\\
+ \Rightarrow \mu &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}
+\end{align*}\]</span></p>
+<p>So <span class="math inline">\(\hat\mu = \frac{1}{n}\sum\limits_{i=1}^{n}\)</span> is the maximum likelihood estimator for <span class="math inline">\(\mu\)</span>.</p>
+</div>
+<div id="mle-for-sigma2" class="section level3">
+<h3><span class="header-section-number">24.5.4</span> MLE for <span class="math inline">\(\sigma^2\)</span></h3>
+<p>The work in deriving the MLE for <span class="math inline">\(\sigma^2\)</span> is greatly reduced if we use</p>
+<p><span class="math display">\[\begin{align*}
+\ell(\theta)
+    &amp;= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2\\
+    &amp;= n\ln\bigg(\frac{1}{\sqrt{2\pi}}\sigma^{-1}\bigg) - \frac{1}{2\sigma^2}  \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+\\
+\\
+\frac{d\ell}{d\sigma}
+    &amp;= n\bigg(\frac{1}{\frac{1}{\sqrt{2\pi}}\sigma^{-1}}\bigg) \bigg(\frac{-1}{\sqrt{2\pi}\sigma^{-2}}\bigg)
+        - \frac{-2}{2}\sigma^{-3} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+ &amp;= \frac{-n\sqrt{2\pi}\sigma}{\sqrt{2\pi}\sigma^2} + \frac{1}{\sigma^3} \sum\limits_{i=1}^{n}-(x_i-\mu)^2\\
+ = \frac{-n}{\sigma} + \frac{1}{\sigma} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+\\
+\\
+0 &amp;= \frac{-n}{\sigma} + \frac{1}{\sigma} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+ \Rightarrow \frac{n}{\sigma} &amp;= \frac{1}{\sigma} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+ \Rightarrow \frac{\sigma^3}{\sigma} &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+ \Rightarrow \sigma^2 &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}-(x_i-\mu)^2
+\end{align*}\]</span></p>
+<p>So <span class="math inline">\(\hat\sigma^2 = \frac{1}{n}\sum\limits_{i=1}^{n}-(x_i-\mu)^2\)</span> is the maximum likelihood estimator for <span class="math inline">\(\sigma^2\)</span>. Notice however that this <span class="math inline">\(MLE\)</span> is a biased estimator.</p>
+</div>
+</div>
+<div id="theorems-for-the-normal-distribution" class="section level2">
+<h2><span class="header-section-number">24.6</span> Theorems for the Normal Distribution</h2>
+<p></p>
+<p>%New Subsection  <span class="math inline">\(\displaystyle \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx=1\)</span>.\ \ </p>
+<p>%New Subsection  <span class="math inline">\(\displaystyle \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx=1\)</span>.\ \ </p>
+<p>%New Subsection  Let <span class="math inline">\(X\)</span> be a Normal random variable with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>, and let <span class="math inline">\(c\)</span> be a constant. If <span class="math inline">\(Y=cX\)</span>, then <span class="math inline">\(Y\sim\)</span>Normal<span class="math inline">\((c\mu,\ c^2\sigma^2)\)</span>.\ \ </p>
+<p>%New Subsection  Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent random variables from Normal distributions with parameters <span class="math inline">\(\mu_i\)</span> and <span class="math inline">\(\sigma_i^2\)</span>, i.e. <span class="math inline">\(X_i\sim\)</span>Normal<span class="math inline">\((\mu_i,\sigma_i^2),\ i=1,2,\ldots,n\)</span>, and let <span class="math inline">\(a_1,a_2,\ldots,a_n\)</span> be constants.\ If <span class="math inline">\(Y=\sum\limits_{i=1}^{n}a_iX_i\)</span>, then <span class="math inline">\(Y\sim\)</span>Normal<span class="math inline">\(\big(\sum\limits_{i=1}^{n}a_i\mu_i,\ \sum\limits_{i=1}^{n}a_i^2\sigma_i^2\big)\)</span>.\ \ </p>
+<p>%New Section  Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent random variables from Normal distributions with parameters <span class="math inline">\(\mu_i\)</span> and <span class="math inline">\(\sigma_i^2\)</span>, i.e. <span class="math inline">\(X_i\sim\)</span>Normal<span class="math inline">\((\mu_i, \sigma_i^2),\ i=1,2,\ldots,n\)</span>. Let <span class="math inline">\(Y=\sum\limits_{i=1}^{n}X_i\)</span>. Then <span class="math inline">\(Y\sim\)</span>Normal<span class="math inline">\(\big(\sum\limits_{i=1}^{n}\mu_i,\ \sum\limits_{i=1}^{n}\sigma_i^2\big)\)</span>.\ \ </p>
+<p>%New Subsection  Let <span class="math inline">\(X\)</span> be a Normal random variable with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. That is, <span class="math inline">\(X\sim\)</span>Normal(<span class="math inline">\(\mu,\sigma^2\)</span>). If <span class="math inline">\(Z=\frac{X-\mu}{\sigma}\)</span>, then <span class="math inline">\(Z\sim\)</span>Normal(0,1), and we say <span class="math inline">\(Z\)</span> has a </p>
+<p>%New Subsection  Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent and identically distributed random variables from a Normal distribution with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>, i.e. <span class="math inline">\(X_i\sim\)</span>Normal<span class="math inline">\((\mu,\ \sigma^2)\)</span>. Let <span class="math inline">\(\bar X=\frac{1}{n}\sum\limits_{i=1}^{n}X_i\)</span>. Then <span class="math inline">\(\bar X\sim\)</span>Normal<span class="math inline">\(\big(\mu,\ \frac{\sigma^2}{n}\big)\)</span>.\ \ </p>
+<p>%New Subsection   If <span class="math inline">\(Z\sim N(0,1)\)</span>, then <span class="math inline">\(Z^2\sim\chi^2(1)\)</span>.\ \ </p>
 
 </div>
 </div>
@@ -459,8 +686,8 @@ S
           </div>
         </div>
       </div>
-<a href="geometric-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="hypergeometric-distribution.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="multinomial-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="real-number-system.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -487,7 +714,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Geometric_Series.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/NormalDistribution.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],
