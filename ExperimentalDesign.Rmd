@@ -54,5 +54,6 @@ data.frame(type = c("", "", "", "Case Control",
   sprinkle(rows = 1, 
            border = "top") %>%
   sprinkle(rows = c(3:7), 
-           border = "bottom")
+           border = "bottom") %>%
+  print(asis = FALSE) %>% cat
 ```

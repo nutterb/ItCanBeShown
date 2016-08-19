@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>It Can Be Shown</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Notes on the Development of Statistical Theory">
+  <meta name="generator" content="bookdown 0.1 and GitBook 2.6.7">
+
+  <meta property="og:title" content="It Can Be Shown" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notes on the Development of Statistical Theory" />
+  <meta name="github-repo" content="nutterb/ItCanBeShown" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="It Can Be Shown" />
+  
+  <meta name="twitter:description" content="Notes on the Development of Statistical Theory" />
+  
+
+<meta name="author" content="Benjamin Nutter">
+
+<meta name="date" content="2016-08-19">
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="chebychevs-theorem.html">
+<link rel="next" href="combinations.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">It Can Be Shown</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>2</b> Analysis of Variance</a><ul>
+<li class="chapter" data-level="2.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-way-design"><i class="fa fa-check"></i><b>2.1</b> One-Way Design</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#decomposition-of-sums-of-squares"><i class="fa fa-check"></i><b>2.1.1</b> Decomposition of Sums of Squares</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#computational-formulas"><i class="fa fa-check"></i><b>2.2</b> Computational Formulas</a></li>
+<li class="chapter" data-level="2.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#randomized-complete-block-design"><i class="fa fa-check"></i><b>2.3</b> Randomized Complete Block Design</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#decomposition-of-sums-of-squares-1"><i class="fa fa-check"></i><b>2.3.1</b> Decomposition of Sums of Squares</a></li>
+<li class="chapter" data-level="2.3.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#computational-formulae"><i class="fa fa-check"></i><b>2.3.2</b> Computational Formulae</a></li>
+<li class="chapter" data-level="2.3.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#anova-rcbd-cross-products"><i class="fa fa-check"></i><b>2.3.3</b> RCBD Cross Products</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="bernoulli-distribution.html"><a href="bernoulli-distribution.html"><i class="fa fa-check"></i><b>3</b> Bernoulli Distribution</a><ul>
+<li class="chapter" data-level="3.1" data-path="bernoulli-distribution.html"><a href="bernoulli-distribution.html#probability-mass-function"><i class="fa fa-check"></i><b>3.1</b> Probability Mass Function</a></li>
+<li class="chapter" data-level="3.2" data-path="bernoulli-distribution.html"><a href="bernoulli-distribution.html#cumulative-mass-function"><i class="fa fa-check"></i><b>3.2</b> Cumulative Mass Function</a></li>
+<li class="chapter" data-level="3.3" data-path="bernoulli-distribution.html"><a href="bernoulli-distribution.html#expected-values"><i class="fa fa-check"></i><b>3.3</b> Expected Values</a></li>
+<li class="chapter" data-level="3.4" data-path="bernoulli-distribution.html"><a href="bernoulli-distribution.html#moment-generating-function"><i class="fa fa-check"></i><b>3.4</b> Moment Generating Function</a></li>
+<li class="chapter" data-level="3.5" data-path="bernoulli-distribution.html"><a href="bernoulli-distribution.html#theorems-for-the-bernoulli-distribution"><i class="fa fa-check"></i><b>3.5</b> Theorems for the Bernoulli Distribution</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="bernoulli-distribution.html"><a href="bernoulli-distribution.html#validity-of-the-distribution"><i class="fa fa-check"></i><b>3.5.1</b> Validity of the Distribution</a></li>
+<li class="chapter" data-level="3.5.2" data-path="bernoulli-distribution.html"><a href="bernoulli-distribution.html#sum-of-bernoulli-random-variables"><i class="fa fa-check"></i><b>3.5.2</b> Sum of Bernoulli Random Variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="binomial-distribution.html"><a href="binomial-distribution.html"><i class="fa fa-check"></i><b>4</b> Binomial Distribution</a><ul>
+<li class="chapter" data-level="4.1" data-path="binomial-distribution.html"><a href="binomial-distribution.html#probability-mass-function-1"><i class="fa fa-check"></i><b>4.1</b> Probability Mass Function</a></li>
+<li class="chapter" data-level="4.2" data-path="binomial-distribution.html"><a href="binomial-distribution.html#cumulative-mass-function-1"><i class="fa fa-check"></i><b>4.2</b> Cumulative Mass Function</a></li>
+<li class="chapter" data-level="4.3" data-path="binomial-distribution.html"><a href="binomial-distribution.html#expected-values-1"><i class="fa fa-check"></i><b>4.3</b> Expected Values</a></li>
+<li class="chapter" data-level="4.4" data-path="binomial-distribution.html"><a href="binomial-distribution.html#moment-generating-function-1"><i class="fa fa-check"></i><b>4.4</b> Moment Generating Function</a></li>
+<li class="chapter" data-level="4.5" data-path="binomial-distribution.html"><a href="binomial-distribution.html#maximum-likelihood-estimator"><i class="fa fa-check"></i><b>4.5</b> Maximum Likelihood Estimator</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="binomial-distribution.html"><a href="binomial-distribution.html#likelihood-function"><i class="fa fa-check"></i><b>4.5.1</b> Likelihood Function</a></li>
+<li class="chapter" data-level="4.5.2" data-path="binomial-distribution.html"><a href="binomial-distribution.html#log-likelihood-function"><i class="fa fa-check"></i><b>4.5.2</b> Log-likelihood Function</a></li>
+<li class="chapter" data-level="4.5.3" data-path="binomial-distribution.html"><a href="binomial-distribution.html#mle-for-p"><i class="fa fa-check"></i><b>4.5.3</b> MLE for p</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="binomial-distribution.html"><a href="binomial-distribution.html#theorems-for-the-binomial-distribution"><i class="fa fa-check"></i><b>4.6</b> Theorems for the Binomial Distribution</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="binomial-distribution.html"><a href="binomial-distribution.html#validity-of-the-distribution-1"><i class="fa fa-check"></i><b>4.6.1</b> Validity of the Distribution</a></li>
+<li class="chapter" data-level="4.6.2" data-path="binomial-distribution.html"><a href="binomial-distribution.html#sum-of-binomial-random-variables"><i class="fa fa-check"></i><b>4.6.2</b> Sum of Binomial Random Variables</a></li>
+<li class="chapter" data-level="4.6.3" data-path="binomial-distribution.html"><a href="binomial-distribution.html#sum-of-bernoulli-random-variables-1"><i class="fa fa-check"></i><b>4.6.3</b> Sum of Bernoulli Random Variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="binomial-theorem.html"><a href="binomial-theorem.html"><i class="fa fa-check"></i><b>5</b> Binomial Theorem</a><ul>
+<li class="chapter" data-level="5.1" data-path="binomial-theorem.html"><a href="binomial-theorem.html#traditional-proof"><i class="fa fa-check"></i><b>5.1</b> Traditional Proof</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="binomial-theorem.html"><a href="binomial-theorem.html#lemma-pascals-rule"><i class="fa fa-check"></i><b>5.1.1</b> Lemma: Pascal’s rule</a></li>
+<li class="chapter" data-level="5.1.2" data-path="binomial-theorem.html"><a href="binomial-theorem.html#binomial-theorem-traditional"><i class="fa fa-check"></i><b>5.1.2</b> The Binomial Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="binomial-theorem.html"><a href="binomial-theorem.html#general-approach"><i class="fa fa-check"></i><b>5.2</b> General Approach</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="binomial-theorem.html"><a href="binomial-theorem.html#a-binomial-expansion-theorem"><i class="fa fa-check"></i><b>5.2.1</b> A Binomial Expansion Theorem</a></li>
+<li class="chapter" data-level="5.2.2" data-path="binomial-theorem.html"><a href="binomial-theorem.html#corollary-binomial-theorem"><i class="fa fa-check"></i><b>5.2.2</b> Corollary: Binomial Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="binomial-theorem.html"><a href="binomial-theorem.html#other-theorems"><i class="fa fa-check"></i><b>5.3</b> Other Theorems</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="binomial-theorem.html"><a href="binomial-theorem.html#binomialtheorem-other-theorem-1"><i class="fa fa-check"></i><b>5.3.1</b> Theorem</a></li>
+<li class="chapter" data-level="5.3.2" data-path="binomial-theorem.html"><a href="binomial-theorem.html#theorem"><i class="fa fa-check"></i><b>5.3.2</b> Theorem</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="chebychevs-theorem.html"><a href="chebychevs-theorem.html"><i class="fa fa-check"></i><b>6</b> Chebychev’s Theorem</a><ul>
+<li class="chapter" data-level="6.1" data-path="chebychevs-theorem.html"><a href="chebychevs-theorem.html#chebychevs-theorem-1"><i class="fa fa-check"></i><b>6.1</b> Chebychev’s Theorem</a></li>
+<li class="chapter" data-level="6.2" data-path="chebychevs-theorem.html"><a href="chebychevs-theorem.html#alternate-proof-of-chebychevs-theorem"><i class="fa fa-check"></i><b>6.2</b> Alternate Proof of Chebychev’s Theorem</a></li>
+<li class="chapter" data-level="6.3" data-path="chebychevs-theorem.html"><a href="chebychevs-theorem.html#chebychevs-theorem-for-absolute-deviation"><i class="fa fa-check"></i><b>6.3</b> Chebychev’s Theorem for Absolute Deviation</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="chi-square-distribution.html"><a href="chi-square-distribution.html"><i class="fa fa-check"></i><b>7</b> Chi-Square Distribution</a><ul>
+<li class="chapter" data-level="7.1" data-path="chi-square-distribution.html"><a href="chi-square-distribution.html#probability-distribution-function"><i class="fa fa-check"></i><b>7.1</b> Probability Distribution Function</a></li>
+<li class="chapter" data-level="7.2" data-path="chi-square-distribution.html"><a href="chi-square-distribution.html#cumulative-distribution-function"><i class="fa fa-check"></i><b>7.2</b> Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="7.3" data-path="chi-square-distribution.html"><a href="chi-square-distribution.html#expected-values-2"><i class="fa fa-check"></i><b>7.3</b> Expected Values</a></li>
+<li class="chapter" data-level="7.4" data-path="chi-square-distribution.html"><a href="chi-square-distribution.html#moment-generating-function-2"><i class="fa fa-check"></i><b>7.4</b> Moment Generating Function</a></li>
+<li class="chapter" data-level="7.5" data-path="chi-square-distribution.html"><a href="chi-square-distribution.html#maximum-likelihood-function"><i class="fa fa-check"></i><b>7.5</b> Maximum Likelihood Function</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="chi-square-distribution.html"><a href="chi-square-distribution.html#likelihood-function-1"><i class="fa fa-check"></i><b>7.5.1</b> Likelihood Function</a></li>
+<li class="chapter" data-level="7.5.2" data-path="chi-square-distribution.html"><a href="chi-square-distribution.html#log-likelihood-function-1"><i class="fa fa-check"></i><b>7.5.2</b> Log-likelihood Function</a></li>
+<li class="chapter" data-level="7.5.3" data-path="chi-square-distribution.html"><a href="chi-square-distribution.html#mle-for-nu"><i class="fa fa-check"></i><b>7.5.3</b> MLE for <span class="math inline">\(\nu\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="chi-square-distribution.html"><a href="chi-square-distribution.html#theorems-for-the-chi-square-distribution"><i class="fa fa-check"></i><b>7.6</b> Theorems for the Chi-Square Distribution</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="chi-square-distribution.html"><a href="chi-square-distribution.html#validity-of-the-distribution-2"><i class="fa fa-check"></i><b>7.6.1</b> Validity of the Distribution</a></li>
+<li class="chapter" data-level="7.6.2" data-path="chi-square-distribution.html"><a href="chi-square-distribution.html#sum-of-chi-square-random-variables"><i class="fa fa-check"></i><b>7.6.2</b> Sum of Chi-Square Random Variables</a></li>
+<li class="chapter" data-level="7.6.3" data-path="chi-square-distribution.html"><a href="chi-square-distribution.html#square-of-a-standard-normal-random-variable"><i class="fa fa-check"></i><b>7.6.3</b> Square of a Standard Normal Random Variable</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="combinations.html"><a href="combinations.html"><i class="fa fa-check"></i><b>8</b> Combinations</a><ul>
+<li class="chapter" data-level="8.0.1" data-path="combinations.html"><a href="combinations.html#combinations-lemma"><i class="fa fa-check"></i><b>8.0.1</b> Lemma</a></li>
+<li class="chapter" data-level="8.0.2" data-path="combinations.html"><a href="combinations.html#combinations-theorem"><i class="fa fa-check"></i><b>8.0.2</b> Combinations Theorem</a></li>
+<li class="chapter" data-level="8.0.3" data-path="combinations.html"><a href="combinations.html#theorem-1"><i class="fa fa-check"></i><b>8.0.3</b> Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="correlation-pearsons.html"><a href="correlation-pearsons.html"><i class="fa fa-check"></i><b>9</b> Correlation (Pearson’s)</a><ul>
+<li class="chapter" data-level="9.1" data-path="correlation-pearsons.html"><a href="correlation-pearsons.html#theorems-on-pearsons-correlation"><i class="fa fa-check"></i><b>9.1</b> Theorems on Pearson’s Correlation</a></li>
+<li class="chapter" data-level="9.2" data-path="correlation-pearsons.html"><a href="correlation-pearsons.html#computational-formula-for-rho"><i class="fa fa-check"></i><b>9.2</b> Computational Formula for <span class="math inline">\(\rho\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="covariance.html"><a href="covariance.html"><i class="fa fa-check"></i><b>10</b> Covariance</a><ul>
+<li class="chapter" data-level="10.1" data-path="covariance.html"><a href="covariance.html#definition-of-covariance"><i class="fa fa-check"></i><b>10.1</b> Definition of Covariance</a></li>
+<li class="chapter" data-level="10.2" data-path="covariance.html"><a href="covariance.html#theorems-on-covariance"><i class="fa fa-check"></i><b>10.2</b> Theorems on Covariance</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="covariance.html"><a href="covariance.html#theorem-2"><i class="fa fa-check"></i><b>10.2.1</b> Theorem</a></li>
+<li class="chapter" data-level="10.2.2" data-path="covariance.html"><a href="covariance.html#covariance-theorem2"><i class="fa fa-check"></i><b>10.2.2</b> Theorem</a></li>
+<li class="chapter" data-level="10.2.3" data-path="covariance.html"><a href="covariance.html#covariance-1"><i class="fa fa-check"></i><b>10.2.3</b> Covariance</a></li>
+<li class="chapter" data-level="10.2.4" data-path="covariance.html"><a href="covariance.html#theorem-3"><i class="fa fa-check"></i><b>10.2.4</b> Theorem</a></li>
+<li class="chapter" data-level="10.2.5" data-path="covariance.html"><a href="covariance.html#theorem-4"><i class="fa fa-check"></i><b>10.2.5</b> Theorem</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="experimental-designs.html"><a href="experimental-designs.html"><i class="fa fa-check"></i><b>11</b> Experimental Designs</a><ul>
+<li class="chapter" data-level="11.1" data-path="experimental-designs.html"><a href="experimental-designs.html#designs-in-categorical-data-analysis"><i class="fa fa-check"></i><b>11.1</b> Designs in Categorical Data Analysis</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="experimental-designs.html"><a href="experimental-designs.html#case-control-study"><i class="fa fa-check"></i><b>11.1.1</b> Case Control Study</a></li>
+<li class="chapter" data-level="11.1.2" data-path="experimental-designs.html"><a href="experimental-designs.html#cross-sectional-study"><i class="fa fa-check"></i><b>11.1.2</b> Cross Sectional Study</a></li>
+<li class="chapter" data-level="11.1.3" data-path="experimental-designs.html"><a href="experimental-designs.html#cohort-study"><i class="fa fa-check"></i><b>11.1.3</b> Cohort Study</a></li>
+<li class="chapter" data-level="11.1.4" data-path="experimental-designs.html"><a href="experimental-designs.html#randomized-study"><i class="fa fa-check"></i><b>11.1.4</b> Randomized Study</a></li>
+<li class="chapter" data-level="11.1.5" data-path="experimental-designs.html"><a href="experimental-designs.html#summary-of-designs"><i class="fa fa-check"></i><b>11.1.5</b> Summary of Designs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="exponential-distribution.html"><a href="exponential-distribution.html"><i class="fa fa-check"></i><b>12</b> Exponential Distribution</a><ul>
+<li class="chapter" data-level="12.1" data-path="exponential-distribution.html"><a href="exponential-distribution.html#probability-distribution-function-1"><i class="fa fa-check"></i><b>12.1</b> Probability Distribution Function</a></li>
+<li class="chapter" data-level="12.2" data-path="exponential-distribution.html"><a href="exponential-distribution.html#cumulative-distribution-function-1"><i class="fa fa-check"></i><b>12.2</b> Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="12.3" data-path="exponential-distribution.html"><a href="exponential-distribution.html#expected-values-3"><i class="fa fa-check"></i><b>12.3</b> Expected Values</a></li>
+<li class="chapter" data-level="12.4" data-path="exponential-distribution.html"><a href="exponential-distribution.html#moment-generating-function-3"><i class="fa fa-check"></i><b>12.4</b> Moment Generating Function</a></li>
+<li class="chapter" data-level="12.5" data-path="exponential-distribution.html"><a href="exponential-distribution.html#maximum-likelihood-estimator-1"><i class="fa fa-check"></i><b>12.5</b> Maximum Likelihood Estimator</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="exponential-distribution.html"><a href="exponential-distribution.html#likelihood-function-2"><i class="fa fa-check"></i><b>12.5.1</b> Likelihood Function</a></li>
+<li class="chapter" data-level="12.5.2" data-path="exponential-distribution.html"><a href="exponential-distribution.html#log-likelihood-function-2"><i class="fa fa-check"></i><b>12.5.2</b> Log-likelihood Function</a></li>
+<li class="chapter" data-level="12.5.3" data-path="exponential-distribution.html"><a href="exponential-distribution.html#mle-for-beta"><i class="fa fa-check"></i><b>12.5.3</b> MLE for <span class="math inline">\(\beta\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="exponential-distribution.html"><a href="exponential-distribution.html#theorems-for-the-exponential-distribution"><i class="fa fa-check"></i><b>12.6</b> Theorems for the Exponential Distribution</a><ul>
+<li class="chapter" data-level="12.6.1" data-path="exponential-distribution.html"><a href="exponential-distribution.html#validity-of-the-distribution-3"><i class="fa fa-check"></i><b>12.6.1</b> Validity of the Distribution</a></li>
+<li class="chapter" data-level="12.6.2" data-path="exponential-distribution.html"><a href="exponential-distribution.html#sum-of-exponential-random-variables"><i class="fa fa-check"></i><b>12.6.2</b> Sum of Exponential Random Variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>13</b> Functions</a><ul>
+<li class="chapter" data-level="13.1" data-path="functions.html"><a href="functions.html#fundamental-concepts-and-definitions"><i class="fa fa-check"></i><b>13.1</b> Fundamental Concepts and Definitions</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="functions.html"><a href="functions.html#function-operations"><i class="fa fa-check"></i><b>13.1.1</b> Function Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="functions.html"><a href="functions.html#identities-and-inverses"><i class="fa fa-check"></i><b>13.2</b> Identities and Inverses</a></li>
+<li class="chapter" data-level="13.3" data-path="functions.html"><a href="functions.html#odd-and-even-functions"><i class="fa fa-check"></i><b>13.3</b> Odd and Even Functions</a></li>
+<li class="chapter" data-level="13.4" data-path="functions.html"><a href="functions.html#theorems"><i class="fa fa-check"></i><b>13.4</b> Theorems</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="functions.html"><a href="functions.html#operations-on-even-functions"><i class="fa fa-check"></i><b>13.4.1</b> Operations on Even Functions</a></li>
+<li class="chapter" data-level="13.4.2" data-path="functions.html"><a href="functions.html#operations-on-odd-functions"><i class="fa fa-check"></i><b>13.4.2</b> Operations on Odd Functions</a></li>
+<li class="chapter" data-level="13.4.3" data-path="functions.html"><a href="functions.html#operations-on-an-odd-and-even-function"><i class="fa fa-check"></i><b>13.4.3</b> Operations on an Odd and Even Function</a></li>
+<li class="chapter" data-level="13.4.4" data-path="functions.html"><a href="functions.html#derivatives-and-anti-derivatives-of-odd-functions"><i class="fa fa-check"></i><b>13.4.4</b> Derivatives and Anti-derivatives of Odd Functions</a></li>
+<li class="chapter" data-level="13.4.5" data-path="functions.html"><a href="functions.html#derivatives-and-anti-derivatives-of-even-functions"><i class="fa fa-check"></i><b>13.4.5</b> Derivatives and Anti-derivatives of Even Functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="gamma-distribution.html"><a href="gamma-distribution.html"><i class="fa fa-check"></i><b>14</b> Gamma Distribution</a><ul>
+<li class="chapter" data-level="14.1" data-path="gamma-distribution.html"><a href="gamma-distribution.html#probability-distribution-function-2"><i class="fa fa-check"></i><b>14.1</b> Probability Distribution Function</a></li>
+<li class="chapter" data-level="14.2" data-path="gamma-distribution.html"><a href="gamma-distribution.html#cumulative-distribution-function-2"><i class="fa fa-check"></i><b>14.2</b> Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="14.3" data-path="gamma-distribution.html"><a href="gamma-distribution.html#expected-values-4"><i class="fa fa-check"></i><b>14.3</b> Expected Values</a></li>
+<li class="chapter" data-level="14.4" data-path="gamma-distribution.html"><a href="gamma-distribution.html#moment-generating-function-4"><i class="fa fa-check"></i><b>14.4</b> Moment Generating Function</a></li>
+<li class="chapter" data-level="14.5" data-path="gamma-distribution.html"><a href="gamma-distribution.html#maximum-likelihood-estimators"><i class="fa fa-check"></i><b>14.5</b> Maximum Likelihood Estimators</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="gamma-distribution.html"><a href="gamma-distribution.html#likelihood-function-3"><i class="fa fa-check"></i><b>14.5.1</b> Likelihood Function</a></li>
+<li class="chapter" data-level="14.5.2" data-path="gamma-distribution.html"><a href="gamma-distribution.html#log-likelihood-function-3"><i class="fa fa-check"></i><b>14.5.2</b> Log-likelihood Function</a></li>
+<li class="chapter" data-level="14.5.3" data-path="gamma-distribution.html"><a href="gamma-distribution.html#mle-for-alpha"><i class="fa fa-check"></i><b>14.5.3</b> MLE for <span class="math inline">\(\alpha\)</span></a></li>
+<li class="chapter" data-level="14.5.4" data-path="gamma-distribution.html"><a href="gamma-distribution.html#mle-for-beta-1"><i class="fa fa-check"></i><b>14.5.4</b> MLE for <span class="math inline">\(\beta\)</span></a></li>
+<li class="chapter" data-level="14.5.5" data-path="gamma-distribution.html"><a href="gamma-distribution.html#approximation-of-hatalpha-and-hatbeta"><i class="fa fa-check"></i><b>14.5.5</b> Approximation of <span class="math inline">\(\hat\alpha\)</span> and <span class="math inline">\(\hat\beta\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="gamma-distribution.html"><a href="gamma-distribution.html#theorems-for-the-gamma-distribution"><i class="fa fa-check"></i><b>14.6</b> Theorems for the Gamma Distribution</a><ul>
+<li class="chapter" data-level="14.6.1" data-path="gamma-distribution.html"><a href="gamma-distribution.html#validity-of-the-distribution-4"><i class="fa fa-check"></i><b>14.6.1</b> Validity of the Distribution</a></li>
+<li class="chapter" data-level="14.6.2" data-path="gamma-distribution.html"><a href="gamma-distribution.html#sum-of-gamma-random-variables"><i class="fa fa-check"></i><b>14.6.2</b> Sum of Gamma Random Variables</a></li>
+<li class="chapter" data-level="14.6.3" data-path="gamma-distribution.html"><a href="gamma-distribution.html#sum-of-exponential-random-variables-1"><i class="fa fa-check"></i><b>14.6.3</b> Sum of Exponential Random Variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="geometric-distribution.html"><a href="geometric-distribution.html"><i class="fa fa-check"></i><b>15</b> Geometric Distribution</a><ul>
+<li class="chapter" data-level="15.1" data-path="geometric-distribution.html"><a href="geometric-distribution.html#probability-mass-function-2"><i class="fa fa-check"></i><b>15.1</b> Probability Mass Function</a></li>
+<li class="chapter" data-level="15.2" data-path="geometric-distribution.html"><a href="geometric-distribution.html#cumulative-distribution-function-3"><i class="fa fa-check"></i><b>15.2</b> Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="15.3" data-path="geometric-distribution.html"><a href="geometric-distribution.html#expected-values-5"><i class="fa fa-check"></i><b>15.3</b> Expected Values</a></li>
+<li class="chapter" data-level="15.4" data-path="geometric-distribution.html"><a href="geometric-distribution.html#moment-generating-function-5"><i class="fa fa-check"></i><b>15.4</b> Moment Generating Function</a></li>
+<li class="chapter" data-level="15.5" data-path="geometric-distribution.html"><a href="geometric-distribution.html#maximum-likelihood-estimator-2"><i class="fa fa-check"></i><b>15.5</b> Maximum Likelihood Estimator</a><ul>
+<li class="chapter" data-level="15.5.1" data-path="geometric-distribution.html"><a href="geometric-distribution.html#likelihood-function-4"><i class="fa fa-check"></i><b>15.5.1</b> Likelihood Function</a></li>
+<li class="chapter" data-level="15.5.2" data-path="geometric-distribution.html"><a href="geometric-distribution.html#log-likelihood-function-4"><i class="fa fa-check"></i><b>15.5.2</b> Log-likelihood Function</a></li>
+<li class="chapter" data-level="15.5.3" data-path="geometric-distribution.html"><a href="geometric-distribution.html#mle-for-p-1"><i class="fa fa-check"></i><b>15.5.3</b> MLE for <span class="math inline">\(p\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="geometric-distribution.html"><a href="geometric-distribution.html#theorems-for-the-geometric-distribution"><i class="fa fa-check"></i><b>15.6</b> Theorems for the Geometric Distribution</a><ul>
+<li class="chapter" data-level="15.6.1" data-path="geometric-distribution.html"><a href="geometric-distribution.html#validity-of-the-distribution-5"><i class="fa fa-check"></i><b>15.6.1</b> Validity of the Distribution</a></li>
+<li class="chapter" data-level="15.6.2" data-path="geometric-distribution.html"><a href="geometric-distribution.html#sum-of-geometric-random-variables"><i class="fa fa-check"></i><b>15.6.2</b> Sum of Geometric Random Variables</a></li>
+<li class="chapter" data-level="15.6.3" data-path="geometric-distribution.html"><a href="geometric-distribution.html#geometric-distribution-memoryless-lemma"><i class="fa fa-check"></i><b>15.6.3</b> Lemma</a></li>
+<li class="chapter" data-level="15.6.4" data-path="geometric-distribution.html"><a href="geometric-distribution.html#memoryless-property"><i class="fa fa-check"></i><b>15.6.4</b> Memoryless Property</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="geometric-series.html"><a href="geometric-series.html"><i class="fa fa-check"></i><b>16</b> Geometric Series</a><ul>
+<li class="chapter" data-level="16.1" data-path="geometric-series.html"><a href="geometric-series.html#geometric-series-partial-and-infinite-summations"><i class="fa fa-check"></i><b>16.1</b> Partial and Infinite Summations</a></li>
+<li class="chapter" data-level="16.2" data-path="geometric-series.html"><a href="geometric-series.html#proofs-of-convergence"><i class="fa fa-check"></i><b>16.2</b> Proofs of Convergence</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="hypergeometric-distribution.html"><a href="hypergeometric-distribution.html"><i class="fa fa-check"></i><b>17</b> Hypergeometric Distribution</a><ul>
+<li class="chapter" data-level="17.1" data-path="hypergeometric-distribution.html"><a href="hypergeometric-distribution.html#probability-mass-function-3"><i class="fa fa-check"></i><b>17.1</b> Probability Mass Function</a></li>
+<li class="chapter" data-level="17.2" data-path="hypergeometric-distribution.html"><a href="hypergeometric-distribution.html#cumulative-mass-function-2"><i class="fa fa-check"></i><b>17.2</b> Cumulative Mass Function</a></li>
+<li class="chapter" data-level="17.3" data-path="hypergeometric-distribution.html"><a href="hypergeometric-distribution.html#expected-values-6"><i class="fa fa-check"></i><b>17.3</b> Expected Values</a></li>
+<li class="chapter" data-level="17.4" data-path="hypergeometric-distribution.html"><a href="hypergeometric-distribution.html#moment-generating-function-6"><i class="fa fa-check"></i><b>17.4</b> Moment Generating Function</a></li>
+<li class="chapter" data-level="17.5" data-path="hypergeometric-distribution.html"><a href="hypergeometric-distribution.html#theorems-for-the-hypergeometric-distribution"><i class="fa fa-check"></i><b>17.5</b> Theorems for the Hypergeometric Distribution</a><ul>
+<li class="chapter" data-level="17.5.1" data-path="hypergeometric-distribution.html"><a href="hypergeometric-distribution.html#validity-of-the-distribution-6"><i class="fa fa-check"></i><b>17.5.1</b> Validity of the Distribution</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="integration-techniques-and-theorems.html"><a href="integration-techniques-and-theorems.html"><i class="fa fa-check"></i><b>18</b> Integration: Techniques and Theorems</a><ul>
+<li class="chapter" data-level="18.1" data-path="integration-techniques-and-theorems.html"><a href="integration-techniques-and-theorems.html#elementary-theorems"><i class="fa fa-check"></i><b>18.1</b> Elementary Theorems</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="integration-techniques-and-theorems.html"><a href="integration-techniques-and-theorems.html#integration-even-function-about-zero"><i class="fa fa-check"></i><b>18.1.1</b> Integration of Even Functions about Zero</a></li>
+<li class="chapter" data-level="18.1.2" data-path="integration-techniques-and-theorems.html"><a href="integration-techniques-and-theorems.html#corollary"><i class="fa fa-check"></i><b>18.1.2</b> Corollary</a></li>
+<li class="chapter" data-level="18.1.3" data-path="integration-techniques-and-theorems.html"><a href="integration-techniques-and-theorems.html#integrals-of-horizontal-translations"><i class="fa fa-check"></i><b>18.1.3</b> Integrals of Horizontal Translations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>19</b> Logistic Regression</a><ul>
+<li class="chapter" data-level="19.1" data-path="logistic-regression.html"><a href="logistic-regression.html#the-logit-transformation"><i class="fa fa-check"></i><b>19.1</b> The Logit Transformation</a><ul>
+<li class="chapter" data-level="19.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#obtaining-the-logit-transformation"><i class="fa fa-check"></i><b>19.1.1</b> Obtaining the Logit Transformation</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="logistic-regression.html"><a href="logistic-regression.html#retrieving-the-modelled-probability"><i class="fa fa-check"></i><b>19.2</b> Retrieving the Modelled Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="mantel-haenszel-test-of-linear-trend.html"><a href="mantel-haenszel-test-of-linear-trend.html"><i class="fa fa-check"></i><b>20</b> Mantel-Haenszel Test of Linear Trend</a></li>
+<li class="chapter" data-level="21" data-path="mcnemar-test.html"><a href="mcnemar-test.html"><i class="fa fa-check"></i><b>21</b> McNemar Test</a><ul>
+<li class="chapter" data-level="21.1" data-path="mcnemar-test.html"><a href="mcnemar-test.html#sample-size-calculations-for-paired-design"><i class="fa fa-check"></i><b>21.1</b> Sample Size Calculations for Paired Design</a><ul>
+<li class="chapter" data-level="21.1.1" data-path="mcnemar-test.html"><a href="mcnemar-test.html#miettenens-sample-size-calculation"><i class="fa fa-check"></i><b>21.1.1</b> Miettenen’s Sample Size Calculation</a></li>
+<li class="chapter" data-level="21.1.2" data-path="mcnemar-test.html"><a href="mcnemar-test.html#connors-sample-size-calculation"><i class="fa fa-check"></i><b>21.1.2</b> Connor’s Sample Size Calculation</a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="mcnemar-test.html"><a href="mcnemar-test.html#power-calculation-for-paired-design"><i class="fa fa-check"></i><b>21.2</b> Power Calculation for Paired Design</a><ul>
+<li class="chapter" data-level="21.2.1" data-path="mcnemar-test.html"><a href="mcnemar-test.html#power-calculation-for-miettenen-method"><i class="fa fa-check"></i><b>21.2.1</b> Power Calculation for Miettenen Method</a></li>
+<li class="chapter" data-level="21.2.2" data-path="mcnemar-test.html"><a href="mcnemar-test.html#power-calculation-for-connor-method"><i class="fa fa-check"></i><b>21.2.2</b> Power Calculation for Connor Method</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html"><i class="fa fa-check"></i><b>22</b> Moments and Moment Generating Functions</a><ul>
+<li class="chapter" data-level="22.1" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html#definitions-of-moments"><i class="fa fa-check"></i><b>22.1</b> Definitions of Moments</a><ul>
+<li class="chapter" data-level="22.1.1" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html#definition-general-definition-of-moments"><i class="fa fa-check"></i><b>22.1.1</b> Definition: General Definition of Moments</a></li>
+<li class="chapter" data-level="22.1.2" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html#definition-ordinary-moments"><i class="fa fa-check"></i><b>22.1.2</b> Definition: Ordinary Moments</a></li>
+<li class="chapter" data-level="22.1.3" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html#definition-central-moments"><i class="fa fa-check"></i><b>22.1.3</b> Definition: Central Moments</a></li>
+</ul></li>
+<li class="chapter" data-level="22.2" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html#moment-generating-functions"><i class="fa fa-check"></i><b>22.2</b> Moment Generating Functions</a><ul>
+<li class="chapter" data-level="22.2.1" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html#definition-moment-generating-function"><i class="fa fa-check"></i><b>22.2.1</b> Definition: Moment Generating Function</a></li>
+<li class="chapter" data-level="22.2.2" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html#theorem-extraction-of-moments-from-moment-generating-functions"><i class="fa fa-check"></i><b>22.2.2</b> Theorem: Extraction of Moments from Moment Generating Functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="multinomial-distribution.html"><a href="multinomial-distribution.html"><i class="fa fa-check"></i><b>23</b> Multinomial Distribution</a><ul>
+<li class="chapter" data-level="23.1" data-path="multinomial-distribution.html"><a href="multinomial-distribution.html#cumulative-distribution-function-4"><i class="fa fa-check"></i><b>23.1</b> Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="23.2" data-path="multinomial-distribution.html"><a href="multinomial-distribution.html#expected-values-7"><i class="fa fa-check"></i><b>23.2</b> Expected Values</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="real-number-system.html"><a href="real-number-system.html"><i class="fa fa-check"></i><b>24</b> Real Number System</a><ul>
+<li class="chapter" data-level="24.1" data-path="real-number-system.html"><a href="real-number-system.html#historical-note"><i class="fa fa-check"></i><b>24.1</b> Historical Note</a></li>
+<li class="chapter" data-level="24.2" data-path="real-number-system.html"><a href="real-number-system.html#the-field-of-real-numbers"><i class="fa fa-check"></i><b>24.2</b> The Field of Real Numbers</a><ul>
+<li class="chapter" data-level="24.2.1" data-path="real-number-system.html"><a href="real-number-system.html#definition-the-field-of-real-numbers"><i class="fa fa-check"></i><b>24.2.1</b> Definition: The Field of Real Numbers</a></li>
+<li class="chapter" data-level="24.2.2" data-path="real-number-system.html"><a href="real-number-system.html#field-axioms"><i class="fa fa-check"></i><b>24.2.2</b> Field Axioms</a></li>
+<li class="chapter" data-level="24.2.3" data-path="real-number-system.html"><a href="real-number-system.html#real-numbers-definition-less-than-equal-to"><i class="fa fa-check"></i><b>24.2.3</b> Definiton: Less Than (or Equal To)</a></li>
+<li class="chapter" data-level="24.2.4" data-path="real-number-system.html"><a href="real-number-system.html#definition-bounded-above-and-below"><i class="fa fa-check"></i><b>24.2.4</b> Definition: Bounded Above (and Below)</a></li>
+<li class="chapter" data-level="24.2.5" data-path="real-number-system.html"><a href="real-number-system.html#definition-least-upper-and-lower-bound"><i class="fa fa-check"></i><b>24.2.5</b> Definition: Least Upper (and Lower) Bound</a></li>
+<li class="chapter" data-level="24.2.6" data-path="real-number-system.html"><a href="real-number-system.html#completeness-axiom"><i class="fa fa-check"></i><b>24.2.6</b> Completeness Axiom</a></li>
+</ul></li>
+<li class="chapter" data-level="24.3" data-path="real-number-system.html"><a href="real-number-system.html#proof-that-the-field-of-rationals-is-not-complete"><i class="fa fa-check"></i><b>24.3</b> Proof that the Field of Rationals is not Complete</a></li>
+<li class="chapter" data-level="24.4" data-path="real-number-system.html"><a href="real-number-system.html#preliminary-results-in-the-field-of-real-numbers"><i class="fa fa-check"></i><b>24.4</b> Preliminary Results in the Field of Real Numbers</a><ul>
+<li class="chapter" data-level="24.4.1" data-path="real-number-system.html"><a href="real-number-system.html#theorem-uniqueness-of-identities"><i class="fa fa-check"></i><b>24.4.1</b> Theorem: Uniqueness of Identities</a></li>
+<li class="chapter" data-level="24.4.2" data-path="real-number-system.html"><a href="real-number-system.html#theorem-2-uniqueness-of-inverses"><i class="fa fa-check"></i><b>24.4.2</b> Theorem 2: Uniqueness of Inverses</a></li>
+<li class="chapter" data-level="24.4.3" data-path="real-number-system.html"><a href="real-number-system.html#theorem-left-cancellation-law"><i class="fa fa-check"></i><b>24.4.3</b> Theorem: Left Cancellation Law</a></li>
+<li class="chapter" data-level="24.4.4" data-path="real-number-system.html"><a href="real-number-system.html#corollary-right-cancellation"><i class="fa fa-check"></i><b>24.4.4</b> Corollary: Right Cancellation</a></li>
+<li class="chapter" data-level="24.4.5" data-path="real-number-system.html"><a href="real-number-system.html#lemma"><i class="fa fa-check"></i><b>24.4.5</b> Lemma</a></li>
+<li class="chapter" data-level="24.4.6" data-path="real-number-system.html"><a href="real-number-system.html#theorem-5"><i class="fa fa-check"></i><b>24.4.6</b> Theorem</a></li>
+<li class="chapter" data-level="24.4.7" data-path="real-number-system.html"><a href="real-number-system.html#theorem-6"><i class="fa fa-check"></i><b>24.4.7</b> Theorem</a></li>
+<li class="chapter" data-level="24.4.8" data-path="real-number-system.html"><a href="real-number-system.html#theorem-7"><i class="fa fa-check"></i><b>24.4.8</b> Theorem</a></li>
+<li class="chapter" data-level="24.4.9" data-path="real-number-system.html"><a href="real-number-system.html#real-numbers-theorem-4-9"><i class="fa fa-check"></i><b>24.4.9</b> Theorem</a></li>
+<li class="chapter" data-level="24.4.10" data-path="real-number-system.html"><a href="real-number-system.html#real-numbers-theorem-4-10"><i class="fa fa-check"></i><b>24.4.10</b> Theorem</a></li>
+<li class="chapter" data-level="24.4.11" data-path="real-number-system.html"><a href="real-number-system.html#real-numbers-theorem-4-11"><i class="fa fa-check"></i><b>24.4.11</b> Corollary</a></li>
+<li class="chapter" data-level="24.4.12" data-path="real-number-system.html"><a href="real-number-system.html#theorem-8"><i class="fa fa-check"></i><b>24.4.12</b> Theorem</a></li>
+<li class="chapter" data-level="24.4.13" data-path="real-number-system.html"><a href="real-number-system.html#theorem-9"><i class="fa fa-check"></i><b>24.4.13</b> Theorem</a></li>
+<li class="chapter" data-level="24.4.14" data-path="real-number-system.html"><a href="real-number-system.html#theorem-10"><i class="fa fa-check"></i><b>24.4.14</b> Theorem</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="skew-normal-distribution.html"><a href="skew-normal-distribution.html"><i class="fa fa-check"></i><b>25</b> Skew-Normal Distribution</a><ul>
+<li class="chapter" data-level="25.1" data-path="skew-normal-distribution.html"><a href="skew-normal-distribution.html#preliminary-theorems"><i class="fa fa-check"></i><b>25.1</b> Preliminary Theorems</a></li>
+<li class="chapter" data-level="25.2" data-path="skew-normal-distribution.html"><a href="skew-normal-distribution.html#lemma-a-symmetry-theorem"><i class="fa fa-check"></i><b>25.2</b> Lemma: A Symmetry Theorem</a></li>
+<li class="chapter" data-level="25.3" data-path="skew-normal-distribution.html"><a href="skew-normal-distribution.html#lemma-1"><i class="fa fa-check"></i><b>25.3</b> Lemma</a></li>
+<li class="chapter" data-level="25.4" data-path="skew-normal-distribution.html"><a href="skew-normal-distribution.html#expected-values-8"><i class="fa fa-check"></i><b>25.4</b> Expected Values</a></li>
+<li class="chapter" data-level="25.5" data-path="skew-normal-distribution.html"><a href="skew-normal-distribution.html#estimation-of-lambda"><i class="fa fa-check"></i><b>25.5</b> Estimation of <span class="math inline">\(\lambda\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="somers-d.html"><a href="somers-d.html"><i class="fa fa-check"></i><b>26</b> Somers’ D</a><ul>
+<li class="chapter" data-level="26.1" data-path="somers-d.html"><a href="somers-d.html#theorems-for-somers-d"><i class="fa fa-check"></i><b>26.1</b> Theorems for Somers’ <span class="math inline">\(D\)</span></a><ul>
+<li class="chapter" data-level="26.1.1" data-path="somers-d.html"><a href="somers-d.html#theorem-distribution-of-somers-derived-concordance"><i class="fa fa-check"></i><b>26.1.1</b> Theorem: Distribution of Somers’ Derived Concordance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="summation.html"><a href="summation.html"><i class="fa fa-check"></i><b>27</b> Summation</a><ul>
+<li class="chapter" data-level="27.1" data-path="summation.html"><a href="summation.html#theorems-of-summation"><i class="fa fa-check"></i><b>27.1</b> Theorems of Summation</a><ul>
+<li class="chapter" data-level="27.1.1" data-path="summation.html"><a href="summation.html#summation-theorem-1"><i class="fa fa-check"></i><b>27.1.1</b> Theorem</a></li>
+<li class="chapter" data-level="27.1.2" data-path="summation.html"><a href="summation.html#summation-theorem-2"><i class="fa fa-check"></i><b>27.1.2</b> Theorem</a></li>
+<li class="chapter" data-level="27.1.3" data-path="summation.html"><a href="summation.html#summation-theorem-3"><i class="fa fa-check"></i><b>27.1.3</b> Theorem</a></li>
+<li class="chapter" data-level="27.1.4" data-path="summation.html"><a href="summation.html#summation-theorem-4"><i class="fa fa-check"></i><b>27.1.4</b> Theorem</a></li>
+<li class="chapter" data-level="27.1.5" data-path="summation.html"><a href="summation.html#summation-theorem-5"><i class="fa fa-check"></i><b>27.1.5</b> Theorem</a></li>
+<li class="chapter" data-level="27.1.6" data-path="summation.html"><a href="summation.html#summation-theorem-6"><i class="fa fa-check"></i><b>27.1.6</b> Theorem</a></li>
+<li class="chapter" data-level="27.1.7" data-path="summation.html"><a href="summation.html#summation-theorem-7"><i class="fa fa-check"></i><b>27.1.7</b> Theorem</a></li>
+<li class="chapter" data-level="27.1.8" data-path="summation.html"><a href="summation.html#summation-theorem-8"><i class="fa fa-check"></i><b>27.1.8</b> Theorem</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="method-of-transformations.html"><a href="method-of-transformations.html"><i class="fa fa-check"></i><b>28</b> Method of Transformations</a><ul>
+<li class="chapter" data-level="28.1" data-path="method-of-transformations.html"><a href="method-of-transformations.html#example-cauchy-distribution"><i class="fa fa-check"></i><b>28.1</b> Example: Cauchy Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="uniform-distribution.html"><a href="uniform-distribution.html"><i class="fa fa-check"></i><b>29</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="29.1" data-path="uniform-distribution.html"><a href="uniform-distribution.html#probability-density-function"><i class="fa fa-check"></i><b>29.1</b> Probability Density Function</a></li>
+<li class="chapter" data-level="29.2" data-path="uniform-distribution.html"><a href="uniform-distribution.html#cumulative-density-function"><i class="fa fa-check"></i><b>29.2</b> Cumulative Density Function</a></li>
+<li class="chapter" data-level="29.3" data-path="uniform-distribution.html"><a href="uniform-distribution.html#expected-values-9"><i class="fa fa-check"></i><b>29.3</b> Expected Values</a></li>
+<li class="chapter" data-level="29.4" data-path="uniform-distribution.html"><a href="uniform-distribution.html#moment-generating-function-7"><i class="fa fa-check"></i><b>29.4</b> Moment Generating Function</a></li>
+<li class="chapter" data-level="29.5" data-path="uniform-distribution.html"><a href="uniform-distribution.html#theorems-for-the-uniform-distribution"><i class="fa fa-check"></i><b>29.5</b> Theorems for the Uniform Distribution</a></li>
+<li class="chapter" data-level="29.6" data-path="uniform-distribution.html"><a href="uniform-distribution.html#validity-of-the-distribution-7"><i class="fa fa-check"></i><b>29.6</b> Validity of the Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="variance-parameter.html"><a href="variance-parameter.html"><i class="fa fa-check"></i><b>30</b> Variance Parameter</a><ul>
+<li class="chapter" data-level="30.1" data-path="variance-parameter.html"><a href="variance-parameter.html#defining-variance-with-expected-values"><i class="fa fa-check"></i><b>30.1</b> Defining Variance With Expected Values</a></li>
+<li class="chapter" data-level="30.2" data-path="variance-parameter.html"><a href="variance-parameter.html#unbiased-estimator"><i class="fa fa-check"></i><b>30.2</b> Unbiased Estimator</a></li>
+<li class="chapter" data-level="30.3" data-path="variance-parameter.html"><a href="variance-parameter.html#computational-formulae-1"><i class="fa fa-check"></i><b>30.3</b> Computational Formulae</a><ul>
+<li class="chapter" data-level="30.3.1" data-path="variance-parameter.html"><a href="variance-parameter.html#computational-formula-population-variance"><i class="fa fa-check"></i><b>30.3.1</b> Computational Formula for <span class="math inline">\(\sigma\)</span>^2</a></li>
+<li class="chapter" data-level="30.3.2" data-path="variance-parameter.html"><a href="variance-parameter.html#computational-formula-sample-variance"><i class="fa fa-check"></i><b>30.3.2</b> Computational Formula for <span class="math inline">\(s\)</span>^2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="weibull-distribution.html"><a href="weibull-distribution.html"><i class="fa fa-check"></i><b>31</b> Weibull Distribution</a><ul>
+<li class="chapter" data-level="31.1" data-path="weibull-distribution.html"><a href="weibull-distribution.html#probability-distribution-function-3"><i class="fa fa-check"></i><b>31.1</b> Probability Distribution Function</a></li>
+<li class="chapter" data-level="31.2" data-path="weibull-distribution.html"><a href="weibull-distribution.html#cumulative-distribution-function-5"><i class="fa fa-check"></i><b>31.2</b> Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="31.3" data-path="weibull-distribution.html"><a href="weibull-distribution.html#expected-values-10"><i class="fa fa-check"></i><b>31.3</b> Expected Values</a></li>
+<li class="chapter" data-level="31.4" data-path="weibull-distribution.html"><a href="weibull-distribution.html#theorems-for-the-weibull-distribution"><i class="fa fa-check"></i><b>31.4</b> Theorems for the Weibull Distribution</a><ul>
+<li class="chapter" data-level="31.4.1" data-path="weibull-distribution.html"><a href="weibull-distribution.html#validity-of-the-distribution-8"><i class="fa fa-check"></i><b>31.4.1</b> Validity of the Distribution</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li>Benjamin Nutter</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">It Can Be Shown</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chi-square-distribution" class="section level1">
+<h1><span class="header-section-number">7</span> Chi-Square Distribution</h1>
+<div id="probability-distribution-function" class="section level2">
+<h2><span class="header-section-number">7.1</span> Probability Distribution Function</h2>
+<p>A random variable <span class="math inline">\(X\)</span> is said to have a Chi-Square Distribution with parameter <span class="math inline">\(\nu\)</span> if its probability distribution function is</p>
+<p><span class="math display">\[f(x) = \left\{
+    \begin{array}{ll}
+        \frac{x^{\frac{\nu}{2}-1}e^{-\frac{x}{2}}}
+            {2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}  &amp; 0&lt;x,\ 0&lt;\nu\\
+        0 &amp; otherwise  
+    \end{array} \right. \]</span></p>
+<p><span class="math inline">\(\nu\)</span> is commonly referred to as the <em>degrees of freedom</em>.</p>
+</div>
+<div id="cumulative-distribution-function" class="section level2">
+<h2><span class="header-section-number">7.2</span> Cumulative Distribution Function</h2>
+<p>The cumulative distribution function for the Chi-Square Distribution cannot be written in closed form. It’s integral form is expressed as <span class="math display">\[ F(x) = \left\{
+    \begin{array}{ll}
+        \displaystyle\int\limits_{0}^{x} \frac{t^{\frac{\nu}{2}-1}e^{-\frac{t}{2}}}
+            {2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})} dt  &amp; 0&lt;x,\ 0&lt;\nu\\\\
+        0 &amp; otherwise
+    \end{array} \right.
+\]</span></p>
+<div class="figure">
+<img src="figures/ChiSquare_Distribution-1.png" alt="(\#fig:ChiSquare_Distribution)The graphs on the top and bottom depict the Chi-Square probability distribution and cumulative distribution functions, respectively, for $\nu=4,7,10$.  As $\nu$ gets larger, the distribution becomes flatter with thicker tails." width="672" />
+<p class="caption">
+(#fig:ChiSquare_Distribution)The graphs on the top and bottom depict the Chi-Square probability distribution and cumulative distribution functions, respectively, for <span class="math inline">\(\nu=4,7,10\)</span>. As <span class="math inline">\(\nu\)</span> gets larger, the distribution becomes flatter with thicker tails.
+</p>
+</div>
+</div>
+<div id="expected-values-2" class="section level2">
+<h2><span class="header-section-number">7.3</span> Expected Values</h2>
+<p><span class="math display">\[\begin{align*}
+E(X)
+        &amp;= \int\limits_{0}^{\infty}x\frac{x^{\frac{\nu}{2}-1}e^{-\frac{x}{2}}}
+            {2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}dx \\
+        &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})} 
+            \int\limits_{0}^{\infty}x\cdot x^{\frac{\nu}{2}-1}e^{-\frac{x}{2}}dx \\
+        &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})} 
+            \int\limits_{0}^{\infty}x^{\frac{\nu}{2}}e^{-\frac{x}{2}}dx  \\
+^{[1]}  &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+              \Big[\Gamma\Big(\frac{\nu}{2}+1\Big)2^{\frac{\nu}{2}+1}\Big] \\
+        &amp;= \frac{\Gamma(\frac{\nu}{2}+1)2^{\frac{\nu}{2}+1}} 
+            {2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})} \\
+        &amp;= \frac{\frac{\nu}{2}\Gamma(\frac{\nu}{2})2^{\frac{\nu}{2}+1}} 
+            {2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})} \\
+        &amp;= \frac{2\nu}{2} \\
+        &amp;= \nu
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx = \beta^\alpha\Gamma(\alpha)\)</span></li>
+</ol>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+E(X^2)
+        &amp;= \int\limits_{0}^{\infty}x^2\frac{x^{\frac{\nu}{2}-1}e^{-\frac{x}{2}}}
+            {2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}dx \\
+        &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+            \int\limits_{0}^{\infty}x^2\cdot x^{\frac{\nu}{2}-1}e^{-\frac{x}{2}}dx \\
+        &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+            \int\limits_{0}^{\infty}x^{\frac{\nu}{2}+1}e^{-\frac{x}{2}}dx \\
+^{[1]}  &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+            \Big[\Gamma(\frac{\nu}{2}+2)2^{\frac{\nu}{2}+2}\Big] \\
+        &amp;= \frac{\Gamma\Big(\frac{\nu}{2}+2\Big)2^{\frac{\nu}{2}+2}}
+            {2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})} \\
+        &amp;= \frac{(\frac{\nu}{2}+1)\Gamma(\frac{\nu}{2}+1)2^{\frac{\nu}{2}+2}}
+            {2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})} \\
+        &amp;= \frac{\Big(\frac{\nu}{2}+1\Big)\frac{\nu}{2}\Gamma(\frac{\nu}{2})2^{\frac{\nu}{2}+2}}
+            {2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})} \\
+        &amp;= \Big(\frac{\nu}{2}+1\Big)\frac{\nu}{2}\cdot 2^2=2\Big(\frac{\nu}{2}+1\Big)\nu \\
+        &amp;= (\nu+2)\nu=\nu^2+2\nu
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx = \beta^\alpha\Gamma(\alpha)\)</span></li>
+</ol>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+\mu
+    &amp;= E(X) \\
+    &amp;= \nu \\
+\\
+\\
+\sigma^2
+    &amp;= E(X^2)-E(X)^2 \\
+    &amp;= \nu^2+2\nu-\nu^2 \\
+    &amp;= 2\nu
+\end{align*}\]</span></p>
+</div>
+<div id="moment-generating-function-2" class="section level2">
+<h2><span class="header-section-number">7.4</span> Moment Generating Function</h2>
+<p><span class="math display">\[\begin{align*}
+M_X(t)
+            &amp;= E(e^{tX}) \\
+            &amp;= \int\limits_{0}^{\infty}e^{tx}
+                \frac{x^{\frac{\nu}{2}-1}e^{-\frac{x}{2}}}
+                  {2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}dx \\
+            &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+                \int\limits_{0}^{\infty}e^{tx}\cdot 
+                    x^{\frac{\nu}{2}-1}e^{-\frac{x}{2}}dx \\
+          &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+                \int\limits_{0}^{\infty}x^{\frac{\nu}{2}-1}
+                  e^{tx}e^{-\frac{x}{2}}dx \\
+            &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+                \int\limits_{0}^{\infty}x^{\frac{\nu}{2}-1}
+                e^{tx-\frac{x}{2}}dx \\
+          &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+                \int\limits_{0}^{\infty}x^{\frac{\nu}{2}-1}
+                e^{\frac{2tx}{2}-\frac{x}{2}}dx \\
+            &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+                \int\limits_{0}^{\infty}x^{\frac{\nu}{2}-1}
+                e^{-\frac{2tx-x}{2}}dx \\
+          &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+                \int\limits_{0}^{\infty}x^{\frac{\nu}{2}-1}
+                e^{-x\frac{-2t+1}{2}}dx \\
+            &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+                \int\limits_{0}^{\infty}x^{\frac{\nu}{2}-1}
+                e^{-x\frac{1-2t}{2}}dx \\
+          &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+                \int\limits_{0}^{\infty}x^{\frac{\nu}{2}-1}
+                e^{\frac{-x}{\frac{2}{1-2t}}}dx \\
+    ^{[1]}  &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+                \Big[\Big(\frac{2}{1-2t}\Big)^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})\Big]\\
+          &amp;= \frac{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+                {2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})(1-2t)^{\frac{\nu}{2}}} \\
+            &amp;= \frac{1}{(1-2t)^{\frac{\nu}{2}}} \\
+            &amp;= (1-2t)^{-\frac{\nu}{2}}
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx = \beta^\alpha\Gamma(\alpha)\)</span></li>
+</ol>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+M_X^{(1)}(t)
+    &amp;= -\frac{\nu}{2}(1-2t)^{-\frac{\nu}{2}-1}(-2) \\
+    &amp;= \frac{2\nu}{2}(1-2t)^{-\frac{\nu}{2}-1} \\
+    &amp;= \nu(1-2t)^{-\frac{\nu}{2}-1} \\
+\\
+\\
+M_X^{(2)}(t)
+    &amp;= (-\frac{\nu}{2}-1)\nu(1-2t)^{-\frac{\nu}{2}-2}(-2) \\
+    &amp;= (\frac{2\nu}{2}+2)\nu(1-2t)^{-\frac{\nu}{2}-2} \\
+  &amp;= (\nu+2)\nu)(1-2t)^{-\frac{\nu}{2}-2} \\
+    &amp;= (\nu^2+2\nu)(1-2t)^{-\frac{\nu}{2}-2}\\
+\\
+\\
+M_X^{(1)}(0)
+    &amp;= \nu(1-2\cdot 0)^{-\frac{\nu}{2}-1} \\
+    &amp;= \nu(1-0)^{-\frac{\nu}{2}-1} \\
+    &amp;= \nu(1)^{-\frac{\nu}{2}-1} \\
+    &amp;= \nu \\
+M_X^{(2)}(0)
+    &amp;= (\nu^2+2\nu)(1-2\cdot 0)^{-\frac{\nu}{2}-2} \\
+    &amp;= (\nu^2+2\nu)(1-0)^{-\frac{\nu}{2}-2} \\
+  &amp;= (\nu^2+2\nu)(1)^{-\frac{\nu}{2}-2} \\
+    &amp;= (\nu^2+2\nu) \\
+\\
+\\
+E(X)
+    &amp;= M_X^{(1)}(0) \\
+    &amp;= \nu\\
+\\
+\\
+E(X^2)
+    &amp;= M_X^{(2)}(0) \\
+    &amp;= (\nu^2+2\nu) \\
+\\
+\\
+\mu
+    &amp;= E(X) \\
+    &amp;= \nu  \\
+\sigma^2
+    &amp;= E(X^2)-E(X)^2 \\
+    &amp;= \nu^2+2\nu-\nu^2 \\
+    &amp;= 2\nu
+\end{align*}\]</span></p>
+</div>
+<div id="maximum-likelihood-function" class="section level2">
+<h2><span class="header-section-number">7.5</span> Maximum Likelihood Function</h2>
+<p>Let <span class="math inline">\(x_1,x_2,\ldots,x_n\)</span> be a random sample from a Chi-square distribution with parameter <span class="math inline">\(\nu\)</span>.</p>
+<div id="likelihood-function-1" class="section level3">
+<h3><span class="header-section-number">7.5.1</span> Likelihood Function</h3>
+<p><span class="math display">\[\begin{align*}
+L(\theta)
+    &amp;= f(x_1|\theta) f(x_2|\theta) \cdots f(x_n|\theta) \\
+  &amp;= \frac{x_1^{\nu/2-1}e^{-x_1/2}}{2^{\nu/2}\Gamma\big(\frac{\nu}{2}\big)}
+          \cdot \frac{x_2^{\nu/2-1}e^{-x_2/2}}{2^{\nu/2}\Gamma\big(\frac{\nu}{2}\big)}
+          \cdots \frac{x_n^{\nu/2-1}e^{-x_n/2}}{2^{\nu/2}\Gamma\big(\frac{\nu}{2}\big)} \\
+  &amp;= \prod\limits_{i=1}^{n}\frac{x_i^{\nu/2-1}e^{-x_i/2}}
+      {2^{\nu/2}\Gamma\big(\frac{\nu}{2}\big)} \\
+    &amp;= \bigg(2^{\nu/2}\Gamma\Big(\frac{\nu}{2}\Big)\bigg)
+          \prod\limits_{i=1}^{n}x_i^{\nu/2-1}e^{-x_i/2} \\
+  &amp;= \bigg(2^{\nu/2}\Gamma\Big(\frac{\nu}{2}\Big)\bigg)
+        \cdot \exp\bigg\{ \sum\limits_{i=1}^{n}\frac{x_i}{2} \bigg\}
+        \cdot \prod\limits_{i=1}^{n}x_i^{\nu/2-1} \\
+  &amp;= \bigg(2^{\nu/2}\Gamma\Big(\frac{\nu}{2}\Big)\bigg)
+        \cdot \exp\bigg\{ \frac{1}{2}\sum\limits_{i=1}^{n}x_i \bigg\}
+        \cdot \prod\limits_{i=1}^{n}x_i^{\nu/2-1}
+\end{align*}\]</span></p>
+</div>
+<div id="log-likelihood-function-1" class="section level3">
+<h3><span class="header-section-number">7.5.2</span> Log-likelihood Function</h3>
+<p><span class="math display">\[\begin{align*}
+\ell(\theta)
+    &amp;= \ln\big(L(\theta)\big) \\
+    &amp;= \ln\Bigg[ \bigg(2^{\nu/2}\Gamma\Big(\frac{\nu}{2}\Big)\bigg)
+        \cdot \exp\bigg\{ \frac{1}{2}\sum\limits_{i=1}^{n}x_i \bigg\}
+        \cdot \prod\limits_{i=1}^{n}x_i^{\nu/2-1} \Bigg] \\
+  &amp;= \ln\Bigg[ \bigg( 2^{\nu/2}\Gamma \Big( \frac{\nu}{2} \Big) \bigg) \Bigg]
+        + \ln\Bigg( \exp\bigg\{ \frac{1}{2}\sum\limits_{i=1}^{n}x_i \bigg\} \Bigg)
+        + \ln\bigg(\prod\limits_{i=1}^{n}x_i^{\nu/2-1}\bigg) \\
+  &amp;= -n \ln\bigg( 2^{\nu/2}\Gamma \Big( \frac{\nu}{2} \Big) \bigg)
+        + \frac{1}{2}\sum\limits_{i=1}^{n}x_i
+        + \bigg( \frac{\nu}{2}-1 \bigg) \ln\bigg( \prod\limits_{i=1}^{n}x_i \bigg) \\
+  &amp;= -n\bigg( \ln(2^{\nu/2}) + \Gamma\Big(\frac{\nu}{2}\Big) \bigg)
+      + \frac{1}{2}\sum\limits_{i=1}^{n}x_i
+        + \bigg( \frac{\nu}{2}-1 \bigg) \sum\limits_{i=1}^{n}\ln x_i \\
+  &amp;= -n\bigg(\frac{\nu}{2} \ln 2 + \ln \Gamma\Big( \frac{\nu}{2} \Big) \bigg)
+        + \frac{1}{2}\sum\limits_{i=1}^{n}x_i
+        + \bigg( \frac{\nu}{2}-1 \bigg) \sum\limits_{i=1}^{n}\ln x_i \\
+  &amp;= -\frac{n\nu}{2} \ln 2 - n\ln \Gamma\Big( \frac{\nu}{2} \Big)
+        + \frac{1}{2}\sum\limits_{i=1}^{n}x_i
+        + \bigg( \frac{\nu}{2}-1 \bigg) \sum\limits_{i=1}^{n}\ln x_i
+\end{align*}\]</span></p>
+</div>
+<div id="mle-for-nu" class="section level3">
+<h3><span class="header-section-number">7.5.3</span> MLE for <span class="math inline">\(\nu\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+\frac{d\ell}{d\nu}
+    &amp;= -\frac{n}{2} \ln 2 
+        - \frac{n}{\Gamma\big(\frac{\nu}{2}\big)} \Gamma^\prime\Big(\frac{\nu}{2}\Big) \cdot \frac{1}{2}
+        + 0 + \frac{1}{2} \sum\limits_{i=1}^{n}\ln x_i \\
+  &amp;= -\frac{n}{2} \ln 2
+        - \frac{n}{2\Gamma\big(\frac{\nu}{2}\big)} \Gamma^\prime\Big(\frac{\nu}{2}\Big)
+        + \frac{1}{2} \sum\limits_{i=1}^{n}\ln x_i \\
+\\
+\\
+0 &amp;= -\frac{n}{2} \ln 2
+        - \frac{n}{2\Gamma\big(\frac{\nu}{2}\big)} \Gamma^\prime\Big(\frac{\nu}{2}\Big)
+        + \frac{1}{2} \sum\limits_{i=1}^{n}\ln x_i\\
+\Rightarrow \frac{n}{2} \ln 2 - \frac{1}{2}\sum\limits_{i=1}^{n}\ln x_i
+        &amp;= -\frac{n}{2\Gamma\big(\frac{\nu}{2}\big)} \Gamma^\prime\Big(\frac{\nu}{2}\Big)\\
+\Rightarrow n\ln 2 - \sum\limits_{i=1}^{n}\ln x_i
+        &amp;= -\frac{n}{\Gamma\big(\frac{\nu}{2}\big)} \Gamma^\prime\Big(\frac{\nu}{2}\Big)\\
+\Rightarrow \frac{\sum\limits_{i=1}^{n}\ln x_i - n\ln 2}{n}
+        &amp;= \frac{\Gamma^\prime\big(\frac{\nu}{2}\big)}{\Gamma\big(\frac{\nu}{2}\big)}
+\end{align*}\]</span></p>
+<p>Due to the complexity of the Gamma function in this equation, no solution can be developed for <span class="math inline">\(\nu\)</span> in closed form. Thus, we have to rely on numerical methods to obtain a solution to the equation and find the maximum likelihood estimator.</p>
+</div>
+</div>
+<div id="theorems-for-the-chi-square-distribution" class="section level2">
+<h2><span class="header-section-number">7.6</span> Theorems for the Chi-Square Distribution</h2>
+<div id="validity-of-the-distribution-2" class="section level3">
+<h3><span class="header-section-number">7.6.1</span> Validity of the Distribution</h3>
+<p><span class="math display">\[ 
+\int\limits_{0}^{\infty}\frac{x^{\frac{\nu}{2}-1}e^{-\frac{x}{2}}}
+        {2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}dx = 1
+\]</span></p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+\int\limits_{0}^{\infty}\frac{x^{\frac{\nu}{2}-1}e^{-\frac{x}{2}}}
+        {2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}dx
+            &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+                \int\limits_{0}^{\infty}x^{\frac{\nu}{2}-1}e^{-\frac{x}{2}}dx \\
+    ^{[1]}  &amp;= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
+                \Big[2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})\Big] \\
+          &amp;= \frac{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}{2^{\frac{\nu}{2}}
+              \Gamma(\frac{\nu}{2})} \\
+            &amp;= 1
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx = \beta^\alpha\Gamma(\alpha)\)</span></li>
+</ol>
+</blockquote>
+</div>
+<div id="sum-of-chi-square-random-variables" class="section level3">
+<h3><span class="header-section-number">7.6.2</span> Sum of Chi-Square Random Variables</h3>
+<p>Let <span class="math inline">\(X_1 , X_2 , \ldots , X_n\)</span> be independent Chi-Square random variables with parameter <span class="math inline">\(\nu_i\)</span>, that is <span class="math inline">\(X_i\sim\chi^2(\nu_i),\ i=1,2,\ldots,n\)</span>.</p>
+<p>Suppose <span class="math inline">\(Y = \sum\limits_{i=1}^{n}X_i\)</span>. Then <span class="math inline">\(Y\sim\chi^2(\sum\limits_{i=1}^{n}\nu_i)\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+M_Y(t)
+    &amp;= E(e^{tY}=E(e^{t(X_1+X_2+\cdots+X_n}) \\
+    &amp;= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
+    &amp;= E(e^{tX_1})E(e^{tX_2})\cdots E(e^{tX_n}) \\
+  &amp;= (1-2t)^{-\frac{\nu_1}{2}}(1-2t)^{-\frac{\nu_2}{2}}\cdots
+        (1-2t)^{-\frac{\nu_n}{2}} \\
+    &amp;= (1-2t)^{\sum\limits_{i=1}^{n}\nu_i}
+\end{align*}\]</span></p>
+<p>Which is the mgf of a Chi-Square random variable with parameter <span class="math inline">\(\sum\limits_{i=1}^{n}\nu_i\)</span>.<br />
+Thus <span class="math inline">\(Y\sim\chi^2\bigg(\sum\limits_{i=1}^{n}\nu_i\bigg)\)</span>.</p>
+</div>
+<div id="square-of-a-standard-normal-random-variable" class="section level3">
+<h3><span class="header-section-number">7.6.3</span> Square of a Standard Normal Random Variable</h3>
+<p>If <span class="math inline">\(Z\sim N(0,1)\)</span>, then <span class="math inline">\(Z^2\sim\chi^2(1)\)</span>.</p>
+<p><em>Proof:</em> <span class="math display">\[\begin{align*}
+M_{Z^2}(t)
+        &amp;= E(e^{tZ^2}) \\
+        &amp;= \int\limits_{-\infty}^{\infty}e^{tz^2}\frac{1}{\sqrt{2\pi}}
+            e^{-\frac{z^2}{2}}dz \\
+        &amp;= \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty}e^{tz^2}
+            e^{-\frac{z^2}{2}}dz \\
+        &amp;= \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty}
+            e^{-\frac{z^2}{2}(-2t+1)}dz \\
+        &amp;= \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty}
+            e^{-\frac{z^2}{2}(1-2t)}dz \\
+^{[1]}  &amp;= \frac{2}{\sqrt{2\pi}}\int\limits_{0}^{\infty}
+            e^{-\frac{z^2}{2}(1-2t)}dz \\
+^{[2]}  &amp;= \frac{2}{\sqrt{2\pi}}\int\limits_{0}^{\infty}e^{-u}
+            \frac{\sqrt{2}u^{-\frac{1}{2}}}{2(1-2t)^{\frac{1}{2}}}du \\
+        &amp;= \frac{2\sqrt{2}}{2\sqrt{2\pi}(1-2t)^{\frac{1}{2}}}
+            \int\limits_{0}^{\infty}e^{-u}u^{-\frac{1}{2}}du \\
+        &amp;= \frac{2\sqrt{2}}{2\sqrt{2\pi}(1-2t)^{\frac{1}{2}}}
+            \int\limits_{0}^{\infty}u^{\frac{1}{2}-1}e^{-u}du \\
+^{[3]}  &amp;= \frac{1}{\sqrt{\pi}(1-2t)^{\frac{1}{2}}}\Gamma(\frac{1}{2}) \\
+        &amp;= \frac{\sqrt{\pi}}{\sqrt{\pi}(1-2t)^{\frac{1}{2}}} \\
+        &amp;= \frac{1}{(1-2t)^{\frac{1}{2}}}=(1-2t)^{-\frac{1}{2}} \\
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\int\limits_{-\infty}^{\infty}f(x)dx = 2\int\limits_{0}^{\infty}f(x)dx\)</span> when f(x) is an even function ()</li>
+<li>Let <span class="math inline">\(u=\frac{z^2}{2}(1-2t)  \ \ \ \ \Rightarrow z=\frac{\sqrt{2}u^{\frac{1}{2}}}{(1-2t)^{\frac{1}{2}}}\)</span><br />
+    So <span class="math inline">\(dz=\frac{\sqrt{2}u^{-\frac{1}{2}}} {2(1-2t)^{\frac{1}{2}}}\)</span></li>
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx =\beta^\alpha\Gamma(\alpha)\)</span></li>
+</ol>
+</blockquote>
+<p>Which is the mgf of a Chi-Square random variable with 1 degree of freedom. Thus <span class="math inline">\(Z^2\sim\chi^2(1)\)</span>.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chebychevs-theorem.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="combinations.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/ChiSquare_Distribution.Rmd",
+"text": "Edit"
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
