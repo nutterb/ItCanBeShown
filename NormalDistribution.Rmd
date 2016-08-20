@@ -1,0 +1,547 @@
+# Normal Distribution
+
+## Probability Distribution Function
+
+A random variable $X$ is said to have a Normal Distribution with parameters $\mu$ and $\sigma^2$ if its probability density function is
+
+\[f(x)
+	= \frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2},\ \  x\in\Re,\ \mu\in\Re,\ 0<\sigma^2 \]
+
+
+## Cumulative Distribution Function
+
+The cdf of the Normal Distribution cannot be written in closed form.  
+
+It is not uncommon in statistical practice to denote the cdf of the Standard Normal Distribution, that is, the Normal distribution with $\mu=0$ and $\sigma^2=1$ to be denoted by $\Phi(\cdot)$.  Although it is rare, the $\Phi(\cdot)$ notation is sometimes used to denote any cumulative density function.  Because such citations are rare they are usually accompanied by a statement about the distribution $\Phi(\cdot)$ represents.  If no such statement is given, it is reasonably safe to assume that the function refers to the Standard Normal Distribution.
+
+The importance of the Standard Normal Distribution is made evident by the fact that the area under any Normal curve is proportional to the distribution's variance.  A proof of this is provided in Theorem \ref{Normal4.6}
+
+```{r, echo = FALSE, warning = FALSE, fig.path = 'figures/', fig.cap = 'The graphs on the left show probability distribution functions, and the graphs on the right show cumulative distribution functions.  The effect of changing the variance, a vertical rescaling of the distribution, is evident'}
+Normal <- 
+  expand.grid(x = seq(-6, 6, by = 0.01),
+              mu = c(0),
+              sigma = 1:3) %>%
+  mutate(dnorm = dnorm(x, mu, sigma),
+         pnorm = pnorm(x, mu, sigma)) %>%
+  gather(cumulative, prob, -x, -mu, -sigma) %>%
+  mutate(cumulative = factor(cumulative,
+                             c("dnorm", "pnorm"),
+                             c("Probability Mass",
+                               "Cumulative Mass")))
+
+ggplot(data = Normal,
+       mapping = aes(x = x,
+                     y = prob,
+                     colour = factor(sigma))) + 
+  geom_line() + 
+  facet_grid(~ cumulative) + 
+  theme_bw() + 
+  scale_colour_manual(values = palette[c(1, 3, 7)])
+```
+
+```{r, echo = FALSE, message = FALSE, fig.path = 'figures/', fig.cap = 'The graphs on the left show probability distribution functions, and the graphs on the right show cumulative distribution functions. The effect of changing the mean, a horizontal shift in location, is illustrated'}
+Normal <- 
+  expand.grid(x = seq(-3, 7, by = 0.01),
+              mu = c(0, 2, 4),
+              sigma = 1) %>%
+  mutate(dnorm = dnorm(x, mu, sigma),
+         pnorm = pnorm(x, mu, sigma)) %>%
+  gather(cumulative, prob, -x, -mu, -sigma) %>%
+  mutate(cumulative = factor(cumulative,
+                             c("dnorm", "pnorm"),
+                             c("Probability Mass",
+                               "Cumulative Mass")))
+
+ggplot(data = Normal,
+       mapping = aes(x = x,
+                     y = prob,
+                     colour = factor(mu))) + 
+  geom_line() + 
+  facet_grid(~ cumulative) + 
+  theme_bw() + 
+  scale_colour_manual(values = palette[c(1, 3, 7)])
+```
+
+
+## Expected Values
+
+$$\begin{align*}
+E(X)
+	&= \int\limits_{-\infty}^{\infty}x\frac{1}{\sqrt{2\pi}\sigma}\exp\Big\{-\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\} \\
+^{[1]}	&= \frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}x\exp\Big\{-\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\} \\
+  &= \frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}(z\sigma+\mu)\exp\Big\{-\frac{1}{2}z^2\Big\}\sigma dz \\
+  &= \frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}z\sigma^2\exp\Big\{-\frac{1}{2}z^2\Big\}
+		+\mu\sigma\exp\Big\{-\frac{1}{2}z^2\Big\}dz \\
+  &= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack\int\limits_{-\infty}^{\infty}z\sigma^2\exp\Big\{-\frac{1}{2}z^2\Big\}dz 
+		+\int\limits_{-\infty}^{\infty}\mu\sigma\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack\\
+&= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack-\sigma^2\exp\Big\{-\frac{1}{2}z^2\Big\}\Bigg|_{-\infty}^{\infty}
+		+\int\limits_{-\infty}^{\infty}\mu\sigma\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack\\
+  &= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack-0+0+\int\limits_{-\infty}^{\infty}\mu\sigma\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack\\
+  &= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack\mu\sigma\int\limits_{-\infty}^{\infty}\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack \\
+^{[2]}	&= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack2\mu\sigma\int\limits_{0}^{\infty}\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack \\
+  &= \frac{2\mu\sigma}{\sqrt{2\pi}\sigma}\Bigg\lbrack\int\limits_{0}^{\infty}\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack \\
+^{[3]}	&= \frac{2\mu}{\sqrt{2\pi}}\int\limits_{0}^{\infty}\frac{1}{2}u^{-\frac{1}{2}}e^{-\frac{u}{2}}du\\
+  &= \frac{2\mu}{2\sqrt{2\pi}}\int\limits_{0}^{\infty}u^{-\frac{1}{2}}e^{-\frac{u}{2}}du \\
+	&= \frac{\mu}{\sqrt{2\pi}}\int\limits_{0}^{\infty}u^{\frac{1}{2}-1}e^{-\frac{u}{2}}du\\
+^{[4]}  &= \frac{\mu}{\sqrt{2\pi}}2^{\frac{1}{2}}\Gamma\Big(\frac{1}{2}\Big) \\
+^{[5]}	&= \frac{\mu\sqrt{2\pi}}{\sqrt{2\pi}} \\
+  &= \mu
+\end{align*}$$
+
+> 1. Let $z=\frac{x-\mu}{\sigma}\\ \Rightarrow x=z\sigma+\mu \Rightarrow dx=\sigma dz$
+> 2. This change can be made because the function being integrated is an even function.  See Theorem \ref{Integration1.2}
+> 3. Let $u=z^2 \Rightarrow z=u^{\frac{1}{2}} \Rightarrow dz=\frac{1}{2}u^{-\frac{1}{2}}$
+> 4. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
+		=\beta^\alpha\Gamma(\alpha)$
+> 5. $\Gamma(\frac{1}{2})=\sqrt{\pi}$
+
+
+$$\begin{align*} 
+E(X^2)
+	&= \int\limits_{-\infty}^{\infty}x^2\frac{1}{\sqrt{2\pi}\sigma}
+		\exp\Big\{\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\}dx \\
+^{[1]}	&= \int\limits_{-\infty}^{\infty}\frac{(z\sigma+\mu)^2}{\sqrt{2\pi}\sigma}
+		\exp\Big\{\frac{z^2}{2}\Big\}\sigma dz \\
+  &= \int\limits_{-\infty}^{\infty}\frac{(z\sigma+\mu)^2}{\sqrt{2\pi}}
+		\exp\Big\{\frac{z^2}{2}\Big\}dz \\
+	&= \int\limits_{-\infty}^{\infty}\frac{z^2\sigma^2+2z\sigma\mu+\mu^2}{\sqrt{2\pi}}
+		\exp\Big\{\frac{z^2}{2}\Big\}dz \\
+  &= \int\limits_{-\infty}^{\infty}\Bigg\lbrack
+		\frac{z^2\sigma^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}
+		+\frac{2z\sigma\mu}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}
+		+\frac{\mu^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\} \Bigg\rbrack dz \\
+  &= \int\limits_{-\infty}^{\infty}\frac{z^2\sigma^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+		+\int\limits_{-\infty}^{\infty}\frac{2z\sigma\mu}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+		+\int\limits_{-\infty}^{\infty}\frac{\mu^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz\\
+  &= \sigma^2\int\limits_{-\infty}^{\infty}\frac{z^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+		+2\sigma\mu\int\limits_{-\infty}^{\infty}\frac{z}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+		+\mu^2\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz \\
+^{[2]}  &= \sigma^2\int\limits_{-\infty}^{\infty}\frac{z^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+		+2\sigma\mu\int\limits_{-\infty}^{\infty}\frac{z}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+		+\mu^2\cdot 1 \\
+^{[3]} &= \sigma^2\int\limits_{-\infty}^{\infty}\frac{z^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+		+2\sigma\mu E(Z)+\mu^2 \\
+ &= \sigma^2\int\limits_{-\infty}^{\infty}\frac{z^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+		+2\sigma\mu\cdot0+\mu^2 \\
+^{[4]} &= \sigma^2\Bigg(\frac{z}{\sqrt{2\pi}\cdot-\exp\Big\{-\frac{z^2}{2}\Big\}}
+		-\int\limits_{-\infty}^{\infty}-\exp\Big\{-\frac{z^2}{2}\frac{1}{\sqrt{2\pi}}dz\Bigg)+\mu^2 \\
+ &= \sigma^2\Bigg(-0+0+\int\limits_{-\infty}^{\infty}
+		\frac{1}{\sqrt{2\pi}}\exp\Big\{-\frac{z^2}{2}\Big\}dz\Bigg)+\mu^2 \\
+^{[5]} &= \sigma^2(1)+\mu^2 \\
+  &=\sigma^2+\mu^2
+\end{align*}$$
+
+> 1. $z=\frac{x-\mu}{\sigma} \\
+		\Rightarrow x=z\sigma+\mu\Rightarrow dx=\sigma dz$
+> 2. Theorems \ref{Normal4.1} and \ref{Normal4.2} with $\mu=0$ and $\sigma^2=1$
+> 3. Using the previous result with $\mu=0$ and $\sigma^2=1$, $E(Z)=0$.
+> 4. Integration by parts: $\int\limits_{a}^{b}u\ dv
+		=\lbrack u\cdot v\rbrack_a^b-\int\limits_{a}^{b}v\ du$ with 
+		$u=\frac{z}{\sqrt{2\pi}}\Rightarrow du=\frac{1}{\sqrt{2\pi}}dz$\\
+		 and $dv=z\exp\{-\frac{z^2}{2}\}\Rightarrow v=-\exp\{-\frac{z^2}{2}\}$
+> 5. See footnote 2.
+
+$$\begin{align*}
+\mu
+	&= E(X) \\
+	&= \mu \\
+\\
+\\
+\sigma^2
+	&= E(X^2)-E(X)^2 \\
+	&= \sigma^2+\mu^2-\mu^2 \\
+	&= \sigma^2
+\end{align*}$$
+
+
+
+## Moment Generating Function
+
+$$\begin{align*} 
+E(e^{tX})
+	&= \int\limits_{-\infty}^{\infty}\exp\{tx\}\frac{1}{\sqrt{2\pi}\sigma}
+		\exp\Big\{\frac{1}{2\sigma^2}(x-\mu)^2\Big\}dx \\
+	&= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
+		\exp\Big\{tx-\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\}dx \\
+^{[1]} &= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
+		\exp\Big\{t(z\cdot\sigma+\mu-\frac{1}{2}z^2\Big\}\sigma dz \\
+ &= \int\limits_{-\infty}^{\infty}\frac{\sigma}{\sqrt{2\pi}\sigma}
+		\exp\Big\{t(z\cdot\sigma+\mu)-\frac{1}{2}z^2\Big\}dz \\
+ &= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
+		\exp\{\mu t\}\exp\Big\{z\sigma t-\frac{1}{2}z^2\Big\}dz \\
+ &= \exp\{\mu t\}\int\limits_{-\infty}^{\infty}\frac{\sigma}{\sqrt{2\pi}\sigma}
+		\exp\Big\{z\sigma t-\frac{1}{2}z^2\Big\}dz \\
+ &= \exp\{\mu t\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+		\exp\Big\{z\sigma t-\frac{1}{2}z^2-\frac{1}{2}t^2\sigma^2+\frac{1}{2}t^2\sigma^2\Big\}dz \\
+ &= \exp\{\mu t\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+		\exp\Big\{-\frac{1}{2}z^2+z\sigma t-\frac{1}{2}t^2\sigma^2\Big\}
+		\exp\Big\{\frac{1}{2}t^2\sigma^2\Big\}dz \\
+ &= \exp\{\mu t\}\exp\Big\{\frac{1}{2}t^2\sigma^2\Big\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+		\exp\Big\{z^2-2z\sigma t+t^2\sigma^2\Big\}dz \\
+ &= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+		\exp\Big\{\frac{1}{2}(z-\sigma t)^2\Big\}dz \\
+^{[2]} &= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+		\exp\Big\{\frac{1}{2}(u)^2\Big\}du \\
+ &= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\cdot 1 \\
+ &= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}
+\end{align*}$$
+
+> 1. $z=\frac{x-\mu}{\sigma}\\ 
+		\Rightarrow x=z\cdot\sigma+\mu\Rightarrow dx=\sigma dz$
+> 2. $u=z-\sigma t\\ \Rightarrow z=u+\sigma t \Rightarrow dz=du$
+> 3. See Theorems \ref{Normal4.1} and \ref{Normal4.2}
+
+$$\begin{align*}
+M_X^{(1)}(t)
+	&= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\cdot(\mu+t\sigma^2) \\
+\\
+\\
+M_X^{(2)}(t)
+	&= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\cdot\sigma^2
+		+(\mu+t\sigma^2)\exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}(\mu+t\sigma^2) \\
+  &= M_X^{(2)}(t)=\exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\cdot\sigma^2
+		+(\mu+t\sigma^2)^2\exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\} \\
+\\
+\\
+E(X)
+	&= M_X^{(1)}(0)=\exp\Big\{\mu\cdot0+\frac{0^2\sigma^2}{2}\Big\}\cdot(\mu+0\cdot\sigma) \\
+	&= e^0\cdot(\mu+0) \\
+	&= 1\cdot\mu \\
+	&= \mu \\
+\\
+\\
+E(X^2)
+	&= M_X^{(2)}(0) \\
+	&= \exp\Big\{\mu\cdot0+\frac{0^2\sigma^2}{2}\Big\}\cdot\sigma^2 
+		+(\mu+0\cdot \sigma^2)^2\exp\Big\{\mu\cdot0+\frac{0^2\sigma^2}{2}\Big\} \\
+  &= e^0\sigma^2+(\mu+0)^2e^0 \\
+	&= 1\cdot\sigma^2+\mu^2\cdot1 \\
+	&= \sigma^2+\mu^2 \\
+\\
+\\
+\mu
+	&= E(X) \\
+	&= \mu \\
+\\
+\\
+\sigma^2
+	&= E(X^2)-E(X) \\
+	&= \sigma^2+\mu^2-\mu^2 \\
+	&= \sigma^2
+\end{align*}$$
+
+
+## Maximum Likelihood Estimators
+
+Let $x_1,x_2,\ldots,x_n$ be a random sample from a Normal distribution with mean $\mu$ and variance $\sigma^2$.
+
+### Likelihood Function
+$$\begin{align*}
+L(x_1,x_2,\ldots,x_n|\theta)
+	&= f(x_1|\theta)f(x_2|\theta)\cdots f(x_n|\theta) \\
+  &= \frac{1}{\sqrt{2\pi}\sigma}\exp\bigg\{\frac{-(x_1-\mu)^2}{2\sigma^2}\bigg\}
+		\frac{1}{\sqrt{2\pi}\sigma}\exp\bigg\{\frac{-(x_2-\mu)^2}{2\sigma^2}\bigg\}
+		\cdots \frac{1}{\sqrt{2\pi}\sigma}\exp\bigg\{\frac{-(x_n-\mu)^2}{2\sigma^2}\bigg\} \\
+  &= \prod\limits_{i=1}^{n}\frac{1}{\sqrt{2\pi}\sigma}\exp\bigg\{\frac{-(x_i-\mu)^2}{2\sigma^2}\bigg\} \\
+	&= \bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n  \prod\limits_{i=1}^{n}\exp\bigg\{\frac{-(x_i-\mu)^2}{2\sigma^2} \bigg\} \\
+  &= \bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n \exp\bigg\{ \sum\limits_{i=1}^{n}\frac{-(x_i-\mu)^2}{2\sigma^2} \bigg\} \\
+  &= \bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n \exp\bigg\{ \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \bigg\}
+\end{align*}$$
+
+
+### Log-likelihood Function
+$$\begin{align*} 
+\ell(\theta)
+	&= \ln\big(L(\theta)\big) \\
+	&= \ln\Bigg(\bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n 
+		\exp\bigg\{ \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \bigg\}\Bigg) \\
+  &= \ln\bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n 
+		+ \ln\bigg(\exp\bigg\{ \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \bigg\}\bigg) \\
+  &= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+  &= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}(x_i^2 - 2\mu x_i + \mu^2) \\
+  &= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2} 
+		\bigg\lbrack \sum\limits_{i=1}^{n}x_i^2 - 2\mu\sum\limits_{i=1}^{n}x_i + \sum\limits_{i=1}^{n}\mu^2\bigg\rbrack \\
+  &= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2}\sum\limits_{i=1}^{n}x_i^2
+		+ \frac{2\mu}{2\sigma^2}\sum\limits_{i=1}^{n}x_i - \frac{1}{2\sigma^2}n\mu^2 \\
+  &= n\ln\bigg(\frac{1}{\sqrt{2\pi}}\sigma^{-1}\bigg) - \frac{\sigma^{-2}}{2}\sum\limits_{i=1}^{n}x_i^2
+		+ \mu\sigma^{-2}\sum\limits_{i=1}^{n}x_i - \frac{n\mu^2\sigma^{-2}}{2}
+\end{align*}$$
+
+
+### MLE for $\mu$
+
+$$\begin{align*}
+\frac{d\ell}{d\mu}
+	&= 0 - 0 + \sigma^{-2}\sum\limits_{i=1}^{n} - \frac{2n\mu\sigma^{-2}}{2} \\
+	&= \sigma^{-2}\sum\limits_{i=1}^{n} - n\mu\sigma^{-2}\\
+\\
+\\
+0 &= \sigma^{-2}\sum\limits_{i=1}^{n} - n\mu\sigma^{-2}\\
+ \Rightarrow n\mu\sigma^{-2} &= \sigma^{-2}\sum\limits_{i=1}^{n}\\
+ \Rightarrow n\mu\ &= \sum\limits_{i=1}^{n}\\
+ \Rightarrow \mu &= \frac{1}{n}\sum\limits_{i=1}^{n}
+\end{align*}$$
+
+So $\hat\mu = \frac{1}{n}\sum\limits_{i=1}^{n}$ is the maximum likelihood estimator for $\mu$.
+
+
+### MLE for $\sigma^2$
+
+The work in deriving the MLE for $\sigma^2$ is greatly reduced if we use
+
+$$\begin{align*}
+\ell(\theta)
+	&= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2\\
+	&= n\ln\bigg(\frac{1}{\sqrt{2\pi}}\sigma^{-1}\bigg) - \frac{1}{2\sigma^2}  \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+\\
+\\
+\frac{d\ell}{d\sigma}
+	&= n\bigg(\frac{1}{\frac{1}{\sqrt{2\pi}}\sigma^{-1}}\bigg) \bigg(\frac{-1}{\sqrt{2\pi}\sigma^{-2}}\bigg)
+		- \frac{-2}{2}\sigma^{-3} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+ &= \frac{-n\sqrt{2\pi}\sigma}{\sqrt{2\pi}\sigma^2} + \frac{1}{\sigma^3} \sum\limits_{i=1}^{n}-(x_i-\mu)^2\\
+ &= \frac{-n}{\sigma} + \frac{1}{\sigma} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+\\
+\\
+0 &= \frac{-n}{\sigma} + \frac{1}{\sigma} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+ \Rightarrow \frac{n}{\sigma} &= \frac{1}{\sigma} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+ \Rightarrow \frac{\sigma^3}{\sigma} &= \frac{1}{n}\sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+ \Rightarrow \sigma^2 &= \frac{1}{n}\sum\limits_{i=1}^{n}-(x_i-\mu)^2
+\end{align*}$$
+
+So $\hat\sigma^2 = \frac{1}{n}\sum\limits_{i=1}^{n}-(x_i-\mu)^2$ is the maximum likelihood estimator for $\sigma^2$.  Notice however that this $MLE$ is a biased estimator\footnote{See \ref{Variance2}}.
+
+
+## Theorems for the Normal Distribution
+
+### Validity of the Distribution (Polar Coordinates)
+
+$$\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx=1$$
+
+_Proof:_
+
+Let 
+$A = \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx$.  
+
+By using the identity transformation $y=x$, we may also write 
+
+$$\begin{align*}
+A &= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(y-\mu)^2}{2\sigma^2}dy \\
+\Rightarrow A^2 &= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
+			e^\frac{-(x-\mu)^2}{2\sigma^2}dx\cdot 
+		\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
+			e^\frac{-(y-\mu)^2}{2\sigma^2}dy \\
+  &= \frac{1}{2\pi\sigma^2}\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}
+		e^\frac{-(x-\mu)^2}{2\sigma^2}e^\frac{-(y-\mu)^2}{2\sigma^2}dx\ dy \\
+  &= \frac{1}{2\pi\sigma^2}\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}
+		e^{\frac{-(x-\mu)^2}{2\sigma^2}-\frac{(y-\mu)^2}{2\sigma^2}} \\
+  &= \frac{1}{2\pi\sigma^2}\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}
+		e^{-\frac{1}{2\sigma^2}[(x-\mu)^2+(y-\mu)^2]}dx\ dy \\
+^{[1]}  &= \frac{1}{2\pi\sigma^2}\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}
+		e^{-\frac{1}{2\sigma^2}t^2+u^2}dt\ du \\
+^{[2]}	&= \frac{1}{2\pi\sigma^2}\int\limits_{0}^{2\pi}\int\limits_{0}^{\infty} 
+		e^{-\frac{r^2}{2\sigma^2}}r\ dr\ d\theta \\
+  &=\frac{1}{2\pi\sigma^2}\int\limits_{0}^{2\pi}
+		-\sigma^2e^{-\frac{r^2}{2\sigma^2}}\Big|_0^\infty d\theta \\
+	&=\frac{1}{2\pi\sigma^2}\int\limits_{0}^{2\pi}0+\sigma^2\ d\theta \\
+  &=\frac{1}{2\pi\sigma^2}\int\limits_{0}^{2\pi}\sigma^2\ d\theta \\
+	&=\frac{1}{2\pi\sigma^2}\cdot \Big(\sigma^2\theta\Big|_0^{2\pi}\Big) \\
+	&=\frac{1}{2\pi\sigma^2}[2\pi\sigma^2-0] \\
+	&=\frac{2\pi\sigma^2}{2\pi\sigma^2} \\
+	&=1\\
+\Rightarrow A^2 &= 1 \\
+\Rightarrow A &= 1
+\end{align*}$$
+
+> 1. Substitute $t=x-\mu$ and $u=y-\mu$
+> 2. $t=r\cos\theta$ and $u=r\sin\theta$.\\ Thus 
+		$t^2+u^2=r^2\cos^2\theta+r^2\sin^2\theta=r^2(\cos^2\theta+\sin^2\theta)=r^2$
+
+Thus  $\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx=1$
+
+
+### Validity of the Distribution (Gamma Function)
+
+$$\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx=1$$
+
+_Proof:_
+
+$$\begin{align*}
+\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx
+	      &=\frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}e^\frac{-(x-\mu)^2}{2\sigma^2}dx
+^{[1]}	&= \frac{1}{\sqrt{2\pi}\sigma}
+              \int\limits_{-\infty}^{\infty}e^\frac{-(y)^2}{2\sigma^2}dy\\
+        &=\frac{1}{\sqrt{2\pi}\sigma}
+              \int\limits_{-\infty}^{\infty}e^{-\frac{1}{2}\frac{y^2}{\sigma^2}}dy
+^{[2]}	&= \frac{1}{\sqrt{2\pi}\sigma}
+              \int\limits_{-\infty}^{\infty}
+                    e^{-\frac{u}{2}}\frac{1}{2}\sigma u^{-\frac{1}{2}}du\\
+        &=\frac{\sigma}{2\sqrt{2\pi}\sigma}
+              \int\limits_{-\infty}^{\infty}u^{-\frac{1}{2}}e^{-\frac{u}{2}}du
+^{[3]}	&= \frac{2\sigma}{2\sqrt{2\pi}\sigma}
+              \int\limits_{0}^{\infty}u^{\frac{1}{2}-1}e^{-\frac{u}{2}}du\\
+^{[4]}  &= \frac{1}{\sqrt{2\pi}}2^\frac{1}{2}\Gamma\big(\frac{1}{2}\big) \\
+^{[5]}	&= \frac{\sqrt{2\pi}}{\sqrt{2\pi}} \\
+        &= 1
+\end{align*}$$
+
+> 1. $y=x-\mu\ \Rightarrow x=y+\mu\ \Rightarrow dx=dy$
+> 2. $u=(\frac{y}{\sigma})^2\ \Rightarrow y=\sigma u^\frac{1}{2}\ 
+		\Rightarrow dy=\frac{1}{2}\sigma u^{-\frac{1}{2}}$
+> 3. If $f(x)$ is an even function then $\int\limits_{-\infty}^{\infty}f(x)dx
+		=2\int\limits_{0}^{\infty}f(x)dx$ (Theorem \ref{Integration1.2}).
+> 4. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
+		=\beta^\alpha\Gamma(\alpha)$
+> 5. $\Gamma(\frac{1}{2})=\sqrt{\pi}$
+		
+
+
+### Multiple of a Normal Random Variable
+
+Let $X$ be a Normal random variable with parameters $\mu$ and $\sigma^2$, and let $c$ be a constant.  If $Y=cX$, then $Y\sim Normal(c\mu,\ c^2\sigma^2)$.
+
+_Proof:_
+
+$$\begin{align*}
+M_Y(t)
+  &= E(e^{tY}) \\
+  &= E(e^{tcX}) \\
+  &= \exp\Big\{\mu tc+\frac{t^2c^2\sigma^2}{2}\Big\} \\
+  &= \exp\Big\{c\mu t+\frac{t^2c^2\sigma^2}{2}\Big\}
+\end{align*}$$
+
+Which is the Moment Generating Function of a Normal random variable with mean $c\mu$ and variance $c^2\sigma^2$.  Thus $Y\sim Normal(c\mu,\ c^2\sigma^2)$. 
+
+
+### Weighted Sum of Normal Random Variables
+
+Let $X_1,X_2,\ldots,X_n$ be independent random variables from Normal distributions with parameters $\mu_i$ and $\sigma_i^2$, i.e. $X_i\sim Normal(\mu_i,\sigma_i^2),\ i=1,2,\ldots,n$, and let $a_1,a_2,\ldots,a_n$ be constants.
+
+If $Y=\sum\limits_{i=1}^{n}a_iX_i$, then $Y\sim Normal\big(\sum\limits_{i=1}^{n}a_i\mu_i,\ \sum\limits_{i=1}^{n}a_i^2\sigma_i^2\big)$.
+
+_Proof:_
+
+$$\begin{align*} 
+M_Y(t)
+  &=E(e^{tY}) \\
+  &=E(e^{t(a_1X_1+a_2X_2+\cdots+a_nX_n}) \\
+  &=E(e^{ta_1X_1}e^{ta_2X_2}\cdots e^{ta_nX_n}) \\
+  &=E(e^{ta_1X_1})E(e^{ta_2X_2})\cdots E(e^{ta_nX_n}) \\
+  &=\exp\Big\{ta_1\mu_1+\frac{ta_1^2\sigma_1^2}{2}\Big\}\cdot 
+		\exp\Big\{ta_2\mu_2+\frac{ta_2^2\sigma_2^2}{2}\Big\} \cdot
+		\cdots \cdot \exp\Big\{ta_n\mu_n+\frac{ta_n^2\sigma_n^2}{2}\Big\} \\
+  &=\exp\Big\{ta_1\mu_1+\frac{ta_1^2\sigma_1^2}{2}+ta_2\mu_2+\frac{ta_2^2\sigma_2^2}{2}
+		+\cdots+ta_n\mu_n+\frac{ta_n^2\sigma_n^2}{2}\Big\} \\
+  &=\exp\Big\{t\sum\limits_{i=1}^{n}a_i\mu_i +
+      \frac{t\sum\limits_{i=1}^{n}a_i^2\sigma_i^2}{2}\Big\}
+\end{align*}$$
+
+Which is the mgf of a Normal random variable with parameters $\sum\limits_{i=1}^{n}a_i\mu_i$ and $\sum\limits_{i=1}^{n}a_i^2\sigma_i^2$.  Thus $Y\sim Normal\big(\sum\limits_{i=1}^{n}a_i\mu_i,\ \sum\limits_{i=1}^{n}a_i^2\sigma_i^2\big)$.
+
+
+### Sum of Normal Random Variables
+
+Let $X_1,X_2,\ldots,X_n$ be independent random variables from Normal distributions with parameters $\mu_i$ and $\sigma_i^2$, i.e. $X_i\sim Normal(\mu_i, \sigma_i^2),\ i=1,2,\ldots,n$.  Let $Y=\sum\limits_{i=1}^{n}X_i$.  Then $Y\sim Normal\big(\sum\limits_{i=1}^{n}\mu_i,\ \sum\limits_{i=1}^{n}\sigma_i^2\big)$.
+
+_Proof:_
+
+$Y=\sum\limits_{i=1}^{n}X_i$ is a special case of the Weighted Sum of Normal Random Variables where each of the weights is equal to 1.  It follows then that $Y\sim Normal\big(\sum\limits_{i=1}^{n}1\mu_i,\ \sum\limits_{i=1}^{n}1^2\sigma_i^2\big)$ which is equivalent to saying $Y\sim Normal\big(\sum\limits_{i=1}^{n}\mu_i,\ \sum\limits_{i=1}^{n}\sigma_i^2\big)$.
+
+
+
+### Standard Normal Transformation
+
+Let $X$ be a Normal random variable with mean $\mu$ and variance $\sigma^2$.  That is, $X\sim$Normal($\mu,\sigma^2$).  If $Z=\frac{X-\mu}{\sigma}$, then $Z\sim$Normal(0,1), and we say $Z$ has a _Standard Normal_ distribution.
+
+Furthermore, if $Z\sim$Normal(0,1), and $X=Z\cdot\sigma+\mu$, then $X\sim Normal(\mu,\sigma^2$).
+
+_Proof:_
+
+First, since $X\sim Normal(\mu,\sigma^2$) and $Z=\frac{X-\mu}{\sigma}$
+
+$$\begin{align*}
+E(e^{tZ})
+  &=E\Big(\exp\Big\{t\frac{x-\mu}{\sigma}\Big\}\Big) \\
+  &=E\Big(\exp\Big\{\frac{tx-t\mu}{\sigma}\Big\}\Big) \\
+	&=E\Big(\exp\Big\{\frac{tx}{\sigma}-\frac{t\mu}{\sigma}\Big\}\Big) \\
+  &=E\Big(\exp\Big\{\frac{tx}{\sigma}\Big\}\exp\Big\{-\frac{t\mu}{\sigma}\Big\}\Big) \\
+	&=\exp\Big\{\frac{-t\mu}{\sigma}\Big\}E\Big(\exp\Big\{\frac{t}{\sigma}x\Big\} \\
+  &=\exp\Big\{\frac{-t\mu}{\sigma}\Big\}\exp\Big\{\frac{t\mu}{\sigma}+\frac{t^2\sigma^2}{2\sigma^2}\Big\} \\
+	&=\exp\Big\{\frac{-t\mu}{\sigma}-\frac{t\mu}{\sigma}+\frac{t^2\sigma^2}{2\sigma^2}\Big\} \\
+	&=\exp\Big\{\frac{t^2\sigma^2}{2\sigma^2}\Big\}
+\end{align*}$$
+
+Which is the Moment Generating Function of a Normal random variable with $\mu=0$ and $\sigma^2=1$.  Thus $Z\sim Normal(0,1)$.
+
+To complete the proof, we start with $Z\sim$Normal(0,1) and let $X=Z\cdot\sigma+\mu$.
+
+$$\begin{align*}
+E(e^{tX})
+  = E(e^{t(z\sigma+\mu)}) \\
+  = E(e^{tz\sigma}e^{t\mu}) \\
+  = e^{t\mu}E(e^{t\sigma z}) \\
+  = \exp\{t\mu\}\exp\Big\{\frac{t^2\sigma^2}{2}\Big\} \\
+  = \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}
+\end{align*}$$
+
+Which is the Moment Generating Funciton of a Normal random variable with mean $\mu$ and variance $\sigma^2$.  Thus $X\sim Normal(\mu,\sigma^2)$.
+
+
+
+### Distribution of $\bar X$
+
+Let $X_1,X_2,\ldots,X_n$ be independent and identically distributed random variables from a Normal distribution with parameters $\mu$ and $\sigma^2$, i.e. $X_i\sim Normal(\mu,\ \sigma^2)$.  Let $\bar X=\frac{1}{n}\sum\limits_{i=1}^{n}X_i$.  Then $\bar X\sim Normal\big(\mu,\ \frac{\sigma^2}{n}\big)$.
+
+_Proof:_
+
+$\bar X=\frac{1}{n}\sum\limits_{i=1}^{n}X_i$ is a special case of the Weighted Sum of Normal Random Variables where $a_i=\frac{1}{n},\ i=1,2,\ldots,n$.  It follows then that
+
+$$\begin{align*}
+M_{\bar X}(t)
+  &=exp\Big(t\sum\limits_{i=1}^{n}\frac{1}{n}\mu
+		+t\frac{\sum\limits_{i=1}^{n}\frac{1}{n}\sigma^2}{2}\Big) \\
+	&=exp\big(t\frac{n\mu}{n}+\frac{t\frac{n\sigma^2}{n}}{2}\big) \\
+	&=exp\big(t\mu+\frac{t\frac{\sigma^2}{n}}{2}\big) 
+\end{align*}$$
+
+Which is the mgf of a Normal random variable with parameters $\mu$ and $\frac{\sigma^2}{n}$.  Thus $\bar X\sim Normal\big(\mu,\ \frac{\sigma^2}{n}\big)$. 
+
+
+### Square of a Standard Normal Random Variable
+
+If $Z\sim N(0,1)$, then $Z^2\sim\chi^2(1)$. 
+
+_Proof:_
+$$\begin{align*}
+M_{Z^2}(t)
+      	&= E(e^{tZ^2}) \\
+      	&= \int\limits_{-\infty}^{\infty}e^{tz^2}\frac{1}{\sqrt{2\pi}}
+      		e^{-\frac{z^2}{2}}dz \\
+      	&= \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty}e^{tz^2}
+      		e^{-\frac{z^2}{2}}dz \\
+        &= \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty}
+      		e^{-\frac{z^2}{2}(-2t+1)}dz \\
+      	&= \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty}
+      		e^{-\frac{z^2}{2}(1-2t)}dz \\
+^{[1]}  &= \frac{2}{\sqrt{2\pi}}\int\limits_{0}^{\infty}
+      		e^{-\frac{z^2}{2}(1-2t)}dz \\
+^{[2]}	&= \frac{2}{\sqrt{2\pi}}\int\limits_{0}^{\infty}e^{-u}
+      		\frac{\sqrt{2}u^{-\frac{1}{2}}}{2(1-2t)^{\frac{1}{2}}}du \\
+        &= \frac{2\sqrt{2}}{2\sqrt{2\pi}(1-2t)^{\frac{1}{2}}}
+      		\int\limits_{0}^{\infty}e^{-u}u^{-\frac{1}{2}}du \\
+      	&= \frac{2\sqrt{2}}{2\sqrt{2\pi}(1-2t)^{\frac{1}{2}}}
+      		\int\limits_{0}^{\infty}u^{\frac{1}{2}-1}e^{-u}du \\
+^{[3]}  &= \frac{1}{\sqrt{\pi}(1-2t)^{\frac{1}{2}}}\Gamma(\frac{1}{2}) \\
+      	&= \frac{\sqrt{\pi}}{\sqrt{\pi}(1-2t)^{\frac{1}{2}}} \\
+      	&= \frac{1}{(1-2t)^{\frac{1}{2}}}=(1-2t)^{-\frac{1}{2}} \\
+\end{align*}$$
+
+> 1. $\int\limits_{-\infty}^{\infty}f(x)dx
+		= 2\int\limits_{0}^{\infty}f(x)dx$ when f(x) is an even function (\ref{Integration1.2})
+> 2. Let $u=\frac{z^2}{2}(1-2t)  
+>    \ \ \ \ \Rightarrow z=\frac{\sqrt{2}u^{\frac{1}{2}}}{(1-2t)^{\frac{1}{2}}}$  
+>    \ \ \ \ So $dz=\frac{\sqrt{2}u^{-\frac{1}{2}}} {2(1-2t)^{\frac{1}{2}}}$
+> 3. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
+		=\beta^\alpha\Gamma(\alpha)$	
+		
+		
+Which is the mgf of a Chi-Square random variable with 1 degree of freedom.  Thus $Z^2\sim\chi^2(1)$. 

@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="correlation-pearsons.html">
-<link rel="next" href="experimental-designs.html">
+<link rel="prev" href="multinomial-distribution.html">
+<link rel="next" href="poisson-distribution.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -449,90 +449,464 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="covariance" class="section level1">
-<h1><span class="header-section-number">10</span> Covariance</h1>
-<div id="definition-of-covariance" class="section level2">
-<h2><span class="header-section-number">10.1</span> Definition of Covariance</h2>
-<p>For any two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, the covariance of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is defined as</p>
-<p><span class="math display">\[Cov(X,Y) = E[(X-\mu_X)(Y-\mu_Y)]\]</span></p>
+<div id="normal-distribution" class="section level1">
+<h1><span class="header-section-number">24</span> Normal Distribution</h1>
+<div id="probability-distribution-function-3" class="section level2">
+<h2><span class="header-section-number">24.1</span> Probability Distribution Function</h2>
+<p>A random variable <span class="math inline">\(X\)</span> is said to have a Normal Distribution with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> if its probability density function is</p>
+<p><span class="math display">\[f(x)
+    = \frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2},\ \  x\in\Re,\ \mu\in\Re,\ 0&lt;\sigma^2 \]</span></p>
 </div>
-<div id="theorems-on-covariance" class="section level2">
-<h2><span class="header-section-number">10.2</span> Theorems on Covariance</h2>
-<div id="theorem-2" class="section level3">
-<h3><span class="header-section-number">10.2.1</span> Theorem</h3>
-<p>Let <span class="math inline">\(X\)</span> be a random variable. Then <span class="math display">\[Cov(X,X) = V(X)\]</span></p>
-<p><em>Proof:</em></p>
+<div id="cumulative-distribution-function-5" class="section level2">
+<h2><span class="header-section-number">24.2</span> Cumulative Distribution Function</h2>
+<p>The cdf of the Normal Distribution cannot be written in closed form.</p>
+<p>It is not uncommon in statistical practice to denote the cdf of the Standard Normal Distribution, that is, the Normal distribution with <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span> to be denoted by <span class="math inline">\(\Phi(\cdot)\)</span>. Although it is rare, the <span class="math inline">\(\Phi(\cdot)\)</span> notation is sometimes used to denote any cumulative density function. Because such citations are rare they are usually accompanied by a statement about the distribution <span class="math inline">\(\Phi(\cdot)\)</span> represents. If no such statement is given, it is reasonably safe to assume that the function refers to the Standard Normal Distribution.</p>
+<p>The importance of the Standard Normal Distribution is made evident by the fact that the area under any Normal curve is proportional to the distribution’s variance. A proof of this is provided in Theorem </p>
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<img src="figures/unnamed-chunk-4-1.png" alt="The graphs on the left show probability distribution functions, and the graphs on the right show cumulative distribution functions.  The effect of changing the variance, a vertical rescaling of the distribution, is evident" width="672" />
+<p class="caption">
+Figure 24.1: The graphs on the left show probability distribution functions, and the graphs on the right show cumulative distribution functions. The effect of changing the variance, a vertical rescaling of the distribution, is evident
+</p>
+</div>
+<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<img src="figures/unnamed-chunk-5-1.png" alt="The graphs on the left show probability distribution functions, and the graphs on the right show cumulative distribution functions. The effect of changing the mean, a horizontal shift in location, is illustrated" width="672" />
+<p class="caption">
+Figure 24.2: The graphs on the left show probability distribution functions, and the graphs on the right show cumulative distribution functions. The effect of changing the mean, a horizontal shift in location, is illustrated
+</p>
+</div>
+</div>
+<div id="expected-values-8" class="section level2">
+<h2><span class="header-section-number">24.3</span> Expected Values</h2>
 <p><span class="math display">\[\begin{align*}
-Cov(X,X)
-    &amp;= E[(X-\mu)(X-\mu)] \\
-    &amp;= E[(X-\mu)^2] \\
-    &amp;= V(X)
+E(X)
+    &amp;= \int\limits_{-\infty}^{\infty}x\frac{1}{\sqrt{2\pi}\sigma}\exp\Big\{-\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\} \\
+^{[1]}  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}x\exp\Big\{-\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\} \\
+  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}(z\sigma+\mu)\exp\Big\{-\frac{1}{2}z^2\Big\}\sigma dz \\
+  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}z\sigma^2\exp\Big\{-\frac{1}{2}z^2\Big\}
+        +\mu\sigma\exp\Big\{-\frac{1}{2}z^2\Big\}dz \\
+  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack\int\limits_{-\infty}^{\infty}z\sigma^2\exp\Big\{-\frac{1}{2}z^2\Big\}dz 
+        +\int\limits_{-\infty}^{\infty}\mu\sigma\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack\\
+&amp;= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack-\sigma^2\exp\Big\{-\frac{1}{2}z^2\Big\}\Bigg|_{-\infty}^{\infty}
+        +\int\limits_{-\infty}^{\infty}\mu\sigma\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack\\
+  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack-0+0+\int\limits_{-\infty}^{\infty}\mu\sigma\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack\\
+  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack\mu\sigma\int\limits_{-\infty}^{\infty}\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack \\
+^{[2]}  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\Bigg\lbrack2\mu\sigma\int\limits_{0}^{\infty}\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack \\
+  &amp;= \frac{2\mu\sigma}{\sqrt{2\pi}\sigma}\Bigg\lbrack\int\limits_{0}^{\infty}\exp\Big\{-\frac{1}{2}z^2\Big\}dz\Bigg\rbrack \\
+^{[3]}  &amp;= \frac{2\mu}{\sqrt{2\pi}}\int\limits_{0}^{\infty}\frac{1}{2}u^{-\frac{1}{2}}e^{-\frac{u}{2}}du\\
+  &amp;= \frac{2\mu}{2\sqrt{2\pi}}\int\limits_{0}^{\infty}u^{-\frac{1}{2}}e^{-\frac{u}{2}}du \\
+    &amp;= \frac{\mu}{\sqrt{2\pi}}\int\limits_{0}^{\infty}u^{\frac{1}{2}-1}e^{-\frac{u}{2}}du\\
+^{[4]}  &amp;= \frac{\mu}{\sqrt{2\pi}}2^{\frac{1}{2}}\Gamma\Big(\frac{1}{2}\Big) \\
+^{[5]}  &amp;= \frac{\mu\sqrt{2\pi}}{\sqrt{2\pi}} \\
+  &amp;= \mu
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Let <span class="math inline">\(z=\frac{x-\mu}{\sigma}\\ \Rightarrow x=z\sigma+\mu \Rightarrow dx=\sigma dz\)</span></li>
+<li>This change can be made because the function being integrated is an even function. See Theorem </li>
+<li>Let <span class="math inline">\(u=z^2 \Rightarrow z=u^{\frac{1}{2}} \Rightarrow dz=\frac{1}{2}u^{-\frac{1}{2}}\)</span></li>
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx =\beta^\alpha\Gamma(\alpha)\)</span></li>
+<li><span class="math inline">\(\Gamma(\frac{1}{2})=\sqrt{\pi}\)</span></li>
+</ol>
+</blockquote>
+<p><span class="math display">\[\begin{align*} 
+E(X^2)
+    &amp;= \int\limits_{-\infty}^{\infty}x^2\frac{1}{\sqrt{2\pi}\sigma}
+        \exp\Big\{\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\}dx \\
+^{[1]}  &amp;= \int\limits_{-\infty}^{\infty}\frac{(z\sigma+\mu)^2}{\sqrt{2\pi}\sigma}
+        \exp\Big\{\frac{z^2}{2}\Big\}\sigma dz \\
+  &amp;= \int\limits_{-\infty}^{\infty}\frac{(z\sigma+\mu)^2}{\sqrt{2\pi}}
+        \exp\Big\{\frac{z^2}{2}\Big\}dz \\
+    &amp;= \int\limits_{-\infty}^{\infty}\frac{z^2\sigma^2+2z\sigma\mu+\mu^2}{\sqrt{2\pi}}
+        \exp\Big\{\frac{z^2}{2}\Big\}dz \\
+  &amp;= \int\limits_{-\infty}^{\infty}\Bigg\lbrack
+        \frac{z^2\sigma^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}
+        +\frac{2z\sigma\mu}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}
+        +\frac{\mu^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\} \Bigg\rbrack dz \\
+  &amp;= \int\limits_{-\infty}^{\infty}\frac{z^2\sigma^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +\int\limits_{-\infty}^{\infty}\frac{2z\sigma\mu}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +\int\limits_{-\infty}^{\infty}\frac{\mu^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz\\
+  &amp;= \sigma^2\int\limits_{-\infty}^{\infty}\frac{z^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +2\sigma\mu\int\limits_{-\infty}^{\infty}\frac{z}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +\mu^2\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz \\
+^{[2]}  &amp;= \sigma^2\int\limits_{-\infty}^{\infty}\frac{z^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +2\sigma\mu\int\limits_{-\infty}^{\infty}\frac{z}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +\mu^2\cdot 1 \\
+^{[3]} &amp;= \sigma^2\int\limits_{-\infty}^{\infty}\frac{z^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +2\sigma\mu E(Z)+\mu^2 \\
+ &amp;= \sigma^2\int\limits_{-\infty}^{\infty}\frac{z^2}{\sqrt{2\pi}}\exp\Big\{\frac{z^2}{2}\Big\}dz
+        +2\sigma\mu\cdot0+\mu^2 \\
+^{[4]} &amp;= \sigma^2\Bigg(\frac{z}{\sqrt{2\pi}\cdot-\exp\Big\{-\frac{z^2}{2}\Big\}}
+        -\int\limits_{-\infty}^{\infty}-\exp\Big\{-\frac{z^2}{2}\frac{1}{\sqrt{2\pi}}dz\Bigg)+\mu^2 \\
+ &amp;= \sigma^2\Bigg(-0+0+\int\limits_{-\infty}^{\infty}
+        \frac{1}{\sqrt{2\pi}}\exp\Big\{-\frac{z^2}{2}\Big\}dz\Bigg)+\mu^2 \\
+^{[5]} &amp;= \sigma^2(1)+\mu^2 \\
+  &amp;=\sigma^2+\mu^2
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(z=\frac{x-\mu}{\sigma} \\ \Rightarrow x=z\sigma+\mu\Rightarrow dx=\sigma dz\)</span></li>
+<li>Theorems  and  with <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span></li>
+<li>Using the previous result with <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span>, <span class="math inline">\(E(Z)=0\)</span>.</li>
+<li>Integration by parts: <span class="math inline">\(\int\limits_{a}^{b}u\ dv =\lbrack u\cdot v\rbrack_a^b-\int\limits_{a}^{b}v\ du\)</span> with <span class="math inline">\(u=\frac{z}{\sqrt{2\pi}}\Rightarrow du=\frac{1}{\sqrt{2\pi}}dz\)</span>\ and <span class="math inline">\(dv=z\exp\{-\frac{z^2}{2}\}\Rightarrow v=-\exp\{-\frac{z^2}{2}\}\)</span></li>
+<li>See footnote 2.</li>
+</ol>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+\mu
+    &amp;= E(X) \\
+    &amp;= \mu \\
+\\
+\\
+\sigma^2
+    &amp;= E(X^2)-E(X)^2 \\
+    &amp;= \sigma^2+\mu^2-\mu^2 \\
+    &amp;= \sigma^2
 \end{align*}\]</span></p>
 </div>
-<div id="covariance-theorem2" class="section level3">
-<h3><span class="header-section-number">10.2.2</span> Theorem</h3>
-<p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be random variables. Then</p>
-<p><span class="math display">\[Cov(X,Y) = E(XY)-E(X)E(Y)\]</span></p>
-<p><em>Proof:</em></p>
+<div id="moment-generating-function-7" class="section level2">
+<h2><span class="header-section-number">24.4</span> Moment Generating Function</h2>
+<p><span class="math display">\[\begin{align*} 
+E(e^{tX})
+    &amp;= \int\limits_{-\infty}^{\infty}\exp\{tx\}\frac{1}{\sqrt{2\pi}\sigma}
+        \exp\Big\{\frac{1}{2\sigma^2}(x-\mu)^2\Big\}dx \\
+    &amp;= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
+        \exp\Big\{tx-\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\}dx \\
+^{[1]} &amp;= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
+        \exp\Big\{t(z\cdot\sigma+\mu-\frac{1}{2}z^2\Big\}\sigma dz \\
+ &amp;= \int\limits_{-\infty}^{\infty}\frac{\sigma}{\sqrt{2\pi}\sigma}
+        \exp\Big\{t(z\cdot\sigma+\mu)-\frac{1}{2}z^2\Big\}dz \\
+ &amp;= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
+        \exp\{\mu t\}\exp\Big\{z\sigma t-\frac{1}{2}z^2\Big\}dz \\
+ &amp;= \exp\{\mu t\}\int\limits_{-\infty}^{\infty}\frac{\sigma}{\sqrt{2\pi}\sigma}
+        \exp\Big\{z\sigma t-\frac{1}{2}z^2\Big\}dz \\
+ &amp;= \exp\{\mu t\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+        \exp\Big\{z\sigma t-\frac{1}{2}z^2-\frac{1}{2}t^2\sigma^2+\frac{1}{2}t^2\sigma^2\Big\}dz \\
+ &amp;= \exp\{\mu t\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+        \exp\Big\{-\frac{1}{2}z^2+z\sigma t-\frac{1}{2}t^2\sigma^2\Big\}
+        \exp\Big\{\frac{1}{2}t^2\sigma^2\Big\}dz \\
+ &amp;= \exp\{\mu t\}\exp\Big\{\frac{1}{2}t^2\sigma^2\Big\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+        \exp\Big\{z^2-2z\sigma t+t^2\sigma^2\Big\}dz \\
+ &amp;= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+        \exp\Big\{\frac{1}{2}(z-\sigma t)^2\Big\}dz \\
+^{[2]} &amp;= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}
+        \exp\Big\{\frac{1}{2}(u)^2\Big\}du \\
+ &amp;= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\cdot 1 \\
+ &amp;= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(z=\frac{x-\mu}{\sigma}\\ \Rightarrow x=z\cdot\sigma+\mu\Rightarrow dx=\sigma dz\)</span></li>
+<li><span class="math inline">\(u=z-\sigma t\\ \Rightarrow z=u+\sigma t \Rightarrow dz=du\)</span></li>
+<li>See Theorems  and </li>
+</ol>
+</blockquote>
 <p><span class="math display">\[\begin{align*}
-Cov(X,Y)
-  &amp;= E[(X-\mu_x)(Y-\mu_Y)] \\
-  &amp;= E[XY - X\mu_y - Y\mu_X + \mu_X\mu_Y] \\
-  &amp;= E(XY) - E(X)\mu_Y - \mu_XE(Y) + \mu_X\mu_Y \\
-  &amp;= E(XY) - E(X)E(Y) - E(X)E(Y) + E(X)E(Y) \\
-  &amp;= E(XY) - 2E(X)E(Y) + E(X)E(Y) \\
-  &amp;= E(XY) - E(X)E(Y)
+M_X^{(1)}(t)
+    &amp;= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\cdot(\mu+t\sigma^2) \\
+\\
+\\
+M_X^{(2)}(t)
+    &amp;= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\cdot\sigma^2
+        +(\mu+t\sigma^2)\exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}(\mu+t\sigma^2) \\
+  &amp;= M_X^{(2)}(t)=\exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\cdot\sigma^2
+        +(\mu+t\sigma^2)^2\exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\} \\
+\\
+\\
+E(X)
+    &amp;= M_X^{(1)}(0)=\exp\Big\{\mu\cdot0+\frac{0^2\sigma^2}{2}\Big\}\cdot(\mu+0\cdot\sigma) \\
+    &amp;= e^0\cdot(\mu+0) \\
+    &amp;= 1\cdot\mu \\
+    &amp;= \mu \\
+\\
+\\
+E(X^2)
+    &amp;= M_X^{(2)}(0) \\
+    &amp;= \exp\Big\{\mu\cdot0+\frac{0^2\sigma^2}{2}\Big\}\cdot\sigma^2 
+        +(\mu+0\cdot \sigma^2)^2\exp\Big\{\mu\cdot0+\frac{0^2\sigma^2}{2}\Big\} \\
+  &amp;= e^0\sigma^2+(\mu+0)^2e^0 \\
+    &amp;= 1\cdot\sigma^2+\mu^2\cdot1 \\
+    &amp;= \sigma^2+\mu^2 \\
+\\
+\\
+\mu
+    &amp;= E(X) \\
+    &amp;= \mu \\
+\\
+\\
+\sigma^2
+    &amp;= E(X^2)-E(X) \\
+    &amp;= \sigma^2+\mu^2-\mu^2 \\
+    &amp;= \sigma^2
 \end{align*}\]</span></p>
 </div>
-<div id="covariance-1" class="section level3">
-<h3><span class="header-section-number">10.2.3</span> Covariance</h3>
-<p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be random variables and let <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> be constants. Then</p>
-<p><span class="math display">\[Cov(aX,bY) = abCov(X,Y)\]</span></p>
-<p><em>Proof:</em></p>
+<div id="maximum-likelihood-estimators-1" class="section level2">
+<h2><span class="header-section-number">24.5</span> Maximum Likelihood Estimators</h2>
+<p>Let <span class="math inline">\(x_1,x_2,\ldots,x_n\)</span> be a random sample from a Normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<div id="likelihood-function-5" class="section level3">
+<h3><span class="header-section-number">24.5.1</span> Likelihood Function</h3>
 <p><span class="math display">\[\begin{align*}
-Cov(aX,bY)
-    &amp;= E(aXbY) - E(aX)E(bY) \\
-  &amp;= abE(XY) - abE(X)E(Y) \\
-    &amp;= ab[E(XY) - E(X)E(Y)] \\
-  &amp;= abCov(X,Y)
+L(x_1,x_2,\ldots,x_n|\theta)
+    &amp;= f(x_1|\theta)f(x_2|\theta)\cdots f(x_n|\theta) \\
+  &amp;= \frac{1}{\sqrt{2\pi}\sigma}\exp\bigg\{\frac{-(x_1-\mu)^2}{2\sigma^2}\bigg\}
+        \frac{1}{\sqrt{2\pi}\sigma}\exp\bigg\{\frac{-(x_2-\mu)^2}{2\sigma^2}\bigg\}
+        \cdots \frac{1}{\sqrt{2\pi}\sigma}\exp\bigg\{\frac{-(x_n-\mu)^2}{2\sigma^2}\bigg\} \\
+  &amp;= \prod\limits_{i=1}^{n}\frac{1}{\sqrt{2\pi}\sigma}\exp\bigg\{\frac{-(x_i-\mu)^2}{2\sigma^2}\bigg\} \\
+    &amp;= \bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n  \prod\limits_{i=1}^{n}\exp\bigg\{\frac{-(x_i-\mu)^2}{2\sigma^2} \bigg\} \\
+  &amp;= \bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n \exp\bigg\{ \sum\limits_{i=1}^{n}\frac{-(x_i-\mu)^2}{2\sigma^2} \bigg\} \\
+  &amp;= \bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n \exp\bigg\{ \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \bigg\}
 \end{align*}\]</span></p>
 </div>
-<div id="theorem-3" class="section level3">
-<h3><span class="header-section-number">10.2.4</span> Theorem</h3>
-<p>Let <span class="math inline">\(X_1 , X_2 , \ldots , X_n\)</span> be random variables with <span class="math inline">\(E(X_i) = \mu_i\)</span> for <span class="math inline">\(i = 1,2,\ldots,n\)</span> and let <span class="math inline">\(Y_1,Y_2,\ldots,Y_m\)</span> be random variables with <span class="math inline">\(E(Y_j) = \phi_j\)</span> for <span class="math inline">\(j=1,2,\ldots,m\)</span>. Also, let <span class="math inline">\(a_1,a_2,\ldots,a_n\)</span> and <span class="math inline">\(b_1,b_2,\ldots,b_m\)</span> be constants.\</p>
-<p>If <span class="math inline">\(U_1 = \sum\limits_{i=1}^{n}a_iX_i\)</span> and <span class="math inline">\(U_2 = \sum\limits_{i=1}^{m}b_iY_i\)</span>, then</p>
-<p><span class="math display">\[Cov(U_1,U_2) = \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_jCov(X_i,Y_j)\]</span></p>
-<p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{align*}
-Cov(U_1,U_2)
-    &amp;= E[(U_1-E(U_1))(U_2-E(U_2))] \\
-  &amp;= E\Big[\big(\sum\limits_{i=1}^{n}a_iX_i-\sum\limits_{i=1}^{n}a_i\mu_i\big)
-        \big(\sum\limits_{j=1}^{m}b_jY_j-\sum\limits_{j=1}^{m}b_j\phi_j\big)\Big] \\
-  &amp;= E\Big[\big(\sum\limits_{i=1}^{n}a_i(X_i-\mu_i)\big)\big(\sum\limits_{j=1}^{m}b_j(Y_j-\phi_j)\big)\Big] \\
-  &amp;= E\Big[\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_j(X_i-\mu_i)(Y_j-\phi_j)\Big] \\
-  &amp;= \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_jE[(X_i-\mu_i)(Y_j-\phi_j)] \\
-  &amp;= \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_j\ Cov(X_i,Y_j)
+<div id="log-likelihood-function-5" class="section level3">
+<h3><span class="header-section-number">24.5.2</span> Log-likelihood Function</h3>
+<p><span class="math display">\[\begin{align*} 
+\ell(\theta)
+    &amp;= \ln\big(L(\theta)\big) \\
+    &amp;= \ln\Bigg(\bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n 
+        \exp\bigg\{ \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \bigg\}\Bigg) \\
+  &amp;= \ln\bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n 
+        + \ln\bigg(\exp\bigg\{ \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \bigg\}\bigg) \\
+  &amp;= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+  &amp;= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}(x_i^2 - 2\mu x_i + \mu^2) \\
+  &amp;= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2} 
+        \bigg\lbrack \sum\limits_{i=1}^{n}x_i^2 - 2\mu\sum\limits_{i=1}^{n}x_i + \sum\limits_{i=1}^{n}\mu^2\bigg\rbrack \\
+  &amp;= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2}\sum\limits_{i=1}^{n}x_i^2
+        + \frac{2\mu}{2\sigma^2}\sum\limits_{i=1}^{n}x_i - \frac{1}{2\sigma^2}n\mu^2 \\
+  &amp;= n\ln\bigg(\frac{1}{\sqrt{2\pi}}\sigma^{-1}\bigg) - \frac{\sigma^{-2}}{2}\sum\limits_{i=1}^{n}x_i^2
+        + \mu\sigma^{-2}\sum\limits_{i=1}^{n}x_i - \frac{n\mu^2\sigma^{-2}}{2}
 \end{align*}\]</span></p>
 </div>
-<div id="theorem-4" class="section level3">
-<h3><span class="header-section-number">10.2.5</span> Theorem</h3>
-<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be random variables with <span class="math inline">\(E(X_i)=\mu_i\)</span> for <span class="math inline">\(i=1,2,\ldots,n\)</span> and let <span class="math inline">\(a_1,a_2,\ldots,a_n\)</span> be constants.</p>
-<p>If <span class="math inline">\(Y = \sum\limits_{i=1}^{n}a_iX_i\)</span> then</p>
-<p><span class="math display">\[V(Y) = 
-  \sum\limits_{i=1}^{n}a_i^2V(X_i)+2\sum\limits_{\ \ i&lt;}\sum\limits_{j\ \ }a_ia_jCov(X_i,X_j)\]</span></p>
+<div id="mle-for-mu" class="section level3">
+<h3><span class="header-section-number">24.5.3</span> MLE for <span class="math inline">\(\mu\)</span></h3>
+<p><span class="math display">\[\begin{align*}
+\frac{d\ell}{d\mu}
+    &amp;= 0 - 0 + \sigma^{-2}\sum\limits_{i=1}^{n} - \frac{2n\mu\sigma^{-2}}{2} \\
+    &amp;= \sigma^{-2}\sum\limits_{i=1}^{n} - n\mu\sigma^{-2}\\
+\\
+\\
+0 &amp;= \sigma^{-2}\sum\limits_{i=1}^{n} - n\mu\sigma^{-2}\\
+ \Rightarrow n\mu\sigma^{-2} &amp;= \sigma^{-2}\sum\limits_{i=1}^{n}\\
+ \Rightarrow n\mu\ &amp;= \sum\limits_{i=1}^{n}\\
+ \Rightarrow \mu &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}
+\end{align*}\]</span></p>
+<p>So <span class="math inline">\(\hat\mu = \frac{1}{n}\sum\limits_{i=1}^{n}\)</span> is the maximum likelihood estimator for <span class="math inline">\(\mu\)</span>.</p>
+</div>
+<div id="mle-for-sigma2" class="section level3">
+<h3><span class="header-section-number">24.5.4</span> MLE for <span class="math inline">\(\sigma^2\)</span></h3>
+<p>The work in deriving the MLE for <span class="math inline">\(\sigma^2\)</span> is greatly reduced if we use</p>
+<p><span class="math display">\[\begin{align*}
+\ell(\theta)
+    &amp;= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2\\
+    &amp;= n\ln\bigg(\frac{1}{\sqrt{2\pi}}\sigma^{-1}\bigg) - \frac{1}{2\sigma^2}  \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+\\
+\\
+\frac{d\ell}{d\sigma}
+    &amp;= n\bigg(\frac{1}{\frac{1}{\sqrt{2\pi}}\sigma^{-1}}\bigg) \bigg(\frac{-1}{\sqrt{2\pi}\sigma^{-2}}\bigg)
+        - \frac{-2}{2}\sigma^{-3} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+ &amp;= \frac{-n\sqrt{2\pi}\sigma}{\sqrt{2\pi}\sigma^2} + \frac{1}{\sigma^3} \sum\limits_{i=1}^{n}-(x_i-\mu)^2\\
+ &amp;= \frac{-n}{\sigma} + \frac{1}{\sigma} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+\\
+\\
+0 &amp;= \frac{-n}{\sigma} + \frac{1}{\sigma} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+ \Rightarrow \frac{n}{\sigma} &amp;= \frac{1}{\sigma} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+ \Rightarrow \frac{\sigma^3}{\sigma} &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
+ \Rightarrow \sigma^2 &amp;= \frac{1}{n}\sum\limits_{i=1}^{n}-(x_i-\mu)^2
+\end{align*}\]</span></p>
+<p>So <span class="math inline">\(\hat\sigma^2 = \frac{1}{n}\sum\limits_{i=1}^{n}-(x_i-\mu)^2\)</span> is the maximum likelihood estimator for <span class="math inline">\(\sigma^2\)</span>. Notice however that this <span class="math inline">\(MLE\)</span> is a biased estimator.</p>
+</div>
+</div>
+<div id="theorems-for-the-normal-distribution" class="section level2">
+<h2><span class="header-section-number">24.6</span> Theorems for the Normal Distribution</h2>
+<div id="validity-of-the-distribution-polar-coordinates" class="section level3">
+<h3><span class="header-section-number">24.6.1</span> Validity of the Distribution (Polar Coordinates)</h3>
+<p><span class="math display">\[\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx=1\]</span></p>
+<p><em>Proof:</em></p>
+<p>Let <span class="math inline">\(A = \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx\)</span>.</p>
+<p>By using the identity transformation <span class="math inline">\(y=x\)</span>, we may also write</p>
+<p><span class="math display">\[\begin{align*}
+A &amp;= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(y-\mu)^2}{2\sigma^2}dy \\
+\Rightarrow A^2 &amp;= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
+            e^\frac{-(x-\mu)^2}{2\sigma^2}dx\cdot 
+        \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
+            e^\frac{-(y-\mu)^2}{2\sigma^2}dy \\
+  &amp;= \frac{1}{2\pi\sigma^2}\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}
+        e^\frac{-(x-\mu)^2}{2\sigma^2}e^\frac{-(y-\mu)^2}{2\sigma^2}dx\ dy \\
+  &amp;= \frac{1}{2\pi\sigma^2}\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}
+        e^{\frac{-(x-\mu)^2}{2\sigma^2}-\frac{(y-\mu)^2}{2\sigma^2}} \\
+  &amp;= \frac{1}{2\pi\sigma^2}\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}
+        e^{-\frac{1}{2\sigma^2}[(x-\mu)^2+(y-\mu)^2]}dx\ dy \\
+^{[1]}  &amp;= \frac{1}{2\pi\sigma^2}\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}
+        e^{-\frac{1}{2\sigma^2}t^2+u^2}dt\ du \\
+^{[2]}  &amp;= \frac{1}{2\pi\sigma^2}\int\limits_{0}^{2\pi}\int\limits_{0}^{\infty} 
+        e^{-\frac{r^2}{2\sigma^2}}r\ dr\ d\theta \\
+  &amp;=\frac{1}{2\pi\sigma^2}\int\limits_{0}^{2\pi}
+        -\sigma^2e^{-\frac{r^2}{2\sigma^2}}\Big|_0^\infty d\theta \\
+    &amp;=\frac{1}{2\pi\sigma^2}\int\limits_{0}^{2\pi}0+\sigma^2\ d\theta \\
+  &amp;=\frac{1}{2\pi\sigma^2}\int\limits_{0}^{2\pi}\sigma^2\ d\theta \\
+    &amp;=\frac{1}{2\pi\sigma^2}\cdot \Big(\sigma^2\theta\Big|_0^{2\pi}\Big) \\
+    &amp;=\frac{1}{2\pi\sigma^2}[2\pi\sigma^2-0] \\
+    &amp;=\frac{2\pi\sigma^2}{2\pi\sigma^2} \\
+    &amp;=1\\
+\Rightarrow A^2 &amp;= 1 \\
+\Rightarrow A &amp;= 1
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Substitute <span class="math inline">\(t=x-\mu\)</span> and <span class="math inline">\(u=y-\mu\)</span></li>
+<li><span class="math inline">\(t=r\cos\theta\)</span> and <span class="math inline">\(u=r\sin\theta\)</span>.\ Thus <span class="math inline">\(t^2+u^2=r^2\cos^2\theta+r^2\sin^2\theta=r^2(\cos^2\theta+\sin^2\theta)=r^2\)</span></li>
+</ol>
+</blockquote>
+<p>Thus <span class="math inline">\(\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx=1\)</span></p>
+</div>
+<div id="validity-of-the-distribution-gamma-function" class="section level3">
+<h3><span class="header-section-number">24.6.2</span> Validity of the Distribution (Gamma Function)</h3>
+<p><span class="math display">\[\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx=1\]</span></p>
 <p><em>Proof:</em></p>
 <p><span class="math display">\[\begin{align*}
-V(Y)
-    &amp;= E[(Y-\mu_Y)^2] \\
-    &amp;= E[(Y-\mu_Y)(Y-\mu_Y)] \\
-  &amp;= E\Big[\big(\sum\limits_{i=1}^{n}a_iX_i-a_i\mu_i\big)
-      \big(\sum\limits_{n=1}^{n}a_jX_j-a_j\mu_j\big)\Big] \\
-  &amp;= \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}a_ia_jE[(X_i-\mu_i)(X_j-\mu_j)] \\
-  &amp;= \sum\limits_{i=1}^{n}a_i^2Cov(X_i,X_i)+
-        \sum\limits_{\ \ i\neq}\sum\limits_{j\ \ \ \ }a_ia_jE[(X_i-\mu_i)(X_j-\mu_j)] \\
-  &amp;= \sum\limits_{i=1}^{n}a_i^2V(X_i)+
-      2\sum\limits_{\ \ i&lt;}\sum\limits_{j\ \ \ \ }a_ia_jCov(X_i,X_j)
+\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx
+          &amp;=\frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}e^\frac{-(x-\mu)^2}{2\sigma^2}dx
+^{[1]}  &amp;= \frac{1}{\sqrt{2\pi}\sigma}
+              \int\limits_{-\infty}^{\infty}e^\frac{-(y)^2}{2\sigma^2}dy\\
+        &amp;=\frac{1}{\sqrt{2\pi}\sigma}
+              \int\limits_{-\infty}^{\infty}e^{-\frac{1}{2}\frac{y^2}{\sigma^2}}dy
+^{[2]}  &amp;= \frac{1}{\sqrt{2\pi}\sigma}
+              \int\limits_{-\infty}^{\infty}
+                    e^{-\frac{u}{2}}\frac{1}{2}\sigma u^{-\frac{1}{2}}du\\
+        &amp;=\frac{\sigma}{2\sqrt{2\pi}\sigma}
+              \int\limits_{-\infty}^{\infty}u^{-\frac{1}{2}}e^{-\frac{u}{2}}du
+^{[3]}  &amp;= \frac{2\sigma}{2\sqrt{2\pi}\sigma}
+              \int\limits_{0}^{\infty}u^{\frac{1}{2}-1}e^{-\frac{u}{2}}du\\
+^{[4]}  &amp;= \frac{1}{\sqrt{2\pi}}2^\frac{1}{2}\Gamma\big(\frac{1}{2}\big) \\
+^{[5]}  &amp;= \frac{\sqrt{2\pi}}{\sqrt{2\pi}} \\
+        &amp;= 1
 \end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(y=x-\mu\ \Rightarrow x=y+\mu\ \Rightarrow dx=dy\)</span></li>
+<li><span class="math inline">\(u=(\frac{y}{\sigma})^2\ \Rightarrow y=\sigma u^\frac{1}{2}\  \Rightarrow dy=\frac{1}{2}\sigma u^{-\frac{1}{2}}\)</span></li>
+<li>If <span class="math inline">\(f(x)\)</span> is an even function then <span class="math inline">\(\int\limits_{-\infty}^{\infty}f(x)dx =2\int\limits_{0}^{\infty}f(x)dx\)</span> (Theorem ).</li>
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx =\beta^\alpha\Gamma(\alpha)\)</span></li>
+<li><span class="math inline">\(\Gamma(\frac{1}{2})=\sqrt{\pi}\)</span></li>
+</ol>
+</blockquote>
+</div>
+<div id="multiple-of-a-normal-random-variable" class="section level3">
+<h3><span class="header-section-number">24.6.3</span> Multiple of a Normal Random Variable</h3>
+<p>Let <span class="math inline">\(X\)</span> be a Normal random variable with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>, and let <span class="math inline">\(c\)</span> be a constant. If <span class="math inline">\(Y=cX\)</span>, then <span class="math inline">\(Y\sim Normal(c\mu,\ c^2\sigma^2)\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*}
+M_Y(t)
+  &amp;= E(e^{tY}) \\
+  &amp;= E(e^{tcX}) \\
+  &amp;= \exp\Big\{\mu tc+\frac{t^2c^2\sigma^2}{2}\Big\} \\
+  &amp;= \exp\Big\{c\mu t+\frac{t^2c^2\sigma^2}{2}\Big\}
+\end{align*}\]</span></p>
+<p>Which is the Moment Generating Function of a Normal random variable with mean <span class="math inline">\(c\mu\)</span> and variance <span class="math inline">\(c^2\sigma^2\)</span>. Thus <span class="math inline">\(Y\sim Normal(c\mu,\ c^2\sigma^2)\)</span>.</p>
+</div>
+<div id="weighted-sum-of-normal-random-variables" class="section level3">
+<h3><span class="header-section-number">24.6.4</span> Weighted Sum of Normal Random Variables</h3>
+<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent random variables from Normal distributions with parameters <span class="math inline">\(\mu_i\)</span> and <span class="math inline">\(\sigma_i^2\)</span>, i.e. <span class="math inline">\(X_i\sim Normal(\mu_i,\sigma_i^2),\ i=1,2,\ldots,n\)</span>, and let <span class="math inline">\(a_1,a_2,\ldots,a_n\)</span> be constants.</p>
+<p>If <span class="math inline">\(Y=\sum\limits_{i=1}^{n}a_iX_i\)</span>, then <span class="math inline">\(Y\sim Normal\big(\sum\limits_{i=1}^{n}a_i\mu_i,\ \sum\limits_{i=1}^{n}a_i^2\sigma_i^2\big)\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math display">\[\begin{align*} 
+M_Y(t)
+  &amp;=E(e^{tY}) \\
+  &amp;=E(e^{t(a_1X_1+a_2X_2+\cdots+a_nX_n}) \\
+  &amp;=E(e^{ta_1X_1}e^{ta_2X_2}\cdots e^{ta_nX_n}) \\
+  &amp;=E(e^{ta_1X_1})E(e^{ta_2X_2})\cdots E(e^{ta_nX_n}) \\
+  &amp;=\exp\Big\{ta_1\mu_1+\frac{ta_1^2\sigma_1^2}{2}\Big\}\cdot 
+        \exp\Big\{ta_2\mu_2+\frac{ta_2^2\sigma_2^2}{2}\Big\} \cdot
+        \cdots \cdot \exp\Big\{ta_n\mu_n+\frac{ta_n^2\sigma_n^2}{2}\Big\} \\
+  &amp;=\exp\Big\{ta_1\mu_1+\frac{ta_1^2\sigma_1^2}{2}+ta_2\mu_2+\frac{ta_2^2\sigma_2^2}{2}
+        +\cdots+ta_n\mu_n+\frac{ta_n^2\sigma_n^2}{2}\Big\} \\
+  &amp;=\exp\Big\{t\sum\limits_{i=1}^{n}a_i\mu_i +
+      \frac{t\sum\limits_{i=1}^{n}a_i^2\sigma_i^2}{2}\Big\}
+\end{align*}\]</span></p>
+<p>Which is the mgf of a Normal random variable with parameters <span class="math inline">\(\sum\limits_{i=1}^{n}a_i\mu_i\)</span> and <span class="math inline">\(\sum\limits_{i=1}^{n}a_i^2\sigma_i^2\)</span>. Thus <span class="math inline">\(Y\sim Normal\big(\sum\limits_{i=1}^{n}a_i\mu_i,\ \sum\limits_{i=1}^{n}a_i^2\sigma_i^2\big)\)</span>.</p>
+</div>
+<div id="sum-of-normal-random-variables" class="section level3">
+<h3><span class="header-section-number">24.6.5</span> Sum of Normal Random Variables</h3>
+<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent random variables from Normal distributions with parameters <span class="math inline">\(\mu_i\)</span> and <span class="math inline">\(\sigma_i^2\)</span>, i.e. <span class="math inline">\(X_i\sim Normal(\mu_i, \sigma_i^2),\ i=1,2,\ldots,n\)</span>. Let <span class="math inline">\(Y=\sum\limits_{i=1}^{n}X_i\)</span>. Then <span class="math inline">\(Y\sim Normal\big(\sum\limits_{i=1}^{n}\mu_i,\ \sum\limits_{i=1}^{n}\sigma_i^2\big)\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math inline">\(Y=\sum\limits_{i=1}^{n}X_i\)</span> is a special case of the Weighted Sum of Normal Random Variables where each of the weights is equal to 1. It follows then that <span class="math inline">\(Y\sim Normal\big(\sum\limits_{i=1}^{n}1\mu_i,\ \sum\limits_{i=1}^{n}1^2\sigma_i^2\big)\)</span> which is equivalent to saying <span class="math inline">\(Y\sim Normal\big(\sum\limits_{i=1}^{n}\mu_i,\ \sum\limits_{i=1}^{n}\sigma_i^2\big)\)</span>.</p>
+</div>
+<div id="standard-normal-transformation" class="section level3">
+<h3><span class="header-section-number">24.6.6</span> Standard Normal Transformation</h3>
+<p>Let <span class="math inline">\(X\)</span> be a Normal random variable with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. That is, <span class="math inline">\(X\sim\)</span>Normal(<span class="math inline">\(\mu,\sigma^2\)</span>). If <span class="math inline">\(Z=\frac{X-\mu}{\sigma}\)</span>, then <span class="math inline">\(Z\sim\)</span>Normal(0,1), and we say <span class="math inline">\(Z\)</span> has a <em>Standard Normal</em> distribution.</p>
+<p>Furthermore, if <span class="math inline">\(Z\sim\)</span>Normal(0,1), and <span class="math inline">\(X=Z\cdot\sigma+\mu\)</span>, then <span class="math inline">\(X\sim Normal(\mu,\sigma^2\)</span>).</p>
+<p><em>Proof:</em></p>
+<p>First, since <span class="math inline">\(X\sim Normal(\mu,\sigma^2\)</span>) and <span class="math inline">\(Z=\frac{X-\mu}{\sigma}\)</span></p>
+<p><span class="math display">\[\begin{align*}
+E(e^{tZ})
+  &amp;=E\Big(\exp\Big\{t\frac{x-\mu}{\sigma}\Big\}\Big) \\
+  &amp;=E\Big(\exp\Big\{\frac{tx-t\mu}{\sigma}\Big\}\Big) \\
+    &amp;=E\Big(\exp\Big\{\frac{tx}{\sigma}-\frac{t\mu}{\sigma}\Big\}\Big) \\
+  &amp;=E\Big(\exp\Big\{\frac{tx}{\sigma}\Big\}\exp\Big\{-\frac{t\mu}{\sigma}\Big\}\Big) \\
+    &amp;=\exp\Big\{\frac{-t\mu}{\sigma}\Big\}E\Big(\exp\Big\{\frac{t}{\sigma}x\Big\} \\
+  &amp;=\exp\Big\{\frac{-t\mu}{\sigma}\Big\}\exp\Big\{\frac{t\mu}{\sigma}+\frac{t^2\sigma^2}{2\sigma^2}\Big\} \\
+    &amp;=\exp\Big\{\frac{-t\mu}{\sigma}-\frac{t\mu}{\sigma}+\frac{t^2\sigma^2}{2\sigma^2}\Big\} \\
+    &amp;=\exp\Big\{\frac{t^2\sigma^2}{2\sigma^2}\Big\}
+\end{align*}\]</span></p>
+<p>Which is the Moment Generating Function of a Normal random variable with <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span>. Thus <span class="math inline">\(Z\sim Normal(0,1)\)</span>.</p>
+<p>To complete the proof, we start with <span class="math inline">\(Z\sim\)</span>Normal(0,1) and let <span class="math inline">\(X=Z\cdot\sigma+\mu\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+E(e^{tX})
+  = E(e^{t(z\sigma+\mu)}) \\
+  = E(e^{tz\sigma}e^{t\mu}) \\
+  = e^{t\mu}E(e^{t\sigma z}) \\
+  = \exp\{t\mu\}\exp\Big\{\frac{t^2\sigma^2}{2}\Big\} \\
+  = \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}
+\end{align*}\]</span></p>
+<p>Which is the Moment Generating Funciton of a Normal random variable with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. Thus <span class="math inline">\(X\sim Normal(\mu,\sigma^2)\)</span>.</p>
+</div>
+<div id="distribution-of-bar-x" class="section level3">
+<h3><span class="header-section-number">24.6.7</span> Distribution of <span class="math inline">\(\bar X\)</span></h3>
+<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent and identically distributed random variables from a Normal distribution with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>, i.e. <span class="math inline">\(X_i\sim Normal(\mu,\ \sigma^2)\)</span>. Let <span class="math inline">\(\bar X=\frac{1}{n}\sum\limits_{i=1}^{n}X_i\)</span>. Then <span class="math inline">\(\bar X\sim Normal\big(\mu,\ \frac{\sigma^2}{n}\big)\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math inline">\(\bar X=\frac{1}{n}\sum\limits_{i=1}^{n}X_i\)</span> is a special case of the Weighted Sum of Normal Random Variables where <span class="math inline">\(a_i=\frac{1}{n},\ i=1,2,\ldots,n\)</span>. It follows then that</p>
+<p><span class="math display">\[\begin{align*}
+M_{\bar X}(t)
+  &amp;=exp\Big(t\sum\limits_{i=1}^{n}\frac{1}{n}\mu
+        +t\frac{\sum\limits_{i=1}^{n}\frac{1}{n}\sigma^2}{2}\Big) \\
+    &amp;=exp\big(t\frac{n\mu}{n}+\frac{t\frac{n\sigma^2}{n}}{2}\big) \\
+    &amp;=exp\big(t\mu+\frac{t\frac{\sigma^2}{n}}{2}\big) 
+\end{align*}\]</span></p>
+<p>Which is the mgf of a Normal random variable with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\frac{\sigma^2}{n}\)</span>. Thus <span class="math inline">\(\bar X\sim Normal\big(\mu,\ \frac{\sigma^2}{n}\big)\)</span>.</p>
+</div>
+<div id="square-of-a-standard-normal-random-variable-1" class="section level3">
+<h3><span class="header-section-number">24.6.8</span> Square of a Standard Normal Random Variable</h3>
+<p>If <span class="math inline">\(Z\sim N(0,1)\)</span>, then <span class="math inline">\(Z^2\sim\chi^2(1)\)</span>.</p>
+<p><em>Proof:</em> <span class="math display">\[\begin{align*}
+M_{Z^2}(t)
+        &amp;= E(e^{tZ^2}) \\
+        &amp;= \int\limits_{-\infty}^{\infty}e^{tz^2}\frac{1}{\sqrt{2\pi}}
+            e^{-\frac{z^2}{2}}dz \\
+        &amp;= \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty}e^{tz^2}
+            e^{-\frac{z^2}{2}}dz \\
+        &amp;= \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty}
+            e^{-\frac{z^2}{2}(-2t+1)}dz \\
+        &amp;= \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty}
+            e^{-\frac{z^2}{2}(1-2t)}dz \\
+^{[1]}  &amp;= \frac{2}{\sqrt{2\pi}}\int\limits_{0}^{\infty}
+            e^{-\frac{z^2}{2}(1-2t)}dz \\
+^{[2]}  &amp;= \frac{2}{\sqrt{2\pi}}\int\limits_{0}^{\infty}e^{-u}
+            \frac{\sqrt{2}u^{-\frac{1}{2}}}{2(1-2t)^{\frac{1}{2}}}du \\
+        &amp;= \frac{2\sqrt{2}}{2\sqrt{2\pi}(1-2t)^{\frac{1}{2}}}
+            \int\limits_{0}^{\infty}e^{-u}u^{-\frac{1}{2}}du \\
+        &amp;= \frac{2\sqrt{2}}{2\sqrt{2\pi}(1-2t)^{\frac{1}{2}}}
+            \int\limits_{0}^{\infty}u^{\frac{1}{2}-1}e^{-u}du \\
+^{[3]}  &amp;= \frac{1}{\sqrt{\pi}(1-2t)^{\frac{1}{2}}}\Gamma(\frac{1}{2}) \\
+        &amp;= \frac{\sqrt{\pi}}{\sqrt{\pi}(1-2t)^{\frac{1}{2}}} \\
+        &amp;= \frac{1}{(1-2t)^{\frac{1}{2}}}=(1-2t)^{-\frac{1}{2}} \\
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\int\limits_{-\infty}^{\infty}f(x)dx = 2\int\limits_{0}^{\infty}f(x)dx\)</span> when f(x) is an even function ()</li>
+<li>Let <span class="math inline">\(u=\frac{z^2}{2}(1-2t)  \ \ \ \ \Rightarrow z=\frac{\sqrt{2}u^{\frac{1}{2}}}{(1-2t)^{\frac{1}{2}}}\)</span><br />
+    So <span class="math inline">\(dz=\frac{\sqrt{2}u^{-\frac{1}{2}}} {2(1-2t)^{\frac{1}{2}}}\)</span></li>
+<li><span class="math inline">\(\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx =\beta^\alpha\Gamma(\alpha)\)</span></li>
+</ol>
+</blockquote>
+<p>Which is the mgf of a Chi-Square random variable with 1 degree of freedom. Thus <span class="math inline">\(Z^2\sim\chi^2(1)\)</span>.</p>
 
 </div>
 </div>
@@ -542,8 +916,8 @@ V(Y)
           </div>
         </div>
       </div>
-<a href="correlation-pearsons.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="experimental-designs.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="multinomial-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="poisson-distribution.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -570,7 +944,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Covariance.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/NormalDistribution.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

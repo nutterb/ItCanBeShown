@@ -1,0 +1,199 @@
+# Probability
+
+## Elementary Probability Concepts
+
+### Definition of Probability
+
+Let $S$ be a sample space associated with an experiment.  For every event $A \in S$ (ie, $A$ is a subset of $S$), we assign a number, $P(A)$ - called the \emph{probability} of $A$ - such that the following three axioms hold:
+
+* Axiom 1: $P(A) \geq 0$.
+* Axiom 2: $P(S) = 1$.
+* Axiom 3: If $A_1, A_2, A_3, ...$ form a sequence of pairwise mutually exclusive events in $S$ 
+       (that is, $A_i \cap A_j = \emptyset$ if $i \neq j$), then  
+       $P(A_1 \cup A_2 \cup A_3 \cup ...) = \sum\limits_{i=1}^\infty P(A_i)$.
+
+
+
+### Definition: Conditional Probability
+
+The conditional probability of an event $A$, given that an event $B$ has occured and $P(B) > 0$ is equal to 
+
+$$ P(A|B) = \frac{P(A\cap B)}{P(B)} $$
+
+
+### Definition: Independence
+
+Events $A$ and $B$ are said to be independent if any of the following holds
+
+$$P(A|B) = P(A)$$
+$$P(B|A) = P(B)$$
+$$P(A\cap B) = P(A)\cdot P(B)$$
+
+### Theorem: Multiplicative Law of Probability
+
+The probability of the intersection of two events $A$ and $B$ is 
+
+$$P(A\cap B) = P(A)\cdot P(B|A) = P(B)\cdot P(A|B)$$
+
+_Proof:_
+
+By the definition of conditional probability
+
+$$\begin{align*}
+P(A|B) 
+  &= \frac{P(A\cap B)}{P(B)} \\
+\Rightarrow P(A|B) \cdot P(B) &= P(A \cap B)
+\end{align*}$$
+
+Likewise
+
+$$\begin{align*}
+P(B|A) 
+  &= \frac{P(B\cap A)}{P(A)} \\
+\Rightarrow P(B|A) \cdot P(A) &= P(B \cap A)
+\end{align*}$$
+
+Since $P(A \cap B) = P(B \cap A)$
+
+$$\begin{align*} 
+P(A|B) \cdot P(B) 
+  &= P(A \cap B) \\
+  &= P(B \cap A) \\
+  &= P(B|A) \cdot P(A) \\
+\Rightarrow P(A \cap B) 
+  &= P(A|B) \cdot P(B) \\ 
+  &= P(B|A) \cdot P(A)
+\end{align*}$$
+
+
+### Corollary
+
+If $A$ and $B$ are independent, then
+
+$$P(A \cap B) = P(A) \cdot P(B)$$
+
+_Proof:_
+
+When $A$ and $B$ are independent, by the definition of independence\footnote{Definition \ref{Probability1.3}}, 
+
+$$\begin{align*}
+P(A \cap B) 
+  & = P(A|B) \cdot P(B) 
+  = P(B|A) \cdot P(A) \\
+\Rightarrow &= P(A) \cdot P(B) = P(B) \cdot P(A)
+\end{align*}
+$$
+
+
+
+### Additive Law of Probability
+  
+The probability of the union of two events is $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+
+_Proof:_
+
+$A \cup B = A \cup (A^c \cap B)$ where $A$ and $(A^c \cap B)$ are mutually exclusive.
+$\Rightarrow P(A \cup B) = P(A) + P(A^c \cap B)$
+
+$B = (A^c \cap B) \cup (A \cap B)$ where $(A^c \cap B)$ and $(A \cap B)$ are mutually exclusive.
+$\Rightarrow P(B) = P(A^c \cap B) + P(A \cap B)\\
+ \Rightarrow P(A^c \cap B) = P(B) - P(A \cap B)$
+
+$P(A \cup B) = P(A) + P(A^c \cap B)\\
+ \Rightarrow P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+ 
+
+### Corollary
+
+If $A$ and $B$ are mutually exclusive events, then $P(A \cup B) = P(A) + P(B)$.
+
+_Proof:_
+
+When $A$ and $B$ are mutually exclusive, $(A \cap B) = \emptyset$ and $P(A \cap B) = 0$.  By Theorem \ref{Probability1.5},
+
+$$\begin{align*}
+P(A \cup B) &= P(A) + P(B) - P(A \cap B) \\
+ \Rightarrow P(A \cup B) &= P(A) + P(B) - 0 \\
+ \Rightarrow P(A \cup B) &= P(A) + P(B)
+\end{align*}$$
+ 
+
+### Theorem: Law of Complements
+
+If $A$ is an event, then $P(A) = 1 - P(A^c)$.
+
+_Proof:_
+
+Let $S$ be the sample space.
+
+$$\begin{align*}
+S &= A \cup A^c \\
+ \Rightarrow P(S) &= P(A \cup A^c) \\
+ \Rightarrow P(S) &= P(A) + P(A^c) - P(A \cap A^c) \\
+ \Rightarrow P(S) &= P(A) + P(A^c) - 0 \\
+ \Rightarrow P(S) &= P(A) + P(A^c) \\
+ \Rightarrow 1 &= P(A) + P(A^c) \\
+ \Rightarrow 1 - P(A^c) &= P(A) \\
+ \Rightarrow P(A) &= 1 - P(A^c)
+\end{align*}$$
+ 
+
+### Definition: Partition of a Sample Space
+
+For some positive integer $k$, let the sets $B_1, B_2, \ldots, B_k$ be such that
+
+* $S = B_1 \cup B_2 \cup \ldots \cup B_k$.
+* $B_i \cap B_j = \emptyset$ for $i \neq j$.
+
+Then the collection of sets ${B_1, B_2, \ldots, B_k}$ is said to be a _partition_ of $S$.
+
+
+### Definition: Decomposition
+
+If $A$ is any subset of $S$ and ${B_1, B_2, \ldots, B_k}$ is a partition of $S$, $A$ can be _decomposed_ as follows:
+
+$A = (A \cap B_1) \cup (A \cap B_2) \cup \cdots \cup (A \cap B_k)$
+
+
+### Theorem: Total Law of Probability
+
+If ${B_1, B_2, \ldots, B_k}$ is a partition of $S$ such that $P(B_i) > 0$, for $i = 1, 2, \ldots, k$, then for any event $A$
+
+$$P(A) = \sum\limits_{i=1}^k P(A|B_i)P(B_i)$$
+
+_Proof:_
+
+Any subset $A$ of $S$ can be written as
+
+$$A = A \cap S = A \cap (B_1 \cup B_2 \cup \cdots \cup B_k) = (A \cap B_1) \cup (A \cap B_2) \cup \cdots \cup (A \cap B_k)$$
+
+Since ${B_1, B_2, \ldots, B_k}$ is a partition of $S$, if $i \neq j$,
+
+$(A \cap B_i) \cup (A \cap B_j) = A \cap (B_i \cap B_j) = A \cap \emptyset = \emptyset$.  That is, $(A \cap B_i)$ and $(A \cap B_j)$ are mutually exclusive events.  Thus,
+
+$$\begin{align*}
+P(A) &= P(A \cap B_1) + P(A \cap B_2) + \cdots + P(A \cap B_k) \\
+^{[1]} \Rightarrow &= P(A|B_1)P(B_1) + P(A|B_2)P(B_2) + \cdots + P(A|B_k)P(B_k) \\
+\Rightarrow &= \sum\limits_{i=1}^k P(A|B_i)P(B_i)
+\end{align*}$$
+ 
+> 1. Theorem \ref{Probability1.4}: Multiplicative Law of Probability
+ 
+
+### Theorem: Bayes' Rule
+
+If ${B_1, B_2, \ldots, B_k}$ is a partition of $S$ such that $P(B_i) > 0$, for $i = 1, 2, \ldots, k$, then
+
+$$ P(B_j|A) = \frac{P(A|B_j)P(B_j)}{\sum\limits_{i=1}^k P(A|B_i)P(B_i)} $$
+
+_Proof:_
+
+$$\begin{align*}
+ \ ^{[1]} P(B_j|A)  &= \frac{P(A \cap B)}{P(A)} \\
+ ^{[2]} \Rightarrow &= \frac{P(A|B_j)P(B_j)}{P(A)} \\
+ ^{[3]} \Rightarrow &= \frac{P(A|B_j)P(B_j)}{\sum\limits_{i=1}^k P(A|B_i)P(B_i)}
+\end{align*}$$
+
+> 1. Definition \ref{Probability1.2}, Conditional Probability
+> 2. Definition \ref{Probability1.2}, Conditional Probability
+> 3. Theorem \ref{Probability1.11}, Law of Total Probability

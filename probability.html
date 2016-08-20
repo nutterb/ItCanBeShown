@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="correlation-pearsons.html">
-<link rel="next" href="experimental-designs.html">
+<link rel="prev" href="poisson-distribution.html">
+<link rel="next" href="real-number-system.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -449,90 +449,158 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="covariance" class="section level1">
-<h1><span class="header-section-number">10</span> Covariance</h1>
-<div id="definition-of-covariance" class="section level2">
-<h2><span class="header-section-number">10.1</span> Definition of Covariance</h2>
-<p>For any two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, the covariance of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is defined as</p>
-<p><span class="math display">\[Cov(X,Y) = E[(X-\mu_X)(Y-\mu_Y)]\]</span></p>
+<div id="probability" class="section level1">
+<h1><span class="header-section-number">26</span> Probability</h1>
+<div id="elementary-probability-concepts" class="section level2">
+<h2><span class="header-section-number">26.1</span> Elementary Probability Concepts</h2>
+<div id="definition-of-probability" class="section level3">
+<h3><span class="header-section-number">26.1.1</span> Definition of Probability</h3>
+<p>Let <span class="math inline">\(S\)</span> be a sample space associated with an experiment. For every event <span class="math inline">\(A \in S\)</span> (ie, <span class="math inline">\(A\)</span> is a subset of <span class="math inline">\(S\)</span>), we assign a number, <span class="math inline">\(P(A)\)</span> - called the  of <span class="math inline">\(A\)</span> - such that the following three axioms hold:</p>
+<ul>
+<li>Axiom 1: <span class="math inline">\(P(A) \geq 0\)</span>.</li>
+<li>Axiom 2: <span class="math inline">\(P(S) = 1\)</span>.</li>
+<li>Axiom 3: If <span class="math inline">\(A_1, A_2, A_3, ...\)</span> form a sequence of pairwise mutually exclusive events in <span class="math inline">\(S\)</span> (that is, <span class="math inline">\(A_i \cap A_j = \emptyset\)</span> if <span class="math inline">\(i \neq j\)</span>), then<br />
+<span class="math inline">\(P(A_1 \cup A_2 \cup A_3 \cup ...) = \sum\limits_{i=1}^\infty P(A_i)\)</span>.</li>
+</ul>
 </div>
-<div id="theorems-on-covariance" class="section level2">
-<h2><span class="header-section-number">10.2</span> Theorems on Covariance</h2>
-<div id="theorem-2" class="section level3">
-<h3><span class="header-section-number">10.2.1</span> Theorem</h3>
-<p>Let <span class="math inline">\(X\)</span> be a random variable. Then <span class="math display">\[Cov(X,X) = V(X)\]</span></p>
+<div id="definition-conditional-probability" class="section level3">
+<h3><span class="header-section-number">26.1.2</span> Definition: Conditional Probability</h3>
+<p>The conditional probability of an event <span class="math inline">\(A\)</span>, given that an event <span class="math inline">\(B\)</span> has occured and <span class="math inline">\(P(B) &gt; 0\)</span> is equal to</p>
+<p><span class="math display">\[ P(A|B) = \frac{P(A\cap B)}{P(B)} \]</span></p>
+</div>
+<div id="definition-independence" class="section level3">
+<h3><span class="header-section-number">26.1.3</span> Definition: Independence</h3>
+<p>Events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be independent if any of the following holds</p>
+<p><span class="math display">\[P(A|B) = P(A)\]</span> <span class="math display">\[P(B|A) = P(B)\]</span> <span class="math display">\[P(A\cap B) = P(A)\cdot P(B)\]</span></p>
+</div>
+<div id="theorem-multiplicative-law-of-probability" class="section level3">
+<h3><span class="header-section-number">26.1.4</span> Theorem: Multiplicative Law of Probability</h3>
+<p>The probability of the intersection of two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is</p>
+<p><span class="math display">\[P(A\cap B) = P(A)\cdot P(B|A) = P(B)\cdot P(A|B)\]</span></p>
 <p><em>Proof:</em></p>
+<p>By the definition of conditional probability</p>
 <p><span class="math display">\[\begin{align*}
-Cov(X,X)
-    &amp;= E[(X-\mu)(X-\mu)] \\
-    &amp;= E[(X-\mu)^2] \\
-    &amp;= V(X)
+P(A|B) 
+  &amp;= \frac{P(A\cap B)}{P(B)} \\
+\Rightarrow P(A|B) \cdot P(B) &amp;= P(A \cap B)
+\end{align*}\]</span></p>
+<p>Likewise</p>
+<p><span class="math display">\[\begin{align*}
+P(B|A) 
+  &amp;= \frac{P(B\cap A)}{P(A)} \\
+\Rightarrow P(B|A) \cdot P(A) &amp;= P(B \cap A)
+\end{align*}\]</span></p>
+<p>Since <span class="math inline">\(P(A \cap B) = P(B \cap A)\)</span></p>
+<p><span class="math display">\[\begin{align*} 
+P(A|B) \cdot P(B) 
+  &amp;= P(A \cap B) \\
+  &amp;= P(B \cap A) \\
+  &amp;= P(B|A) \cdot P(A) \\
+\Rightarrow P(A \cap B) 
+  &amp;= P(A|B) \cdot P(B) \\ 
+  &amp;= P(B|A) \cdot P(A)
 \end{align*}\]</span></p>
 </div>
-<div id="covariance-theorem2" class="section level3">
-<h3><span class="header-section-number">10.2.2</span> Theorem</h3>
-<p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be random variables. Then</p>
-<p><span class="math display">\[Cov(X,Y) = E(XY)-E(X)E(Y)\]</span></p>
+<div id="corollary-1" class="section level3">
+<h3><span class="header-section-number">26.1.5</span> Corollary</h3>
+<p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent, then</p>
+<p><span class="math display">\[P(A \cap B) = P(A) \cdot P(B)\]</span></p>
 <p><em>Proof:</em></p>
+<p>When <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent, by the definition of independence,</p>
 <p><span class="math display">\[\begin{align*}
-Cov(X,Y)
-  &amp;= E[(X-\mu_x)(Y-\mu_Y)] \\
-  &amp;= E[XY - X\mu_y - Y\mu_X + \mu_X\mu_Y] \\
-  &amp;= E(XY) - E(X)\mu_Y - \mu_XE(Y) + \mu_X\mu_Y \\
-  &amp;= E(XY) - E(X)E(Y) - E(X)E(Y) + E(X)E(Y) \\
-  &amp;= E(XY) - 2E(X)E(Y) + E(X)E(Y) \\
-  &amp;= E(XY) - E(X)E(Y)
+P(A \cap B) 
+  &amp; = P(A|B) \cdot P(B) 
+  = P(B|A) \cdot P(A) \\
+\Rightarrow &amp;= P(A) \cdot P(B) = P(B) \cdot P(A)
+\end{align*}
+\]</span></p>
+</div>
+<div id="additive-law-of-probability" class="section level3">
+<h3><span class="header-section-number">26.1.6</span> Additive Law of Probability</h3>
+<p>The probability of the union of two events is <span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span>.</p>
+<p><em>Proof:</em></p>
+<p><span class="math inline">\(A \cup B = A \cup (A^c \cap B)\)</span> where <span class="math inline">\(A\)</span> and <span class="math inline">\((A^c \cap B)\)</span> are mutually exclusive. <span class="math inline">\(\Rightarrow P(A \cup B) = P(A) + P(A^c \cap B)\)</span></p>
+<p><span class="math inline">\(B = (A^c \cap B) \cup (A \cap B)\)</span> where <span class="math inline">\((A^c \cap B)\)</span> and <span class="math inline">\((A \cap B)\)</span> are mutually exclusive. <span class="math inline">\(\Rightarrow P(B) = P(A^c \cap B) + P(A \cap B)\\  \Rightarrow P(A^c \cap B) = P(B) - P(A \cap B)\)</span></p>
+<p><span class="math inline">\(P(A \cup B) = P(A) + P(A^c \cap B)\\  \Rightarrow P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span></p>
+</div>
+<div id="corollary-2" class="section level3">
+<h3><span class="header-section-number">26.1.7</span> Corollary</h3>
+<p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are mutually exclusive events, then <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span>.</p>
+<p><em>Proof:</em></p>
+<p>When <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are mutually exclusive, <span class="math inline">\((A \cap B) = \emptyset\)</span> and <span class="math inline">\(P(A \cap B) = 0\)</span>. By Theorem ,</p>
+<p><span class="math display">\[\begin{align*}
+P(A \cup B) &amp;= P(A) + P(B) - P(A \cap B) \\
+ \Rightarrow P(A \cup B) &amp;= P(A) + P(B) - 0 \\
+ \Rightarrow P(A \cup B) &amp;= P(A) + P(B)
 \end{align*}\]</span></p>
 </div>
-<div id="covariance-1" class="section level3">
-<h3><span class="header-section-number">10.2.3</span> Covariance</h3>
-<p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be random variables and let <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> be constants. Then</p>
-<p><span class="math display">\[Cov(aX,bY) = abCov(X,Y)\]</span></p>
+<div id="theorem-law-of-complements" class="section level3">
+<h3><span class="header-section-number">26.1.8</span> Theorem: Law of Complements</h3>
+<p>If <span class="math inline">\(A\)</span> is an event, then <span class="math inline">\(P(A) = 1 - P(A^c)\)</span>.</p>
 <p><em>Proof:</em></p>
+<p>Let <span class="math inline">\(S\)</span> be the sample space.</p>
 <p><span class="math display">\[\begin{align*}
-Cov(aX,bY)
-    &amp;= E(aXbY) - E(aX)E(bY) \\
-  &amp;= abE(XY) - abE(X)E(Y) \\
-    &amp;= ab[E(XY) - E(X)E(Y)] \\
-  &amp;= abCov(X,Y)
+S &amp;= A \cup A^c \\
+ \Rightarrow P(S) &amp;= P(A \cup A^c) \\
+ \Rightarrow P(S) &amp;= P(A) + P(A^c) - P(A \cap A^c) \\
+ \Rightarrow P(S) &amp;= P(A) + P(A^c) - 0 \\
+ \Rightarrow P(S) &amp;= P(A) + P(A^c) \\
+ \Rightarrow 1 &amp;= P(A) + P(A^c) \\
+ \Rightarrow 1 - P(A^c) &amp;= P(A) \\
+ \Rightarrow P(A) &amp;= 1 - P(A^c)
 \end{align*}\]</span></p>
 </div>
-<div id="theorem-3" class="section level3">
-<h3><span class="header-section-number">10.2.4</span> Theorem</h3>
-<p>Let <span class="math inline">\(X_1 , X_2 , \ldots , X_n\)</span> be random variables with <span class="math inline">\(E(X_i) = \mu_i\)</span> for <span class="math inline">\(i = 1,2,\ldots,n\)</span> and let <span class="math inline">\(Y_1,Y_2,\ldots,Y_m\)</span> be random variables with <span class="math inline">\(E(Y_j) = \phi_j\)</span> for <span class="math inline">\(j=1,2,\ldots,m\)</span>. Also, let <span class="math inline">\(a_1,a_2,\ldots,a_n\)</span> and <span class="math inline">\(b_1,b_2,\ldots,b_m\)</span> be constants.\</p>
-<p>If <span class="math inline">\(U_1 = \sum\limits_{i=1}^{n}a_iX_i\)</span> and <span class="math inline">\(U_2 = \sum\limits_{i=1}^{m}b_iY_i\)</span>, then</p>
-<p><span class="math display">\[Cov(U_1,U_2) = \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_jCov(X_i,Y_j)\]</span></p>
-<p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{align*}
-Cov(U_1,U_2)
-    &amp;= E[(U_1-E(U_1))(U_2-E(U_2))] \\
-  &amp;= E\Big[\big(\sum\limits_{i=1}^{n}a_iX_i-\sum\limits_{i=1}^{n}a_i\mu_i\big)
-        \big(\sum\limits_{j=1}^{m}b_jY_j-\sum\limits_{j=1}^{m}b_j\phi_j\big)\Big] \\
-  &amp;= E\Big[\big(\sum\limits_{i=1}^{n}a_i(X_i-\mu_i)\big)\big(\sum\limits_{j=1}^{m}b_j(Y_j-\phi_j)\big)\Big] \\
-  &amp;= E\Big[\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_j(X_i-\mu_i)(Y_j-\phi_j)\Big] \\
-  &amp;= \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_jE[(X_i-\mu_i)(Y_j-\phi_j)] \\
-  &amp;= \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_j\ Cov(X_i,Y_j)
-\end{align*}\]</span></p>
+<div id="definition-partition-of-a-sample-space" class="section level3">
+<h3><span class="header-section-number">26.1.9</span> Definition: Partition of a Sample Space</h3>
+<p>For some positive integer <span class="math inline">\(k\)</span>, let the sets <span class="math inline">\(B_1, B_2, \ldots, B_k\)</span> be such that</p>
+<ul>
+<li><span class="math inline">\(S = B_1 \cup B_2 \cup \ldots \cup B_k\)</span>.</li>
+<li><span class="math inline">\(B_i \cap B_j = \emptyset\)</span> for <span class="math inline">\(i \neq j\)</span>.</li>
+</ul>
+<p>Then the collection of sets <span class="math inline">\({B_1, B_2, \ldots, B_k}\)</span> is said to be a <em>partition</em> of <span class="math inline">\(S\)</span>.</p>
 </div>
-<div id="theorem-4" class="section level3">
-<h3><span class="header-section-number">10.2.5</span> Theorem</h3>
-<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be random variables with <span class="math inline">\(E(X_i)=\mu_i\)</span> for <span class="math inline">\(i=1,2,\ldots,n\)</span> and let <span class="math inline">\(a_1,a_2,\ldots,a_n\)</span> be constants.</p>
-<p>If <span class="math inline">\(Y = \sum\limits_{i=1}^{n}a_iX_i\)</span> then</p>
-<p><span class="math display">\[V(Y) = 
-  \sum\limits_{i=1}^{n}a_i^2V(X_i)+2\sum\limits_{\ \ i&lt;}\sum\limits_{j\ \ }a_ia_jCov(X_i,X_j)\]</span></p>
+<div id="definition-decomposition" class="section level3">
+<h3><span class="header-section-number">26.1.10</span> Definition: Decomposition</h3>
+<p>If <span class="math inline">\(A\)</span> is any subset of <span class="math inline">\(S\)</span> and <span class="math inline">\({B_1, B_2, \ldots, B_k}\)</span> is a partition of <span class="math inline">\(S\)</span>, <span class="math inline">\(A\)</span> can be <em>decomposed</em> as follows:</p>
+<p><span class="math inline">\(A = (A \cap B_1) \cup (A \cap B_2) \cup \cdots \cup (A \cap B_k)\)</span></p>
+</div>
+<div id="theorem-total-law-of-probability" class="section level3">
+<h3><span class="header-section-number">26.1.11</span> Theorem: Total Law of Probability</h3>
+<p>If <span class="math inline">\({B_1, B_2, \ldots, B_k}\)</span> is a partition of <span class="math inline">\(S\)</span> such that <span class="math inline">\(P(B_i) &gt; 0\)</span>, for <span class="math inline">\(i = 1, 2, \ldots, k\)</span>, then for any event <span class="math inline">\(A\)</span></p>
+<p><span class="math display">\[P(A) = \sum\limits_{i=1}^k P(A|B_i)P(B_i)\]</span></p>
+<p><em>Proof:</em></p>
+<p>Any subset <span class="math inline">\(A\)</span> of <span class="math inline">\(S\)</span> can be written as</p>
+<p><span class="math display">\[A = A \cap S = A \cap (B_1 \cup B_2 \cup \cdots \cup B_k) = (A \cap B_1) \cup (A \cap B_2) \cup \cdots \cup (A \cap B_k)\]</span></p>
+<p>Since <span class="math inline">\({B_1, B_2, \ldots, B_k}\)</span> is a partition of <span class="math inline">\(S\)</span>, if <span class="math inline">\(i \neq j\)</span>,</p>
+<p><span class="math inline">\((A \cap B_i) \cup (A \cap B_j) = A \cap (B_i \cap B_j) = A \cap \emptyset = \emptyset\)</span>. That is, <span class="math inline">\((A \cap B_i)\)</span> and <span class="math inline">\((A \cap B_j)\)</span> are mutually exclusive events. Thus,</p>
+<p><span class="math display">\[\begin{align*}
+P(A) &amp;= P(A \cap B_1) + P(A \cap B_2) + \cdots + P(A \cap B_k) \\
+^{[1]} \Rightarrow &amp;= P(A|B_1)P(B_1) + P(A|B_2)P(B_2) + \cdots + P(A|B_k)P(B_k) \\
+\Rightarrow &amp;= \sum\limits_{i=1}^k P(A|B_i)P(B_i)
+\end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Theorem : Multiplicative Law of Probability</li>
+</ol>
+</blockquote>
+</div>
+<div id="theorem-bayes-rule" class="section level3">
+<h3><span class="header-section-number">26.1.12</span> Theorem: Bayes’ Rule</h3>
+<p>If <span class="math inline">\({B_1, B_2, \ldots, B_k}\)</span> is a partition of <span class="math inline">\(S\)</span> such that <span class="math inline">\(P(B_i) &gt; 0\)</span>, for <span class="math inline">\(i = 1, 2, \ldots, k\)</span>, then</p>
+<p><span class="math display">\[ P(B_j|A) = \frac{P(A|B_j)P(B_j)}{\sum\limits_{i=1}^k P(A|B_i)P(B_i)} \]</span></p>
 <p><em>Proof:</em></p>
 <p><span class="math display">\[\begin{align*}
-V(Y)
-    &amp;= E[(Y-\mu_Y)^2] \\
-    &amp;= E[(Y-\mu_Y)(Y-\mu_Y)] \\
-  &amp;= E\Big[\big(\sum\limits_{i=1}^{n}a_iX_i-a_i\mu_i\big)
-      \big(\sum\limits_{n=1}^{n}a_jX_j-a_j\mu_j\big)\Big] \\
-  &amp;= \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}a_ia_jE[(X_i-\mu_i)(X_j-\mu_j)] \\
-  &amp;= \sum\limits_{i=1}^{n}a_i^2Cov(X_i,X_i)+
-        \sum\limits_{\ \ i\neq}\sum\limits_{j\ \ \ \ }a_ia_jE[(X_i-\mu_i)(X_j-\mu_j)] \\
-  &amp;= \sum\limits_{i=1}^{n}a_i^2V(X_i)+
-      2\sum\limits_{\ \ i&lt;}\sum\limits_{j\ \ \ \ }a_ia_jCov(X_i,X_j)
+ \ ^{[1]} P(B_j|A)  &amp;= \frac{P(A \cap B)}{P(A)} \\
+ ^{[2]} \Rightarrow &amp;= \frac{P(A|B_j)P(B_j)}{P(A)} \\
+ ^{[3]} \Rightarrow &amp;= \frac{P(A|B_j)P(B_j)}{\sum\limits_{i=1}^k P(A|B_i)P(B_i)}
 \end{align*}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Definition , Conditional Probability</li>
+<li>Definition , Conditional Probability</li>
+<li>Theorem , Law of Total Probability</li>
+</ol>
+</blockquote>
 
 </div>
 </div>
@@ -542,8 +610,8 @@ V(Y)
           </div>
         </div>
       </div>
-<a href="correlation-pearsons.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="experimental-designs.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="poisson-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="real-number-system.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -570,7 +638,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Covariance.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Probability.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],
