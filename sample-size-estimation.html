@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="integration-techniques-and-theorems.html">
-<link rel="next" href="mantel-haenszel-test-of-linear-trend.html">
+<link rel="prev" href="real-number-system.html">
+<link rel="next" href="skew-normal-distribution.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -454,50 +454,52 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="logistic-regression" class="section level1">
-<h1><span class="header-section-number">19</span> Logistic Regression</h1>
-<div id="the-logit-transformation" class="section level2">
-<h2><span class="header-section-number">19.1</span> The Logit Transformation</h2>
-<p>Logistic regression intends to model the probability that a given response will occur based on the characteristics in the predictor variables. The response, therefore, is a probability; a value between zero and one. This is in contrast to typical linear regression where the response lies range of real numbers. This is further complicated by the fact that in the observed data, a subject does not have a probabilistic response, but the response is the dichotomous occurrence of an event. The nature of the response variable in logistic regression, therefore, necessitates that a transformation be applied.</p>
-<div id="obtaining-the-logit-transformation" class="section level3">
-<h3><span class="header-section-number">19.1.1</span> Obtaining the Logit Transformation</h3>
-<p>Let us call the response for our logistic model the probability <span class="math inline">\(p\)</span> that an event will occur. Since <span class="math inline">\(p\)</span> is a probability, by definition, it’s domain is from 0 to 1. Ideally, we would like to have a response whose domain is <span class="math inline">\(\Re\)</span>. First, let us consider the transformation <span class="math inline">\(\frac{p}{1-p}\)</span> (also called the odds of <span class="math inline">\(p\)</span>) and it’s limits as <span class="math inline">\(p\)</span> approaches 0 and 1.</p>
+<div id="sample-size-estimation" class="section level1">
+<h1><span class="header-section-number">28</span> Sample Size Estimation</h1>
+<div id="solving-group-sample-sizes-using-weights" class="section level2">
+<h2><span class="header-section-number">28.1</span> Solving Group Sample Sizes Using Weights</h2>
+<p>Let <span class="math inline">\(n\)</span> be the total sample size obtained by adding two groups such that <span class="math inline">\(n = n_1 + n_2\)</span>. Let <span class="math inline">\(w\)</span> represent the proportion of <span class="math inline">\(n\)</span> allocated to <span class="math inline">\(n_1\)</span>, referred to as the <em>weight</em> of <span class="math inline">\(n_1\)</span>. Then <span class="math inline">\(n_2 = \frac{n_1 \cdot (1 - w)}{w}\)</span>.</p>
+<p>Furthermore, <span class="math inline">\(n = n_1 + \frac{n_1 \cdot (1-w)}{w}\)</span>.</p>
+<p><em>Proof:</em></p>
+<p>By the assumptions, we know</p>
 <p><span class="math display">\[\begin{align*}
-\lim\limits_{p\rightarrow 0} \frac{p}{1-p} 
-    = \frac{0}{1-0} 
-    = 0
+n &amp;= n_1 + n_2 \\
+  &amp;= w \cdot n + (1 - w) \cdot n
 \end{align*}\]</span></p>
-<p>and</p>
+<p>This implies</p>
 <p><span class="math display">\[\begin{align*}
-\lim\limits_{p\rightarrow 1} \frac{p}{1-p} 
-    = \infty
+n_1 &amp;= w \cdot n\\
+n_2 &amp;= (1-w) \cdot n
 \end{align*}\]</span></p>
-<p>So the domain of <span class="math inline">\(\frac{p}{1-p}\)</span> is <span class="math inline">\((0,\infty)\)</span>. This is handy, as we do know that the <span class="math inline">\(\ln\)</span> function takes a variable on the domain <span class="math inline">\((0,\infty)\)</span> and maps it onto the range <span class="math inline">\((-\infty,\infty)\)</span>. Thus, the equation for our logistic model the transformation (called the logit, or log-odds):</p>
-<p><span class="math display">\[\ln\bigg(\frac{p}{1-p}\bigg) = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n\]</span></p>
-</div>
-</div>
-<div id="retrieving-the-modelled-probability" class="section level2">
-<h2><span class="header-section-number">19.2</span> Retrieving the Modelled Probability</h2>
-<p>While the logit transformation allows us to perform the logistic regression, the resulting measure tells us about the risk of an event associated with a predictor, but does not tell us directly about the probability of the event occuring. If we need to know the probability of the event ocurring, we must back transform the results of our regression equation. Essentially, we extract <span class="math inline">\(\hat p\)</span> from the modelled log-odds. This is done as by:</p>
+<p>We observe the following:</p>
 <p><span class="math display">\[\begin{align*}
-\ln\bigg(\frac{\hat{p}}{1-\hat{p}}\bigg)  
-            &amp;= \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n \\
-^{[1]}  &amp;= B \\
-\Rightarrow \frac{\hat{p}}{1-\hat{p}} &amp;= \exp(B) \\
-\Rightarrow \hat{p} &amp;= (1-\hat{p})\exp(B) \\
-\Rightarrow \hat{p} &amp;= \exp(B) - \hat{p} \cdot \exp(B) \\
-\Rightarrow \hat{p} + \hat{p} \cdot \exp(B) &amp;= \exp(B) \\
-\Rightarrow \hat{p}(1+\exp(B)) &amp;= \exp(B) \\
-\Rightarrow \hat{p} &amp;= \frac{\exp(B)}{1 + \exp(B)} \\
-\Rightarrow \hat{p} &amp;= \frac{\exp(\beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n)}
-                     {1 + \exp(\beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n)}
+\frac{n_2}{n_1} 
+  &amp;= \frac{(1-w) \cdot n}{w \cdot n} \\
+  &amp;= \frac{(1-w)}{w} \\
+\Rightarrow n_2 &amp;= \frac{n_1 \cdot (1-w)}{w}
 \end{align*}\]</span></p>
-<blockquote>
+<p>This further implies</p>
+<p><span class="math display">\[ n = n_1 + \frac{n_1 \cdot (1-w)}{w}\]</span></p>
+<p>Notice now that both <span class="math inline">\(n\)</span> and <span class="math inline">\(n_2\)</span> are defined as functions of <span class="math inline">\(n_1\)</span> and <span class="math inline">\(w\)</span>. Thus, we may estimate the sample size required in each of two groups by estimating only <span class="math inline">\(n_1\)</span>, provided we know the weight <span class="math inline">\(w\)</span>.</p>
+<div id="corollary-3" class="section level3">
+<h3><span class="header-section-number">28.1.1</span> Corollary</h3>
+<p>For <span class="math inline">\(k \in \mathbb{N}\)</span>, let <span class="math inline">\(n\)</span> be the total sample size of <span class="math inline">\(k\)</span> subgroups such that</p>
+<p><span class="math display">\[n = n_1 + n_2 + n_3 + ... + n_k\]</span></p>
+<p>Suppose, further, that there exists a vector of weights <span class="math inline">\(W\)</span> that satisfy the following conditions:</p>
 <ol style="list-style-type: decimal">
-<li>Let <span class="math inline">\(B = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n\)</span></li>
+<li>For each <span class="math inline">\(w_i \in W\)</span>, <span class="math inline">\(0 \leq w_i \leq 1\)</span></li>
+<li><span class="math inline">\(\sum\limits_{i=1}^{k} w_i = 1\)</span></li>
+<li><span class="math inline">\(n = w_1 \cdot n + w_2 \cdot n + ... + w_k \cdot n = \sum\limits_{i=1}^{k} w_i \cdot n\)</span></li>
 </ol>
-</blockquote>
+<p>Let us assign the values <span class="math inline">\(n_1 = w_1 \cdot n\)</span>, <span class="math inline">\(n_2 = w_2 \cdot n\)</span>, …, <span class="math inline">\(n_k = w_k \cdot n\)</span>. Then for all <span class="math inline">\(i | i \leq k\)</span>,</p>
+<p><span class="math display">\[\begin{align*}
+\frac{n_i}{n_1} &amp;= \frac{w_i \cdot n}{w_1 \cdot n} \\
+                &amp;= \frac{w_i}{w_1} \\
+\Rightarrow n_i &amp;= \frac{n_1 \cdot w_i}{w_1}
+\end{align*}\]</span></p>
+<p>Thus, each <span class="math inline">\(n_i\)</span> may be estimated by estimating the value of <span class="math inline">\(n_1\)</span> provided <span class="math inline">\(W\)</span> is a fully specified vector of weights for each of the <span class="math inline">\(k\)</span> groups.</p>
 
+</div>
 </div>
 </div>
             </section>
@@ -505,8 +507,8 @@ MathJax.Hub.Config({
           </div>
         </div>
       </div>
-<a href="integration-techniques-and-theorems.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="mantel-haenszel-test-of-linear-trend.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="real-number-system.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="skew-normal-distribution.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -533,7 +535,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/LogisticRegression.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Sample_Size_Estimation.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],
