@@ -1,0 +1,268 @@
+# T-test
+
+## Definitions and Terminology
+
+## One-Sample T-test
+
+The t-test is commonly used to look for evidence that the mean of a 
+normally distributed random variable may differ from a hypothesized (or 
+previously observed) value. 
+
+### T-Statistic
+
+The $t$-statistic is a standardized measure of the magnitude of difference between a sample's mean and some known, non-random constant.  It is similar to a $z$-statistic, but differs in that a $t$-statistic may be calculated without knowledge of the population variance.
+
+### Definitions and Terminology
+
+Let $\bar{x}$ be a sample mean from a sample with standard deviation $s$.  Let $\mu_0$ be a constant, and $s_\bar{x} = s/\sqrt{n}$ be the standard error of the parameter $\bar{x}$.  $t$ is defined:
+$$t = \frac{\bar{x} - \mu_0}{s_\bar{x}} = \frac{\bar{x} - \mu_0}{\frac{s}{\sqrt{n}}}$$
+
+### Hypotheses
+
+The hypotheses for these test take the forms:
+
+For a two-sided test:
+$$
+  \begin{align*}
+  H_0: \mu &= \mu_0\\
+  H_1: \mu &\neq \mu_0
+  \end{align*}
+$$
+
+For a one-sided test:
+$$
+  \begin{align*}
+  H_0: \mu &< \mu_0\\
+  H_1: \mu &\geq \mu_0
+  \end{align*}
+$$
+
+or 
+$$
+  \begin{align*}
+  H_0: \mu &> \mu_0\\
+  H_1: \mu &\leq \mu_0
+  \end{align*}
+$$
+
+To compare a sample $(X_1, \ldots, X_n)$ against the hypothesized value, a 
+T-statistic is calculated in the form:
+
+$$T = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}$$
+
+Where $\bar{x}$ is the sample mean and $s$ is the sample standard deviation.
+
+### Decision Rule
+
+The decision to reject a null hypothesis is made when an observed T-value lies
+in a critical region that suggests the probability of that observation is low.
+We define the critical region as the upper bound we are willing to accept for
+$\alpha$, the Type I Error.
+
+In the two-sided test, $\alpha$ is shared equally in both tails.  The rejection
+regions for the most common values of $\alpha$ are depicted in the figure below, 
+with the sum of shaded areas on both sides equaling the corresponding $\alpha$.
+It follows, then, that the decision rule is:
+
+Reject $H_0$ when $T \leq t_{\alpha/2, n-1}$ or when $T \geq t_{1-\alpha/2, n-1}$.
+
+By taking advantage of the symmetry of the T-distribution, we can simplify the
+decision rule to:
+
+Reject $H_0$ when $|T| \geq t_{1-\alpha/2, n-1}$
+
+```{r, echo=FALSE, fig.height=3, fig.width=6, fig.path = 'figures/', fig.cap="The example displayed uses 25 degrees of freedom"}
+RejectRegion <- 
+  data.frame(x = seq(-5, 5, by = 0.01)) %>%
+  mutate(y = dt(x, df = 24),
+         sig = cut(pt(x, df = 24),
+                   breaks = c(0, 0.005, 0.025, 0.05, 
+                              0.95, 0.975, 0.995, 1),
+                   labels = 1:7))
+levels(RejectRegion[["sig"]]) = list("0.01" = c(1,7),
+                                     "0.05" = c(2,6),
+                                     "0.10" = c(3,5))
+
+ggplot(data = RejectRegion,
+       mapping = aes(x = x)) + 
+  geom_line(mapping = aes(y = y)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x < 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x > 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  scale_fill_manual(values = pallette_green) +  
+  xlab("T-value") + 
+  ylab("Probability") + 
+  labs(fill="alpha")
+```
+
+In the one-sided test, $\alpha$ is placed in only one tail.  The rejection
+regions for the most common values of $\alpha$ are depicted in the figure below.
+In each case, $\alpha$ is the area in the tail of the figure.
+It follows, then, that the decision rule for a lower tailed test is:
+
+Reject $H_0$ when $T \leq t_{\alpha, n-1}$.
+
+For an upper tailed test, the decision rule is:
+
+Reject $H_0$ when $T \geq t_{1-\alpha, n-1}$.
+
+Using the symmetry of the T-distribution, we can simplify the 
+decision rule as:
+
+Reject $H_0$ when $|T| \geq t_{1-\alpha, n-1}$.
+
+```{r, echo=FALSE, fig.height=3, fig.width=6, fig.path = 'figures/', fig.cap="The example displayed uses 25 degrees of freedom"}
+RejectRegion <- 
+  expand.grid(x = seq(-5, 5, by = 0.01),
+              tail = c("Lower Tailed", "Upper Tailed")) %>%
+  mutate(y = dt(x, df = 24),
+         sig = cut(pt(x, df = 24),
+                   breaks = c(0, 0.005, 0.025, 0.05, 
+                              0.95, 0.975, 0.995, 1),
+                   labels = 1:7),
+         sig = as.numeric(sig),
+         sig = ifelse(tail %in% "Lower Tailed" & x > 0,
+                      4, sig),
+         sig = ifelse(tail %in% "Upper Tailed" & x < 0,
+                      4, sig),
+         sig = factor(sig))
+levels(RejectRegion[["sig"]]) = list("0.01" = c(1,7),
+                                     "0.05" = c(2,6),
+                                     "0.10" = c(3,5))
+
+ggplot(data = RejectRegion,
+       mapping = aes(x = x)) + 
+  geom_line(mapping = aes(y = y)) + 
+  facet_grid(~ tail) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x < 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x > 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  scale_fill_manual(values = pallette_green) +  
+  xlab("T-value") + 
+  ylab("Probability") + 
+  labs(fill="alpha")
+```
+
+The decision rule can also be written in terms of $\bar{x}$:
+
+Reject $H_0$ when $\bar{x} \leq \mu_0 - t_\alpha \cdot s/\sqrt{n}$ or
+$\bar{x} \geq \mu_0 + t_\alpha \cdot s/\sqrt{n}$.
+
+This change can be justified by:
+
+$$
+\begin{align*}
+|T| &\geq t_{1-\alpha, n-1}\\
+\Big|\frac{\bar{x} - \mu_0}{s/\sqrt{n}}\Big| &\geq t_{1-\alpha, n-1} 
+\end{align*}
+$$
+
+
+
+$$
+\begin{align*}
+-\Big(\frac{\bar{x} - \mu_0}{s/\sqrt{n}}\Big) &\geq t_{1-\alpha, n-1} &
+    \frac{\bar{x} - \mu_0}{s/\sqrt{n}} &\geq t_{1-\alpha, n-1}\\
+\bar{x} - \mu_0 &\leq - t_{1-\alpha, n-1} \cdot s/\sqrt{n} &
+    \bar{x} - \mu_0 &\geq t_{1-\alpha, n-1} \cdot s/\sqrt{n}\\
+\bar{x} &\leq \mu_0 - t_{1-\alpha, n-1} \cdot s/\sqrt{n} &
+    \bar{x} &\geq \mu_0 + t_{1-\alpha, n-1} \cdot s/\sqrt{n} 
+\end{align*}
+$$
+
+For a two-sided test, both the conditions apply.  The left side condition is used
+for a left-tailed test, and the right side condition for a right-tailed test.
+
+### Power
+
+The derivations below make use of the following symbols:
+
+* $\bar{x}$: The sample mean
+* $s$: The sample standard deviation
+* $n$: The sample size
+* $\mu_0$: The value of population mean under the null hypothesis
+* $\mu$: The value of the population mean under the alternative hypothesis.
+* $\alpha$: The significance level
+* $\gamma(\mu)$: The power of the test for the parameter $\mu$.
+* $t_{\alpha, n-1}$: A quantile of the central t-distribution for a probability,
+    $\alpha$ and $n-1$ degrees of freedom.
+* $T$: A calculated value to be compared against a t-distribution.
+* $C$: The critical region (rejection region) of the test.
+
+
+**Two-Sided Test**
+
+$$
+\begin{align*}
+\gamma(\mu) &= P_\mu(\bar{x} \in C)\\
+&= P_\mu\big(\bar{x} \leq \mu_0 - t_{\alpha/2, n-1} \cdot s/\sqrt{n}\big) +
+               P_\mu\big(\bar{x} \geq \mu_0 + t_{1-\alpha/2, n-1} \cdot s/\sqrt{n}\big)\\
+&= P_\mu\big(\bar{x} - \mu \leq \mu_0 - \mu - t_{\alpha/2, n-1} \cdot s/\sqrt{n}\big) +
+   P_\mu\big(\bar{x} - \mu \geq \mu_0 - \mu + t_{1-\alpha/2, n-1} \cdot s/\sqrt{n}\big)\\
+&= P_\mu\Big(\frac{\bar{x} - \mu}{s/\sqrt{n}} \leq 
+        \frac{\mu_0 - \mu - t_{\alpha/2, n-1} \cdot s/\sqrt{n}}{s/\sqrt{n}}\Big) +
+   P_\mu\Big(\frac{\bar{x} - \mu}{s/\sqrt{n}} \geq 
+        \frac{\mu_0 - \mu + t_{1-\alpha/2, n-1} \cdot s/\sqrt{n}}{s/\sqrt{n}}\Big)\\
+&= P_\mu\Big(T \leq \frac{\mu_0 - \mu}{s/\sqrt{n}} - t_{\alpha/2, n-1}\Big) + 
+   P_\mu\Big(T \geq \frac{\mu_0 - \mu}{s/\sqrt{n}} + t_{1-\alpha/2, n-1}\Big)\\
+&= P_\mu\Big(T \leq -t_{\alpha/2, n-1} + \frac{\mu_0 - \mu}{s/\sqrt{n}}\Big) + 
+   P_\mu\Big(T \geq t_{1-\alpha/2, n-1} + \frac{\mu_0 - \mu}{s/\sqrt{n}}\Big)\\
+&= P_\mu\Big(T \leq -t_{\alpha/2, n-1} + \frac{\sqrt{n} \cdot (\mu_0 - \mu)}{s}\Big) + 
+   P_\mu\Big(T \geq t_{1-\alpha/2, n-1} + \frac{\sqrt{n} \cdot (\mu_0 - \mu)}{s}\Big)
+\end{align*}
+$$
+
+Both $t_{\alpha/2, n-1}$ and $t_{1-\alpha/2, n-1}$ have non-central T-distributions
+with non-centrality parameter $\frac{\sqrt{n} (\mu_0 -\mu)}{s}$.
+   
+
+**One-Sided Test**
+
+For convenience, the power for only the upper tailed test is derived here.  
+Recall that the symmetry of the t-test allows us to use the decision rule:
+Reject $H_0$ when $|T| \geq t_{1-\alpha}$.  Thus, where $T$ occurs in the 
+derivation below, it may reasonably be replaced with $|T|$.
+
+$$
+\begin{align*}
+\gamma(\mu)  &= P_\mu(\bar{x} \in C)\\
+&= P_\mu\big(\bar{x} \geq \mu_0 + t_{1-\alpha, n-1} \cdot s / \sqrt{n}\big)\\
+&= P_\mu\big(\bar{x} - \mu \geq \mu_0 - \mu + t_{1-\alpha, n-1} \cdot s / \sqrt{n}\big)\\
+&= P_\mu\Big(\frac{\bar{x} - \mu}{s/\sqrt{n}} \geq 
+    \frac{\mu_0 - \mu + t_{1-\alpha, n-1} \cdot s / \sqrt{n}}{s / \sqrt{n}}\Big)\\
+&= P_\mu\Big(T \geq \frac{\mu_0 - \mu}{s/\sqrt{n}} + t_{1-\alpha, n-1} \Big)\\
+&= P_\mu\Big(T \geq t_{1-\alpha, n-1} + \frac{\mu_0 - \mu}{s/\sqrt{n}}\Big)\\
+&= P_\mu\Big(T \geq t_{1-\alpha, n-1} + \frac{\sqrt{n} \cdot (\mu_0 -\mu)}{s}\Big)
+\end{align*}
+$$
+
+Where $t_{1-\alpha, n-1} + \frac{\sqrt{n} (\mu_0 -\mu)}{s}$ has a non-central 
+t-distribution with non-centrality parameter $\frac{\sqrt{n} (\mu_0 -\mu)}{s}$
+
+### Confidence Interval
+
+The confidence interval for $\theta$ is written:
+$$\bar{x} \pm t_{1-\alpha/2} \cdot \frac{s}{\sqrt{n}}$$
+
+The value of the expression on the right is often referred to as the _margin of error_, and we will refer to this value as 
+$$E = t_{1-\alpha/2} \cdot \frac{s}{\sqrt{n}}$$
+
+## Two-Sample T-test
+
+### T-Statistic
+
+### Decision Rule
+
+### Power
+
+### Confidence Interval

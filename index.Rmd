@@ -28,6 +28,7 @@ library(RColorBrewer)
 library(tidyr)
 
 palette <- brewer.pal(9, "PRGn")
+pallette_green <- rev(brewer.pal(7, "Greens")[3:5])
 ```
 
 
