@@ -1,7 +1,5 @@
 # T-test
 
-## Definitions and Terminology
-
 ## One-Sample T-test
 
 The t-test is commonly used to look for evidence that the mean of a 
@@ -17,6 +15,8 @@ The $t$-statistic is a standardized measure of the magnitude of difference betwe
 Let $\bar{x}$ be a sample mean from a sample with standard deviation $s$.  Let $\mu_0$ be a constant, and $s_\bar{x} = s/\sqrt{n}$ be the standard error of the parameter $\bar{x}$.  $t$ is defined:
 $$t = \frac{\bar{x} - \mu_0}{s_\bar{x}} = \frac{\bar{x} - \mu_0}{\frac{s}{\sqrt{n}}}$$
 
+and has $\nu = n-1$ degrees of freedom.
+
 ### Hypotheses
 
 The hypotheses for these test take the forms:
@@ -25,7 +25,7 @@ For a two-sided test:
 $$
   \begin{align*}
   H_0: \mu &= \mu_0\\
-  H_1: \mu &\neq \mu_0
+  H_a: \mu &\neq \mu_0
   \end{align*}
 $$
 
@@ -33,7 +33,7 @@ For a one-sided test:
 $$
   \begin{align*}
   H_0: \mu &< \mu_0\\
-  H_1: \mu &\geq \mu_0
+  H_a: \mu &\geq \mu_0
   \end{align*}
 $$
 
@@ -41,7 +41,7 @@ or
 $$
   \begin{align*}
   H_0: \mu &> \mu_0\\
-  H_1: \mu &\leq \mu_0
+  H_a: \mu &\leq \mu_0
   \end{align*}
 $$
 
@@ -64,12 +64,12 @@ regions for the most common values of $\alpha$ are depicted in the figure below,
 with the sum of shaded areas on both sides equaling the corresponding $\alpha$.
 It follows, then, that the decision rule is:
 
-Reject $H_0$ when $T \leq t_{\alpha/2, n-1}$ or when $T \geq t_{1-\alpha/2, n-1}$.
+Reject $H_0$ when $T \leq t_{\alpha/2, \nu}$ or when $T \geq t_{1-\alpha/2, \nu}$.
 
 By taking advantage of the symmetry of the T-distribution, we can simplify the
 decision rule to:
 
-Reject $H_0$ when $|T| \geq t_{1-\alpha/2, n-1}$
+Reject $H_0$ when $|T| \geq t_{1-\alpha/2, \nu}$
 
 ```{r, echo=FALSE, fig.height=3, fig.width=6, fig.path = 'figures/', fig.cap="The example displayed uses 25 degrees of freedom"}
 RejectRegion <- 
@@ -105,16 +105,16 @@ regions for the most common values of $\alpha$ are depicted in the figure below.
 In each case, $\alpha$ is the area in the tail of the figure.
 It follows, then, that the decision rule for a lower tailed test is:
 
-Reject $H_0$ when $T \leq t_{\alpha, n-1}$.
+Reject $H_0$ when $T \leq t_{\alpha, \nu}$.
 
 For an upper tailed test, the decision rule is:
 
-Reject $H_0$ when $T \geq t_{1-\alpha, n-1}$.
+Reject $H_0$ when $T \geq t_{1-\alpha, \nu}$.
 
 Using the symmetry of the T-distribution, we can simplify the 
 decision rule as:
 
-Reject $H_0$ when $|T| \geq t_{1-\alpha, n-1}$.
+Reject $H_0$ when $|T| \geq t_{1-\alpha, \nu}$.
 
 ```{r, echo=FALSE, fig.height=3, fig.width=6, fig.path = 'figures/', fig.cap="The example displayed uses 25 degrees of freedom"}
 RejectRegion <- 
@@ -162,8 +162,8 @@ This change can be justified by:
 
 $$
 \begin{align*}
-|T| &\geq t_{1-\alpha, n-1}\\
-\Big|\frac{\bar{x} - \mu_0}{s/\sqrt{n}}\Big| &\geq t_{1-\alpha, n-1} 
+|T| &\geq t_{1-\alpha, \nu}\\
+\Big|\frac{\bar{x} - \mu_0}{s/\sqrt{n}}\Big| &\geq t_{1-\alpha, \nu} 
 \end{align*}
 $$
 
@@ -171,12 +171,12 @@ $$
 
 $$
 \begin{align*}
--\Big(\frac{\bar{x} - \mu_0}{s/\sqrt{n}}\Big) &\geq t_{1-\alpha, n-1} &
-    \frac{\bar{x} - \mu_0}{s/\sqrt{n}} &\geq t_{1-\alpha, n-1}\\
-\bar{x} - \mu_0 &\leq - t_{1-\alpha, n-1} \cdot s/\sqrt{n} &
-    \bar{x} - \mu_0 &\geq t_{1-\alpha, n-1} \cdot s/\sqrt{n}\\
-\bar{x} &\leq \mu_0 - t_{1-\alpha, n-1} \cdot s/\sqrt{n} &
-    \bar{x} &\geq \mu_0 + t_{1-\alpha, n-1} \cdot s/\sqrt{n} 
+-\Big(\frac{\bar{x} - \mu_0}{s/\sqrt{n}}\Big) &\geq t_{1-\alpha, \nu} &
+    \frac{\bar{x} - \mu_0}{s/\sqrt{n}} &\geq t_{1-\alpha, \nu}\\
+\bar{x} - \mu_0 &\leq - t_{1-\alpha, \nu} \cdot s/\sqrt{n} &
+    \bar{x} - \mu_0 &\geq t_{1-\alpha, \nu} \cdot s/\sqrt{n}\\
+\bar{x} &\leq \mu_0 - t_{1-\alpha, \nu} \cdot s/\sqrt{n} &
+    \bar{x} &\geq \mu_0 + t_{1-\alpha, \nu} \cdot s/\sqrt{n} 
 \end{align*}
 $$
 
@@ -191,10 +191,10 @@ The derivations below make use of the following symbols:
 * $s$: The sample standard deviation
 * $n$: The sample size
 * $\mu_0$: The value of population mean under the null hypothesis
-* $\mu$: The value of the population mean under the alternative hypothesis.
+* $\mu_a$: The value of the population mean under the alternative hypothesis.
 * $\alpha$: The significance level
 * $\gamma(\mu)$: The power of the test for the parameter $\mu$.
-* $t_{\alpha, n-1}$: A quantile of the central t-distribution for a probability,
+* $t_{\alpha, \nu}$: A quantile of the central t-distribution for a probability,
     $\alpha$ and $n-1$ degrees of freedom.
 * $T$: A calculated value to be compared against a t-distribution.
 * $C$: The critical region (rejection region) of the test.
@@ -204,26 +204,26 @@ The derivations below make use of the following symbols:
 
 $$
 \begin{align*}
-\gamma(\mu) &= P_\mu(\bar{x} \in C)\\
-&= P_\mu\big(\bar{x} \leq \mu_0 - t_{\alpha/2, n-1} \cdot s/\sqrt{n}\big) +
-               P_\mu\big(\bar{x} \geq \mu_0 + t_{1-\alpha/2, n-1} \cdot s/\sqrt{n}\big)\\
-&= P_\mu\big(\bar{x} - \mu \leq \mu_0 - \mu - t_{\alpha/2, n-1} \cdot s/\sqrt{n}\big) +
-   P_\mu\big(\bar{x} - \mu \geq \mu_0 - \mu + t_{1-\alpha/2, n-1} \cdot s/\sqrt{n}\big)\\
-&= P_\mu\Big(\frac{\bar{x} - \mu}{s/\sqrt{n}} \leq 
-        \frac{\mu_0 - \mu - t_{\alpha/2, n-1} \cdot s/\sqrt{n}}{s/\sqrt{n}}\Big) +
-   P_\mu\Big(\frac{\bar{x} - \mu}{s/\sqrt{n}} \geq 
-        \frac{\mu_0 - \mu + t_{1-\alpha/2, n-1} \cdot s/\sqrt{n}}{s/\sqrt{n}}\Big)\\
-&= P_\mu\Big(T \leq \frac{\mu_0 - \mu}{s/\sqrt{n}} - t_{\alpha/2, n-1}\Big) + 
-   P_\mu\Big(T \geq \frac{\mu_0 - \mu}{s/\sqrt{n}} + t_{1-\alpha/2, n-1}\Big)\\
-&= P_\mu\Big(T \leq -t_{\alpha/2, n-1} + \frac{\mu_0 - \mu}{s/\sqrt{n}}\Big) + 
-   P_\mu\Big(T \geq t_{1-\alpha/2, n-1} + \frac{\mu_0 - \mu}{s/\sqrt{n}}\Big)\\
-&= P_\mu\Big(T \leq -t_{\alpha/2, n-1} + \frac{\sqrt{n} \cdot (\mu_0 - \mu)}{s}\Big) + 
-   P_\mu\Big(T \geq t_{1-\alpha/2, n-1} + \frac{\sqrt{n} \cdot (\mu_0 - \mu)}{s}\Big)
+\gamma(\mu_a) &= P_{\mu_a}(\bar{x} \in C)\\
+&= P_\mu\big(\bar{x} \leq \mu_0 - t_{\alpha/2, \nu} \cdot s/\sqrt{n}\big) +
+               P_{\mu_a}\big(\bar{x} \geq \mu_0 + t_{1-\alpha/2, \nu} \cdot s/\sqrt{n}\big)\\
+&= P_{\mu_a}\big(\bar{x} - \mu_a \leq \mu_0 - \mu_a - t_{\alpha/2, \nu} \cdot s/\sqrt{n}\big) +
+   P_{\mu_a}\big(\bar{x} - \mu_a \geq \mu_0 - \mu_a + t_{1-\alpha/2, \nu} \cdot s/\sqrt{n}\big)\\
+&= P_{\mu_a}\Big(\frac{\bar{x} - \mu}{s/\sqrt{n}} \leq 
+        \frac{\mu_0 - \mu_a - t_{\alpha/2, \nu} \cdot s/\sqrt{n}}{s/\sqrt{n}}\Big) +
+   P_{\mu_a}\Big(\frac{\bar{x} - \mu}{s/\sqrt{n}} \geq 
+        \frac{\mu_0 - \mu_a + t_{1-\alpha/2, \nu} \cdot s/\sqrt{n}}{s/\sqrt{n}}\Big)\\
+&= P_{\mu_a}\Big(T \leq \frac{\mu_0 - \mu_a}{s/\sqrt{n}} - t_{\alpha/2, \nu}\Big) + 
+   P_{\mu_a}\Big(T \geq \frac{\mu_0 - \mu_a}{s/\sqrt{n}} + t_{1-\alpha/2, \nu}\Big)\\
+&= P_{\mu_a}\Big(T \leq -t_{\alpha/2, \nu} + \frac{\mu_0 - \mu_a}{s/\sqrt{n}}\Big) + 
+   P_{\mu_a}\Big(T \geq t_{1-\alpha/2, \nu} + \frac{\mu_0 - \mu_a}{s/\sqrt{n}}\Big)\\
+&= P_{\mu_a}\Big(T \leq -t_{\alpha/2, \nu} + \frac{\sqrt{n} \cdot (\mu_0 - \mu_a)}{s}\Big) + 
+   P_{\mu_a}\Big(T \geq t_{1-\alpha/2, \nu} + \frac{\sqrt{n} \cdot (\mu_0 - \mu_a)}{s}\Big)
 \end{align*}
 $$
 
-Both $t_{\alpha/2, n-1}$ and $t_{1-\alpha/2, n-1}$ have non-central T-distributions
-with non-centrality parameter $\frac{\sqrt{n} (\mu_0 -\mu)}{s}$.
+Both $t_{\alpha/2, \nu}$ and $t_{1-\alpha/2, \nu}$ have non-central T-distributions
+with non-centrality parameter $\frac{\sqrt{n} (\mu_0 -\mu_a)}{s}$.
    
 
 **One-Sided Test**
@@ -235,19 +235,19 @@ derivation below, it may reasonably be replaced with $|T|$.
 
 $$
 \begin{align*}
-\gamma(\mu)  &= P_\mu(\bar{x} \in C)\\
-&= P_\mu\big(\bar{x} \geq \mu_0 + t_{1-\alpha, n-1} \cdot s / \sqrt{n}\big)\\
-&= P_\mu\big(\bar{x} - \mu \geq \mu_0 - \mu + t_{1-\alpha, n-1} \cdot s / \sqrt{n}\big)\\
-&= P_\mu\Big(\frac{\bar{x} - \mu}{s/\sqrt{n}} \geq 
-    \frac{\mu_0 - \mu + t_{1-\alpha, n-1} \cdot s / \sqrt{n}}{s / \sqrt{n}}\Big)\\
-&= P_\mu\Big(T \geq \frac{\mu_0 - \mu}{s/\sqrt{n}} + t_{1-\alpha, n-1} \Big)\\
-&= P_\mu\Big(T \geq t_{1-\alpha, n-1} + \frac{\mu_0 - \mu}{s/\sqrt{n}}\Big)\\
-&= P_\mu\Big(T \geq t_{1-\alpha, n-1} + \frac{\sqrt{n} \cdot (\mu_0 -\mu)}{s}\Big)
+\gamma(\mu_a)  &= P_{\mu_a}(\bar{x} \in C)\\
+&= P_{\mu_a}\big(\bar{x} \geq \mu_0 + t_{1-\alpha, \nu} \cdot s / \sqrt{n}\big)\\
+&= P_{\mu_a}\big(\bar{x} - \mu_a \geq \mu_0 - \mu_a + t_{1-\alpha, \nu} \cdot s / \sqrt{n}\big)\\
+&= P_{\mu_a}\Big(\frac{\bar{x} - \mu_a}{s/\sqrt{n}} \geq 
+    \frac{\mu_0 - \mu_a + t_{1-\alpha, \nu} \cdot s / \sqrt{n}}{s / \sqrt{n}}\Big)\\
+&= P_{\mu_a}\Big(T \geq \frac{\mu_0 - \mu_a}{s/\sqrt{n}} + t_{1-\alpha, \nu} \Big)\\
+&= P_{\mu_a}\Big(T \geq t_{1-\alpha, \nu} + \frac{\mu_0 - \mu_a}{s/\sqrt{n}}\Big)\\
+&= P_{\mu_a}\Big(T \geq t_{1-\alpha, \nu} + \frac{\sqrt{n} \cdot (\mu_0 -\mu_a)}{s}\Big)
 \end{align*}
 $$
 
-Where $t_{1-\alpha, n-1} + \frac{\sqrt{n} (\mu_0 -\mu)}{s}$ has a non-central 
-t-distribution with non-centrality parameter $\frac{\sqrt{n} (\mu_0 -\mu)}{s}$
+Where $t_{1-\alpha, \nu} + \frac{\sqrt{n} (\mu_0 -\mu_a)}{s}$ has a non-central 
+t-distribution with non-centrality parameter $\frac{\sqrt{n} (\mu_0 -\mu_a)}{s}$
 
 ### Confidence Interval
 
@@ -259,10 +259,253 @@ $$E = t_{1-\alpha/2} \cdot \frac{s}{\sqrt{n}}$$
 
 ## Two-Sample T-test
 
+The two sample t-test is commonly used to look for evidence that the mean of one normally distributed random variable may differ from that of another normally distributed random variable.  The hypotheses for this test take the forms:
+
 ### T-Statistic
 
+The $t$-statistic is a standardize measure of the magnitude of difference between two sample means and some known, non-random difference of population means. It is similar to a two sample $z$-statistic, but differes in that a $t$-statistic may be calculated without knowledge of the population variances.
+
+### Definitions and Terminology
+
+Let $\bar{x_1}$ and $\bar{x_2}$ be sample means from two independent samples with standard deviations $s_1$ and $s_2$.  Let $\mu_1$ and $\mu_2$ be constants representing the means of the populations from which $\bar{x_1}$ and $\bar{x_2}$ obtained. $t$ is defined:
+
+$$ t = \frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*}$$
+
+Where 
+
+\[ SE^* = 
+  \left\{ 
+    \begin{array}{rl}
+      \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}, & \sigma_1^2 = \sigma_2^2 \\
+      \sqrt{\frac{(n_1-1) \cdot s_1^2 + (n_2-1) \cdot s_2^2}
+                 {n_1 + n_2 - 2}} \cdot
+            \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}, & \sigma_1^2 \neq \sigma_2^2 
+    \end{array}
+  \right.
+\]
+
+and the degrees of freedom $\nu$ are (by the Welch-Satterthwaite equation)
+
+\[ \nu = 
+  \left\{
+    \begin{array}{rl}
+    n_1 + n_2 - 2, & \sigma_1^2 = \sigma_2^2 \\
+    \frac{(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2})^2}
+         {\frac{s_1^2/n_1}{n_1 - 1} + 
+          \frac{s_2^2/n_2}{n_2 - 1}}, & \sigma_1^2 \neq \sigma_2^2
+    \end{array}
+  \right.
+\]
+
+
+### Hypotheses
+
+For a two-sided test:
+
+$$H_0 : \mu_1 = \mu_2 \\
+  H_a : \mu_1 \neq \mu_2 $$
+  
+For a one-sided test:
+
+$$ H_0 : \mu_1 \leq \mu_2 \\
+   H_a : \mu_1 > \mu_2 $$
+   
+or
+
+$$ H_0 : \mu_1 \geq \mu_1 \\
+   H_a : \mu_1 < \mu_1 $$
+   
 ### Decision Rule
+
+The decision to reject a null hypothesis is made when an observed T-value lies in a critical region that suggests the probability of that observation is low. We define the critical region as the upper bound we are willing to accept for $\alpha$, the Type I Error.
+
+#### Two Sided Test
+
+In the two-sided test, $\alpha$ is shared equally in both tails. The rejection regions for the most common values of $\alpha$ are depicted in the figure below, with the sum of the shaded areas on both sides equally the corresponding $\alpha$. It follows then that the decision rule is:
+
+Reject $H_0$ when $T \leq t_{\alpha/2, \nu}$ or when $T \geq t_{1 - \alpha/2, \nu}$.
+
+By taking advantage of the symmetry of the T-distribution, we can simplify the decision rule to:
+
+Reject $H_0$ when $|T| \geq t_{1-\alpha/2, \nu}$
+
+```{r, echo=FALSE, fig.height=3, fig.width=6, fig.path = 'figures/', fig.cap="The example displayed uses 25 degrees of freedom"}
+RejectRegion <- 
+  data.frame(x = seq(-5, 5, by = 0.01)) %>%
+  mutate(y = dt(x, df = 24),
+         sig = cut(pt(x, df = 24),
+                   breaks = c(0, 0.005, 0.025, 0.05, 
+                              0.95, 0.975, 0.995, 1),
+                   labels = 1:7))
+levels(RejectRegion[["sig"]]) = list("0.01" = c(1,7),
+                                     "0.05" = c(2,6),
+                                     "0.10" = c(3,5))
+
+ggplot(data = RejectRegion,
+       mapping = aes(x = x)) + 
+  geom_line(mapping = aes(y = y)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x < 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x > 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  scale_fill_manual(values = pallette_green) +  
+  xlab("T-value") + 
+  ylab("Probability") + 
+  labs(fill="alpha")
+```
+
+## One Sided Test
+
+In the one sided test, $\alpha$ is placed in only one tail. The rejection regions for the most common values of $\alpha$ are depicted in the figure below. In each case, $\alpha$ is the area in the tail of the figure. It follow, then, that the decision rule for a lower tailed test is:
+
+Reject $H_0$ when $T \leq t_{\alpha, \nu}$.
+
+For an upper tailed test, the decision rule is:
+
+Reject $H_0$ when $T \geq t_{1-\alpha, \nu}$.
+
+Using the symmetry of the $T$-distribution, we can simplify the decision rule as:
+
+Reject $H_0$ when $|T| \geq t_{1-\alpha, \nu}$.
+
+```{r, echo=FALSE, fig.height=3, fig.width=6, fig.path = 'figures/', fig.cap="The example displayed uses 25 degrees of freedom"}
+RejectRegion <- 
+  expand.grid(x = seq(-5, 5, by = 0.01),
+              tail = c("Lower Tailed", "Upper Tailed")) %>%
+  mutate(y = dt(x, df = 24),
+         sig = cut(pt(x, df = 24),
+                   breaks = c(0, 0.005, 0.025, 0.05, 
+                              0.95, 0.975, 0.995, 1),
+                   labels = 1:7),
+         sig = as.numeric(sig),
+         sig = ifelse(tail %in% "Lower Tailed" & x > 0,
+                      4, sig),
+         sig = ifelse(tail %in% "Upper Tailed" & x < 0,
+                      4, sig),
+         sig = factor(sig))
+levels(RejectRegion[["sig"]]) = list("0.01" = c(1,7),
+                                     "0.05" = c(2,6),
+                                     "0.10" = c(3,5))
+
+ggplot(data = RejectRegion,
+       mapping = aes(x = x)) + 
+  geom_line(mapping = aes(y = y)) + 
+  facet_grid(~ tail) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x < 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x > 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  scale_fill_manual(values = pallette_green) +  
+  xlab("T-value") + 
+  ylab("Probability") + 
+  labs(fill="alpha")
+```
+
+The decision rule can also be written in terms of $\bar{x_1}$ and $\bar{x_2}$.
+
+Reject $H_0$ when $\bar{x_1} - \bar{x_2} \leq (\mu_1 - \mu_2) - t_{\alpha, \nu} \cdot SE^*$ or $\bar{x_1} - \bar{x_2} \geq (\mu_1 - \mu_2) + t_{\alpha, \nu} \cdot SE^*$
+
+This change can be justified by:
+
+$$\begin{aligned}
+|T| & \geq t_{1 - \alpha, \nu} \\
+\Big| \frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*} \Big |
+    & \geq t_{1 - \alpha, \nu} 
+\end{aligned}$$
+    
+    
+    
+$$ \begin{aligned}
+-\Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*}\Big) & \geq t_{1-\alpha, \nu}
+    & \Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*}\Big) & \geq t_{1-\alpha, \nu} \\
+(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2) & \leq -t_{1 - \alpha, \nu} \cdot SE^* 
+    & (\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2) &\geq t_{1 - \alpha, \nu} \cdot SE^* \\
+\bar{x_1} - \bar{x_2} &\leq (\mu_1 - \mu_2) - t_{1-\alpha, \nu} \cdot SE^* 
+    & \bar{x_1} - \bar{x_2} &\leq (\mu_1 - \mu_2) + t_{1-\alpha, \nu} \cdot SE^* 
+\end{aligned}$$
 
 ### Power
 
+**Two Sided Test**
+
+$$
+\begin{align*}
+\gamma(\mu_{1a} - \mu_{2a}) 
+  &= P_{\mu_{1a} - \mu_{2a}}(\bar{x} \in C)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2}) \leq 
+      (\mu_1 - \mu_2) - t_{\alpha/2, \nu} \cdot SE^*\big) + \\
+  &\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2} \geq 
+      (\mu_1 - \mu_2) + t_{1-\alpha/2, \nu} \cdot SE^*\big)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a}) \leq 
+      (\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) - t_{\alpha/2, \nu} \cdot SE^*\big) + \\
+  &\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a}) \geq 
+      (\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) + t_{1-\alpha/2, \nu} \cdot SE^*\big)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*} \leq 
+      \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) - t_{\alpha/2, \nu} \cdot SE^*}{SE^*}\Big) + \\
+  &\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a})}{SE^*} \geq
+      \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) + t_{1-\alpha/2, \nu} \cdot SE^*}{SE^*}\Big)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\Big(T \leq \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*} - t_{\alpha/2, \nu}\Big) + \\
+  &\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\Big(T \geq \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*} + t_{1-\alpha/2, \nu}\Big)\\
+  &= P_{\mu_{1a} - \mu_{2a}}\Big(T \leq -t_{\alpha/2, \nu} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\Big) + \\
+  &\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\Big(T \geq t_{1-\alpha/2, \nu} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\Big)
+\end{align*}
+$$
+
+Both $-t_{\alpha/2, \nu} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}$ and $t_{1-\alpha/2, \nu} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}$ have non-central T-distributions with non-centrality parameter $\frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}$.
+
+
+**One Sided Test**
+
+For convenience, the power for only the upper tailed test is derived here.  
+Recall that the symmetry of the t-test allows us to use the decision rule:
+Reject $H_0$ when $|T| \geq t_{1-\alpha}$.  Thus, where $T$ occurs in the 
+derivation below, it may reasonably be replaced with $|T|$.
+
+$$
+\begin{align*}
+\gamma(\mu_{1a} - \mu_{2a}) 
+  &= P_{\mu_{1a} - \mu_{2a}}(\bar{x} \in C)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2} \geq 
+      (\mu_1 - \mu_2) + t_{1-\alpha, \nu} \cdot SE^*\big)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a}) \geq 
+      (\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) + t_{1-\alpha, \nu} \cdot SE^*\big)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a})}{SE^*} \geq
+      \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) + t_{1-\alpha, \nu} \cdot SE^*}{SE^*}\Big)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\Big(T \geq \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*} + t_{1-\alpha, \nu}\Big)\\
+  &= P_{\mu_{1a} - \mu_{2a}}\Big(T \geq t_{1-\alpha, \nu} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\Big)
+\end{align*}
+$$
+
+$t_{1-\alpha/2, \nu} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}$ has a non-central T-distribution with non-centrality parameter $\frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}$.
+
 ### Confidence Interval
+
+The confidence interval for $\mu_1 - \mu_2$ is written:
+$$(\bar{x_1} - \bar{x_2}) \pm t_{1-\alpha/2} \cdot SE^*$$
+
+The value of the expression on the right is often referred to as the _margin of error_, and we will refer to this value as 
+$$E = t_{1-\alpha/2} \cdot SE^*$$
+
+## References
+
+1. Wackerly, Mendenhall, Scheaffer, _Mathematical Statistics with Applications_, 6th ed., Duxbury, 2002, ISBN 0-534-37741-6.
+2. Daniel, _Biostatistics_, 8th ed., John Wiley & Sons, Inc., 2005, ISBN: 0-471-45654-3.
+3. Hogg, McKean, Craig, _Introduction to Mathematical Statistics_, 6th ed., Pearson, 2005, ISBN: 0-13-008507-3
+4. Wikipedia, "Student's T test", https://en.wikipedia.org/wiki/Student%27s_t-test
+5. Wikipedia, "Welch-Satterthwaite Equation", https://en.wikipedia.org/wiki/Welch%E2%80%93Satterthwaite_equation
