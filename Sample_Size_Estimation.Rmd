@@ -1,0 +1,60 @@
+# Sample Size Estimation
+
+## Solving Group Sample Sizes Using Weights
+
+Let $n$ be the total sample size obtained by adding two groups such that $n = n_1 + n_2$.  Let $w$ represent the proportion of $n$ allocated to $n_1$, referred to as the _weight_ of $n_1$.  Then $n_2 = \frac{n_1 \cdot (1 - w)}{w}$.
+
+Furthermore, $n = n_1 + \frac{n_1 \cdot (1-w)}{w}$. 
+
+_Proof:_
+
+By the assumptions, we know
+
+$$\begin{align*}
+n &= n_1 + n_2 \\
+  &= w \cdot n + (1 - w) \cdot n
+\end{align*}$$
+
+This implies
+
+$$\begin{align*}
+n_1 &= w \cdot n\\
+n_2 &= (1-w) \cdot n
+\end{align*}$$
+
+We observe the following:
+
+$$\begin{align*}
+\frac{n_2}{n_1} 
+  &= \frac{(1-w) \cdot n}{w \cdot n} \\
+  &= \frac{(1-w)}{w} \\
+\Rightarrow n_2 &= \frac{n_1 \cdot (1-w)}{w}
+\end{align*}$$
+
+This further implies
+
+$$ n = n_1 + \frac{n_1 \cdot (1-w)}{w}$$
+
+Notice now that both $n$ and $n_2$ are defined as functions of $n_1$ and $w$. Thus, we may estimate the sample size required in each of two groups by estimating only $n_1$, provided we know the weight $w$.
+
+### Corollary
+
+For $k \in \mathbb{N}$, let $n$ be the total sample size of $k$ subgroups such that 
+
+$$n = n_1 + n_2 + n_3 + ... + n_k$$
+
+Suppose, further, that there exists a vector of weights $W$ that satisfy the following conditions:
+
+1. For each $w_i \in W$, $0 \leq w_i \leq 1$
+2. $\sum\limits_{i=1}^{k} w_i = 1$
+3. $n = w_1 \cdot n + w_2 \cdot n + ... + w_k \cdot n = \sum\limits_{i=1}^{k} w_i \cdot n$
+
+Let us assign the values $n_1 = w_1 \cdot n$, $n_2 = w_2 \cdot n$, ..., $n_k = w_k \cdot n$. Then for all $i | i \leq k$, 
+
+$$\begin{align*}
+\frac{n_i}{n_1} &= \frac{w_i \cdot n}{w_1 \cdot n} \\
+                &= \frac{w_i}{w_1} \\
+\Rightarrow n_i &= \frac{n_1 \cdot w_i}{w_1}
+\end{align*}$$
+
+Thus, each $n_i$ may be estimated by estimating the value of $n_1$ provided $W$ is a fully specified vector of weights for each of the $k$ groups.

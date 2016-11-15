@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="combinations.html">
-<link rel="next" href="covariance.html">
+<link rel="prev" href="real-number-system.html">
+<link rel="next" href="skew-normal-distribution.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -471,32 +471,52 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="correlation-pearsons" class="section level1">
-<h1><span class="header-section-number">9</span> Correlation (Pearson’s)</h1>
-<p>Pearson’s correlation coefficient of the variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is a measure of the linear relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. It is defined <span class="math display">\[\rho
-    = \frac{Cov(X,Y)}{\sqrt{\sigma_X^2\cdot \sigma_Y^2}}\]</span></p>
-<p>Notice that if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent then <span class="math inline">\(Cov(X,Y,)=0\)</span> and <span class="math inline">\(\rho=0\)</span> and there is no linear relationship between the variables.</p>
-<div id="theorems-on-pearsons-correlation" class="section level2">
-<h2><span class="header-section-number">9.1</span> Theorems on Pearson’s Correlation</h2>
-</div>
-<div id="computational-formula-for-rho" class="section level2">
-<h2><span class="header-section-number">9.2</span> Computational Formula for <span class="math inline">\(\rho\)</span></h2>
-<p><span class="math display">\[\rho
-    = \frac{\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}(x_i-\mu_X)(y_j-\mu_Y)}
-        {\sum\limits_{i=1}^{n}(x_i-\mu_X)\sum\limits_{j=1}^{m}(y_i-\mu_Y)}\]</span></p>
+<div id="sample-size-estimation" class="section level1">
+<h1><span class="header-section-number">28</span> Sample Size Estimation</h1>
+<div id="solving-group-sample-sizes-using-weights" class="section level2">
+<h2><span class="header-section-number">28.1</span> Solving Group Sample Sizes Using Weights</h2>
+<p>Let <span class="math inline">\(n\)</span> be the total sample size obtained by adding two groups such that <span class="math inline">\(n = n_1 + n_2\)</span>. Let <span class="math inline">\(w\)</span> represent the proportion of <span class="math inline">\(n\)</span> allocated to <span class="math inline">\(n_1\)</span>, referred to as the <em>weight</em> of <span class="math inline">\(n_1\)</span>. Then <span class="math inline">\(n_2 = \frac{n_1 \cdot (1 - w)}{w}\)</span>.</p>
+<p>Furthermore, <span class="math inline">\(n = n_1 + \frac{n_1 \cdot (1-w)}{w}\)</span>.</p>
 <p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{align*} 
-\rho
-    &amp;= \frac{Cov(X,Y)}{\sqrt{\sigma_X^2\sigma_Y^2}} \\
-    &amp;= \frac{Cov(X,Y)}{\sqrt{\sigma_X^2\sigma_Y^2}} \\
-    &amp;= \frac{\sum\limits_{i=1}^{N}(x_i-\mu_X)(y_i-\mu_Y)\frac{1}{N}}
-        {\sqrt{\frac{\sum\limits_{i=1}^{N}(x_i-\mu_X)^2}{N}\frac{\sum\limits_{i=1}^{N}(y_i-\mu_Y)^2}{N}}} \\
-  &amp;= \frac{\frac{1}{N}\sum\limits_{i=1}^{N}(x_i-\mu_X)(y_j-\mu_Y)}
-        {\frac{1}{N}\sqrt{\sum\limits_{i=1}^{N}(x_i-\mu_X)^2\sum\limits_{i=1}^{N}(y_i-\mu_Y)^2}} \\
-    &amp;= \frac{\sum\limits_{i=1}^{N}(x_i-\mu_X)(y_i-\mu_Y)}
-        {\sqrt{\sum\limits_{i=1}^{N}(x_i-\mu_X)\sum\limits_{i=1}^{N}(y_i-\mu_Y)}}
+<p>By the assumptions, we know</p>
+<p><span class="math display">\[\begin{align*}
+n &amp;= n_1 + n_2 \\
+  &amp;= w \cdot n + (1 - w) \cdot n
 \end{align*}\]</span></p>
+<p>This implies</p>
+<p><span class="math display">\[\begin{align*}
+n_1 &amp;= w \cdot n\\
+n_2 &amp;= (1-w) \cdot n
+\end{align*}\]</span></p>
+<p>We observe the following:</p>
+<p><span class="math display">\[\begin{align*}
+\frac{n_2}{n_1} 
+  &amp;= \frac{(1-w) \cdot n}{w \cdot n} \\
+  &amp;= \frac{(1-w)}{w} \\
+\Rightarrow n_2 &amp;= \frac{n_1 \cdot (1-w)}{w}
+\end{align*}\]</span></p>
+<p>This further implies</p>
+<p><span class="math display">\[ n = n_1 + \frac{n_1 \cdot (1-w)}{w}\]</span></p>
+<p>Notice now that both <span class="math inline">\(n\)</span> and <span class="math inline">\(n_2\)</span> are defined as functions of <span class="math inline">\(n_1\)</span> and <span class="math inline">\(w\)</span>. Thus, we may estimate the sample size required in each of two groups by estimating only <span class="math inline">\(n_1\)</span>, provided we know the weight <span class="math inline">\(w\)</span>.</p>
+<div id="corollary-3" class="section level3">
+<h3><span class="header-section-number">28.1.1</span> Corollary</h3>
+<p>For <span class="math inline">\(k \in \mathbb{N}\)</span>, let <span class="math inline">\(n\)</span> be the total sample size of <span class="math inline">\(k\)</span> subgroups such that</p>
+<p><span class="math display">\[n = n_1 + n_2 + n_3 + ... + n_k\]</span></p>
+<p>Suppose, further, that there exists a vector of weights <span class="math inline">\(W\)</span> that satisfy the following conditions:</p>
+<ol style="list-style-type: decimal">
+<li>For each <span class="math inline">\(w_i \in W\)</span>, <span class="math inline">\(0 \leq w_i \leq 1\)</span></li>
+<li><span class="math inline">\(\sum\limits_{i=1}^{k} w_i = 1\)</span></li>
+<li><span class="math inline">\(n = w_1 \cdot n + w_2 \cdot n + ... + w_k \cdot n = \sum\limits_{i=1}^{k} w_i \cdot n\)</span></li>
+</ol>
+<p>Let us assign the values <span class="math inline">\(n_1 = w_1 \cdot n\)</span>, <span class="math inline">\(n_2 = w_2 \cdot n\)</span>, …, <span class="math inline">\(n_k = w_k \cdot n\)</span>. Then for all <span class="math inline">\(i | i \leq k\)</span>,</p>
+<p><span class="math display">\[\begin{align*}
+\frac{n_i}{n_1} &amp;= \frac{w_i \cdot n}{w_1 \cdot n} \\
+                &amp;= \frac{w_i}{w_1} \\
+\Rightarrow n_i &amp;= \frac{n_1 \cdot w_i}{w_1}
+\end{align*}\]</span></p>
+<p>Thus, each <span class="math inline">\(n_i\)</span> may be estimated by estimating the value of <span class="math inline">\(n_1\)</span> provided <span class="math inline">\(W\)</span> is a fully specified vector of weights for each of the <span class="math inline">\(k\)</span> groups.</p>
 
+</div>
 </div>
 </div>
             </section>
@@ -504,8 +524,8 @@ MathJax.Hub.Config({
           </div>
         </div>
       </div>
-<a href="combinations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="covariance.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="real-number-system.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="skew-normal-distribution.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -532,7 +552,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/CorrelationPearson.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Sample_Size_Estimation.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

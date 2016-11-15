@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="combinations.html">
-<link rel="next" href="covariance.html">
+<link rel="prev" href="summation.html">
+<link rel="next" href="method-of-transformations.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -471,32 +471,167 @@ MathJax.Hub.Config({
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="correlation-pearsons" class="section level1">
-<h1><span class="header-section-number">9</span> Correlation (Pearson’s)</h1>
-<p>Pearson’s correlation coefficient of the variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is a measure of the linear relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. It is defined <span class="math display">\[\rho
-    = \frac{Cov(X,Y)}{\sqrt{\sigma_X^2\cdot \sigma_Y^2}}\]</span></p>
-<p>Notice that if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent then <span class="math inline">\(Cov(X,Y,)=0\)</span> and <span class="math inline">\(\rho=0\)</span> and there is no linear relationship between the variables.</p>
-<div id="theorems-on-pearsons-correlation" class="section level2">
-<h2><span class="header-section-number">9.1</span> Theorems on Pearson’s Correlation</h2>
+<div id="t-test" class="section level1">
+<h1><span class="header-section-number">32</span> T-test</h1>
+<div id="definitions-and-terminology" class="section level2">
+<h2><span class="header-section-number">32.1</span> Definitions and Terminology</h2>
 </div>
-<div id="computational-formula-for-rho" class="section level2">
-<h2><span class="header-section-number">9.2</span> Computational Formula for <span class="math inline">\(\rho\)</span></h2>
-<p><span class="math display">\[\rho
-    = \frac{\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}(x_i-\mu_X)(y_j-\mu_Y)}
-        {\sum\limits_{i=1}^{n}(x_i-\mu_X)\sum\limits_{j=1}^{m}(y_i-\mu_Y)}\]</span></p>
-<p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{align*} 
-\rho
-    &amp;= \frac{Cov(X,Y)}{\sqrt{\sigma_X^2\sigma_Y^2}} \\
-    &amp;= \frac{Cov(X,Y)}{\sqrt{\sigma_X^2\sigma_Y^2}} \\
-    &amp;= \frac{\sum\limits_{i=1}^{N}(x_i-\mu_X)(y_i-\mu_Y)\frac{1}{N}}
-        {\sqrt{\frac{\sum\limits_{i=1}^{N}(x_i-\mu_X)^2}{N}\frac{\sum\limits_{i=1}^{N}(y_i-\mu_Y)^2}{N}}} \\
-  &amp;= \frac{\frac{1}{N}\sum\limits_{i=1}^{N}(x_i-\mu_X)(y_j-\mu_Y)}
-        {\frac{1}{N}\sqrt{\sum\limits_{i=1}^{N}(x_i-\mu_X)^2\sum\limits_{i=1}^{N}(y_i-\mu_Y)^2}} \\
-    &amp;= \frac{\sum\limits_{i=1}^{N}(x_i-\mu_X)(y_i-\mu_Y)}
-        {\sqrt{\sum\limits_{i=1}^{N}(x_i-\mu_X)\sum\limits_{i=1}^{N}(y_i-\mu_Y)}}
-\end{align*}\]</span></p>
+<div id="one-sample-t-test" class="section level2">
+<h2><span class="header-section-number">32.2</span> One-Sample T-test</h2>
+<p>The t-test is commonly used to look for evidence that the mean of a normally distributed random variable may differ from a hypothesized (or previously observed) value.</p>
+<div id="t-statistic" class="section level3">
+<h3><span class="header-section-number">32.2.1</span> T-Statistic</h3>
+<p>The <span class="math inline">\(t\)</span>-statistic is a standardized measure of the magnitude of difference between a sample’s mean and some known, non-random constant. It is similar to a <span class="math inline">\(z\)</span>-statistic, but differs in that a <span class="math inline">\(t\)</span>-statistic may be calculated without knowledge of the population variance.</p>
+</div>
+<div id="definitions-and-terminology-1" class="section level3">
+<h3><span class="header-section-number">32.2.2</span> Definitions and Terminology</h3>
+<p>Let <span class="math inline">\(\bar{x}\)</span> be a sample mean from a sample with standard deviation <span class="math inline">\(s\)</span>. Let <span class="math inline">\(\mu_0\)</span> be a constant, and <span class="math inline">\(s_\bar{x} = s/\sqrt{n}\)</span> be the standard error of the parameter <span class="math inline">\(\bar{x}\)</span>. <span class="math inline">\(t\)</span> is defined: <span class="math display">\[t = \frac{\bar{x} - \mu_0}{s_\bar{x}} = \frac{\bar{x} - \mu_0}{\frac{s}{\sqrt{n}}}\]</span></p>
+</div>
+<div id="hypotheses" class="section level3">
+<h3><span class="header-section-number">32.2.3</span> Hypotheses</h3>
+<p>The hypotheses for these test take the forms:</p>
+<p>For a two-sided test: <span class="math display">\[
+  \begin{align*}
+  H_0: \mu &amp;= \mu_0\\
+  H_1: \mu &amp;\neq \mu_0
+  \end{align*}
+\]</span></p>
+<p>For a one-sided test: <span class="math display">\[
+  \begin{align*}
+  H_0: \mu &amp;&lt; \mu_0\\
+  H_1: \mu &amp;\geq \mu_0
+  \end{align*}
+\]</span></p>
+<p>or <span class="math display">\[
+  \begin{align*}
+  H_0: \mu &amp;&gt; \mu_0\\
+  H_1: \mu &amp;\leq \mu_0
+  \end{align*}
+\]</span></p>
+<p>To compare a sample <span class="math inline">\((X_1, \ldots, X_n)\)</span> against the hypothesized value, a T-statistic is calculated in the form:</p>
+<p><span class="math display">\[T = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}\]</span></p>
+<p>Where <span class="math inline">\(\bar{x}\)</span> is the sample mean and <span class="math inline">\(s\)</span> is the sample standard deviation.</p>
+</div>
+<div id="decision-rule" class="section level3">
+<h3><span class="header-section-number">32.2.4</span> Decision Rule</h3>
+<p>The decision to reject a null hypothesis is made when an observed T-value lies in a critical region that suggests the probability of that observation is low. We define the critical region as the upper bound we are willing to accept for <span class="math inline">\(\alpha\)</span>, the Type I Error.</p>
+<p>In the two-sided test, <span class="math inline">\(\alpha\)</span> is shared equally in both tails. The rejection regions for the most common values of <span class="math inline">\(\alpha\)</span> are depicted in the figure below, with the sum of shaded areas on both sides equaling the corresponding <span class="math inline">\(\alpha\)</span>. It follows, then, that the decision rule is:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(T \leq t_{\alpha/2, n-1}\)</span> or when <span class="math inline">\(T \geq t_{1-\alpha/2, n-1}\)</span>.</p>
+<p>By taking advantage of the symmetry of the T-distribution, we can simplify the decision rule to:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(|T| \geq t_{1-\alpha/2, n-1}\)</span></p>
+<div class="figure"><span id="fig:unnamed-chunk-7"></span>
+<img src="figures/unnamed-chunk-7-1.png" alt="The example displayed uses 25 degrees of freedom" width="576" />
+<p class="caption">
+Figure 32.1: The example displayed uses 25 degrees of freedom
+</p>
+</div>
+<p>In the one-sided test, <span class="math inline">\(\alpha\)</span> is placed in only one tail. The rejection regions for the most common values of <span class="math inline">\(\alpha\)</span> are depicted in the figure below. In each case, <span class="math inline">\(\alpha\)</span> is the area in the tail of the figure. It follows, then, that the decision rule for a lower tailed test is:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(T \leq t_{\alpha, n-1}\)</span>.</p>
+<p>For an upper tailed test, the decision rule is:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(T \geq t_{1-\alpha, n-1}\)</span>.</p>
+<p>Using the symmetry of the T-distribution, we can simplify the decision rule as:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(|T| \geq t_{1-\alpha, n-1}\)</span>.</p>
+<div class="figure"><span id="fig:unnamed-chunk-8"></span>
+<img src="figures/unnamed-chunk-8-1.png" alt="The example displayed uses 25 degrees of freedom" width="576" />
+<p class="caption">
+Figure 32.2: The example displayed uses 25 degrees of freedom
+</p>
+</div>
+<p>The decision rule can also be written in terms of <span class="math inline">\(\bar{x}\)</span>:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(\bar{x} \leq \mu_0 - t_\alpha \cdot s/\sqrt{n}\)</span> or <span class="math inline">\(\bar{x} \geq \mu_0 + t_\alpha \cdot s/\sqrt{n}\)</span>.</p>
+<p>This change can be justified by:</p>
+<p><span class="math display">\[
+\begin{align*}
+|T| &amp;\geq t_{1-\alpha, n-1}\\
+\Big|\frac{\bar{x} - \mu_0}{s/\sqrt{n}}\Big| &amp;\geq t_{1-\alpha, n-1} 
+\end{align*}
+\]</span></p>
+<p><span class="math display">\[
+\begin{align*}
+-\Big(\frac{\bar{x} - \mu_0}{s/\sqrt{n}}\Big) &amp;\geq t_{1-\alpha, n-1} &amp;
+    \frac{\bar{x} - \mu_0}{s/\sqrt{n}} &amp;\geq t_{1-\alpha, n-1}\\
+\bar{x} - \mu_0 &amp;\leq - t_{1-\alpha, n-1} \cdot s/\sqrt{n} &amp;
+    \bar{x} - \mu_0 &amp;\geq t_{1-\alpha, n-1} \cdot s/\sqrt{n}\\
+\bar{x} &amp;\leq \mu_0 - t_{1-\alpha, n-1} \cdot s/\sqrt{n} &amp;
+    \bar{x} &amp;\geq \mu_0 + t_{1-\alpha, n-1} \cdot s/\sqrt{n} 
+\end{align*}
+\]</span></p>
+<p>For a two-sided test, both the conditions apply. The left side condition is used for a left-tailed test, and the right side condition for a right-tailed test.</p>
+</div>
+<div id="power" class="section level3">
+<h3><span class="header-section-number">32.2.5</span> Power</h3>
+<p>The derivations below make use of the following symbols:</p>
+<ul>
+<li><span class="math inline">\(\bar{x}\)</span>: The sample mean</li>
+<li><span class="math inline">\(s\)</span>: The sample standard deviation</li>
+<li><span class="math inline">\(n\)</span>: The sample size</li>
+<li><span class="math inline">\(\mu_0\)</span>: The value of population mean under the null hypothesis</li>
+<li><span class="math inline">\(\mu\)</span>: The value of the population mean under the alternative hypothesis.</li>
+<li><span class="math inline">\(\alpha\)</span>: The significance level</li>
+<li><span class="math inline">\(\gamma(\mu)\)</span>: The power of the test for the parameter <span class="math inline">\(\mu\)</span>.</li>
+<li><span class="math inline">\(t_{\alpha, n-1}\)</span>: A quantile of the central t-distribution for a probability, <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(n-1\)</span> degrees of freedom.</li>
+<li><span class="math inline">\(T\)</span>: A calculated value to be compared against a t-distribution.</li>
+<li><span class="math inline">\(C\)</span>: The critical region (rejection region) of the test.</li>
+</ul>
+<p><strong>Two-Sided Test</strong></p>
+<p><span class="math display">\[
+\begin{align*}
+\gamma(\mu) &amp;= P_\mu(\bar{x} \in C)\\
+&amp;= P_\mu\big(\bar{x} \leq \mu_0 - t_{\alpha/2, n-1} \cdot s/\sqrt{n}\big) +
+               P_\mu\big(\bar{x} \geq \mu_0 + t_{1-\alpha/2, n-1} \cdot s/\sqrt{n}\big)\\
+&amp;= P_\mu\big(\bar{x} - \mu \leq \mu_0 - \mu - t_{\alpha/2, n-1} \cdot s/\sqrt{n}\big) +
+   P_\mu\big(\bar{x} - \mu \geq \mu_0 - \mu + t_{1-\alpha/2, n-1} \cdot s/\sqrt{n}\big)\\
+&amp;= P_\mu\Big(\frac{\bar{x} - \mu}{s/\sqrt{n}} \leq 
+        \frac{\mu_0 - \mu - t_{\alpha/2, n-1} \cdot s/\sqrt{n}}{s/\sqrt{n}}\Big) +
+   P_\mu\Big(\frac{\bar{x} - \mu}{s/\sqrt{n}} \geq 
+        \frac{\mu_0 - \mu + t_{1-\alpha/2, n-1} \cdot s/\sqrt{n}}{s/\sqrt{n}}\Big)\\
+&amp;= P_\mu\Big(T \leq \frac{\mu_0 - \mu}{s/\sqrt{n}} - t_{\alpha/2, n-1}\Big) + 
+   P_\mu\Big(T \geq \frac{\mu_0 - \mu}{s/\sqrt{n}} + t_{1-\alpha/2, n-1}\Big)\\
+&amp;= P_\mu\Big(T \leq -t_{\alpha/2, n-1} + \frac{\mu_0 - \mu}{s/\sqrt{n}}\Big) + 
+   P_\mu\Big(T \geq t_{1-\alpha/2, n-1} + \frac{\mu_0 - \mu}{s/\sqrt{n}}\Big)\\
+&amp;= P_\mu\Big(T \leq -t_{\alpha/2, n-1} + \frac{\sqrt{n} \cdot (\mu_0 - \mu)}{s}\Big) + 
+   P_\mu\Big(T \geq t_{1-\alpha/2, n-1} + \frac{\sqrt{n} \cdot (\mu_0 - \mu)}{s}\Big)
+\end{align*}
+\]</span></p>
+<p>Both <span class="math inline">\(t_{\alpha/2, n-1}\)</span> and <span class="math inline">\(t_{1-\alpha/2, n-1}\)</span> have non-central T-distributions with non-centrality parameter <span class="math inline">\(\frac{\sqrt{n} (\mu_0 -\mu)}{s}\)</span>.</p>
+<p><strong>One-Sided Test</strong></p>
+<p>For convenience, the power for only the upper tailed test is derived here.<br />
+Recall that the symmetry of the t-test allows us to use the decision rule: Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(|T| \geq t_{1-\alpha}\)</span>. Thus, where <span class="math inline">\(T\)</span> occurs in the derivation below, it may reasonably be replaced with <span class="math inline">\(|T|\)</span>.</p>
+<p><span class="math display">\[
+\begin{align*}
+\gamma(\mu)  &amp;= P_\mu(\bar{x} \in C)\\
+&amp;= P_\mu\big(\bar{x} \geq \mu_0 + t_{1-\alpha, n-1} \cdot s / \sqrt{n}\big)\\
+&amp;= P_\mu\big(\bar{x} - \mu \geq \mu_0 - \mu + t_{1-\alpha, n-1} \cdot s / \sqrt{n}\big)\\
+&amp;= P_\mu\Big(\frac{\bar{x} - \mu}{s/\sqrt{n}} \geq 
+    \frac{\mu_0 - \mu + t_{1-\alpha, n-1} \cdot s / \sqrt{n}}{s / \sqrt{n}}\Big)\\
+&amp;= P_\mu\Big(T \geq \frac{\mu_0 - \mu}{s/\sqrt{n}} + t_{1-\alpha, n-1} \Big)\\
+&amp;= P_\mu\Big(T \geq t_{1-\alpha, n-1} + \frac{\mu_0 - \mu}{s/\sqrt{n}}\Big)\\
+&amp;= P_\mu\Big(T \geq t_{1-\alpha, n-1} + \frac{\sqrt{n} \cdot (\mu_0 -\mu)}{s}\Big)
+\end{align*}
+\]</span></p>
+<p>Where <span class="math inline">\(t_{1-\alpha, n-1} + \frac{\sqrt{n} (\mu_0 -\mu)}{s}\)</span> has a non-central t-distribution with non-centrality parameter <span class="math inline">\(\frac{\sqrt{n} (\mu_0 -\mu)}{s}\)</span></p>
+</div>
+<div id="confidence-interval" class="section level3">
+<h3><span class="header-section-number">32.2.6</span> Confidence Interval</h3>
+<p>The confidence interval for <span class="math inline">\(\theta\)</span> is written: <span class="math display">\[\bar{x} \pm t_{1-\alpha/2} \cdot \frac{s}{\sqrt{n}}\]</span></p>
+<p>The value of the expression on the right is often referred to as the <em>margin of error</em>, and we will refer to this value as <span class="math display">\[E = t_{1-\alpha/2} \cdot \frac{s}{\sqrt{n}}\]</span></p>
+</div>
+</div>
+<div id="two-sample-t-test" class="section level2">
+<h2><span class="header-section-number">32.3</span> Two-Sample T-test</h2>
+<div id="t-statistic-1" class="section level3">
+<h3><span class="header-section-number">32.3.1</span> T-Statistic</h3>
+</div>
+<div id="decision-rule-1" class="section level3">
+<h3><span class="header-section-number">32.3.2</span> Decision Rule</h3>
+</div>
+<div id="power-1" class="section level3">
+<h3><span class="header-section-number">32.3.3</span> Power</h3>
+</div>
+<div id="confidence-interval-1" class="section level3">
+<h3><span class="header-section-number">32.3.4</span> Confidence Interval</h3>
 
+</div>
 </div>
 </div>
             </section>
@@ -504,8 +639,8 @@ MathJax.Hub.Config({
           </div>
         </div>
       </div>
-<a href="combinations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="covariance.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="summation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="method-of-transformations.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -532,7 +667,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/CorrelationPearson.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/T_test.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],
