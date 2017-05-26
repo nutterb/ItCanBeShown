@@ -324,6 +324,23 @@ M_Y(t)
 Which is the mgf of a Chi-Square random variable with parameter $\sum\limits_{i=1}^{n}\nu_i$.  
 Thus $Y\sim\chi^2\bigg(\sum\limits_{i=1}^{n}\nu_i\bigg)$. 
 
+### Multiple of a Chi-Square Random Variable
+
+Let $X$ be a Chi-Square random variable with parameter $\nu$, that is $X\sim\chi^2(\nu),\ i=1,2,\ldots,n$.
+
+Suppose $Y = c \cdot X$. Then $Y\sim Gamma(\frac{\nu}{2}, 2 \cdot c)$.
+
+_Proof:_
+
+$$\begin{align*}
+M_Y(t)
+	&= E(e^{tY})=E(e^{tcX}) \\
+	&= (1-2tc)^{-\frac{\nu}{2}} \\
+	&= (1-2c \cdot t)^{-\frac{\nu}{2}}
+\end{align*}$$
+
+Which is the mgf of a Gamma distributed variable with parameters $\alpha = 
+\frac{\nu}{2}$ and $\beta = 2c$. Thus, $Y\sim Gamma(\frac{\nu}{2}, 2 \cdot c)$.
 
 ### Square of a Standard Normal Random Variable
 
