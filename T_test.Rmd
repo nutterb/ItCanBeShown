@@ -276,10 +276,10 @@ Where
 \[ SE^* = 
   \left\{ 
     \begin{array}{rl}
-      \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}, & \sigma_1^2 = \sigma_2^2 \\
+      \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}, & \sigma_1^2 \neq \sigma_2^2 \\
       \sqrt{\frac{(n_1-1) \cdot s_1^2 + (n_2-1) \cdot s_2^2}
                  {n_1 + n_2 - 2}} \cdot
-            \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}, & \sigma_1^2 \neq \sigma_2^2 
+            \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}, & \sigma_1^2 = \sigma_2^2 
     \end{array}
   \right.
 \]
@@ -289,10 +289,10 @@ and the degrees of freedom $\nu$ are (by the Welch-Satterthwaite equation)
 \[ \nu = 
   \left\{
     \begin{array}{rl}
-    n_1 + n_2 - 2, & \sigma_1^2 = \sigma_2^2 \\
-    \frac{(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2})^2}
-         {\frac{s_1^2/n_1}{n_1 - 1} + 
-          \frac{s_2^2/n_2}{n_2 - 1}}, & \sigma_1^2 \neq \sigma_2^2
+      \frac{(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2})^2}
+          {\frac{s_1^2/n_1}{n_1 - 1} + 
+            \frac{s_2^2/n_2}{n_2 - 1}}, & \sigma_1^2 \neq \sigma_2^2 \\
+      n_1 + n_2 - 2, & \sigma_1^2 = \sigma_2^2 
     \end{array}
   \right.
 \]
