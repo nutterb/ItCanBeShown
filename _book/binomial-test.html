@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>It Can Be Shown</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Notes on the Development of Statistical Theory">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="It Can Be Shown" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notes on the Development of Statistical Theory" />
+  <meta name="github-repo" content="nutterb/ItCanBeShown" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="It Can Be Shown" />
+  
+  <meta name="twitter:description" content="Notes on the Development of Statistical Theory" />
+  
+
+<meta name="author" content="Benjamin Nutter">
+
+
+<meta name="date" content="2017-06-02">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="binomial-distribution.html">
+<link rel="next" href="binomial-theorem.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">It Can Be Shown</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>2</b> Analysis of Variance</a></li>
+<li class="chapter" data-level="3" data-path="bernoulli-distribution.html"><a href="bernoulli-distribution.html"><i class="fa fa-check"></i><b>3</b> Bernoulli Distribution</a></li>
+<li class="chapter" data-level="4" data-path="binomial-distribution.html"><a href="binomial-distribution.html"><i class="fa fa-check"></i><b>4</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="5" data-path="binomial-test.html"><a href="binomial-test.html"><i class="fa fa-check"></i><b>5</b> Binomial Test</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="binomial-test.html"><a href="binomial-test.html#test-statistic"><i class="fa fa-check"></i><b>5.0.1</b> Test Statistic</a></li>
+<li class="chapter" data-level="5.0.2" data-path="binomial-test.html"><a href="binomial-test.html#definitions"><i class="fa fa-check"></i><b>5.0.2</b> Definitions</a></li>
+<li class="chapter" data-level="5.0.3" data-path="binomial-test.html"><a href="binomial-test.html#hypotheses"><i class="fa fa-check"></i><b>5.0.3</b> Hypotheses</a></li>
+<li class="chapter" data-level="5.0.4" data-path="binomial-test.html"><a href="binomial-test.html#decision-rule"><i class="fa fa-check"></i><b>5.0.4</b> Decision Rule</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="binomial-theorem.html"><a href="binomial-theorem.html"><i class="fa fa-check"></i><b>6</b> Binomial Theorem</a></li>
+<li class="chapter" data-level="7" data-path="chebychevs-theorem.html"><a href="chebychevs-theorem.html"><i class="fa fa-check"></i><b>7</b> Chebychev’s Theorem</a></li>
+<li class="chapter" data-level="8" data-path="chi-square-distribution.html"><a href="chi-square-distribution.html"><i class="fa fa-check"></i><b>8</b> Chi-Square Distribution</a></li>
+<li class="chapter" data-level="9" data-path="combinations.html"><a href="combinations.html"><i class="fa fa-check"></i><b>9</b> Combinations</a></li>
+<li class="chapter" data-level="10" data-path="correlation-pearsons.html"><a href="correlation-pearsons.html"><i class="fa fa-check"></i><b>10</b> Correlation (Pearson’s)</a></li>
+<li class="chapter" data-level="11" data-path="covariance.html"><a href="covariance.html"><i class="fa fa-check"></i><b>11</b> Covariance</a></li>
+<li class="chapter" data-level="12" data-path="experimental-designs.html"><a href="experimental-designs.html"><i class="fa fa-check"></i><b>12</b> Experimental Designs</a></li>
+<li class="chapter" data-level="13" data-path="exponential-distribution.html"><a href="exponential-distribution.html"><i class="fa fa-check"></i><b>13</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="14" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>14</b> Functions</a></li>
+<li class="chapter" data-level="15" data-path="gamma-distribution.html"><a href="gamma-distribution.html"><i class="fa fa-check"></i><b>15</b> Gamma Distribution</a></li>
+<li class="chapter" data-level="16" data-path="geometric-distribution.html"><a href="geometric-distribution.html"><i class="fa fa-check"></i><b>16</b> Geometric Distribution</a></li>
+<li class="chapter" data-level="17" data-path="geometric-series.html"><a href="geometric-series.html"><i class="fa fa-check"></i><b>17</b> Geometric Series</a></li>
+<li class="chapter" data-level="18" data-path="hypergeometric-distribution.html"><a href="hypergeometric-distribution.html"><i class="fa fa-check"></i><b>18</b> Hypergeometric Distribution</a></li>
+<li class="chapter" data-level="19" data-path="integration-techniques-and-theorems.html"><a href="integration-techniques-and-theorems.html"><i class="fa fa-check"></i><b>19</b> Integration: Techniques and Theorems</a></li>
+<li class="chapter" data-level="20" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>20</b> Logistic Regression</a></li>
+<li class="chapter" data-level="21" data-path="mantel-haenszel-test-of-linear-trend.html"><a href="mantel-haenszel-test-of-linear-trend.html"><i class="fa fa-check"></i><b>21</b> Mantel-Haenszel Test of Linear Trend</a></li>
+<li class="chapter" data-level="22" data-path="mcnemar-test.html"><a href="mcnemar-test.html"><i class="fa fa-check"></i><b>22</b> McNemar Test</a></li>
+<li class="chapter" data-level="23" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html"><i class="fa fa-check"></i><b>23</b> Moments and Moment Generating Functions</a></li>
+<li class="chapter" data-level="24" data-path="multinomial-distribution.html"><a href="multinomial-distribution.html"><i class="fa fa-check"></i><b>24</b> Multinomial Distribution</a></li>
+<li class="chapter" data-level="25" data-path="normal-distribution.html"><a href="normal-distribution.html"><i class="fa fa-check"></i><b>25</b> Normal Distribution</a></li>
+<li class="chapter" data-level="26" data-path="poisson-distribution.html"><a href="poisson-distribution.html"><i class="fa fa-check"></i><b>26</b> Poisson Distribution</a></li>
+<li class="chapter" data-level="27" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>27</b> Probability</a></li>
+<li class="chapter" data-level="28" data-path="real-number-system.html"><a href="real-number-system.html"><i class="fa fa-check"></i><b>28</b> Real Number System</a></li>
+<li class="chapter" data-level="29" data-path="sample-size-estimation.html"><a href="sample-size-estimation.html"><i class="fa fa-check"></i><b>29</b> Sample Size Estimation</a></li>
+<li class="chapter" data-level="30" data-path="skew-normal-distribution.html"><a href="skew-normal-distribution.html"><i class="fa fa-check"></i><b>30</b> Skew-Normal Distribution</a></li>
+<li class="chapter" data-level="31" data-path="somers-d.html"><a href="somers-d.html"><i class="fa fa-check"></i><b>31</b> Somers’ D</a></li>
+<li class="chapter" data-level="32" data-path="summation.html"><a href="summation.html"><i class="fa fa-check"></i><b>32</b> Summation</a></li>
+<li class="chapter" data-level="33" data-path="t-test.html"><a href="t-test.html"><i class="fa fa-check"></i><b>33</b> T-test</a></li>
+<li class="chapter" data-level="34" data-path="method-of-transformations.html"><a href="method-of-transformations.html"><i class="fa fa-check"></i><b>34</b> Method of Transformations</a></li>
+<li class="chapter" data-level="35" data-path="uniform-distribution.html"><a href="uniform-distribution.html"><i class="fa fa-check"></i><b>35</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="36" data-path="variance-parameter.html"><a href="variance-parameter.html"><i class="fa fa-check"></i><b>36</b> Variance Parameter</a></li>
+<li class="chapter" data-level="37" data-path="weibull-distribution.html"><a href="weibull-distribution.html"><i class="fa fa-check"></i><b>37</b> Weibull Distribution</a></li>
+<li class="divider"></li>
+<li>Benjamin Nutter</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">It Can Be Shown</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="binomial-test" class="section level1">
+<h1><span class="header-section-number">5</span> Binomial Test</h1>
+<p>The binomial test is used to look for evidence that the proportion of a Binomial distributed random variable may differ from a hypothesized (or previously observed) value.</p>
+<div id="test-statistic" class="section level3">
+<h3><span class="header-section-number">5.0.1</span> Test Statistic</h3>
+<p>The test statistic for a binomial test is the observed frequency of experimental subjects that exhibit the trait of interest.</p>
+</div>
+<div id="definitions" class="section level3">
+<h3><span class="header-section-number">5.0.2</span> Definitions</h3>
+<p>Let <span class="math inline">\(X\)</span> be a random variable following a binomial distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>. Let <span class="math inline">\(x\)</span> be the observed frequency of experimental subjects exhibiting the trait of interest.</p>
+</div>
+<div id="hypotheses" class="section level3">
+<h3><span class="header-section-number">5.0.3</span> Hypotheses</h3>
+<p>The hypotheses for the Binomial test may take the following forms:</p>
+<p>For a two-sided test:</p>
+<p><span class="math display">\[\begin{align}
+H_0: p = \pi \\
+H_a: p \neq \pi
+\end{align}\]</span></p>
+<p>For a one-sided test:</p>
+<p><span class="math display">\[\begin{align}
+H_0: p &lt; \pi \\
+H_a: p \geq \pi
+\end{align}\]</span></p>
+<p>or</p>
+<p><span class="math display">\[\begin{align}
+H_0: p &gt; \pi \\
+H_a: p \leq \pi
+\end{align}\]</span></p>
+</div>
+<div id="decision-rule" class="section level3">
+<h3><span class="header-section-number">5.0.4</span> Decision Rule</h3>
+<p>The decision to reject the null hypothesis is made when the observed value of <span class="math inline">\(x\)</span> lies in the critical region that suggests the probability of that observation is low. We define the critical region as the upper bound we are willing to accept for <span class="math inline">\(\alpha\)</span>, the Type I Error.</p>
+<p>In a two-sided test, the upper bound is shared equally in both tails. Due to the discrete nature of the distribution, the total probability in the tails may not equal <span class="math inline">\(\alpha\)</span>. The figures below depict examples of rejection regions for selected values of the Binomial distribution parameters. The decision rule is:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(x &lt; Binomial(\alpha/2, n, \pi)\)</span> or <span class="math inline">\(x &gt; Binomial(1 - \alpha/2, n, \pi)\)</span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="binomial-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="binomial-theorem.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Binomial_Test.Rmd",
+"text": "Edit"
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
