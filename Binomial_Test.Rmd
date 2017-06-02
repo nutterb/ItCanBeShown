@@ -1,0 +1,200 @@
+# Binomial Test
+
+## Binomial Test
+
+The binomial test is used to look for evidence that the proportion of a Binomial distributed random variable may differ from a hypothesized (or previously observed) value.
+
+### Test Statistic
+
+The test statistic for a binomial test is the observed frequency of experimental subjects that exhibit the trait of interest.  
+
+### Definitions
+
+Let $X$ be a random variable following a binomial distribution with parameters $n$ and $p$. Let $x$ be the observed frequency of experimental subjects exhibiting the trait of interest. 
+
+### Hypotheses
+
+The hypotheses for the Binomial test may take the following forms:
+
+For a two-sided test:
+
+$$\begin{align}
+H_0: p = \pi \\
+H_a: p \neq \pi
+\end{align}$$
+
+For a one-sided test:
+
+$$\begin{align}
+H_0: p < \pi \\
+H_a: p \geq \pi
+\end{align}$$
+
+or 
+
+$$\begin{align}
+H_0: p > \pi \\
+H_a: p \leq \pi
+\end{align}$$
+
+### Decision Rule
+
+The decision to reject the null hypothesis is made when the observed value of $x$ lies in the critical region that suggests the probability of that observation is low. We define the critical region as the upper bound we are willing to accept for $\alpha$, the Type I Error.
+
+In a two-sided test, the upper bound is shared equally in both tails. Due to the discrete nature of the distribution, the total probability in the tails may not equal $\alpha$. The figures below depict examples of rejection regions for selected values of the Binomial distribution parameters. The decision rule is:
+
+Reject $H_0$ if $x < Binomial(\alpha/2, n, \pi)$ or $x > Binomial(1 - \alpha/2, n, \pi)$
+
+```{r, echo = FALSE, fig.path = 'figures/', fig.cap='The examples displayed use $n = 20$. For the top, middle, and bottom examples, $p$ is set at 0.3, 0.5, and 0.75, respectively. Notice that in some cases, the rejection regions for $\\alpha = 0.10$ and $\\alpha = 0.05$ are identical.'}
+DF <- 
+  bind_rows(
+    data.frame(x = 0:20,
+               n = 20,
+               p = .3),
+    data.frame(x = 0:20,
+               n = 20,
+               p = .5),
+    data.frame(x = 0:20,
+               n = 20,
+               p = .75)
+  ) %>%
+  mutate(dbinom = dbinom(x, n, p),
+         pbinom = pbinom(x, n, p),
+         reject_region = ifelse(pbinom < 0.005 | pbinom > 0.995,
+                                "0.01",
+                                ifelse(pbinom < 0.025 | pbinom > 0.975,
+                                       "0.05",
+                                       ifelse(pbinom < 0.05 | pbinom > .95,
+                                              "0.10",
+                                              "non-reject"))))
+
+ggplot(data = DF,
+       mapping = aes(x = x,
+                     y = dbinom)) + 
+  geom_bar(data = filter(DF, reject_region %in% "non-reject"),
+           stat = "identity",
+           color = "black",
+           fill = "lightgray") + 
+  geom_bar(data = filter(DF, !reject_region %in% "non-reject"),
+           mapping = aes(fill = reject_region),
+           stat = "identity",
+           color = "black") +
+  scale_fill_manual(values = rev(pallette_green)) + 
+  labs(fill = "alpha") + 
+  ylab("Probability") + 
+  facet_grid(p ~ .)
+```
+
+In the one-sided test, $\alpha$ is placed in only one tail. The figures below depict examples of rejection regions for selected values of the Binomial distribution parameters. In each case, $\alpha$ is the area in the tail of the figure. It follows, then, that the decision rule for a lower tailed test is:
+
+Reject $H_0$ when $x \leq Binomial(\alpha, n, \pi)$
+
+For an upper tailed test, the decision rule is:
+
+Reject $H_0$ when $x \geq Binomial(1 - \alpha, n, \pi)$
+
+```{r, echo = FALSE, fig.path = 'figures/', fig.cap='The examples displayed use $n = 20$. For the top, middle, and bottom examples, $p$ is set at 0.3, 0.5, and 0.75, respectively.'}
+DF <- 
+  bind_rows(
+    data.frame(x = 0:20,
+               n = 20,
+               p = .3,
+               side = "Left Tailed",
+               stringsAsFactors = FALSE),
+    data.frame(x = 0:20,
+               n = 20,
+               p = .5,
+               side = "Left Tailed",
+               stringsAsFactors = FALSE),
+    data.frame(x = 0:20,
+               n = 20,
+               p = .75,
+               side = "Left Tailed",
+               stringsAsFactors = FALSE),
+    data.frame(x = 0:20,
+               n = 20,
+               p = .3,
+               side = "Right Tailed",
+               stringsAsFactors = FALSE),
+    data.frame(x = 0:20,
+               n = 20,
+               p = .5,
+               side = "Right Tailed",
+               stringsAsFactors = FALSE),
+    data.frame(x = 0:20,
+               n = 20,
+               p = .75,
+               side = "Right Tailed",
+               stringsAsFactors = FALSE)
+  ) %>%
+  mutate(dbinom = dbinom(x, n, p),
+         pbinom = pbinom(x, n, p),
+         reject_region = ifelse(side == "Left Tailed",
+                                ifelse(pbinom < 0.01,
+                                       "0.01",
+                                       ifelse(pbinom < 0.05,
+                                              "0.05",
+                                              ifelse(pbinom < 0.10,
+                                                     "0.10",
+                                                     "non-reject"))),
+                                ifelse(pbinom > 0.99,
+                                       "0.01",
+                                       ifelse(pbinom > 0.95,
+                                              "0.05",
+                                              ifelse(pbinom > 0.90,
+                                                     "0.10",
+                                                     "non-reject")))))
+
+ggplot(data = DF,
+       mapping = aes(x = x,
+                     y = dbinom)) + 
+  geom_bar(data = filter(DF, reject_region %in% "non-reject"),
+           stat = "identity",
+           color = "black",
+           fill = "lightgray") + 
+  geom_bar(data = filter(DF, !reject_region %in% "non-reject"),
+           mapping = aes(fill = reject_region),
+           stat = "identity",
+           color = "black") +
+  scale_fill_manual(values = rev(pallette_green)) + 
+  labs(fill = "alpha") + 
+  ylab("Probability") + 
+  facet_grid(p ~ side)
+```
+
+### Power
+
+The derivations below make use of the following symbols:
+
+* $x$: The observed frequency of experimental units exhibiting the trait of interest.
+* $n$: The total number of experimental units.
+* $\pi_0$: The proportion of the population that exhibits the trait of interest under the null hypothesis.
+* $\pi_a$: The proportion of the population that exhibits the trait of interest under the alternative hypothesis.
+* $\alpha$: The significance level.
+* $\gamma(\pi)$: The power of the test for the parameter $\pi$.
+* $Binomial(\alpha, n, \pi)$: A quantile of the Binomial distribution with a probability $\alpha$, and parameters $n$ and $\pi$.
+* $C$: The critical region.
+
+**Two Sided Test**
+
+$$\begin{align}
+\gamma(\pi_a) &= P_{\pi_a}(x \in C) \\
+ &= P_{\pi_a}(x \leq Binomial(\alpha / 2, n, \pi_a)) + \\
+ & \ \ \ \ \ \ \ P_{\pi_a}(x \geq Binomial(1 - \alpha / 2, n, \pi_a))
+\end{align}$$
+
+**Left Sided Test**
+
+$$\begin{align}
+\gamma(\pi_a) &= P_{\pi_a}(x \in C) \\
+ &= P_{\pi_a}(x \leq Binomial(\alpha, n, \pi_a)) 
+\end{align}$$
+
+**Right Sided Test**
+
+$$\begin{align}
+\gamma(\pi_a) &= P_{\pi_a}(x \in C) \\
+ &= P_{\pi_a}(x \geq Binomial(1 - \alpha, n, \pi_a)) 
+\end{align}$$
+
+
