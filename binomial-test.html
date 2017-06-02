@@ -550,19 +550,26 @@ Figure 5.2: The examples displayed use <span class="math inline">\(n = 20\)</spa
 <p><strong>Two Sided Test</strong></p>
 <p><span class="math display">\[\begin{align}
 \gamma(\pi_a) &amp;= P_{\pi_a}(x \in C) \\
- &amp;= P_{\pi_a}(x \leq Binomial(\alpha / 2, n, \pi_a)) + \\
- &amp; \ \ \ \ \ \ \ P_{\pi_a}(x \geq Binomial(1 - \alpha / 2, n, \pi_a))
+ &amp;= P_{\pi_a}(Binomial(\alpha/2, n, \pi_0) \leq Binomial(\alpha / 2, n, \pi_a)) + \\
+ &amp; \ \ \ \ \ \ \ P_{\pi_a}(Binomial(1 - \alpha / 2, n, \pi_0) \geq Binomial(1 - \alpha / 2, n, \pi_a))
 \end{align}\]</span></p>
 <p><strong>Left Sided Test</strong></p>
 <p><span class="math display">\[\begin{align}
 \gamma(\pi_a) &amp;= P_{\pi_a}(x \in C) \\
- &amp;= P_{\pi_a}(x \leq Binomial(\alpha, n, \pi_a)) 
+ &amp;= P_{\pi_a}(Binomial(\alpha, n, \pi_0) \leq Binomial(\alpha, n, \pi_a)) 
 \end{align}\]</span></p>
 <p><strong>Right Sided Test</strong></p>
 <p><span class="math display">\[\begin{align}
 \gamma(\pi_a) &amp;= P_{\pi_a}(x \in C) \\
- &amp;= P_{\pi_a}(x \geq Binomial(1 - \alpha, n, \pi_a)) 
+ &amp;= P_{\pi_a}(Binomial(1 - \alpha, n, \pi_0) \geq Binomial(1 - \alpha, n, \pi_a)) 
 \end{align}\]</span></p>
+<p>Since the Binomial distribution is discrete, the power curve has the interesting characteristic of not being monotonic. It is sometimes described as having a “sawtooth” appearance. This behavior means that a larger sample size is not always preferred. For example, in the following figure, a sample size of 10 has better power than a sample size of 12.</p>
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<img src="figures/unnamed-chunk-4-1.png" alt="Power for a Binomial test with $\pi_0 = .15$ and $\pi_a = 0.25$" width="672" />
+<p class="caption">
+Figure 5.3: Power for a Binomial test with <span class="math inline">\(\pi_0 = .15\)</span> and <span class="math inline">\(\pi_a = 0.25\)</span>
+</p>
+</div>
 
 </div>
 </div>

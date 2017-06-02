@@ -25,6 +25,7 @@ library(ggplot2)
 library(magrittr)
 library(pixiedust)
 library(RColorBrewer)
+library(StudyPlanning)
 library(tidyr)
 
 palette <- brewer.pal(9, "PRGn")
