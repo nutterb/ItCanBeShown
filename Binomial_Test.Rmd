@@ -179,22 +179,39 @@ The derivations below make use of the following symbols:
 
 $$\begin{align}
 \gamma(\pi_a) &= P_{\pi_a}(x \in C) \\
- &= P_{\pi_a}(x \leq Binomial(\alpha / 2, n, \pi_a)) + \\
- & \ \ \ \ \ \ \ P_{\pi_a}(x \geq Binomial(1 - \alpha / 2, n, \pi_a))
+ &= P_{\pi_a}(Binomial(\alpha/2, n, \pi_0) \leq Binomial(\alpha / 2, n, \pi_a)) + \\
+ & \ \ \ \ \ \ \ P_{\pi_a}(Binomial(1 - \alpha / 2, n, \pi_0) \geq Binomial(1 - \alpha / 2, n, \pi_a))
 \end{align}$$
 
 **Left Sided Test**
 
 $$\begin{align}
 \gamma(\pi_a) &= P_{\pi_a}(x \in C) \\
- &= P_{\pi_a}(x \leq Binomial(\alpha, n, \pi_a)) 
+ &= P_{\pi_a}(Binomial(\alpha, n, \pi_0) \leq Binomial(\alpha, n, \pi_a)) 
 \end{align}$$
 
 **Right Sided Test**
 
 $$\begin{align}
 \gamma(\pi_a) &= P_{\pi_a}(x \in C) \\
- &= P_{\pi_a}(x \geq Binomial(1 - \alpha, n, \pi_a)) 
+ &= P_{\pi_a}(Binomial(1 - \alpha, n, \pi_0) \geq Binomial(1 - \alpha, n, \pi_a)) 
 \end{align}$$
 
+Since the Binomial distribution is discrete, the power curve has the interesting characteristic of not being monotonic.  It is sometimes described as having a "sawtooth" appearance. This behavior means that a larger sample size is not always preferred.  For example, in the following figure, a sample size of 10 has better power than a sample size of 12.
 
+```{r, echo = FALSE, fig.path = 'figures/', fig.cap='Power for a Binomial test with $\\pi_0 = .15$ and $\\pi_a = 0.25$'}
+BinomialPower <- 
+  test_binomial(n = 2:30, 
+                p0 = .15, 
+                p1 = .25, 
+                alpha= .05, 
+                power = NULL,
+                tail = 'right')
+
+ggplot(data = BinomialPower,
+       mapping = aes(x = n,
+                     y = power)) + 
+  geom_line(color = pallette_green[1]) + 
+  ylab("Power") + 
+  xlab("Sample Size")
+```
