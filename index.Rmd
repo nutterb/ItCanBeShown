@@ -12,10 +12,12 @@ bookdown::gitbook:
       before: null
       after: null
 documentclass: book
-bibliography: Zbib.bib
-biblio-style: apalike
+bibliography: Biblio.bib
+biblio-style: "apalike"
 link-citations: yes
 github-repo: nutterb/ItCanBeShown
+nocite: | 
+  @Hogg2005a, @Law2000a, @Wacke2002a
 description: "Notes on the Development of Statistical Theory"
 ---
 
