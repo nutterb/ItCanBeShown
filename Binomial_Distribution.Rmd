@@ -1,17 +1,17 @@
 # Binomial Distribution
 
 ## Probability Mass Function
-A random variable is said to follow a Binomial distribution with parameters $n$ and $p$ if its probability mass function is:
+A random variable is said to follow a Binomial distribution with parameters $n$ and $\pi$ if its probability mass function is:
 
 \[p(x)=
 	\left\{
 		\begin{array}{ll}
-			{n \choose x} p^x (1-p)^{n-x},	& x=0,1,2,\ldots,n\\
+			{n \choose x} \pi^x (1-\pi)^{n-x},	& x=0,1,2,\ldots,n\\
 			0 				& \mathrm{otherwise}
 		\end{array}
 	\right. \]
 	
-Where $n$ is the number of trials performed and $p$ is the probability of a success on each individual trial.
+Where $n$ is the number of trials performed and $\pi$ is the probability of a success on each individual trial.
 
 ## Cumulative Mass Function
 
@@ -19,7 +19,7 @@ Where $n$ is the number of trials performed and $p$ is the probability of a succ
 	\left\{
 		\begin{array} {lll}
 			0							& x<0\\
-			\sum\limits_{i=0}^{x} {n \choose i} p^i (1-p)^{n-i} 	& 0 \leq x=0,1,2,\ldots,n\\
+			\sum\limits_{i=0}^{x} {n \choose i} \pi^i (1-\pi)^{n-i} 	& 0 \leq x=0,1,2,\ldots,n\\
 			1 							& n\leq x
 		\end{array}
 	\right. \]
@@ -28,17 +28,17 @@ A recursive form of the cdf can be derived and has some usefulness in computer a
 
 $$\begin{align*} 
 F(x+1)
-	&= {n\choose x+1} p^{x+1} (1-p)^{n-(x+1)} \\
-	&= \frac{n!}{(x+1)!(n-(x+1))!} p^{x+1} (1-p)^{n-(x+1)} \\
-  &= \frac{n!}{(x+1)!(n-x-1)!} p^{x+1} (1-p)^{n-x-1} \\
-  &= \frac{(n-x)n!}{(x+1)x!(n-x)(n-x-1)!} p \cdot p^x \frac{(1-p)^{n-x}}{(1-p)} \\
-  &= \frac{(n-x)n!}{(x+1)x!(n-x)!} \cdot \frac{p}{1-p} p^x (1-p)^{n-x} \\
-  &= \frac{p}{1-p} \cdot \frac{n-x}{x+1} \cdot \frac{n!}{x!(n-x)!} p^x (1-p)^{n-x} \\
-  &= \frac{p}{1-p} \cdot \frac{n-x}{x+1} \cdot {n\choose x} p^x (1-p)^{n-x} \\
-	&= \frac{p}{1-p} \cdot \frac{n-x}{x+1} \cdot F(x)
+	&= {n\choose x+1} \pi^{x+1} (1-\pi)^{n-(x+1)} \\
+	&= \frac{n!}{(x+1)!(n-(x+1))!} \pi^{x+1} (1-\pi)^{n-(x+1)} \\
+  &= \frac{n!}{(x+1)!(n-x-1)!} \pi^{x+1} (1-\pi)^{n-x-1} \\
+  &= \frac{(n-x)n!}{(x+1)x!(n-x)(n-x-1)!} \pi \cdot \pi^x \frac{(1-\pi)^{n-x}}{(1-\pi)} \\
+  &= \frac{(n-x)n!}{(x+1)x!(n-x)!} \cdot \frac{\pi}{1-\pi} \pi^x (1-\pi)^{n-x} \\
+  &= \frac{\pi}{1-\pi} \cdot \frac{n-x}{x+1} \cdot \frac{n!}{x!(n-x)!} \pi^x (1-\pi)^{n-x} \\
+  &= \frac{\pi}{1-\pi} \cdot \frac{n-x}{x+1} \cdot {n\choose x} \pi^x (1-\pi)^{n-x} \\
+	&= \frac{\pi}{1-\pi} \cdot \frac{n-x}{x+1} \cdot F(x)
 \end{align*}$$
 
-```{r Binomial_Distribution, echo = FALSE, fig.path = 'figures/', fig.cap = 'The graphs on the left and right show a Binomial Probability Distribution and Cumulative Distribution Function, respectively, with $n=10$ and $p=.4$.'}
+```{r Binomial_Distribution, echo = FALSE, fig.path = 'figures/', fig.cap = 'The graphs on the left and right show a Binomial Probability Distribution and Cumulative Distribution Function, respectively, with $n=10$ and $\\pi=.4$.'}
 Binomial <- 
   data.frame(x = 0:10) %>%
   mutate(dbinom = dbinom(x, size = 10, p = 0.4),
@@ -63,74 +63,74 @@ ggplot(data = Binomial,
 $$\begin{align*}
 E(X)
     	    &= \sum\limits_{x=0}^n x \cdot p(x) \\
-    	    &= \sum\limits_{x=0}^n x {n\choose x} p^x (1-p)^{n-x} \\
-	^{[1]}  &= \sum\limits_{x=0}^n x {n\choose x} p^x q^{n-x} \\
-          &= 0 \cdot {n\choose 0}p^0q^n+1 \cdot {n\choose 1}p^1q^{n-1} 
-    		        + \cdots + n{n\choose n}p^nq^{n-n}\\
-     	    &= 0 + 1{n\choose 1}p^1q^{n-1} + 2{n\choose 2}p^2q^{n-2} 
-    		        + \cdots + n{n\choose n}p^nq^{n-n}\\
-    	    &= np^1 q^{n-1} + n(n-1)p^2q^{n-2} + \cdots + n(n-1)p^{n-1}q^{n-(n-1)} + n p^n\\
-    	    &= np [q^{n-1} + (n-1)pq^{n-2} + \cdots + p^{n-1}]\\
-        	&= np \Big[{n-1\choose 0}p^0q^{n-1} + {n-1\choose 1}p^1q^{(n-1)-1}
-        		+ \cdots + {n-1\choose n-1}p^{n-1}q^{(n-1)-(n-1)}\Big]\\
-        	&= np (\sum\limits_{x=0}^{n-1}{n-1\choose x}p^xq^{(n-1)-x}) \\
-  ^{[2]}	&= np(p+q)^{n-1} \\
-  ^{[1]}	&= np(p+(1-p))^{n-1} \\
-    	    &= np(p+1-p)^{n-1} \\
-        	&= np(1)^{n-1} \\
-        	&= np(1) \\
-        	&= np
+    	    &= \sum\limits_{x=0}^n x {n\choose x} \pi^x (1-\pi)^{n-x} \\
+	^{[1]}  &= \sum\limits_{x=0}^n x {n\choose x} \pi^x q^{n-x} \\
+          &= 0 \cdot {n\choose 0}\pi^0q^n+1 \cdot {n\choose 1}\pi^1q^{n-1} 
+    		        + \cdots + n{n\choose n}\pi^nq^{n-n}\\
+     	    &= 0 + 1{n\choose 1}\pi^1q^{n-1} + 2{n\choose 2}\pi^2q^{n-2} 
+    		        + \cdots + n{n\choose n}\pi^nq^{n-n}\\
+    	    &= n\pi^1 q^{n-1} + n(n-1)\pi^2q^{n-2} + \cdots + n(n-1)\pi^{n-1}q^{n-(n-1)} + n \pi^n\\
+    	    &= n\pi [q^{n-1} + (n-1)\pi q^{n-2} + \cdots + \pi^{n-1}]\\
+        	&= n\pi \Big[{n-1\choose 0}\pi^0q^{n-1} + {n-1\choose 1}\pi^1q^{(n-1)-1}
+        		+ \cdots + {n-1\choose n-1}\pi^{n-1}q^{(n-1)-(n-1)}\Big]\\
+        	&= n\pi (\sum\limits_{x=0}^{n-1}{n-1\choose x}\pi^xq^{(n-1)-x}) \\
+  ^{[2]}	&= n\pi(\pi+q)^{n-1} \\
+  ^{[1]}	&= n\pi(\pi+(1-\pi))^{n-1} \\
+    	    &= n\pi(\pi+1-\pi)^{n-1} \\
+        	&= n\pi(1)^{n-1} \\
+        	&= n\pi(1) \\
+        	&= n\pi
 \end{align*}$$
 
-> 1. Let $q = (1 - p)$
+> 1. Let $q = (1 - \pi)$
 > 2. By the Binomial Theorem (\@ref(binomial-theorem-traditional)), $\sum\limits_{x=0}^n{n\choose x}a^xb^{n-x}=(a+b)^n$
 
 $$\begin{align*}
 E(X^2)
 	        &= \sum\limits_{x=0}^{n} x^2 p(x) \\
-	        &= \sum\limits_{x=0}^{n} x^2 {n\choose x} p^x (1-p)^{n-x} \\
-	^{[1]}  &= \sum\limits_{x=0}^{n} x^2 {n\choose x} p^x q^{n-x} \\
-          &= 0^2 \frac{n!}{0!(n-0)!} p^0q^n + 1^2 \frac{n!}{1!(n-1)!} p^1q^{n-1}
-		          + \cdots + n^2 \frac{n!}{n!(n-n)!} p^nq^{n-n} \\
-        	&= 0 + 1 \frac{n!}{(n-1)!} pq^{n-1} + 2 \frac{n!}{1\cdot(n-2)!} p^2q^{n-2}
-        		+ \cdots + n \frac{n!}{(n-1)!(n-n)!} p^n \\
-          &= np \Big[1 \frac{(n-1)!}{(n-1)!} p^0q^{n-1}
-        		+ 2 \frac{(n-1)!}{1(n-2)!} p^2q^{n-2}
-        		+ \cdots + n \frac{(n-1)!}{(n-1)!(n-n)!} p^{n-1}\Big] \\
-          &= np \Big[1 \frac{(n-1)!}{(1-1)!((n-1)-(-1-1))!} p^{1-1} q^{n-1} + 
-                 	\cdots + n \frac{(n-1)!}{(n-1)!((n-1)-(n-1))!} p^{n-1} q^{(n-1)-(n-1)}\Big] \\
-          &= np \sum\limits_{x=1}^{n} x {n-1\choose x-1} p^{x-1}1^{(n-1)-(x-1)} \\
-  ^{[2]}  &= \sum\limits_{y=0}^{m} (y+1) {m \choose y} p^yq^{m-y} \\
-          &= np \Big[ \sum\limits_{y=0}^{m} y {m \choose y} p^yq^{m-y} + {m \choose y} p^yq^{m-y}\Big] \\
-          &= np \Big[ \sum\limits_{y=0}^{m} y {m \choose y} p^yq^{m-y} 
-          		+ \sum\limits_{y=0}^{m} {m \choose y} p^yq^{m-y}\Big] \\
-  ^{[3]}  &= np(mp+1) \\
-        	&= np[(n-1)p+1] \\
-        	&=np(np-p+1) \\
-        	&=n^2p^2 - np^2 + np
+	        &= \sum\limits_{x=0}^{n} x^2 {n\choose x} \pi^x (1-\pi)^{n-x} \\
+	^{[1]}  &= \sum\limits_{x=0}^{n} x^2 {n\choose x} \pi^x q^{n-x} \\
+          &= 0^2 \frac{n!}{0!(n-0)!} \pi^0q^n + 1^2 \frac{n!}{1!(n-1)!} \pi^1q^{n-1}
+		          + \cdots + n^2 \frac{n!}{n!(n-n)!} \pi^nq^{n-n} \\
+        	&= 0 + 1 \frac{n!}{(n-1)!} \pi q^{n-1} + 2 \frac{n!}{1\cdot(n-2)!} \pi^2q^{n-2}
+        		+ \cdots + n \frac{n!}{(n-1)!(n-n)!} \pi^n \\
+          &= n\pi \Big[1 \frac{(n-1)!}{(n-1)!} \pi^0q^{n-1}
+        		+ 2 \frac{(n-1)!}{1(n-2)!} \pi^2q^{n-2}
+        		+ \cdots + n \frac{(n-1)!}{(n-1)!(n-n)!} \pi^{n-1}\Big] \\
+          &= n\pi \Big[1 \frac{(n-1)!}{(1-1)!((n-1)-(-1-1))!} \pi^{1-1} q^{n-1} + 
+                 	\cdots + n \frac{(n-1)!}{(n-1)!((n-1)-(n-1))!} \pi^{n-1} q^{(n-1)-(n-1)}\Big] \\
+          &= n\pi \sum\limits_{x=1}^{n} x {n-1\choose x-1} \pi^{x-1}1^{(n-1)-(x-1)} \\
+  ^{[2]}  &= \sum\limits_{y=0}^{m} (y+1) {m \choose y} \pi^yq^{m-y} \\
+          &= n\pi \Big[ \sum\limits_{y=0}^{m} y {m \choose y} \pi^yq^{m-y} + {m \choose y} \pi^yq^{m-y}\Big] \\
+          &= n\pi \Big[ \sum\limits_{y=0}^{m} y {m \choose y} \pi^yq^{m-y} 
+          		+ \sum\limits_{y=0}^{m} {m \choose y} \pi^yq^{m-y}\Big] \\
+  ^{[3]}  &= n\pi(m\pi+1) \\
+        	&= n\pi[(n-1)\pi+1] \\
+        	&=n\pi(n\pi-\pi+1) \\
+        	&=n^2\pi^2 - n\pi^2 + n\pi
 \end{align*}$$
 	
->1. $q = (1 - p)$
+>1. $q = (1 - \pi)$
 >2. Let $y = x - 1$ and $n = m + 1$  
 >    $\Rightarrow$ $x = y + 1$ and $m = n - 1$
->3. $\sum\limits_{y=0}^{m}y{m \choose y}p^yq^{m-y}$
->		is of the form of the expected value of $Y$, and $E(Y)=mp=(n-1)p$.
->		$\sum\limits_{y=0}^{m}{m \choose y}p^yq^{m-y}$
+>3. $\sum\limits_{y=0}^{m}y{m \choose y}\pi^yq^{m-y}$
+>		is of the form of the expected value of $Y$, and $E(Y)=m\pi=(n-1)\pi$.
+>		$\sum\limits_{y=0}^{m}{m \choose y}\pi^yq^{m-y}$
 >		is the sum of all probabilities over the domain of $Y$ which is 1.
 
 
 $$\begin{align*}
 \mu
 	&= E(X) \\
-	&= np \\
+	&= n\pi \\
 \\
 \\
 \sigma^2
 	&= E(X^2) - E(X)^2 \\
-	&= n^2p^2 - np^2 + np - n^2p^2 \\
-	&= -np^2 + np \\
-	&= np(-p-1) \\
-  &= np(1-p)
+	&= n^2\pi^2 - n\pi^2 + n\pi - n^2\pi^2 \\
+	&= -n\pi^2 + n\pi \\
+	&= n\pi(-\pi-1) \\
+  &= n\pi(1-\pi)
 \end{align*}$$
 
 ## Moment Generating Function
@@ -139,10 +139,10 @@ $$
 \begin{align*} 
 M_X(t)
           &= E(e^{tX})=\sum\limits_{x=0}^{n}e^{tx}p(x) \\
-        	&= \sum\limits_{x=0}^{n}e^{tx}{n\choose x}p^x(1-p)^{n-x} \\
-          &= \sum\limits_{x=0}^{n}{n\choose x}e^{tx}p^x(1-p)^{n-x} \\
-	        &= \sum\limits_{x=0}^{n}{n\choose x}(pe^{tx})^x(1-p)^{n-x} \\
-  ^{[1]}  &= [(1-p)+pe^t]^n
+        	&= \sum\limits_{x=0}^{n}e^{tx}{n\choose x}\pi^x(1-\pi)^{n-x} \\
+          &= \sum\limits_{x=0}^{n}{n\choose x}e^{tx}\pi^x(1-\pi)^{n-x} \\
+	        &= \sum\limits_{x=0}^{n}{n\choose x}(\pi e^{tx})^x(1-\pi)^{n-x} \\
+  ^{[1]}  &= [(1-\pi)+\pi e^t]^n
 \end{align*}
 $$
 	
@@ -150,49 +150,49 @@ $$
 
 $$
 \begin{align*}
-M_X^{(1)}(t) &= n[(1 - p) + pe^t] ^ {n - 1} pe^t\\
+M_X^{(1)}(t) &= n[(1 - \pi) + \pi e^t] ^ {n - 1} \pi e^t\\
 \\
-M_X^{(2)}(t) &= n[(1-p) + pe^t] ^ {n-1} pe^t + n(n-1)[(1-p) + pe^t] ^ {n-2}(pe^t)^2\\
-             &= npe^t[(1-p) + pe^t] ^ {n-1} + n(n-1)pe^{2t}[(1-p) + pe^t] ^ {n-2}\\
+M_X^{(2)}(t) &= n[(1-\pi) + \pi e^t] ^ {n-1} \pi e^t + n(n-1)[(1-\pi) + \pi e^t] ^ {n-2}(\pi e^t)^2\\
+             &= n\pi e^t[(1-\pi) + \pi e^t] ^ {n-1} + n(n-1)\pi e^{2t}[(1-\pi) + \pi e^t] ^ {n-2}\\
 \\
 \\
 E(X)
   &= M_X^{(1)}(0) \\
-  &= n[(1-p)+pe^0]^{n-1}pe^0 \\
-  &= n[1-p+p^{n-1}p\\
-  &= n(1)^{n-1}p
-  &= np\\
+  &= n[(1-\pi)+\pi e^0]^{n-1}\pi e^0 \\
+  &= n[1-\pi+\pi^{n-1}\pi\\
+  &= n(1)^{n-1}\pi
+  &= n\pi\\
 \\
 \\
 E(X^2)
   &= M_X^{(2)}(0) \\
-  &= npe^0 [(1-p) + pe^0]^{n-1} + n(n-2) pe^{2\cdot0}[(1-p) + pe^0]^{n-2} \\
-  &= np(1-p+p)^{n-2}+n(n-1)p^2(1-p+p^{n-2} \\
-  &= np (1)^{n-1} + n(n-1) p^2 (1)^{n-2} \\
-  &= np+n(n-1)p^2 \\
-  &= np+(n^2-n)p^2 \\
-  &= np + n^2 + n^2p^2 - np^2 \\
+  &= n\pi e^0 [(1-\pi) + \pi e^0]^{n-1} + n(n-2) \pi e^{2\cdot0}[(1-\pi) + \pi e^0]^{n-2} \\
+  &= n\pi(1-\pi+\pi)^{n-2}+n(n-1)\pi^2(1-\pi+\pi^{n-2} \\
+  &= n\pi (1)^{n-1} + n(n-1) \pi^2 (1)^{n-2} \\
+  &= n\pi+n(n-1)\pi^2 \\
+  &= n\pi+(n^2-n)\pi^2 \\
+  &= n\pi + n^2 + n^2\pi^2 - n\pi^2 \\
 \\
 \\
 \mu
   &= E(X) \\
-  &= np \\
+  &= n\pi \\
 \\
 \\
 \sigma^2
   &= E(X^2) - E(X)^2 \\
-  &= np + n^2p^2 - np^2 - n^2p^2 \\
-  &= np - np^2\\
-  &= np(1-p)
+  &= n\pi + n^2\pi^2 - n\pi^2 - n^2\pi^2 \\
+  &= n\pi - n\pi^2\\
+  &= n\pi(1-\pi)
 \end{align*}$$
 
 
 
 ## Maximum Likelihood Estimator
 
-Since $n$ is fixed in each Binomial experiment, and must therefore be given, it is unnecessary to develop an estimator for $n$.  The mean and variance can both be estimated from the single parameter $p$.
+Since $n$ is fixed in each Binomial experiment, and must therefore be given, it is unnecessary to develop an estimator for $n$.  The mean and variance can both be estimated from the single parameter $\pi$.
 
-Let $X$ be a Binomial random variable with parameter $p$ and $n$ outcomes $(x_1,x_2,\ldots,x_n)$.  Let $x_i=0$ for a failure and $x_i=1$ for a success.  In other words, $X$ is the sum of $n$ Bernoulli trials with equal probability of success and $X=\sum\limits_{i=1}^{n}x_i$.
+Let $X$ be a Binomial random variable with parameter $\pi$ and $n$ outcomes $(x_1,x_2,\ldots,x_n)$.  Let $x_i=0$ for a failure and $x_i=1$ for a success.  In other words, $X$ is the sum of $n$ Bernoulli trials with equal probability of success and $X=\sum\limits_{i=1}^{n}x_i$.
 
 ### Likelihood Function
 $$\begin{align*} 
@@ -217,19 +217,19 @@ $$\begin{align*}
 ### MLE for p
 
 $$\begin{align*} 
-                \frac{d\ell(p)}{d p} 
-                            &= \frac{X}{p}-\frac{n-X}{1-p} \\
+                \frac{d\ell(p)}{d \pi} 
+                            &= \frac{X}{\pi}-\frac{n-X}{1-\pi} \\
 \\
 \\
-                       0   &= \frac{X}{p}-\frac{n-X}{1-p} \\
-  \Rightarrow  \frac{X}{p} &= \frac{n-X}{1-p} \\
-  \Rightarrow  (1-p)X      &= p(n-X) \\
-  \Rightarrow  X-pX        &= np-pX \\
-  \Rightarrow  X           &= np \\
-  \Rightarrow  \frac{X}{n} &= p \\
+                       0   &= \frac{X}{\pi}-\frac{n-X}{1-\pi} \\
+  \Rightarrow  \frac{X}{\pi} &= \frac{n-X}{1-\pi} \\
+  \Rightarrow  (1-\pi)X      &= \pi(n-X) \\
+  \Rightarrow  X-\pi X        &= n\pi-\pi X \\
+  \Rightarrow  X           &= n\pi \\
+  \Rightarrow  \frac{X}{n} &= \pi \\
 \end{align*}$$
 
-So $\displaystyle \hat p = \frac{X}{n} = \frac{1}{n}\sum\limits_{i=1}^{n}x_i$ is the maximum likelihood estimator for $p$.
+So $\displaystyle \hat p = \frac{X}{n} = \frac{1}{n}\sum\limits_{i=1}^{n}x_i$ is the maximum likelihood estimator for $\pi$.
 
 
 ## Theorems for the Binomial Distribution
@@ -243,8 +243,8 @@ $$\begin{align*}
 _Proof:_
 
 $$\begin{align*}
-\sum\limits_{x=0}^n {n\choose x} p^x (1-p)^{n-x} \\
-	^{[1]}  &= \big(p + (1-p)\big)^n \\
+\sum\limits_{x=0}^n {n\choose x} \pi^x (1-\pi)^{n-x} \\
+	^{[1]}  &= \big(\pi + (1-\pi)\big)^n \\
 	        &= (1)^n \\
 	        &= 1 
 \end{align*}$$
@@ -254,9 +254,9 @@ $$\begin{align*}
 
 ### Sum of Binomial Random Variables
 
-Let $X_1,X_2,\ldots,X_k$ be independent random variables where $X_i$ comes from a Binomial distribution with parameters $n_i$ and $p$.  That is $X_i\sim(n_i,p)$.
+Let $X_1,X_2,\ldots,X_k$ be independent random variables where $X_i$ comes from a Binomial distribution with parameters $n_i$ and $\pi$.  That is $X_i\sim(n_i,\pi)$.
 
-Let $Y = \sum\limits_{i=1}{k} X_i$.  Then $Y\sim$Binomial$(\sum\limits_{i=1}^{k}n_i,p)$.
+Let $Y = \sum\limits_{i=1}{k} X_i$.  Then $Y\sim$Binomial$(\sum\limits_{i=1}^{k}n_i,\pi)$.
 
 _Proof:_
 
@@ -266,17 +266,17 @@ M_Y(t)
 	&= E(e^{t(x_1 + X_2 + \cdots + X_k)} \\
 	&= E(e^{tX_1} e^{tX_2} \cdots e^{tX_k}) \\ 
   &= E(e^{tX_1}) E(e^{tX_2}) \cdots E(e^{tX_k}) \\
-  &= \prod\limits_{i=1}^{k} [(1-p)+pe^t]^{n_i} \\
-	&= [(1-p)+pe^t]^{\sum\limits_{i=1}^{k}n_i}
+  &= \prod\limits_{i=1}^{k} [(1-\pi)+\pi e^t]^{n_i} \\
+	&= [(1-\pi)+\pi e^t]^{\sum\limits_{i=1}^{k}n_i}
 \end{align*}$$
 
-Which is the mgf of a Binomial random variable with parameters $\sum\limits_{i=1}^{k}n_i$ and $p$.  
-Thus $Y\sim$Binomial$(\sum\limits_{i=1}^{k}n_i,p)$.
+Which is the mgf of a Binomial random variable with parameters $\sum\limits_{i=1}^{k}n_i$ and $\pi$.  
+Thus $Y\sim$Binomial$(\sum\limits_{i=1}^{k}n_i,\pi)$.
 
 ### Sum of Bernoulli Random Variables
 
-Let $X_1,X_2,\ldots,X_n$ be independent and identically distributed random variables from a Bernoulli distribution with parameter $p$.  Let $Y = \sum\limits_{i=1}^{n}X_i$.  
-Then $Y\sim$Binomial$(n,p)$
+Let $X_1,X_2,\ldots,X_n$ be independent and identically distributed random variables from a Bernoulli distribution with parameter $\pi$.  Let $Y = \sum\limits_{i=1}^{n}X_i$.  
+Then $Y\sim$Binomial$(n,\pi)$
 
 _Proof:_
 $$\begin{align*}
@@ -284,8 +284,8 @@ M_Y(t)
 	&= E(e^{tY}) \\
 	&= E(e^{tX_1} e^{tX_2} \cdots e^{tX_n}) \\
 	&= E(e^{tX_1}) E(e^{tX_2}) \cdots E(e^{tX_n}) \\
-  &= (pe^t+(1-p))(pe^t+(1-p))\cdots (pe^t+(1-p)) \\
-	&= (pe^t+(1-p))^n
+  &= (\pi e^t+(1-\pi))(\pi e^t+(1-\pi))\cdots (\pi e^t+(1-\pi)) \\
+	&= (\pi e^t+(1-\pi))^n
 \end{align*}$$
 
 Which is the mgf of a Binomial random variable with parameters $n$ and $p$.  Thus, $Y\sim$ Binomial$(n,p)$. 
