@@ -17,7 +17,7 @@ P_n^n
   \Rightarrow N   &= \frac{n!}{k_1! k_2! \cdots k_m!}
 \end{align*}$$
 
-### Combinations Theorem
+### Combinations Theorem {#combinations-theorem}
 
 Given a set of $n$ elements, the number of possible ways to select a subset of size $k$, without regard to the order of their selection, is $\frac{n!}{k!(n-k)!}$.\\
 
@@ -32,7 +32,7 @@ $C_k^n$, $_nC_k$, $C_{n,k}$, $C(n,k)$, and ${n\choose k}$.
 Throughout this book, the form ${n\choose k}$ is used and may be read "$n$ choose $k$ objects."
 
 
-### Theorem
+### Theorem {#combinations-theorem-1}
 
 For any integer $a$ such that $0\leq a\leq k$,
 

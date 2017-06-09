@@ -85,7 +85,7 @@ This completes both the inductive step and the proof.
 
 ### A Binomial Expansion Theorem
 
-This theorem and its corrolary are provided by Brunette\cite{Bruneta}.
+This theorem and its corrolary are provided by Brunette [@Bruneta].
 
 For any positive integer $n$, let $B_n = (x_1+y_1) (x_2+y_2) \cdots (x_n+y_n)$.  In the expansion $B_n$, before combining possible like terms, the following are true:
 
@@ -165,7 +165,7 @@ $$
 Notice that for any $n$ where $0 \leq n \leq N_1 + N_2$, the coefficient for $a^n$, found by combining like terms, is ${N_1\choose 0}{N_2\choose n} + {N_1\choose 1}{N_2\choose n-1} + \cdots+{N_1\choose n-1}{N_2\choose 1} + {N_1\choose 0}{N_2\choose n}$ and, by the equivalence of the first equation in the proof, is equal to the coefficient ${N_1 + N_2\choose n}$.
 
 
-### Theorem
+### Theorem {#binomialtheorem-other-theorem-2}
 $$\frac{\sum\limits_{i=1}^{n}{N_1\choose i}{N_2\choose n-i}}{{N_1+N_2\choose n}} = 1$$ 
 
 for $0 \leq n \leq N_1 + N_2$.\\

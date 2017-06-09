@@ -1,6 +1,6 @@
 # Real Number System
 
-This chapter was prepared by Steve MacDonald\cite{McDonaa}.
+This chapter was prepared by Steve MacDonald [@McDonaa].
 
 ## Historical Note
 

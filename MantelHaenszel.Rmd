@@ -1,12 +1,12 @@
 # Mantel-Haenszel Test of Linear Trend
 
-The Mantel-Haenszel Test is a method for testing independence of categorical variables on an ordinal scale.  See Agresti \cite{Agres1996a} for more discussion.
+The Mantel-Haenszel Test is a method for testing independence of categorical variables on an ordinal scale.  See @Agres1996a for more discussion.
 
 Let $X$ be a categorical variable of ordinal type with $R$ levels.
 
 Let $Y$ be a categorical variable of ordinal type with $C$ levels.
 
-Suppose we take a sample of size $n$ and take a measurement on each item in the sample with respect to $X$ and $Y$.  The presence of a progresive between $X$ and $Y$ can be tested using the correlation coefficient $\rho$\cite{Mantel1963a}.  We may begin by taking the estimate of $\rho$
+Suppose we take a sample of size $n$ and take a measurement on each item in the sample with respect to $X$ and $Y$.  The presence of a progresive between $X$ and $Y$ can be tested using the correlation coefficient $\rho$ [@Mantel1963a].  We may begin by taking the estimate of $\rho$
 
 $$\begin{align*} 
 r

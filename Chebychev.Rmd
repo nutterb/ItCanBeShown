@@ -77,7 +77,7 @@ $$\begin{align*}
 
 ## Chebychev's Theorem for Absolute Deviation
 
-This theorem is provided by Brunette \cite{Brunetb}
+This theorem is provided by Brunette [@Brunetb]
 
 In any finite set of numbers, and for any real number $h > 1$, at least $1 - \frac{1}{h}$ of the numbers lie within $h$ absolute deviations of the mean, where the absolute deviation is defined $Ab = \frac{1}{n}\sum\limits_{i=1}{n}|x_i-\bar x|$.  In other words, $1-\frac{1}{h}$ of the numbers are in the interval $(\bar x-h\cdot Ab , \bar x+h\cdot Ab)$.
 

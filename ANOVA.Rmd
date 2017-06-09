@@ -310,4 +310,4 @@ $$
 > 4. See Summation Theorem \@ref(summation-theorem-5)
 > 5. See Summation Theorem \@ref(summation-theorem-6)
 
-Using the theorems in Chapter \ref{Summation} it is can be shown that each of the three cross products is equal to zero.  However, the physical tedium of reducing each cross product is much greater than the approach taken above.
+Using the theorems in Chapter \@ref{summation-chapter} it is can be shown that each of the three cross products is equal to zero.  However, the physical tedium of reducing each cross product is much greater than the approach taken above.
