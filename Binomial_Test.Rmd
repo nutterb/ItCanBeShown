@@ -10,7 +10,7 @@ The test statistic for a binomial test is the observed frequency of experimental
 
 ### Definitions
 
-Let $X$ be a random variable following a binomial distribution with parameters $n$ and $p$. Let $x$ be the observed frequency of experimental subjects exhibiting the trait of interest. 
+Let $X$ be a random variable following a binomial distribution with parameters $n$ and $\pi$. Let $x$ be the observed frequency of experimental subjects exhibiting the trait of interest. 
 
 ### Hypotheses
 
@@ -19,22 +19,22 @@ The hypotheses for the Binomial test may take the following forms:
 For a two-sided test:
 
 $$\begin{align}
-H_0: p = \pi \\
-H_a: p \neq \pi
+H_0: \pi = \pi_0 \\
+H_a: \pi \neq \pi_0
 \end{align}$$
 
 For a one-sided test:
 
 $$\begin{align}
-H_0: p < \pi \\
-H_a: p \geq \pi
+H_0: \pi < \pi_0 \\
+H_a: \pi \geq \pi_0
 \end{align}$$
 
 or 
 
 $$\begin{align}
-H_0: p > \pi \\
-H_a: p \leq \pi
+H_0: \pi > \pi_0 \\
+H_a: \pi \leq \pi_0
 \end{align}$$
 
 ### Decision Rule
@@ -43,9 +43,9 @@ The decision to reject the null hypothesis is made when the observed value of $x
 
 In a two-sided test, the upper bound is shared equally in both tails. Due to the discrete nature of the distribution, the total probability in the tails may not equal $\alpha$. The figures below depict examples of rejection regions for selected values of the Binomial distribution parameters. The decision rule is:
 
-Reject $H_0$ if $x < Binomial(\alpha/2, n, \pi)$ or $x > Binomial(1 - \alpha/2, n, \pi)$
+Reject $H_0$ if $x < Binomial(\alpha/2, n, \pi_0)$ or $x > Binomial(1 - \alpha/2, n, \pi_0)$
 
-```{r, echo = FALSE, fig.path = 'figures/', fig.cap='The examples displayed use $n = 20$. For the top, middle, and bottom examples, $p$ is set at 0.3, 0.5, and 0.75, respectively. Notice that in some cases, the rejection regions for $\\alpha = 0.10$ and $\\alpha = 0.05$ are identical.'}
+```{r, echo = FALSE, fig.path = 'figures/', fig.cap='The examples displayed use $n = 20$. For the top, middle, and bottom examples, $\\pi$ is set at 0.3, 0.5, and 0.75, respectively. Notice that in some cases, the rejection regions for $\\alpha = 0.10$ and $\\alpha = 0.05$ are identical.'}
 DF <- 
   bind_rows(
     data.frame(x = 0:20,
@@ -87,13 +87,13 @@ ggplot(data = DF,
 
 In the one-sided test, $\alpha$ is placed in only one tail. The figures below depict examples of rejection regions for selected values of the Binomial distribution parameters. In each case, $\alpha$ is the area in the tail of the figure. It follows, then, that the decision rule for a lower tailed test is:
 
-Reject $H_0$ when $x \leq Binomial(\alpha, n, \pi)$
+Reject $H_0$ when $x \leq Binomial(\alpha, n, \pi_0)$
 
 For an upper tailed test, the decision rule is:
 
-Reject $H_0$ when $x \geq Binomial(1 - \alpha, n, \pi)$
+Reject $H_0$ when $x \geq Binomial(1 - \alpha, n, \pi_0)$
 
-```{r, echo = FALSE, fig.path = 'figures/', fig.cap='The examples displayed use $n = 20$. For the top, middle, and bottom examples, $p$ is set at 0.3, 0.5, and 0.75, respectively.'}
+```{r, echo = FALSE, fig.path = 'figures/', fig.cap='The examples displayed use $n = 20$. For the top, middle, and bottom examples, $\\pi$ is set at 0.3, 0.5, and 0.75, respectively.'}
 DF <- 
   bind_rows(
     data.frame(x = 0:20,
