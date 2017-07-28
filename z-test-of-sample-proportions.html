@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="analysis-of-variance.html">
-<link rel="next" href="binomial-distribution.html">
+<link rel="prev" href="z-test-of-sample-means.html">
+<link rel="next" href="references-3.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -512,134 +512,166 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bernoulli-distribution" class="section level1">
-<h1><span class="header-section-number">3</span> Bernoulli Distribution</h1>
-<div id="probability-mass-function" class="section level2">
-<h2><span class="header-section-number">3.1</span> Probability Mass Function</h2>
-<p>A random variable is said to have a Bernoulli Distribution with parameter <span class="math inline">\(p\)</span> if its probability mass function is: <span class="math display">\[p(x)=\left\{ 
-        \begin{array}{ll}
-            \pi^x(1-\pi)^{1-x}, &amp; x=0,1\\
-            0       &amp; \mathrm{otherwise}
-        \end{array} 
-    \right. \]</span> Where <span class="math inline">\(\pi\)</span> is the probability of a success.</p>
+<div id="z-test-of-sample-proportions" class="section level1">
+<h1><span class="header-section-number">39</span> Z-test of Sample Proportions</h1>
+<div id="one-sample-z-test-1" class="section level2">
+<h2><span class="header-section-number">39.1</span> One-Sample Z-test</h2>
+<p>The <span class="math inline">\(z\)</span>-test of proportions is one approach used to look for evidence that the proportion of a sample may differ from a hypothesized (or previously observed) value. It assumes a normal distribution approximation to a Binomial distribution.</p>
+<div id="z-statistic-2" class="section level3">
+<h3><span class="header-section-number">39.1.1</span> Z-Statistic</h3>
+<p>The <span class="math inline">\(z\)</span>-statistic is a standardized measure of the magnitude of difference between a sample’s proportion and some known, non-random constant.</p>
 </div>
-<div id="cumulative-mass-function" class="section level2">
-<h2><span class="header-section-number">3.2</span> Cumulative Mass Function</h2>
-<p> <span class="math display">\[P(x)=\left\{
-        \begin{array}{lll}
-            0   &amp; x&lt;0\\
-            1-\pi &amp; x=0\\
-            1   &amp; 1\leq x
-        \end{array}
-    \right. \]</span></p>
-<div class="figure">
-<img src="figures/Bernoulli_Distribution-1.png" alt="The graphs on the left and right show a Bernoulli Probability Distribution and Cumulative Distribution Function, respectively, with $\pi=.4$.  Note that this is identical to a Binomial Distribution with parameters $n=1$ and $\pi=.4$." width="672" />
+<div id="definitions-and-terminology-4" class="section level3">
+<h3><span class="header-section-number">39.1.2</span> Definitions and Terminology</h3>
+<p>Let <span class="math inline">\(p\)</span> be a sample proportion from a sample. Let <span class="math inline">\(\pi_0\)</span> be a constant. <span class="math inline">\(z\)</span> is defined: <span class="math display">\[z = \frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}} \]</span></p>
+</div>
+<div id="hypotheses-5" class="section level3">
+<h3><span class="header-section-number">39.1.3</span> Hypotheses</h3>
+<p>The hypotheses for these test take the forms:</p>
+<p>For a two-sided test: <span class="math display">\[
+  \begin{align*}
+  H_0: \pi &amp;= \pi_0\\
+  H_a: \pi &amp;\neq \pi_0
+  \end{align*}
+\]</span></p>
+<p>For a one-sided test: <span class="math display">\[
+  \begin{align*}
+  H_0: \pi &amp;&lt; \pi_0\\
+  H_a: \pi &amp;\geq \pi_0
+  \end{align*}
+\]</span></p>
+<p>or <span class="math display">\[
+  \begin{align*}
+  H_0: \pi &amp;&gt; \pi_0\\
+  H_a: \pi &amp;\leq \pi_0
+  \end{align*}
+\]</span></p>
+<p>To compare a sample <span class="math inline">\((X_1, \ldots, X_n)\)</span> against the hypothesized value, a Z-statistic is calculated in the form:</p>
+<p><span class="math display">\[Z = \frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}\]</span></p>
+<p>Where <span class="math inline">\(p\)</span> is the sample proportion.</p>
+</div>
+<div id="decision-rule-5" class="section level3">
+<h3><span class="header-section-number">39.1.4</span> Decision Rule</h3>
+<p>The decision to reject a null hypothesis is made when an observed Z-value lies in a critical region that suggests the probability of that observation is low. We define the critical region as the upper bound we are willing to accept for <span class="math inline">\(\alpha\)</span>, the Type I Error.</p>
+<p>In the two-sided test, <span class="math inline">\(\alpha\)</span> is shared equally in both tails. The rejection regions for the most common values of <span class="math inline">\(\alpha\)</span> are depicted in the figure below, with the sum of shaded areas on both sides equaling the corresponding <span class="math inline">\(\alpha\)</span>. It follows, then, that the decision rule is:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(Z \leq z_{\alpha/2}\)</span> or when <span class="math inline">\(Z \geq z_{1-\alpha/2}\)</span>.</p>
+<p>By taking advantage of the symmetry of the Z-distribution, we can simplify the decision rule to:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(|Z| \geq z_{1-\alpha/2}\)</span></p>
+<pre><code>## Warning: Ignoring unknown aesthetics: ymax
+
+## Warning: Ignoring unknown aesthetics: ymax</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-20"></span>
+<img src="figures/unnamed-chunk-20-1.png" alt="Rejection regions for the Z-test of proportions" width="576" />
 <p class="caption">
-(#fig:Bernoulli_Distribution)The graphs on the left and right show a Bernoulli Probability Distribution and Cumulative Distribution Function, respectively, with <span class="math inline">\(\pi=.4\)</span>. Note that this is identical to a Binomial Distribution with parameters <span class="math inline">\(n=1\)</span> and <span class="math inline">\(\pi=.4\)</span>.
+Figure 39.1: Rejection regions for the Z-test of proportions
 </p>
 </div>
-</div>
-<div id="expected-values" class="section level2">
-<h2><span class="header-section-number">3.3</span> Expected Values</h2>
-<p><span class="math display">\[ 
-\begin{align*}
-E(X) 
-  &amp;= \sum\limits_{i=0}^{1} x\cdot p(x) \\
-    &amp;= \sum\limits_{i=0}^{1} x \cdot \pi^{x} (1-\pi)^{1-x}\\
-  &amp;= 0 \cdot \pi^{0} (1-\pi)^{1-0} + 1 \cdot \pi^{1} (1-\pi)^{1-1}\\
-  &amp;= 0 + \pi (1-\pi)^{0}\\
-    &amp;= \pi\\
-    \\
-    \\
-E(X^{2}) 
-  &amp;= \sum\limits_{i=0}^{1} x^2 \cdot p(x)\\
-  &amp;= \sum\limits_{i=0}^{1} x^{2} \cdot \pi^x (1-\pi)^{1-x}\\
-  &amp;= \sum\limits_{i=0}^{1} 0^{2} \cdot \pi^0 (1-\pi)^{1-0} + 1^2 \cdot \pi^1 (1-\pi)^{1-1}\\
-  &amp;= 0 \cdot 1 \cdot 1 + 1 \cdot \pi \cdot 1 \\
-    &amp;= 0 + \pi\\
-    &amp;= \pi\\
-    \\
-    \\
-\mu &amp;= E(X) = \pi\\
-  \\
-  \\
-\sigma^2 
-  &amp;= E(X^2) - E(X)^2 \\
-  &amp;= \pi-\pi^2 \\
-  &amp;= \pi(1-\pi)
-\end{align*}
-\]</span></p>
-</div>
-<div id="moment-generating-function" class="section level2">
-<h2><span class="header-section-number">3.4</span> Moment Generating Function</h2>
-<p><span class="math display">\[\begin{align*}
-M_{X}(t)
-    &amp;= E(e^{tX}) \\
-    &amp;= \sum\limits_{i=0}^{1} e^{tx} p(x) \\
-    &amp;= \sum\limits_{i=0}^{1} e^{tx} \pi^{x} (1-\pi)^{1-x}\\
-    &amp;= e^{t0} \pi^0 (1-\pi)^{1-0} + e^t \pi^t (1-\pi)^{1-1}\\
-    &amp;= (1-\pi) + e^t \pi\\
-    &amp;=\pi e^t + (1-\pi) \\
-    \\
-    \\
-M^{(1)}_X(t) &amp;= \pi e^t\\
-  \\
-  \\
-M^{(2)}_X(t) &amp;= \pi e^t\\
-  \\
-  \\
-E(X)
-    &amp;=M^{(1)}_X(0)\\
-    &amp;= \pi e^0\\
-    &amp;= \pi e^0\\
-    &amp;= \pi\\
-    \\
-    \\
-E(X^2)
-    &amp;= M^{(2)}_X(0)\\
-    &amp;= \pi e^0\\
-    &amp;= \pi\\
-    \\
-    \\
-\mu
-  &amp;= E(X)\\
-    &amp;= \pi\\
-  \\
-  \\
-\sigma^2
-    &amp;= E(X^2) - E(X)^2 \\
-    &amp;= \pi - \pi^2 \\
-    &amp;= \pi (1-\pi)
-\end{align*}
-\]</span></p>
-</div>
-<div id="theorems-for-the-bernoulli-distribution" class="section level2">
-<h2><span class="header-section-number">3.5</span> Theorems for the Bernoulli Distribution</h2>
-<div id="validity-of-the-distribution" class="section level3">
-<h3><span class="header-section-number">3.5.1</span> Validity of the Distribution</h3>
-<p><span class="math display">\[\sum\limits_{x=0}^{1}\pi^x(1-\pi)^{1-x}=1\]</span></p>
-<p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{align*}
-\sum\limits_{x=0}^{1} \pi^x (1-\pi)^{1-x}
-    &amp;= \pi^0 (1-\pi)^1 + \pi^1 (1-\pi)^0 \\
-    &amp;= (1-\pi) + \pi \\
-    &amp;= 1
-\end{align*}\]</span></p>
-</div>
-<div id="sum-of-bernoulli-random-variables" class="section level3">
-<h3><span class="header-section-number">3.5.2</span> Sum of Bernoulli Random Variables</h3>
-<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent and identically distributed random variables from a Bernoulli distribution with parameter <span class="math inline">\(p\)</span>. Let <span class="math inline">\(Y=\sum\limits_{i=1}^{n}X_i\)</span>.\ Then <span class="math inline">\(Y\sim\)</span> Binomial<span class="math inline">\((n,\pi)\)</span></p>
-<p><em>Proof:</em> <span class="math display">\[\begin{align*}
-M_Y(t)
-    &amp;= E(e^{tY}) \\
-    &amp;= E(e^{tX_1} e^{tX_2} \cdots e^{tX_n}) \\
-    &amp;= E(e^{tX_1}) E(e^{tX_2}) \cdots E(e^{tX_n}) \\
-  &amp;= (\pi e^t+(1-\pi)) (\pi e^t+(1-\pi)) \cdots (\pi e^t+(1-\pi)) \\
-    &amp;= (\pi e^t+(1-\pi))^n
-\end{align*}\]</span></p>
-<p>Which is the moment generating function of a Binomial random variable with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\pi\)</span>. Thus, <span class="math inline">\(Y\sim\)</span> Binomial<span class="math inline">\((n,\pi)\)</span>.</p>
+<p>In the one-sided test, <span class="math inline">\(\alpha\)</span> is placed in only one tail. The rejection regions for the most common values of <span class="math inline">\(\alpha\)</span> are depicted in the figure below. In each case, <span class="math inline">\(\alpha\)</span> is the area in the tail of the figure. It follows, then, that the decision rule for a lower tailed test is:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(Z \leq z_{\alpha, \nu}\)</span>.</p>
+<p>For an upper tailed test, the decision rule is:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(Z \geq z_{1-\alpha, \nu}\)</span>.</p>
+<p>Using the symmetry of the Z-distribution, we can simplify the decision rule as:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(|Z| \geq z_{1-\alpha}\)</span>.</p>
+<pre><code>## Warning: Ignoring unknown aesthetics: ymax
 
+## Warning: Ignoring unknown aesthetics: ymax</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-21"></span>
+<img src="figures/unnamed-chunk-21-1.png" alt="Rejection regions for one-tailed Z-test" width="576" />
+<p class="caption">
+Figure 39.2: Rejection regions for one-tailed Z-test
+</p>
 </div>
+<p>The decision rule can also be written in terms of <span class="math inline">\(p\)</span>:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(p \leq \pi_0 - z_\alpha \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\)</span> or <span class="math inline">\(p \geq \pi_0 + z_\alpha \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\)</span>.</p>
+<p>This change can be justified by:</p>
+<p><span class="math display">\[
+\begin{align*}
+|Z| &amp;\geq z_{1-\alpha}\\
+\Big|\frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}\Big| &amp;\geq z_{1-\alpha} 
+\end{align*}
+\]</span></p>
+<p><span class="math display">\[
+\begin{align*}
+-\Big(\frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}\Big) &amp;\geq z_{1-\alpha} &amp;
+    \frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}} &amp;\geq z_{1-\alpha}\\
+p - \pi_0 &amp;\leq - z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}} &amp;
+    p - \pi_0 &amp;\geq z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\\
+p &amp;\leq \pi_0 - z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}} &amp;
+    p &amp;\geq \pi_0 + z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}} 
+\end{align*}
+\]</span></p>
+<p>For a two-sided test, both the conditions apply. The left side condition is used for a left-tailed test, and the right side condition for a right-tailed test.</p>
+</div>
+<div id="power-5" class="section level3">
+<h3><span class="header-section-number">39.1.5</span> Power</h3>
+<p>The derivations below make use of the following symbols:</p>
+<ul>
+<li><span class="math inline">\(p\)</span>: The sample proportion</li>
+<li><span class="math inline">\(n\)</span>: The sample size</li>
+<li><span class="math inline">\(\pi_0\)</span>: The value of population mean under the null hypothesis</li>
+<li><span class="math inline">\(\pi_a\)</span>: The value of the population mean under the alternative hypothesis.</li>
+<li><span class="math inline">\(\alpha\)</span>: The significance level</li>
+<li><span class="math inline">\(\gamma(\mu)\)</span>: The power of the test for the parameter <span class="math inline">\(\mu\)</span>.</li>
+<li><span class="math inline">\(z_{\alpha}\)</span>: A quantile of the Standard Normal distribution for a probability, <span class="math inline">\(\alpha\)</span>.</li>
+<li><span class="math inline">\(Z\)</span>: A calculated value to be compared against a Standard Normal distribution.</li>
+<li><span class="math inline">\(C\)</span>: The critical region (rejection region) of the test.</li>
+</ul>
+<p><strong>Two-Sided Test</strong></p>
+<p><span class="math display">\[
+\begin{align*}
+\gamma(\pi_a) &amp;= P_{\pi_a}(p \in C)\\
+  &amp;= P_\mu\Big(p \leq \pi_0 - z_{\alpha/2} \cdot 
+      \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\Big) +
+    P_{\pi_a}\Big(p \geq \pi_0 + z_{1-\alpha/2} \cdot 
+      \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\Big)\\
+  &amp;= P_{\pi_a}\Big(p - \pi_a \leq \pi_0 - \pi_a - z_{\alpha/2} \cdot
+      \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\Big) + \\
+   &amp; \ \ \ \ \ P_{\pi_a}\Big(p - \pi_a \geq \pi_0 - \pi_a + z_{1-\alpha/2} \cdot
+      \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\Big)\\
+  &amp;= P_{\pi_a}\Big(\frac{p - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}} \leq 
+        \frac{\pi_0 - \pi_a - z_{\alpha/2} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big) +\\
+   &amp; \ \ \ \ \ P_{\pi_a}\Big(\frac{p - \mu}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}} \geq 
+        \frac{\pi_0 - \pi_a + z_{1-\alpha/2} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big)\\
+&amp;= P_{\pi_a}\Big(Z \leq \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}} - z_{\alpha/2}\Big) + 
+   P_{\pi_a}\Big(Z \geq \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}} + z_{1-\alpha/2}\Big)\\
+&amp;= P_{\pi_a}\Big(Z \leq -z_{\alpha/2} + \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big) + 
+   P_{\pi_a}\Big(Z \geq z_{1-\alpha/2} + \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big)\\
+&amp;= P_{\pi_a}\Big(Z \leq -z_{\alpha/2} + \frac{\sqrt{n} \cdot (\pi_0 - \pi_a)}{\sqrt{\pi_a \cdot (1 - \pi_a)}}\Big) + 
+   P_{\pi_a}\Big(Z \geq z_{1-\alpha/2} + \frac{\sqrt{n} \cdot (\pi_0 - \pi_a)}{\sqrt{\pi_a \cdot (1 - \pi_a)}}\Big)
+\end{align*}
+\]</span></p>
+<p>Both <span class="math inline">\(z_{\alpha/2}\)</span> and <span class="math inline">\(z_{1-\alpha/2}\)</span> have Standard Normal distributions.</p>
+<p><strong>One-Sided Test</strong></p>
+<p>For convenience, the power for only the upper tailed test is derived here.<br />
+Recall that the symmetry of the t-test allows us to use the decision rule: Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(|Z| \geq z_{1-\alpha}\)</span>. Thus, where <span class="math inline">\(Z\)</span> occurs in the derivation below, it may reasonably be replaced with <span class="math inline">\(|Z|\)</span>.</p>
+<p><span class="math display">\[
+\begin{align*}
+\gamma(\pi_a)  &amp;= P_{\pi_a}(p \in C)\\
+&amp;= P_{\pi_a}\big(p \geq \pi_0 + z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\big)\\
+&amp;= P_{\pi_a}\big(p - \pi_a \geq \pi_0 - \pi_a + z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\big)\\
+&amp;= P_{\pi_a}\Big(\frac{p - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}} \geq 
+    \frac{\pi_0 - \pi_a + z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big)\\
+&amp;= P_{\pi_a}\Big(Z \geq \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}} + z_{1-\alpha} \Big)\\
+&amp;= P_{\pi_a}\Big(Z \geq z_{1-\alpha} + \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big)\\
+&amp;= P_{\pi_a}\Big(Z \geq z_{1-\alpha} + \frac{\sqrt{n} \cdot (\pi_0 -\pi_a)}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big)
+\end{align*}
+\]</span></p>
+<p>Where <span class="math inline">\(z_{1-\alpha}\)</span> has a Standard Normal distribution.</p>
+</div>
+<div id="confidence-interval-4" class="section level3">
+<h3><span class="header-section-number">39.1.6</span> Confidence Interval</h3>
+<p>The confidence interval for <span class="math inline">\(\theta\)</span> is written: <span class="math display">\[p \pm z_{1-\alpha/2} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\]</span></p>
+<p>The value of the expression on the right is often referred to as the <em>margin of error</em>, and we will refer to this value as <span class="math display">\[E = z_{1-\alpha/2} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\]</span></p>
+</div>
+</div>
+<div id="references-2" class="section level2">
+<h2><span class="header-section-number">39.2</span> References</h2>
+<ol style="list-style-type: decimal">
+<li>Wackerly, Mendenhall, Scheaffer, <em>Mathematical Statistics with Applications</em>, 6th ed., Duxbury, 2002, ISBN 0-534-37741-6.</li>
+<li>Daniel, <em>Biostatistics</em>, 8th ed., John Wiley &amp; Sons, Inc., 2005, ISBN: 0-471-45654-3.</li>
+<li>Hogg, McKean, Craig, <em>Introduction to Mathematical Statistics</em>, 6th ed., Pearson, 2005, ISBN: 0-13-008507-3</li>
+</ol>
+
 </div>
 </div>
             </section>
@@ -647,8 +679,8 @@ M_Y(t)
           </div>
         </div>
       </div>
-<a href="analysis-of-variance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="binomial-distribution.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="z-test-of-sample-means.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -677,7 +709,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Bernoulli_Distribution.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Z_test_proportion.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

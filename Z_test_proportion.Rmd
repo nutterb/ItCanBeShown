@@ -1,0 +1,260 @@
+# Z-test of Sample Proportions
+
+## One-Sample Z-test
+
+The $z$-test of proportions is one approach used to look for evidence that the proportion of a sample may differ from a hypothesized (or 
+previously observed) value. It assumes a normal distribution approximation to a Binomial distribution.  
+
+### Z-Statistic
+
+The $z$-statistic is a standardized measure of the magnitude of difference between a sample's proportion and some known, non-random constant. 
+
+### Definitions and Terminology
+
+Let $p$ be a sample proportion from a sample.  Let $\pi_0$ be a constant.  $z$ is defined:
+$$z = \frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}} $$
+
+### Hypotheses
+
+The hypotheses for these test take the forms:
+
+For a two-sided test:
+$$
+  \begin{align*}
+  H_0: \pi &= \pi_0\\
+  H_a: \pi &\neq \pi_0
+  \end{align*}
+$$
+
+For a one-sided test:
+$$
+  \begin{align*}
+  H_0: \pi &< \pi_0\\
+  H_a: \pi &\geq \pi_0
+  \end{align*}
+$$
+
+or 
+$$
+  \begin{align*}
+  H_0: \pi &> \pi_0\\
+  H_a: \pi &\leq \pi_0
+  \end{align*}
+$$
+
+To compare a sample $(X_1, \ldots, X_n)$ against the hypothesized value, a 
+Z-statistic is calculated in the form:
+
+$$Z = \frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}$$
+
+Where $p$ is the sample proportion.
+
+### Decision Rule
+
+The decision to reject a null hypothesis is made when an observed Z-value lies
+in a critical region that suggests the probability of that observation is low.
+We define the critical region as the upper bound we are willing to accept for
+$\alpha$, the Type I Error.
+
+In the two-sided test, $\alpha$ is shared equally in both tails.  The rejection
+regions for the most common values of $\alpha$ are depicted in the figure below, 
+with the sum of shaded areas on both sides equaling the corresponding $\alpha$.
+It follows, then, that the decision rule is:
+
+Reject $H_0$ when $Z \leq z_{\alpha/2}$ or when $Z \geq z_{1-\alpha/2}$.
+
+By taking advantage of the symmetry of the Z-distribution, we can simplify the
+decision rule to:
+
+Reject $H_0$ when $|Z| \geq z_{1-\alpha/2}$
+
+```{r, echo=FALSE, fig.height=3, fig.width=6, fig.path = 'figures/', fig.cap="Rejection regions for the Z-test of proportions"}
+RejectRegion <- 
+  data.frame(x = seq(-5, 5, by = 0.01)) %>%
+  mutate(y = dnorm(x),
+         sig = cut(pnorm(x),
+                   breaks = c(0, 0.005, 0.025, 0.05, 
+                              0.95, 0.975, 0.995, 1),
+                   labels = 1:7))
+levels(RejectRegion[["sig"]]) = list("0.01" = c(1,7),
+                                     "0.05" = c(2,6),
+                                     "0.10" = c(3,5))
+
+ggplot(data = RejectRegion,
+       mapping = aes(x = x)) + 
+  geom_line(mapping = aes(y = y)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x < 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x > 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  scale_fill_manual(values = pallette_green) +  
+  xlab("Z-value") + 
+  ylab("Probability") + 
+  labs(fill="alpha")
+```
+
+In the one-sided test, $\alpha$ is placed in only one tail.  The rejection
+regions for the most common values of $\alpha$ are depicted in the figure below.
+In each case, $\alpha$ is the area in the tail of the figure.
+It follows, then, that the decision rule for a lower tailed test is:
+
+Reject $H_0$ when $Z \leq z_{\alpha, \nu}$.
+
+For an upper tailed test, the decision rule is:
+
+Reject $H_0$ when $Z \geq z_{1-\alpha, \nu}$.
+
+Using the symmetry of the Z-distribution, we can simplify the 
+decision rule as:
+
+Reject $H_0$ when $|Z| \geq z_{1-\alpha}$.
+
+```{r, echo=FALSE, fig.height=3, fig.width=6, fig.path = 'figures/', fig.cap="Rejection regions for one-tailed Z-test"}
+RejectRegion <- 
+  expand.grid(x = seq(-5, 5, by = 0.01),
+              tail = c("Lower Tailed", "Upper Tailed")) %>%
+  mutate(y = dnorm(x),
+         sig = cut(pnorm(x),
+                   breaks = c(0, 0.005, 0.025, 0.05, 
+                              0.95, 0.975, 0.995, 1),
+                   labels = 1:7),
+         sig = as.numeric(sig),
+         sig = ifelse(tail %in% "Lower Tailed" & x > 0,
+                      4, sig),
+         sig = ifelse(tail %in% "Upper Tailed" & x < 0,
+                      4, sig),
+         sig = factor(sig))
+levels(RejectRegion[["sig"]]) = list("0.01" = c(1,7),
+                                     "0.05" = c(2,6),
+                                     "0.10" = c(3,5))
+
+ggplot(data = RejectRegion,
+       mapping = aes(x = x)) + 
+  geom_line(mapping = aes(y = y)) + 
+  facet_grid(~ tail) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x < 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x > 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  scale_fill_manual(values = pallette_green) +  
+  xlab("Z-value") + 
+  ylab("Probability") + 
+  labs(fill="alpha")
+```
+
+The decision rule can also be written in terms of $p$:
+
+Reject $H_0$ when $p \leq \pi_0 - z_\alpha \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}$ or
+$p \geq \pi_0 + z_\alpha \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}$.
+
+This change can be justified by:
+
+$$
+\begin{align*}
+|Z| &\geq z_{1-\alpha}\\
+\Big|\frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}\Big| &\geq z_{1-\alpha} 
+\end{align*}
+$$
+
+
+
+$$
+\begin{align*}
+-\Big(\frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}\Big) &\geq z_{1-\alpha} &
+    \frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}} &\geq z_{1-\alpha}\\
+p - \pi_0 &\leq - z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}} &
+    p - \pi_0 &\geq z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\\
+p &\leq \pi_0 - z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}} &
+    p &\geq \pi_0 + z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}} 
+\end{align*}
+$$
+
+For a two-sided test, both the conditions apply.  The left side condition is used for a left-tailed test, and the right side condition for a right-tailed test.
+
+### Power
+
+The derivations below make use of the following symbols:
+
+* $p$: The sample proportion
+* $n$: The sample size
+* $\pi_0$: The value of population mean under the null hypothesis
+* $\pi_a$: The value of the population mean under the alternative hypothesis.
+* $\alpha$: The significance level
+* $\gamma(\mu)$: The power of the test for the parameter $\mu$.
+* $z_{\alpha}$: A quantile of the Standard Normal distribution for a probability, $\alpha$.
+* $Z$: A calculated value to be compared against a Standard Normal distribution.
+* $C$: The critical region (rejection region) of the test.
+
+
+**Two-Sided Test**
+
+$$
+\begin{align*}
+\gamma(\pi_a) &= P_{\pi_a}(p \in C)\\
+  &= P_\mu\Big(p \leq \pi_0 - z_{\alpha/2} \cdot 
+      \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\Big) +
+    P_{\pi_a}\Big(p \geq \pi_0 + z_{1-\alpha/2} \cdot 
+      \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\Big)\\
+  &= P_{\pi_a}\Big(p - \pi_a \leq \pi_0 - \pi_a - z_{\alpha/2} \cdot
+      \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\Big) + \\
+   & \ \ \ \ \ P_{\pi_a}\Big(p - \pi_a \geq \pi_0 - \pi_a + z_{1-\alpha/2} \cdot
+      \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\Big)\\
+  &= P_{\pi_a}\Big(\frac{p - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}} \leq 
+        \frac{\pi_0 - \pi_a - z_{\alpha/2} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big) +\\
+   & \ \ \ \ \ P_{\pi_a}\Big(\frac{p - \mu}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}} \geq 
+        \frac{\pi_0 - \pi_a + z_{1-\alpha/2} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big)\\
+&= P_{\pi_a}\Big(Z \leq \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}} - z_{\alpha/2}\Big) + 
+   P_{\pi_a}\Big(Z \geq \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}} + z_{1-\alpha/2}\Big)\\
+&= P_{\pi_a}\Big(Z \leq -z_{\alpha/2} + \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big) + 
+   P_{\pi_a}\Big(Z \geq z_{1-\alpha/2} + \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big)\\
+&= P_{\pi_a}\Big(Z \leq -z_{\alpha/2} + \frac{\sqrt{n} \cdot (\pi_0 - \pi_a)}{\sqrt{\pi_a \cdot (1 - \pi_a)}}\Big) + 
+   P_{\pi_a}\Big(Z \geq z_{1-\alpha/2} + \frac{\sqrt{n} \cdot (\pi_0 - \pi_a)}{\sqrt{\pi_a \cdot (1 - \pi_a)}}\Big)
+\end{align*}
+$$
+
+Both $z_{\alpha/2}$ and $z_{1-\alpha/2}$ have Standard Normal distributions.
+   
+
+**One-Sided Test**
+
+For convenience, the power for only the upper tailed test is derived here.  
+Recall that the symmetry of the t-test allows us to use the decision rule:
+Reject $H_0$ when $|Z| \geq z_{1-\alpha}$.  Thus, where $Z$ occurs in the 
+derivation below, it may reasonably be replaced with $|Z|$.
+
+$$
+\begin{align*}
+\gamma(\pi_a)  &= P_{\pi_a}(p \in C)\\
+&= P_{\pi_a}\big(p \geq \pi_0 + z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\big)\\
+&= P_{\pi_a}\big(p - \pi_a \geq \pi_0 - \pi_a + z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\big)\\
+&= P_{\pi_a}\Big(\frac{p - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}} \geq 
+    \frac{\pi_0 - \pi_a + z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big)\\
+&= P_{\pi_a}\Big(Z \geq \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}} + z_{1-\alpha} \Big)\\
+&= P_{\pi_a}\Big(Z \geq z_{1-\alpha} + \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big)\\
+&= P_{\pi_a}\Big(Z \geq z_{1-\alpha} + \frac{\sqrt{n} \cdot (\pi_0 -\pi_a)}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big)
+\end{align*}
+$$
+
+Where $z_{1-\alpha}$ has a Standard Normal distribution.
+
+### Confidence Interval
+
+The confidence interval for $\theta$ is written:
+$$p \pm z_{1-\alpha/2} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}$$
+
+The value of the expression on the right is often referred to as the _margin of error_, and we will refer to this value as 
+$$E = z_{1-\alpha/2} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}$$
+
+## References
+
+1. Wackerly, Mendenhall, Scheaffer, _Mathematical Statistics with Applications_, 6th ed., Duxbury, 2002, ISBN 0-534-37741-6.
+2. Daniel, _Biostatistics_, 8th ed., John Wiley & Sons, Inc., 2005, ISBN: 0-471-45654-3.
+3. Hogg, McKean, Craig, _Introduction to Mathematical Statistics_, 6th ed., Pearson, 2005, ISBN: 0-13-008507-3
