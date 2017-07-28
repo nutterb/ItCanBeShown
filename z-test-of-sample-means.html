@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="analysis-of-variance.html">
-<link rel="next" href="binomial-distribution.html">
+<link rel="prev" href="weibull-distribution.html">
+<link rel="next" href="z-test-of-sample-proportions.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -512,134 +512,311 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bernoulli-distribution" class="section level1">
-<h1><span class="header-section-number">3</span> Bernoulli Distribution</h1>
-<div id="probability-mass-function" class="section level2">
-<h2><span class="header-section-number">3.1</span> Probability Mass Function</h2>
-<p>A random variable is said to have a Bernoulli Distribution with parameter <span class="math inline">\(p\)</span> if its probability mass function is: <span class="math display">\[p(x)=\left\{ 
-        \begin{array}{ll}
-            \pi^x(1-\pi)^{1-x}, &amp; x=0,1\\
-            0       &amp; \mathrm{otherwise}
-        \end{array} 
-    \right. \]</span> Where <span class="math inline">\(\pi\)</span> is the probability of a success.</p>
+<div id="z-test-of-sample-means" class="section level1">
+<h1><span class="header-section-number">38</span> Z-test of Sample Means</h1>
+<div id="one-sample-z-test" class="section level2">
+<h2><span class="header-section-number">38.1</span> One-Sample Z-test</h2>
+<p>The <span class="math inline">\(z\)</span>-test is commonly used to look for evidence that the mean of a normally distributed random variable may differ from a hypothesized (or previously observed) value. It’s utility is limited, as it assume knowledge of the population standard deviation, which is rarely known.</p>
+<div id="z-statistic" class="section level3">
+<h3><span class="header-section-number">38.1.1</span> Z-Statistic</h3>
+<p>The <span class="math inline">\(z\)</span>-statistic is a standardized measure of the magnitude of difference between a sample’s mean and some known, non-random constant.</p>
 </div>
-<div id="cumulative-mass-function" class="section level2">
-<h2><span class="header-section-number">3.2</span> Cumulative Mass Function</h2>
-<p> <span class="math display">\[P(x)=\left\{
-        \begin{array}{lll}
-            0   &amp; x&lt;0\\
-            1-\pi &amp; x=0\\
-            1   &amp; 1\leq x
-        \end{array}
-    \right. \]</span></p>
-<div class="figure">
-<img src="figures/Bernoulli_Distribution-1.png" alt="The graphs on the left and right show a Bernoulli Probability Distribution and Cumulative Distribution Function, respectively, with $\pi=.4$.  Note that this is identical to a Binomial Distribution with parameters $n=1$ and $\pi=.4$." width="672" />
+<div id="definitions-and-terminology-2" class="section level3">
+<h3><span class="header-section-number">38.1.2</span> Definitions and Terminology</h3>
+<p>Let <span class="math inline">\(\bar{x}\)</span> be a sample mean from a sample with known population standard deviation <span class="math inline">\(\sigma\)</span>. Let <span class="math inline">\(\mu_0\)</span> be a constant, and <span class="math inline">\(\sigma_\bar{x} = \sigma/\sqrt{n}\)</span> be the standard error of the parameter <span class="math inline">\(\bar{x}\)</span>. <span class="math inline">\(z\)</span> is defined: <span class="math display">\[z = \frac{\bar{x} - \mu_0}{\sigma_\bar{x}} = \frac{\bar{x} - \mu_0}{\frac{\sigma}{\sqrt{n}}}\]</span></p>
+</div>
+<div id="hypotheses-3" class="section level3">
+<h3><span class="header-section-number">38.1.3</span> Hypotheses</h3>
+<p>The hypotheses for these test take the forms:</p>
+<p>For a two-sided test: <span class="math display">\[
+  \begin{align*}
+  H_0: \mu &amp;= \mu_0\\
+  H_a: \mu &amp;\neq \mu_0
+  \end{align*}
+\]</span></p>
+<p>For a one-sided test: <span class="math display">\[
+  \begin{align*}
+  H_0: \mu &amp;&lt; \mu_0\\
+  H_a: \mu &amp;\geq \mu_0
+  \end{align*}
+\]</span></p>
+<p>or <span class="math display">\[
+  \begin{align*}
+  H_0: \mu &amp;&gt; \mu_0\\
+  H_a: \mu &amp;\leq \mu_0
+  \end{align*}
+\]</span></p>
+<p>To compare a sample <span class="math inline">\((X_1, \ldots, X_n)\)</span> against the hypothesized value, a T-statistic is calculated in the form:</p>
+<p><span class="math display">\[Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}\]</span></p>
+<p>Where <span class="math inline">\(\bar{x}\)</span> is the sample mean and <span class="math inline">\(\sigma\)</span> is the population standard deviation.</p>
+</div>
+<div id="decision-rule-3" class="section level3">
+<h3><span class="header-section-number">38.1.4</span> Decision Rule</h3>
+<p>The decision to reject a null hypothesis is made when an observed T-value lies in a critical region that suggests the probability of that observation is low. We define the critical region as the upper bound we are willing to accept for <span class="math inline">\(\alpha\)</span>, the Type I Error.</p>
+<p>In the two-sided test, <span class="math inline">\(\alpha\)</span> is shared equally in both tails. The rejection regions for the most common values of <span class="math inline">\(\alpha\)</span> are depicted in the figure below, with the sum of shaded areas on both sides equaling the corresponding <span class="math inline">\(\alpha\)</span>. It follows, then, that the decision rule is:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(Z \leq z_{\alpha/2}\)</span> or when <span class="math inline">\(Z \geq z_{1-\alpha/2}\)</span>.</p>
+<p>By taking advantage of the symmetry of the Z-distribution, we can simplify the decision rule to:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(|Z| \geq z_{1-\alpha/2}\)</span></p>
+<pre><code>## Warning: Ignoring unknown aesthetics: ymax
+
+## Warning: Ignoring unknown aesthetics: ymax</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-15"></span>
+<img src="figures/unnamed-chunk-15-1.png" alt="Rejection regions for the Z-test" width="576" />
 <p class="caption">
-(#fig:Bernoulli_Distribution)The graphs on the left and right show a Bernoulli Probability Distribution and Cumulative Distribution Function, respectively, with <span class="math inline">\(\pi=.4\)</span>. Note that this is identical to a Binomial Distribution with parameters <span class="math inline">\(n=1\)</span> and <span class="math inline">\(\pi=.4\)</span>.
+Figure 38.1: Rejection regions for the Z-test
+</p>
+</div>
+<p>In the one-sided test, <span class="math inline">\(\alpha\)</span> is placed in only one tail. The rejection regions for the most common values of <span class="math inline">\(\alpha\)</span> are depicted in the figure below. In each case, <span class="math inline">\(\alpha\)</span> is the area in the tail of the figure. It follows, then, that the decision rule for a lower tailed test is:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(Z \leq z_{\alpha, \nu}\)</span>.</p>
+<p>For an upper tailed test, the decision rule is:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(Z \geq z_{1-\alpha, \nu}\)</span>.</p>
+<p>Using the symmetry of the Z-distribution, we can simplify the decision rule as:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(|Z| \geq z_{1-\alpha}\)</span>.</p>
+<pre><code>## Warning: Ignoring unknown aesthetics: ymax
+
+## Warning: Ignoring unknown aesthetics: ymax</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-16"></span>
+<img src="figures/unnamed-chunk-16-1.png" alt="Rejection regions for one-tailed Z-test" width="576" />
+<p class="caption">
+Figure 38.2: Rejection regions for one-tailed Z-test
+</p>
+</div>
+<p>The decision rule can also be written in terms of <span class="math inline">\(\bar{x}\)</span>:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(\bar{x} \leq \mu_0 - z_\alpha \cdot \sigma/\sqrt{n}\)</span> or <span class="math inline">\(\bar{x} \geq \mu_0 + z_\alpha \cdot \sigma/\sqrt{n}\)</span>.</p>
+<p>This change can be justified by:</p>
+<p><span class="math display">\[
+\begin{align*}
+|Z| &amp;\geq z_{1-\alpha}\\
+\Big|\frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}}\Big| &amp;\geq z_{1-\alpha} 
+\end{align*}
+\]</span></p>
+<p><span class="math display">\[
+\begin{align*}
+-\Big(\frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}}\Big) &amp;\geq z_{1-\alpha} &amp;
+    \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}} &amp;\geq z_{1-\alpha}\\
+\bar{x} - \mu_0 &amp;\leq - z_{1-\alpha} \cdot \sigma/\sqrt{n} &amp;
+    \bar{x} - \mu_0 &amp;\geq z_{1-\alpha} \cdot \sigma/\sqrt{n}\\
+\bar{x} &amp;\leq \mu_0 - z_{1-\alpha} \cdot \sigma/\sqrt{n} &amp;
+    \bar{x} &amp;\geq \mu_0 + z_{1-\alpha} \cdot \sigma/\sqrt{n} 
+\end{align*}
+\]</span></p>
+<p>For a two-sided test, both the conditions apply. The left side condition is used for a left-tailed test, and the right side condition for a right-tailed test.</p>
+</div>
+<div id="power-3" class="section level3">
+<h3><span class="header-section-number">38.1.5</span> Power</h3>
+<p>The derivations below make use of the following symbols:</p>
+<ul>
+<li><span class="math inline">\(\bar{x}\)</span>: The sample mean</li>
+<li><span class="math inline">\(s\)</span>: The sample standard deviation</li>
+<li><span class="math inline">\(n\)</span>: The sample size</li>
+<li><span class="math inline">\(\mu_0\)</span>: The value of population mean under the null hypothesis</li>
+<li><span class="math inline">\(\mu_a\)</span>: The value of the population mean under the alternative hypothesis.</li>
+<li><span class="math inline">\(\alpha\)</span>: The significance level</li>
+<li><span class="math inline">\(\gamma(\mu)\)</span>: The power of the test for the parameter <span class="math inline">\(\mu\)</span>.</li>
+<li><span class="math inline">\(z_{\alpha}\)</span>: A quantile of the Standard Normal distribution for a probability, <span class="math inline">\(\alpha\)</span>.</li>
+<li><span class="math inline">\(Z\)</span>: A calculated value to be compared against a Standard Normal distribution.</li>
+<li><span class="math inline">\(C\)</span>: The critical region (rejection region) of the test.</li>
+</ul>
+<p><strong>Two-Sided Test</strong></p>
+<p><span class="math display">\[
+\begin{align*}
+\gamma(\mu_a) &amp;= P_{\mu_a}(\bar{x} \in C)\\
+&amp;= P_\mu\big(\bar{x} \leq \mu_0 - z_{\alpha/2} \cdot \sigma/\sqrt{n}\big) +
+               P_{\mu_a}\big(\bar{x} \geq \mu_0 + z_{1-\alpha/2} \cdot \sigma/\sqrt{n}\big)\\
+&amp;= P_{\mu_a}\big(\bar{x} - \mu_a \leq \mu_0 - \mu_a - z_{\alpha/2} \cdot \sigma/\sqrt{n}\big) +
+   P_{\mu_a}\big(\bar{x} - \mu_a \geq \mu_0 - \mu_a + z_{1-\alpha/2} \cdot \sigma/\sqrt{n}\big)\\
+&amp;= P_{\mu_a}\Big(\frac{\bar{x} - \mu}{\sigma/\sqrt{n}} \leq 
+        \frac{\mu_0 - \mu_a - z_{\alpha/2} \cdot \sigma/\sqrt{n}}{\sigma/\sqrt{n}}\Big) +
+   P_{\mu_a}\Big(\frac{\bar{x} - \mu}{\sigma/\sqrt{n}} \geq 
+        \frac{\mu_0 - \mu_a + z_{1-\alpha/2} \cdot \sigma/\sqrt{n}}{\sigma/\sqrt{n}}\Big)\\
+&amp;= P_{\mu_a}\Big(Z \leq \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}} - z_{\alpha/2}\Big) + 
+   P_{\mu_a}\Big(Z \geq \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}} + z_{1-\alpha/2}\Big)\\
+&amp;= P_{\mu_a}\Big(Z \leq -z_{\alpha/2} + \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}}\Big) + 
+   P_{\mu_a}\Big(Z \geq z_{1-\alpha/2} + \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}}\Big)\\
+&amp;= P_{\mu_a}\Big(Z \leq -z_{\alpha/2} + \frac{\sqrt{n} \cdot (\mu_0 - \mu_a)}{\sigma}\Big) + 
+   P_{\mu_a}\Big(Z \geq z_{1-\alpha/2} + \frac{\sqrt{n} \cdot (\mu_0 - \mu_a)}{\sigma}\Big)
+\end{align*}
+\]</span></p>
+<p>Both <span class="math inline">\(z_{\alpha/2}\)</span> and <span class="math inline">\(z_{1-\alpha/2}\)</span> have Standard Normal distributions.</p>
+<p><strong>One-Sided Test</strong></p>
+<p>For convenience, the power for only the upper tailed test is derived here.<br />
+Recall that the symmetry of the t-test allows us to use the decision rule: Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(|Z| \geq z_{1-\alpha}\)</span>. Thus, where <span class="math inline">\(Z\)</span> occurs in the derivation below, it may reasonably be replaced with <span class="math inline">\(|Z|\)</span>.</p>
+<p><span class="math display">\[
+\begin{align*}
+\gamma(\mu_a)  &amp;= P_{\mu_a}(\bar{x} \in C)\\
+&amp;= P_{\mu_a}\big(\bar{x} \geq \mu_0 + z_{1-\alpha} \cdot \sigma / \sqrt{n}\big)\\
+&amp;= P_{\mu_a}\big(\bar{x} - \mu_a \geq \mu_0 - \mu_a + z_{1-\alpha} \cdot \sigma / \sqrt{n}\big)\\
+&amp;= P_{\mu_a}\Big(\frac{\bar{x} - \mu_a}{\sigma/\sqrt{n}} \geq 
+    \frac{\mu_0 - \mu_a + z_{1-\alpha} \cdot \sigma / \sqrt{n}}{\sigma / \sqrt{n}}\Big)\\
+&amp;= P_{\mu_a}\Big(Z \geq \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}} + z_{1-\alpha} \Big)\\
+&amp;= P_{\mu_a}\Big(Z \geq z_{1-\alpha} + \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}}\Big)\\
+&amp;= P_{\mu_a}\Big(Z \geq t_{1-\alpha} + \frac{\sqrt{n} \cdot (\mu_0 -\mu_a)}{\sigma}\Big)
+\end{align*}
+\]</span></p>
+<p>Where <span class="math inline">\(z_{1-\alpha}\)</span> has a Standard Normal distribution.</p>
+</div>
+<div id="confidence-interval-2" class="section level3">
+<h3><span class="header-section-number">38.1.6</span> Confidence Interval</h3>
+<p>The confidence interval for <span class="math inline">\(\theta\)</span> is written: <span class="math display">\[\bar{x} \pm z_{1-\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>The value of the expression on the right is often referred to as the <em>margin of error</em>, and we will refer to this value as <span class="math display">\[E = z_{1-\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}\]</span></p>
+</div>
+</div>
+<div id="two-sample-z-test" class="section level2">
+<h2><span class="header-section-number">38.2</span> Two-Sample Z-test</h2>
+<p>The two sample z-test is commonly used to look for evidence that the mean of one normally distributed random variable may differ from that of another normally distributed random variable. The hypotheses for this test take the forms:</p>
+<div id="z-statistic-1" class="section level3">
+<h3><span class="header-section-number">38.2.1</span> Z-Statistic</h3>
+<p>The <span class="math inline">\(z\)</span>-statistic is a standardized measure of the magnitude of difference between two sample means and some known, non-random difference of population means. It is similar to a two sample <span class="math inline">\(t\)</span>-statistic, but differs in that a <span class="math inline">\(z\)</span>-statistic may not be calculated without knowledge of the population variances.</p>
+</div>
+<div id="definitions-and-terminology-3" class="section level3">
+<h3><span class="header-section-number">38.2.2</span> Definitions and Terminology</h3>
+<p>Let <span class="math inline">\(\bar{x_1}\)</span> and <span class="math inline">\(\bar{x_2}\)</span> be sample means from two independent samples with standard deviations <span class="math inline">\(\sigma_1\)</span> and <span class="math inline">\(\sigma_2\)</span>. Let <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span> be constants representing the means of the populations from which <span class="math inline">\(\bar{x_1}\)</span> and <span class="math inline">\(\bar{x_2}\)</span> obtained. <span class="math inline">\(z\)</span> is defined:</p>
+<p><span class="math display">\[ z = \frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*}\]</span></p>
+<p>Where</p>
+<p><span class="math display">\[ SE^* = 
+  \left\{ 
+    \begin{array}{rl}
+      \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}, &amp; \sigma_1^2 \neq \sigma_2^2 \\
+      \sqrt{\frac{(n_1-1) \cdot \sigma_1^2 + (n_2-1) \cdot \sigma_2^2}
+                 {n_1 + n_2 - 2}} \cdot
+            \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}, &amp; \sigma_1^2 = \sigma_2^2 
+    \end{array}
+  \right.
+\]</span></p>
+</div>
+<div id="hypotheses-4" class="section level3">
+<h3><span class="header-section-number">38.2.3</span> Hypotheses</h3>
+<p>For a two-sided test:</p>
+<p><span class="math display">\[H_0 : \mu_1 = \mu_2 \\
+  H_a : \mu_1 \neq \mu_2 \]</span></p>
+<p>For a one-sided test:</p>
+<p><span class="math display">\[ H_0 : \mu_1 \leq \mu_2 \\
+   H_a : \mu_1 &gt; \mu_2 \]</span></p>
+<p>or</p>
+<p><span class="math display">\[ H_0 : \mu_1 \geq \mu_1 \\
+   H_a : \mu_1 &lt; \mu_1 \]</span></p>
+</div>
+<div id="decision-rule-4" class="section level3">
+<h3><span class="header-section-number">38.2.4</span> Decision Rule</h3>
+<p>The decision to reject a null hypothesis is made when an observed Z-value lies in a critical region that suggests the probability of that observation is low. We define the critical region as the upper bound we are willing to accept for <span class="math inline">\(\alpha\)</span>, the Type I Error.</p>
+<div id="two-sided-test-1" class="section level4">
+<h4><span class="header-section-number">38.2.4.1</span> Two Sided Test</h4>
+<p>In the two-sided test, <span class="math inline">\(\alpha\)</span> is shared equally in both tails. The rejection regions for the most common values of <span class="math inline">\(\alpha\)</span> are depicted in the figure below, with the sum of the shaded areas on both sides equally the corresponding <span class="math inline">\(\alpha\)</span>. It follows then that the decision rule is:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(Z \leq z_{\alpha/2}\)</span> or when <span class="math inline">\(Z \geq z_{1 - \alpha/2}\)</span>.</p>
+<p>By taking advantage of the symmetry of the Z-distribution, we can simplify the decision rule to:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(|Z| \geq z_{1-\alpha/2}\)</span></p>
+<pre><code>## Warning: Ignoring unknown aesthetics: ymax
+
+## Warning: Ignoring unknown aesthetics: ymax</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-17"></span>
+<img src="figures/unnamed-chunk-17-1.png" alt="Rejection region for a two-tailed test" width="576" />
+<p class="caption">
+Figure 38.3: Rejection region for a two-tailed test
 </p>
 </div>
 </div>
-<div id="expected-values" class="section level2">
-<h2><span class="header-section-number">3.3</span> Expected Values</h2>
-<p><span class="math display">\[ 
-\begin{align*}
-E(X) 
-  &amp;= \sum\limits_{i=0}^{1} x\cdot p(x) \\
-    &amp;= \sum\limits_{i=0}^{1} x \cdot \pi^{x} (1-\pi)^{1-x}\\
-  &amp;= 0 \cdot \pi^{0} (1-\pi)^{1-0} + 1 \cdot \pi^{1} (1-\pi)^{1-1}\\
-  &amp;= 0 + \pi (1-\pi)^{0}\\
-    &amp;= \pi\\
-    \\
-    \\
-E(X^{2}) 
-  &amp;= \sum\limits_{i=0}^{1} x^2 \cdot p(x)\\
-  &amp;= \sum\limits_{i=0}^{1} x^{2} \cdot \pi^x (1-\pi)^{1-x}\\
-  &amp;= \sum\limits_{i=0}^{1} 0^{2} \cdot \pi^0 (1-\pi)^{1-0} + 1^2 \cdot \pi^1 (1-\pi)^{1-1}\\
-  &amp;= 0 \cdot 1 \cdot 1 + 1 \cdot \pi \cdot 1 \\
-    &amp;= 0 + \pi\\
-    &amp;= \pi\\
-    \\
-    \\
-\mu &amp;= E(X) = \pi\\
-  \\
-  \\
-\sigma^2 
-  &amp;= E(X^2) - E(X)^2 \\
-  &amp;= \pi-\pi^2 \\
-  &amp;= \pi(1-\pi)
-\end{align*}
-\]</span></p>
 </div>
-<div id="moment-generating-function" class="section level2">
-<h2><span class="header-section-number">3.4</span> Moment Generating Function</h2>
-<p><span class="math display">\[\begin{align*}
-M_{X}(t)
-    &amp;= E(e^{tX}) \\
-    &amp;= \sum\limits_{i=0}^{1} e^{tx} p(x) \\
-    &amp;= \sum\limits_{i=0}^{1} e^{tx} \pi^{x} (1-\pi)^{1-x}\\
-    &amp;= e^{t0} \pi^0 (1-\pi)^{1-0} + e^t \pi^t (1-\pi)^{1-1}\\
-    &amp;= (1-\pi) + e^t \pi\\
-    &amp;=\pi e^t + (1-\pi) \\
-    \\
-    \\
-M^{(1)}_X(t) &amp;= \pi e^t\\
-  \\
-  \\
-M^{(2)}_X(t) &amp;= \pi e^t\\
-  \\
-  \\
-E(X)
-    &amp;=M^{(1)}_X(0)\\
-    &amp;= \pi e^0\\
-    &amp;= \pi e^0\\
-    &amp;= \pi\\
-    \\
-    \\
-E(X^2)
-    &amp;= M^{(2)}_X(0)\\
-    &amp;= \pi e^0\\
-    &amp;= \pi\\
-    \\
-    \\
-\mu
-  &amp;= E(X)\\
-    &amp;= \pi\\
-  \\
-  \\
-\sigma^2
-    &amp;= E(X^2) - E(X)^2 \\
-    &amp;= \pi - \pi^2 \\
-    &amp;= \pi (1-\pi)
-\end{align*}
-\]</span></p>
 </div>
-<div id="theorems-for-the-bernoulli-distribution" class="section level2">
-<h2><span class="header-section-number">3.5</span> Theorems for the Bernoulli Distribution</h2>
-<div id="validity-of-the-distribution" class="section level3">
-<h3><span class="header-section-number">3.5.1</span> Validity of the Distribution</h3>
-<p><span class="math display">\[\sum\limits_{x=0}^{1}\pi^x(1-\pi)^{1-x}=1\]</span></p>
-<p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{align*}
-\sum\limits_{x=0}^{1} \pi^x (1-\pi)^{1-x}
-    &amp;= \pi^0 (1-\pi)^1 + \pi^1 (1-\pi)^0 \\
-    &amp;= (1-\pi) + \pi \\
-    &amp;= 1
-\end{align*}\]</span></p>
-</div>
-<div id="sum-of-bernoulli-random-variables" class="section level3">
-<h3><span class="header-section-number">3.5.2</span> Sum of Bernoulli Random Variables</h3>
-<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent and identically distributed random variables from a Bernoulli distribution with parameter <span class="math inline">\(p\)</span>. Let <span class="math inline">\(Y=\sum\limits_{i=1}^{n}X_i\)</span>.\ Then <span class="math inline">\(Y\sim\)</span> Binomial<span class="math inline">\((n,\pi)\)</span></p>
-<p><em>Proof:</em> <span class="math display">\[\begin{align*}
-M_Y(t)
-    &amp;= E(e^{tY}) \\
-    &amp;= E(e^{tX_1} e^{tX_2} \cdots e^{tX_n}) \\
-    &amp;= E(e^{tX_1}) E(e^{tX_2}) \cdots E(e^{tX_n}) \\
-  &amp;= (\pi e^t+(1-\pi)) (\pi e^t+(1-\pi)) \cdots (\pi e^t+(1-\pi)) \\
-    &amp;= (\pi e^t+(1-\pi))^n
-\end{align*}\]</span></p>
-<p>Which is the moment generating function of a Binomial random variable with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\pi\)</span>. Thus, <span class="math inline">\(Y\sim\)</span> Binomial<span class="math inline">\((n,\pi)\)</span>.</p>
+<div id="one-sided-test-1" class="section level2">
+<h2><span class="header-section-number">38.3</span> One Sided Test</h2>
+<p>In the one sided test, <span class="math inline">\(\alpha\)</span> is placed in only one tail. The rejection regions for the most common values of <span class="math inline">\(\alpha\)</span> are depicted in the figure below. In each case, <span class="math inline">\(\alpha\)</span> is the area in the tail of the figure. It follow, then, that the decision rule for a lower tailed test is:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(Z \leq z_{\alpha}\)</span>.</p>
+<p>For an upper tailed test, the decision rule is:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(Z \geq z_{1-\alpha}\)</span>.</p>
+<p>Using the symmetry of the <span class="math inline">\(Z\)</span>-distribution, we can simplify the decision rule as:</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(|Z| \geq z_{1-\alpha}\)</span>.</p>
+<pre><code>## Warning: Ignoring unknown aesthetics: ymax
 
+## Warning: Ignoring unknown aesthetics: ymax</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-18"></span>
+<img src="figures/unnamed-chunk-18-1.png" alt="Rejection regions for one-tailed tests" width="576" />
+<p class="caption">
+Figure 38.4: Rejection regions for one-tailed tests
+</p>
 </div>
+<p>The decision rule can also be written in terms of <span class="math inline">\(\bar{x_1}\)</span> and <span class="math inline">\(\bar{x_2}\)</span>.</p>
+<p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(\bar{x_1} - \bar{x_2} \leq (\mu_1 - \mu_2) - z_{\alpha} \cdot SE^*\)</span> or <span class="math inline">\(\bar{x_1} - \bar{x_2} \geq (\mu_1 - \mu_2) + z_{\alpha} \cdot SE^*\)</span></p>
+<p>This change can be justified by:</p>
+<p><span class="math display">\[\begin{aligned}
+|Z| &amp; \geq z_{1 - \alpha} \\
+\Big| \frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*} \Big |
+    &amp; \geq z_{1 - \alpha} 
+\end{aligned}\]</span></p>
+<p><span class="math display">\[ \begin{aligned}
+-\Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*}\Big) &amp; \geq z_{1-\alpha}
+    &amp; \Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*}\Big) &amp; \geq z_{1-\alpha} \\
+(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2) &amp; \leq -z_{1 - \alpha} \cdot SE^* 
+    &amp; (\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2) &amp;\geq z_{1 - \alpha} \cdot SE^* \\
+\bar{x_1} - \bar{x_2} &amp;\leq (\mu_1 - \mu_2) - z_{1-\alpha} \cdot SE^* 
+    &amp; \bar{x_1} - \bar{x_2} &amp;\leq (\mu_1 - \mu_2) + z_{1-\alpha} \cdot SE^* 
+\end{aligned}\]</span></p>
+<div id="power-4" class="section level3">
+<h3><span class="header-section-number">38.3.1</span> Power</h3>
+<p><strong>Two Sided Test</strong></p>
+<p><span class="math display">\[
+\begin{align*}
+\gamma(\mu_{1a} - \mu_{2a}) 
+  &amp;= P_{\mu_{1a} - \mu_{2a}}(\bar{x} \in C)\\
+%%%
+  &amp;= P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2}) \leq 
+      (\mu_1 - \mu_2) - z_{\alpha/2} \cdot SE^*\big) + \\
+  &amp;\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2} \geq 
+      (\mu_1 - \mu_2) + z_{1-\alpha/2} \cdot SE^*\big)\\
+%%%
+  &amp;= P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a}) \leq 
+      (\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) - z_{\alpha/2} \cdot SE^*\big) + \\
+  &amp;\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a}) \geq 
+      (\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) + z_{1-\alpha/2} \cdot SE^*\big)\\
+%%%
+  &amp;= P_{\mu_{1a} - \mu_{2a}}\Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*} \leq 
+      \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) - z_{\alpha/2} \cdot SE^*}{SE^*}\Big) + \\
+  &amp;\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a})}{SE^*} \geq
+      \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) + z_{1-\alpha/2} \cdot SE^*}{SE^*}\Big)\\
+%%%
+  &amp;= P_{\mu_{1a} - \mu_{2a}}\Big(Z \leq \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*} - z_{\alpha/2}\Big) + \\
+  &amp;\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\Big(Z \geq \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*} + z_{1-\alpha/2}\Big)\\
+  &amp;= P_{\mu_{1a} - \mu_{2a}}\Big(Z \leq -z_{\alpha/2} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\Big) + \\
+  &amp;\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\Big(Z \geq z_{1-\alpha/2} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\Big)
+\end{align*}
+\]</span></p>
+<p>Both <span class="math inline">\(-z_{\alpha/2} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\)</span> and <span class="math inline">\(z_{1-\alpha/2} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\)</span> have Standard Normal distributions.</p>
+<p><strong>One Sided Test</strong></p>
+<p>For convenience, the power for only the upper tailed test is derived here.<br />
+Recall that the symmetry of the t-test allows us to use the decision rule: Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(|Z| \geq t_{1-\alpha}\)</span>. Thus, where <span class="math inline">\(Z\)</span> occurs in the derivation below, it may reasonably be replaced with <span class="math inline">\(|Z|\)</span>.</p>
+<p><span class="math display">\[
+\begin{align*}
+\gamma(\mu_{1a} - \mu_{2a}) 
+  &amp;= P_{\mu_{1a} - \mu_{2a}}(\bar{x} \in C)\\
+%%%
+  &amp;= P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2} \geq 
+      (\mu_1 - \mu_2) + z_{1-\alpha} \cdot SE^*\big)\\
+%%%
+  &amp;= P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a}) \geq 
+      (\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) + z_{1-\alpha} \cdot SE^*\big)\\
+%%%
+  &amp;= P_{\mu_{1a} - \mu_{2a}}\Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a})}{SE^*} \geq
+      \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) + z_{1-\alpha} \cdot SE^*}{SE^*}\Big)\\
+%%%
+  &amp;= P_{\mu_{1a} - \mu_{2a}}\Big(Z \geq \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*} + z_{1-\alpha}\Big)\\
+  &amp;= P_{\mu_{1a} - \mu_{2a}}\Big(Z \geq z_{1-\alpha} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\Big)
+\end{align*}
+\]</span></p>
+<p><span class="math inline">\(z_{1-\alpha/2} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\)</span> has a Normal Distribution.</p>
+</div>
+<div id="confidence-interval-3" class="section level3">
+<h3><span class="header-section-number">38.3.2</span> Confidence Interval</h3>
+<p>The confidence interval for <span class="math inline">\(\mu_1 - \mu_2\)</span> is written: <span class="math display">\[(\bar{x_1} - \bar{x_2}) \pm z_{1-\alpha/2} \cdot SE^*\]</span></p>
+<p>The value of the expression on the right is often referred to as the <em>margin of error</em>, and we will refer to this value as <span class="math display">\[E = z_{1-\alpha/2} \cdot SE^*\]</span></p>
+</div>
+</div>
+<div id="references-1" class="section level2">
+<h2><span class="header-section-number">38.4</span> References</h2>
+<ol style="list-style-type: decimal">
+<li>Wackerly, Mendenhall, Scheaffer, <em>Mathematical Statistics with Applications</em>, 6th ed., Duxbury, 2002, ISBN 0-534-37741-6.</li>
+<li>Daniel, <em>Biostatistics</em>, 8th ed., John Wiley &amp; Sons, Inc., 2005, ISBN: 0-471-45654-3.</li>
+<li>Hogg, McKean, Craig, <em>Introduction to Mathematical Statistics</em>, 6th ed., Pearson, 2005, ISBN: 0-13-008507-3</li>
+</ol>
+
 </div>
 </div>
             </section>
@@ -647,8 +824,8 @@ M_Y(t)
           </div>
         </div>
       </div>
-<a href="analysis-of-variance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="binomial-distribution.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="weibull-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="z-test-of-sample-proportions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -677,7 +854,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Bernoulli_Distribution.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Z_test.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],

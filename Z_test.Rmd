@@ -1,0 +1,490 @@
+# Z-test of Sample Means
+
+## One-Sample Z-test
+
+The $z$-test is commonly used to look for evidence that the mean of a 
+normally distributed random variable may differ from a hypothesized (or 
+previously observed) value. It's utility is limited, as it assume knowledge of the population standard deviation, which is rarely known. 
+
+### Z-Statistic
+
+The $z$-statistic is a standardized measure of the magnitude of difference between a sample's mean and some known, non-random constant. 
+
+### Definitions and Terminology
+
+Let $\bar{x}$ be a sample mean from a sample with known population standard deviation $\sigma$.  Let $\mu_0$ be a constant, and $\sigma_\bar{x} = \sigma/\sqrt{n}$ be the standard error of the parameter $\bar{x}$.  $z$ is defined:
+$$z = \frac{\bar{x} - \mu_0}{\sigma_\bar{x}} = \frac{\bar{x} - \mu_0}{\frac{\sigma}{\sqrt{n}}}$$
+
+### Hypotheses
+
+The hypotheses for these test take the forms:
+
+For a two-sided test:
+$$
+  \begin{align*}
+  H_0: \mu &= \mu_0\\
+  H_a: \mu &\neq \mu_0
+  \end{align*}
+$$
+
+For a one-sided test:
+$$
+  \begin{align*}
+  H_0: \mu &< \mu_0\\
+  H_a: \mu &\geq \mu_0
+  \end{align*}
+$$
+
+or 
+$$
+  \begin{align*}
+  H_0: \mu &> \mu_0\\
+  H_a: \mu &\leq \mu_0
+  \end{align*}
+$$
+
+To compare a sample $(X_1, \ldots, X_n)$ against the hypothesized value, a 
+T-statistic is calculated in the form:
+
+$$Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}$$
+
+Where $\bar{x}$ is the sample mean and $\sigma$ is the population standard deviation.
+
+### Decision Rule
+
+The decision to reject a null hypothesis is made when an observed T-value lies
+in a critical region that suggests the probability of that observation is low.
+We define the critical region as the upper bound we are willing to accept for
+$\alpha$, the Type I Error.
+
+In the two-sided test, $\alpha$ is shared equally in both tails.  The rejection
+regions for the most common values of $\alpha$ are depicted in the figure below, 
+with the sum of shaded areas on both sides equaling the corresponding $\alpha$.
+It follows, then, that the decision rule is:
+
+Reject $H_0$ when $Z \leq z_{\alpha/2}$ or when $Z \geq z_{1-\alpha/2}$.
+
+By taking advantage of the symmetry of the Z-distribution, we can simplify the
+decision rule to:
+
+Reject $H_0$ when $|Z| \geq z_{1-\alpha/2}$
+
+```{r, echo=FALSE, fig.height=3, fig.width=6, fig.path = 'figures/', fig.cap="Rejection regions for the Z-test"}
+RejectRegion <- 
+  data.frame(x = seq(-5, 5, by = 0.01)) %>%
+  mutate(y = dnorm(x),
+         sig = cut(pnorm(x),
+                   breaks = c(0, 0.005, 0.025, 0.05, 
+                              0.95, 0.975, 0.995, 1),
+                   labels = 1:7))
+levels(RejectRegion[["sig"]]) = list("0.01" = c(1,7),
+                                     "0.05" = c(2,6),
+                                     "0.10" = c(3,5))
+
+ggplot(data = RejectRegion,
+       mapping = aes(x = x)) + 
+  geom_line(mapping = aes(y = y)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x < 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x > 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  scale_fill_manual(values = pallette_green) +  
+  xlab("Z-value") + 
+  ylab("Probability") + 
+  labs(fill="alpha")
+```
+
+In the one-sided test, $\alpha$ is placed in only one tail.  The rejection
+regions for the most common values of $\alpha$ are depicted in the figure below.
+In each case, $\alpha$ is the area in the tail of the figure.
+It follows, then, that the decision rule for a lower tailed test is:
+
+Reject $H_0$ when $Z \leq z_{\alpha, \nu}$.
+
+For an upper tailed test, the decision rule is:
+
+Reject $H_0$ when $Z \geq z_{1-\alpha, \nu}$.
+
+Using the symmetry of the Z-distribution, we can simplify the 
+decision rule as:
+
+Reject $H_0$ when $|Z| \geq z_{1-\alpha}$.
+
+```{r, echo=FALSE, fig.height=3, fig.width=6, fig.path = 'figures/', fig.cap="Rejection regions for one-tailed Z-test"}
+RejectRegion <- 
+  expand.grid(x = seq(-5, 5, by = 0.01),
+              tail = c("Lower Tailed", "Upper Tailed")) %>%
+  mutate(y = dnorm(x),
+         sig = cut(pnorm(x),
+                   breaks = c(0, 0.005, 0.025, 0.05, 
+                              0.95, 0.975, 0.995, 1),
+                   labels = 1:7),
+         sig = as.numeric(sig),
+         sig = ifelse(tail %in% "Lower Tailed" & x > 0,
+                      4, sig),
+         sig = ifelse(tail %in% "Upper Tailed" & x < 0,
+                      4, sig),
+         sig = factor(sig))
+levels(RejectRegion[["sig"]]) = list("0.01" = c(1,7),
+                                     "0.05" = c(2,6),
+                                     "0.10" = c(3,5))
+
+ggplot(data = RejectRegion,
+       mapping = aes(x = x)) + 
+  geom_line(mapping = aes(y = y)) + 
+  facet_grid(~ tail) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x < 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x > 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  scale_fill_manual(values = pallette_green) +  
+  xlab("Z-value") + 
+  ylab("Probability") + 
+  labs(fill="alpha")
+```
+
+The decision rule can also be written in terms of $\bar{x}$:
+
+Reject $H_0$ when $\bar{x} \leq \mu_0 - z_\alpha \cdot \sigma/\sqrt{n}$ or
+$\bar{x} \geq \mu_0 + z_\alpha \cdot \sigma/\sqrt{n}$.
+
+This change can be justified by:
+
+$$
+\begin{align*}
+|Z| &\geq z_{1-\alpha}\\
+\Big|\frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}}\Big| &\geq z_{1-\alpha} 
+\end{align*}
+$$
+
+
+
+$$
+\begin{align*}
+-\Big(\frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}}\Big) &\geq z_{1-\alpha} &
+    \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}} &\geq z_{1-\alpha}\\
+\bar{x} - \mu_0 &\leq - z_{1-\alpha} \cdot \sigma/\sqrt{n} &
+    \bar{x} - \mu_0 &\geq z_{1-\alpha} \cdot \sigma/\sqrt{n}\\
+\bar{x} &\leq \mu_0 - z_{1-\alpha} \cdot \sigma/\sqrt{n} &
+    \bar{x} &\geq \mu_0 + z_{1-\alpha} \cdot \sigma/\sqrt{n} 
+\end{align*}
+$$
+
+For a two-sided test, both the conditions apply.  The left side condition is used
+for a left-tailed test, and the right side condition for a right-tailed test.
+
+### Power
+
+The derivations below make use of the following symbols:
+
+* $\bar{x}$: The sample mean
+* $s$: The sample standard deviation
+* $n$: The sample size
+* $\mu_0$: The value of population mean under the null hypothesis
+* $\mu_a$: The value of the population mean under the alternative hypothesis.
+* $\alpha$: The significance level
+* $\gamma(\mu)$: The power of the test for the parameter $\mu$.
+* $z_{\alpha}$: A quantile of the Standard Normal distribution for a probability, $\alpha$.
+* $Z$: A calculated value to be compared against a Standard Normal distribution.
+* $C$: The critical region (rejection region) of the test.
+
+
+**Two-Sided Test**
+
+$$
+\begin{align*}
+\gamma(\mu_a) &= P_{\mu_a}(\bar{x} \in C)\\
+&= P_\mu\big(\bar{x} \leq \mu_0 - z_{\alpha/2} \cdot \sigma/\sqrt{n}\big) +
+               P_{\mu_a}\big(\bar{x} \geq \mu_0 + z_{1-\alpha/2} \cdot \sigma/\sqrt{n}\big)\\
+&= P_{\mu_a}\big(\bar{x} - \mu_a \leq \mu_0 - \mu_a - z_{\alpha/2} \cdot \sigma/\sqrt{n}\big) +
+   P_{\mu_a}\big(\bar{x} - \mu_a \geq \mu_0 - \mu_a + z_{1-\alpha/2} \cdot \sigma/\sqrt{n}\big)\\
+&= P_{\mu_a}\Big(\frac{\bar{x} - \mu}{\sigma/\sqrt{n}} \leq 
+        \frac{\mu_0 - \mu_a - z_{\alpha/2} \cdot \sigma/\sqrt{n}}{\sigma/\sqrt{n}}\Big) +
+   P_{\mu_a}\Big(\frac{\bar{x} - \mu}{\sigma/\sqrt{n}} \geq 
+        \frac{\mu_0 - \mu_a + z_{1-\alpha/2} \cdot \sigma/\sqrt{n}}{\sigma/\sqrt{n}}\Big)\\
+&= P_{\mu_a}\Big(Z \leq \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}} - z_{\alpha/2}\Big) + 
+   P_{\mu_a}\Big(Z \geq \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}} + z_{1-\alpha/2}\Big)\\
+&= P_{\mu_a}\Big(Z \leq -z_{\alpha/2} + \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}}\Big) + 
+   P_{\mu_a}\Big(Z \geq z_{1-\alpha/2} + \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}}\Big)\\
+&= P_{\mu_a}\Big(Z \leq -z_{\alpha/2} + \frac{\sqrt{n} \cdot (\mu_0 - \mu_a)}{\sigma}\Big) + 
+   P_{\mu_a}\Big(Z \geq z_{1-\alpha/2} + \frac{\sqrt{n} \cdot (\mu_0 - \mu_a)}{\sigma}\Big)
+\end{align*}
+$$
+
+Both $z_{\alpha/2}$ and $z_{1-\alpha/2}$ have Standard Normal distributions.
+   
+
+**One-Sided Test**
+
+For convenience, the power for only the upper tailed test is derived here.  
+Recall that the symmetry of the t-test allows us to use the decision rule:
+Reject $H_0$ when $|Z| \geq z_{1-\alpha}$.  Thus, where $Z$ occurs in the 
+derivation below, it may reasonably be replaced with $|Z|$.
+
+$$
+\begin{align*}
+\gamma(\mu_a)  &= P_{\mu_a}(\bar{x} \in C)\\
+&= P_{\mu_a}\big(\bar{x} \geq \mu_0 + z_{1-\alpha} \cdot \sigma / \sqrt{n}\big)\\
+&= P_{\mu_a}\big(\bar{x} - \mu_a \geq \mu_0 - \mu_a + z_{1-\alpha} \cdot \sigma / \sqrt{n}\big)\\
+&= P_{\mu_a}\Big(\frac{\bar{x} - \mu_a}{\sigma/\sqrt{n}} \geq 
+    \frac{\mu_0 - \mu_a + z_{1-\alpha} \cdot \sigma / \sqrt{n}}{\sigma / \sqrt{n}}\Big)\\
+&= P_{\mu_a}\Big(Z \geq \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}} + z_{1-\alpha} \Big)\\
+&= P_{\mu_a}\Big(Z \geq z_{1-\alpha} + \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}}\Big)\\
+&= P_{\mu_a}\Big(Z \geq t_{1-\alpha} + \frac{\sqrt{n} \cdot (\mu_0 -\mu_a)}{\sigma}\Big)
+\end{align*}
+$$
+
+Where $z_{1-\alpha}$ has a Standard Normal distribution.
+
+### Confidence Interval
+
+The confidence interval for $\theta$ is written:
+$$\bar{x} \pm z_{1-\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$$
+
+The value of the expression on the right is often referred to as the _margin of error_, and we will refer to this value as 
+$$E = z_{1-\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$$
+
+## Two-Sample Z-test
+
+The two sample z-test is commonly used to look for evidence that the mean of one normally distributed random variable may differ from that of another normally distributed random variable.  The hypotheses for this test take the forms:
+
+### Z-Statistic
+
+The $z$-statistic is a standardized measure of the magnitude of difference between two sample means and some known, non-random difference of population means. It is similar to a two sample $t$-statistic, but differs in that a $z$-statistic may not be calculated without knowledge of the population variances.
+
+### Definitions and Terminology
+
+Let $\bar{x_1}$ and $\bar{x_2}$ be sample means from two independent samples with standard deviations $\sigma_1$ and $\sigma_2$.  Let $\mu_1$ and $\mu_2$ be constants representing the means of the populations from which $\bar{x_1}$ and $\bar{x_2}$ obtained. $z$ is defined:
+
+$$ z = \frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*}$$
+
+Where 
+
+\[ SE^* = 
+  \left\{ 
+    \begin{array}{rl}
+      \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}, & \sigma_1^2 \neq \sigma_2^2 \\
+      \sqrt{\frac{(n_1-1) \cdot \sigma_1^2 + (n_2-1) \cdot \sigma_2^2}
+                 {n_1 + n_2 - 2}} \cdot
+            \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}, & \sigma_1^2 = \sigma_2^2 
+    \end{array}
+  \right.
+\]
+
+### Hypotheses
+
+For a two-sided test:
+
+$$H_0 : \mu_1 = \mu_2 \\
+  H_a : \mu_1 \neq \mu_2 $$
+  
+For a one-sided test:
+
+$$ H_0 : \mu_1 \leq \mu_2 \\
+   H_a : \mu_1 > \mu_2 $$
+   
+or
+
+$$ H_0 : \mu_1 \geq \mu_1 \\
+   H_a : \mu_1 < \mu_1 $$
+   
+### Decision Rule
+
+The decision to reject a null hypothesis is made when an observed Z-value lies in a critical region that suggests the probability of that observation is low. We define the critical region as the upper bound we are willing to accept for $\alpha$, the Type I Error.
+
+#### Two Sided Test
+
+In the two-sided test, $\alpha$ is shared equally in both tails. The rejection regions for the most common values of $\alpha$ are depicted in the figure below, with the sum of the shaded areas on both sides equally the corresponding $\alpha$. It follows then that the decision rule is:
+
+Reject $H_0$ when $Z \leq z_{\alpha/2}$ or when $Z \geq z_{1 - \alpha/2}$.
+
+By taking advantage of the symmetry of the Z-distribution, we can simplify the decision rule to:
+
+Reject $H_0$ when $|Z| \geq z_{1-\alpha/2}$
+
+```{r, echo=FALSE, fig.height=3, fig.width=6, fig.path = 'figures/', fig.cap="Rejection region for a two-tailed test"}
+RejectRegion <- 
+  data.frame(x = seq(-5, 5, by = 0.01)) %>%
+  mutate(y = dnorm(x),
+         sig = cut(pnorm(x),
+                   breaks = c(0, 0.005, 0.025, 0.05, 
+                              0.95, 0.975, 0.995, 1),
+                   labels = 1:7))
+levels(RejectRegion[["sig"]]) = list("0.01" = c(1,7),
+                                     "0.05" = c(2,6),
+                                     "0.10" = c(3,5))
+
+ggplot(data = RejectRegion,
+       mapping = aes(x = x)) + 
+  geom_line(mapping = aes(y = y)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x < 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x > 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  scale_fill_manual(values = pallette_green) +  
+  xlab("Z-value") + 
+  ylab("Probability") + 
+  labs(fill="alpha")
+```
+
+## One Sided Test
+
+In the one sided test, $\alpha$ is placed in only one tail. The rejection regions for the most common values of $\alpha$ are depicted in the figure below. In each case, $\alpha$ is the area in the tail of the figure. It follow, then, that the decision rule for a lower tailed test is:
+
+Reject $H_0$ when $Z \leq z_{\alpha}$.
+
+For an upper tailed test, the decision rule is:
+
+Reject $H_0$ when $Z \geq z_{1-\alpha}$.
+
+Using the symmetry of the $Z$-distribution, we can simplify the decision rule as:
+
+Reject $H_0$ when $|Z| \geq z_{1-\alpha}$.
+
+```{r, echo=FALSE, fig.height=3, fig.width=6, fig.path = 'figures/', fig.cap="Rejection regions for one-tailed tests"}
+RejectRegion <- 
+  expand.grid(x = seq(-5, 5, by = 0.01),
+              tail = c("Lower Tailed", "Upper Tailed")) %>%
+  mutate(y = dnorm(x),
+         sig = cut(pnorm(x),
+                   breaks = c(0, 0.005, 0.025, 0.05, 
+                              0.95, 0.975, 0.995, 1),
+                   labels = 1:7),
+         sig = as.numeric(sig),
+         sig = ifelse(tail %in% "Lower Tailed" & x > 0,
+                      4, sig),
+         sig = ifelse(tail %in% "Upper Tailed" & x < 0,
+                      4, sig),
+         sig = factor(sig))
+levels(RejectRegion[["sig"]]) = list("0.01" = c(1,7),
+                                     "0.05" = c(2,6),
+                                     "0.10" = c(3,5))
+
+ggplot(data = RejectRegion,
+       mapping = aes(x = x)) + 
+  geom_line(mapping = aes(y = y)) + 
+  facet_grid(~ tail) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x < 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  geom_area(data = filter(RejectRegion, !is.na(sig) & x > 0),
+            mapping = aes(y = y,
+                          ymax = y,
+                          fill = sig)) + 
+  scale_fill_manual(values = pallette_green) +  
+  xlab("Z-value") + 
+  ylab("Probability") + 
+  labs(fill="alpha")
+```
+
+The decision rule can also be written in terms of $\bar{x_1}$ and $\bar{x_2}$.
+
+Reject $H_0$ when $\bar{x_1} - \bar{x_2} \leq (\mu_1 - \mu_2) - z_{\alpha} \cdot SE^*$ or $\bar{x_1} - \bar{x_2} \geq (\mu_1 - \mu_2) + z_{\alpha} \cdot SE^*$
+
+This change can be justified by:
+
+$$\begin{aligned}
+|Z| & \geq z_{1 - \alpha} \\
+\Big| \frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*} \Big |
+    & \geq z_{1 - \alpha} 
+\end{aligned}$$
+    
+    
+    
+$$ \begin{aligned}
+-\Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*}\Big) & \geq z_{1-\alpha}
+    & \Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*}\Big) & \geq z_{1-\alpha} \\
+(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2) & \leq -z_{1 - \alpha} \cdot SE^* 
+    & (\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2) &\geq z_{1 - \alpha} \cdot SE^* \\
+\bar{x_1} - \bar{x_2} &\leq (\mu_1 - \mu_2) - z_{1-\alpha} \cdot SE^* 
+    & \bar{x_1} - \bar{x_2} &\leq (\mu_1 - \mu_2) + z_{1-\alpha} \cdot SE^* 
+\end{aligned}$$
+
+### Power
+
+**Two Sided Test**
+
+$$
+\begin{align*}
+\gamma(\mu_{1a} - \mu_{2a}) 
+  &= P_{\mu_{1a} - \mu_{2a}}(\bar{x} \in C)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2}) \leq 
+      (\mu_1 - \mu_2) - z_{\alpha/2} \cdot SE^*\big) + \\
+  &\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2} \geq 
+      (\mu_1 - \mu_2) + z_{1-\alpha/2} \cdot SE^*\big)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a}) \leq 
+      (\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) - z_{\alpha/2} \cdot SE^*\big) + \\
+  &\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a}) \geq 
+      (\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) + z_{1-\alpha/2} \cdot SE^*\big)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)}{SE^*} \leq 
+      \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) - z_{\alpha/2} \cdot SE^*}{SE^*}\Big) + \\
+  &\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a})}{SE^*} \geq
+      \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) + z_{1-\alpha/2} \cdot SE^*}{SE^*}\Big)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\Big(Z \leq \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*} - z_{\alpha/2}\Big) + \\
+  &\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\Big(Z \geq \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*} + z_{1-\alpha/2}\Big)\\
+  &= P_{\mu_{1a} - \mu_{2a}}\Big(Z \leq -z_{\alpha/2} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\Big) + \\
+  &\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\Big(Z \geq z_{1-\alpha/2} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\Big)
+\end{align*}
+$$
+
+Both $-z_{\alpha/2} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}$ and $z_{1-\alpha/2} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}$ have Standard Normal distributions.
+
+
+**One Sided Test**
+
+For convenience, the power for only the upper tailed test is derived here.  
+Recall that the symmetry of the t-test allows us to use the decision rule:
+Reject $H_0$ when $|Z| \geq t_{1-\alpha}$.  Thus, where $Z$ occurs in the 
+derivation below, it may reasonably be replaced with $|Z|$.
+
+$$
+\begin{align*}
+\gamma(\mu_{1a} - \mu_{2a}) 
+  &= P_{\mu_{1a} - \mu_{2a}}(\bar{x} \in C)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2} \geq 
+      (\mu_1 - \mu_2) + z_{1-\alpha} \cdot SE^*\big)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\big((\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a}) \geq 
+      (\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) + z_{1-\alpha} \cdot SE^*\big)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\Big(\frac{(\bar{x_1} - \bar{x_2}) - (\mu_{1a} - \mu_{2a})}{SE^*} \geq
+      \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a}) + z_{1-\alpha} \cdot SE^*}{SE^*}\Big)\\
+%%%
+  &= P_{\mu_{1a} - \mu_{2a}}\Big(Z \geq \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*} + z_{1-\alpha}\Big)\\
+  &= P_{\mu_{1a} - \mu_{2a}}\Big(Z \geq z_{1-\alpha} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\Big)
+\end{align*}
+$$
+
+$z_{1-\alpha/2} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}$ has a Normal Distribution.
+
+### Confidence Interval
+
+The confidence interval for $\mu_1 - \mu_2$ is written:
+$$(\bar{x_1} - \bar{x_2}) \pm z_{1-\alpha/2} \cdot SE^*$$
+
+The value of the expression on the right is often referred to as the _margin of error_, and we will refer to this value as 
+$$E = z_{1-\alpha/2} \cdot SE^*$$
+
+## References
+
+1. Wackerly, Mendenhall, Scheaffer, _Mathematical Statistics with Applications_, 6th ed., Duxbury, 2002, ISBN 0-534-37741-6.
+2. Daniel, _Biostatistics_, 8th ed., John Wiley & Sons, Inc., 2005, ISBN: 0-471-45654-3.
+3. Hogg, McKean, Craig, _Introduction to Mathematical Statistics_, 6th ed., Pearson, 2005, ISBN: 0-13-008507-3
