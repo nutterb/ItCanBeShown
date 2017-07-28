@@ -1,0 +1,60 @@
+# Rounding
+
+## Floor (Next Lowest Integer)
+
+Rounding to the next lower integer, denoted $\lfloor x \rfloor$, is defined as
+
+$$\lfloor x \rfloor = max\{m \in \mathbb{Z} | m \leq x\}$$
+
+## Ceiling
+
+Rounding to the next larger integer, denoted $\lceil x \rceil$, is defined as
+
+$$\lceil x \rceil = min\{m \in \mathbb{Z} | m \geq z\}$$
+
+## Nearest Integer
+
+Rounding to the nearest integer is a common operation without a notation with well established concensus.  It may be represented as $\lbrack x \rbrack$, $\lfloor x \rceil$, $||x||$, $nint(x)$ or $round(x)$.  Here, we will use the $nint(x)$ notation so that we may extend the $round(x)$ notation beyond just rounding to the nearest integer..
+
+**A mathematical representation of rounding would be really nice to have right here**
+
+## Nearest Multiple
+
+Rounding to a nearest multiple may be obtained through a rescaling of the value $x$ into a integer scale based on multiples of $m$. One available notation for this operation is $mround(x, m)$.
+
+$$mround(x, m) = nint \Big( \frac{x}{m} \Big) \cdot m$$
+
+## Nearest Place (Base 10)
+
+It is common in mathematical operations to round a value not to an integer, but to a decimal place.  This is no different than rounding to a multiple of ten.  We define the following conventions.
+
+* Let $x \in \mathbb{R}$
+* Let $p \in \mathbb{Z}$ where $p$ represents the negative power of ten of the desired precision of the result. 
+
+Thus, when $p = 0$, we with to round to the $10 ^ {-0} = 10^0 = 1$, or ones/integer position.  When $p = 1$, we round to the $10 ^ {-1} = \frac{1 / 10} = 0.01$, or tenths position.  And when $p = -1$, we round to the $10 ^ 1 = 10$, or tens position.
+
+We define the operation $round(x, p)$ to be the operation of rounding to the nearest decimal place. 
+
+$$\begin{aligned}
+round(x, p) &= mround(x, 10 ^ {-p}) \\
+  &= round \Big( \frac{x}{10 ^ {-p}}, 0 \Big) \cdot 10 ^ {-p} \\
+  &= \frac{round(x \cdot 10 ^ p, 0)}{10 ^ p}
+\end{aligned}$$
+
+Under this definition, $nint(x)$ is a special case of $round$ where $nint(x) = round(x, 0)$.
+
+## Breaking Ties
+
+### Rounding Even
+
+### Rounding Odd
+
+### Round Away From Zero
+
+### Round Toward Zero
+
+## References
+(I really need to be better than this)
+
+1. https://en.wikipedia.org/wiki/Floor_and_ceiling_functions
+2. https://en.wikipedia.org/wiki/Nearest_integer_function
