@@ -549,8 +549,8 @@ H_a: \pi \leq \pi_0
 <p>The decision to reject the null hypothesis is made when the observed value of <span class="math inline">\(x\)</span> lies in the critical region that suggests the probability of that observation is low. We define the critical region as the upper bound we are willing to accept for <span class="math inline">\(\alpha\)</span>, the Type I Error.</p>
 <p>In a two-sided test, the upper bound is shared equally in both tails. Due to the discrete nature of the distribution, the total probability in the tails may not equal <span class="math inline">\(\alpha\)</span>. The figures below depict examples of rejection regions for selected values of the Binomial distribution parameters. The decision rule is:</p>
 <p>Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(x &lt; Binomial(\alpha/2, n, \pi_0)\)</span> or <span class="math inline">\(x &gt; Binomial(1 - \alpha/2, n, \pi_0)\)</span></p>
-<div class="figure"><span id="fig:unnamed-chunk-3"></span>
-<img src="figures/unnamed-chunk-3-1.png" alt="The examples displayed use $n = 20$. For the top, middle, and bottom examples, $\pi$ is set at 0.3, 0.5, and 0.75, respectively. Notice that in some cases, the rejection regions for $\alpha = 0.10$ and $\alpha = 0.05$ are identical." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<img src="figures/unnamed-chunk-2-1.png" alt="The examples displayed use $n = 20$. For the top, middle, and bottom examples, $\pi$ is set at 0.3, 0.5, and 0.75, respectively. Notice that in some cases, the rejection regions for $\alpha = 0.10$ and $\alpha = 0.05$ are identical." width="672" />
 <p class="caption">
 Figure 5.1: The examples displayed use <span class="math inline">\(n = 20\)</span>. For the top, middle, and bottom examples, <span class="math inline">\(\pi\)</span> is set at 0.3, 0.5, and 0.75, respectively. Notice that in some cases, the rejection regions for <span class="math inline">\(\alpha = 0.10\)</span> and <span class="math inline">\(\alpha = 0.05\)</span> are identical.
 </p>
@@ -559,8 +559,8 @@ Figure 5.1: The examples displayed use <span class="math inline">\(n = 20\)</spa
 <p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(x \leq Binomial(\alpha, n, \pi_0)\)</span></p>
 <p>For an upper tailed test, the decision rule is:</p>
 <p>Reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(x \geq Binomial(1 - \alpha, n, \pi_0)\)</span></p>
-<div class="figure"><span id="fig:unnamed-chunk-4"></span>
-<img src="figures/unnamed-chunk-4-1.png" alt="The examples displayed use $n = 20$. For the top, middle, and bottom examples, $\pi$ is set at 0.3, 0.5, and 0.75, respectively." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<img src="figures/unnamed-chunk-3-1.png" alt="The examples displayed use $n = 20$. For the top, middle, and bottom examples, $\pi$ is set at 0.3, 0.5, and 0.75, respectively." width="672" />
 <p class="caption">
 Figure 5.2: The examples displayed use <span class="math inline">\(n = 20\)</span>. For the top, middle, and bottom examples, <span class="math inline">\(\pi\)</span> is set at 0.3, 0.5, and 0.75, respectively.
 </p>
@@ -596,8 +596,8 @@ Figure 5.2: The examples displayed use <span class="math inline">\(n = 20\)</spa
  &amp;= P_{\pi_a}(Binomial(1 - \alpha, n, \pi_0) \geq Binomial(1 - \alpha, n, \pi_a)) 
 \end{align}\]</span></p>
 <p>Since the Binomial distribution is discrete, the power curve has the interesting characteristic of not being monotonic. It is sometimes described as having a “sawtooth” appearance. This behavior means that a larger sample size is not always preferred. For example, in the following figure, a sample size of 10 has better power than a sample size of 12.</p>
-<div class="figure"><span id="fig:unnamed-chunk-5"></span>
-<img src="figures/unnamed-chunk-5-1.png" alt="Power for a Binomial test with $\pi_0 = .15$ and $\pi_a = 0.25$" width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<img src="figures/unnamed-chunk-4-1.png" alt="Power for a Binomial test with $\pi_0 = .15$ and $\pi_a = 0.25$" width="672" />
 <p class="caption">
 Figure 5.3: Power for a Binomial test with <span class="math inline">\(\pi_0 = .15\)</span> and <span class="math inline">\(\pi_a = 0.25\)</span>
 </p>
