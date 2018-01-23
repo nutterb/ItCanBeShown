@@ -366,17 +366,17 @@ $$\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2
 _Proof:_
 
 $$\begin{align*}
-\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx
-	      &=\frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}e^\frac{-(x-\mu)^2}{2\sigma^2}dx
+\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx \\
+	      &=\frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}e^\frac{-(x-\mu)^2}{2\sigma^2}dx \\
 ^{[1]}	&= \frac{1}{\sqrt{2\pi}\sigma}
               \int\limits_{-\infty}^{\infty}e^\frac{-(y)^2}{2\sigma^2}dy\\
         &=\frac{1}{\sqrt{2\pi}\sigma}
-              \int\limits_{-\infty}^{\infty}e^{-\frac{1}{2}\frac{y^2}{\sigma^2}}dy
+              \int\limits_{-\infty}^{\infty}e^{-\frac{1}{2}\frac{y^2}{\sigma^2}}dy \\
 ^{[2]}	&= \frac{1}{\sqrt{2\pi}\sigma}
               \int\limits_{-\infty}^{\infty}
-                    e^{-\frac{u}{2}}\frac{1}{2}\sigma u^{-\frac{1}{2}}du\\
+                    e^{-\frac{u}{2}}\frac{1}{2}\sigma u^{-\frac{1}{2}}du \\
         &=\frac{\sigma}{2\sqrt{2\pi}\sigma}
-              \int\limits_{-\infty}^{\infty}u^{-\frac{1}{2}}e^{-\frac{u}{2}}du
+              \int\limits_{-\infty}^{\infty}u^{-\frac{1}{2}}e^{-\frac{u}{2}}du \\
 ^{[3]}	&= \frac{2\sigma}{2\sqrt{2\pi}\sigma}
               \int\limits_{0}^{\infty}u^{\frac{1}{2}-1}e^{-\frac{u}{2}}du\\
 ^{[4]}  &= \frac{1}{\sqrt{2\pi}}2^\frac{1}{2}\Gamma\big(\frac{1}{2}\big) \\

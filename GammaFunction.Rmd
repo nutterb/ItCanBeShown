@@ -1,0 +1,76 @@
+# Gamma Function
+
+The Gamma Function is a function used frequently in statistical theory. It has properties that permit simplified calculations and is used in defining many probability distributions, particularly within the Exponential family of distributions.
+
+## Definition
+
+$$\Gamma(x) = \int\limits_0^{\infty}t^{x-1}e^{-t}dt$$
+
+Note that the definition defines a function of $x$ that is integrated over $t$.  Thus, for each value of $x$, a curve is defined, and the Gamma function calculates the area under the curve defined by $x$.
+
+## Theorem: The Reduction Relation {#gamma-function-reduction-relation}
+
+$\Gamma(x) = (x-1) \cdot \Gamma(x)$
+
+_Proof:_
+
+The proof relies on integration by parts.  Let:
+
+$$\begin{aligned}
+u &= t^{x-1} \\
+du &= (x - 1) \cdot t^{(x-2)} \\\\
+v &= -e^{-t} \\
+dv &= e^{-t} dt 
+\end{aligned}$$
+
+Integration by parts yields:
+
+$$\begin{aligned}
+\Gamma(x) &= \int\limits_0^{\infty}t^{x-1}e^{-t}dt \\
+    &= u \cdot v - \int\limits_0^\infty v \cdot du \\
+    &= \Big[t^{x-1} \cdot - e^{-t}\Big]_{t=0}^{t=\infty} - 
+        \int\limits_0^\infty-e^{-t} \cdot (x-1)\cdot t^{(x-2)} dt \\
+    &= -\Big[t^{x-1} \cdot e^{-t}\Big]_{t=0}^{t=\infty} - 
+        (- (x - 1)) \int\limits_0^\infty e^{-t} \cdot t^{(x-2)} dt \\
+    &= -\Big[t^{x-1} \cdot e^{-t}\Big]_{t=0}^{t=\infty} + 
+        (x - 1) \int\limits_0^\infty e^{-t} \cdot t^{(x-2)} dt \\
+    &= -\Big[t^{x-1} \cdot e^{-t}\Big]_{t=0}^{t=\infty} + 
+        (x - 1) \int\limits_0^\infty e^{-t} \cdot t^{(x-1)-1)} dt \\
+    &= -\Big[t^{x-1} \cdot e^{-t}\Big]_{t=0}^{t=\infty} +
+        (x - 1) \cdot \Gamma(x - 1) \\
+    &= -\Big[(\infty ^{x-1} \cdot e ^ {-\infty}) - 
+              x ^ {x-1} \cdot e ^ {-0}\Big] + 
+        (x - 1) \cdot \Gamma(x - 1) \\
+    &= -[0 - 0] + (x - 1) \cdot \Gamma(x - 1) \\
+    &= 0 + (x - 1) \cdot \Gamma(x - 1) \\
+    &= (x - 1) \cdot \Gamma(x - 1)
+\end{aligned}$$
+
+### Corollary
+
+$$\Gamma(x) = \frac{1}{x} \cdot \Gamma(x + 1)$$
+
+_Proof:_
+
+Theorem \@ref(gamma-function-reduction-relation) establishes
+
+$$ \Gamma(x) = (x - 1) \cdot \Gamma(x - 1)$$
+
+Let $y = x + 1$.  Then
+
+$$\begin{aligned}
+\Gamma(y) &= (y - 1) \cdot \Gamma(y - 1) \\
+\Rightarrow \Gamma(x + 1) 
+    &= (x + 1 - 1) \cdot \Gamma(x + 1 - 1) \\
+    &= x \cdot \Gamma(x) \\
+\Rightarrow \frac{1}{x} \cdot \Gamma(x + 1) &= \Gamma(x) \\
+\Rightarrow \Gamma(x) &= \frac{1}{x} \cdot \Gamma(x + 1)
+\end{aligned}$$
+
+This allows the recurrence relation to move toward $\Gamma(0)$ for any value of $x$.  Note, however, that $\Gamma(0)$ is undefined. Thus, solutions for the Gamma Function may be determined for positive integers, since $\Gamma(1)$ can be solved.  On the other hand, 
+$\Gamma(-1)$ can not be solved, and the recurrence relation results in a zero denominator.  Hence, the Gamma Function is defined for all $x \in \mathbb{R}$ so long as $x \not\in \mathbb{Z^-}$
+
+
+
+
+

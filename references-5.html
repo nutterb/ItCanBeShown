@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="normal-distribution.html">
-<link rel="next" href="probability.html">
+<link rel="prev" href="z-test-of-sample-means.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -553,253 +553,33 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="poisson-distribution" class="section level1">
-<h1><span class="header-section-number">27</span> Poisson Distribution</h1>
-<div id="probability-mass-function-4" class="section level2">
-<h2><span class="header-section-number">27.1</span> Probability Mass Function</h2>
-<p>A random variable is said to have a Poisson distribution with parameter <span class="math inline">\(\lambda\)</span> if its probability mass function is:</p>
-<p><span class="math display">\[p(x)=\left\{
-    \begin{array}{ll}
-        \frac{\lambda^xe^{-\lambda}}{x!}, &amp; x=0,1,2,...\\
-        0 &amp; otherwise 
-    \end{array}\right. 
-\]</span></p>
-</div>
-<div id="cumulative-mass-function-3" class="section level2">
-<h2><span class="header-section-number">27.2</span> Cumulative Mass Function</h2>
-<p><span class="math display">\[P(x)=\left\{
-    \begin{array}{lll}
-        e^{-\lambda}\sum\limits_{i=0}^{x}\frac{\lambda^i}{i!}, &amp; x=1,2,3,...\\
-        0 &amp; otherwise 
-    \end{array}\right.
-\]</span></p>
-<p>A recursive form of the cdf can be derived and has some usefulness in computer applications. With it, one need only initiate the first value and additional cumulative probabilities can be calculated. It is derived as follows:</p>
-<p><span class="math display">\[\begin{align*} 
-P(X=x+1)
-    &amp;= \frac{e^{-\lambda}\lambda^{x+1}}{(x+1)!} \\
-    &amp;= \frac{\lambda}{x+1}\frac{e^{-\lambda}\lambda^x}{x!} \\
-    &amp;= \frac{\lambda}{x+1}P(X=x)
-\end{align*}\]</span></p>
-<div class="figure"><span id="fig:unnamed-chunk-9"></span>
-<img src="figures/unnamed-chunk-9-1.png" alt="The graphs on the left and right show a Poisson probability cumulative distribution function, respectively, for $\lambda=3$." width="672" />
-<p class="caption">
-Figure 27.1: The graphs on the left and right show a Poisson probability cumulative distribution function, respectively, for <span class="math inline">\(\lambda=3\)</span>.
-</p>
-</div>
-</div>
-<div id="expected-values-9" class="section level2">
-<h2><span class="header-section-number">27.3</span> Expected Values</h2>
-<p><span class="math display">\[\begin{align*}
-E(X)
-    &amp;= \sum\limits_{x=0}^{\infty}x\frac{\lambda^xe^{-\lambda}}{x!} \\
-    &amp;= e^{-\lambda}\sum\limits_{x=0}^{\infty}x\frac{\lambda^x}{x!} \\
-    &amp;= e^{-\lambda}\Big(0\frac{\lambda^0}{0!}+1\frac{\lambda^1}{1!}
-        +2\frac{\lambda^2}{2!}+3\frac{\lambda^3}{3!}+\cdots\Big) \\
-  &amp;= e^{-\lambda}\Big(0+\lambda^1+\frac{\lambda^2}{1!}+\frac{\lambda^3}{2!}+\cdots\Big) \\
-    &amp;= \lambda e^{-\lambda}\Big(\lambda^0+\frac{\lambda^1}{1!}+\frac{\lambda^2}{2!}+\cdots\Big) \\
-  &amp;= \lambda e^{-\lambda}\Big(\frac{\lambda^0}{0!}+\frac{\lambda^1}{1!}
-        +\frac{\lambda^2}{2!}+\cdots\Big) \\
-    &amp;= \lambda e^{-\lambda}e^\lambda \\
-    &amp;= \lambda e^(-\lambda+\lambda) \\
-    &amp;= \lambda
-\end{align*}\]</span></p>
-<blockquote>
-<ol style="list-style-type: decimal">
-<li>Taylor Series Expansion: <span class="math inline">\(e^x=\frac{x^0}{0!}+\frac{x^1}{1!} +\frac{x^2}{2!}+\cdots =1+\frac{x^1}{1!}+\frac{x^2}{2!}+\cdots\)</span></li>
-</ol>
-</blockquote>
-<p><span class="math display">\[\begin{align*}
-E(X^2)
-    &amp;= \sum\limits_{x=0}^{\infty}x\frac{\lambda^xe^{-\lambda}}{x!} \\
-    &amp;= e^{-\lambda}\sum\limits_{x=0}^{\infty}x\frac{\lambda^x}{x!} \\
-    &amp;= e^{-\lambda}\Big(0^2\frac{\lambda^0}{0!}+1^2\frac{\lambda^1}{1!}
-        +2^2\frac{\lambda^2}{2!}+3^2\frac{\lambda^3}{3!}+\cdots\Big) \\
-  &amp;= \lambda e^{-\lambda}\Big(\frac{\lambda^0}{1}
-        +2\frac{\lambda^1}{1!}+3\frac{\lambda^2}{2!}+\cdots\Big) \\
-    &amp;= \lambda e^{-\lambda}\sum\limits_{x=0}^{\infty}(x+1)\frac{\lambda^x}{x!} \\
-    &amp;= \lambda e^{-\lambda}\sum\limits_{x=0}^{\infty} 
-        \Big(x\frac{\lambda^x}{x!}+\frac{\lambda^x}{x!}\Big) \\
-  &amp;= \lambda e^{-\lambda}\Big(\sum\limits_{x=0}^{\infty}x\frac{\lambda^x}{x!}
-        +\sum\limits_{x=0}^{\infty}\frac{\lambda^x}{x!}\Big) \\
-    &amp;= \lambda\sum\limits_{x=0}^{\infty}x\frac{\lambda^xe^{-\lambda}}{x!}
-        +\lambda\sum\limits_{x=0}^{\infty}\frac{\lambda^xe^{-\lambda}}{x!} \\
-  &amp;= \lambda E(X)+\lambda \\
-  &amp;= \lambda^2+\lambda\\
-\\
-\\
-\mu 
-    &amp;= E(X) \\
-    &amp;= \lambda \\
-\\
-\\
-\sigma^2 
-    &amp;= E(X^2) - E(X) \\
-    &amp;= \lambda^2 + \lambda - \lambda^2 \\
-    &amp;= \lambda
-\end{align*}\]</span></p>
-</div>
-<div id="moment-generating-function-8" class="section level2">
-<h2><span class="header-section-number">27.4</span> Moment Generating Function</h2>
-<p><span class="math display">\[\begin{align*} 
-M_X(t)
-    &amp;= E(e^{tX}) \\
-    &amp;= \sum\limits_{x=0}^{\infty}e^{tx}\frac{\lambda^xe^{-\lambda}}{x!} \\
-    &amp;= \sum\limits_{x=0}^{\infty}\frac{(\lambda e^{tx})^xe^{-\lambda}}{x!} \\
-  &amp;= e^{-\lambda}\sum\limits_{x=0}^{\infty}\frac{(\lambda e^{tx})^x}{x!} \\
-    &amp;= e^{-\lambda}\Big[\frac{(\lambda e^t)^0}{0!}+\frac{(\lambda e^t)^1}{1!}+
-        \frac{(\lambda e^t)^2}{2!}+\cdots\Big] \\
-  &amp;= e^{-\lambda}e^{\lambda e^t} \\
-  &amp;= e^{(\lambda e^t-\lambda)} \\
-  &amp;= e^{\lambda(e^t-1)}
-\end{align*}\]</span></p>
-<blockquote>
-<ol style="list-style-type: decimal">
-<li>Taylor Series Expansion: <span class="math inline">\(e^x=\frac{x^0}{0!}+\frac{x^1}{1!} +\frac{x^2}{2!}+\cdots =1+\frac{x^1}{1!}+\frac{x^2}{2!}+\cdots\)</span></li>
-</ol>
-</blockquote>
-<p><span class="math display">\[\begin{align*}
-M_X^{(1)}(t)
-    &amp;= e^{\lambda(e^t-1)}\lambda e^t=\lambda e^te^{\lambda(e^t-1)} \\
-\\
-\\
-M_X^{(2)}(t)
-    &amp;= (e^{\lambda(e^t-1)}(\lambda e^t)+(e^{\lambda(e^t-1)}\lambda e^t)(\lambda e^t) \\
-    &amp;= \lambda e^t[e^{\lambda e^t-1)}+e^{\lambda(e^t-1)}\lambda e^t] \\
-  &amp;= \lambda e^t[e^{\lambda(e^t-1)}(1+\lambda e^t)] \\
-\\
-\\
-E(X)
-    &amp;= M_X^{(1)}(0) \\
-    &amp;= \lambda e^0e^{\lambda(e^0-1)}\lambda e^t=\lambda \\
-\\
-\\
-E(X^2)
-    &amp;= M_X^{(2)}(0) \\
-    &amp;= \lambda e^0[e^{\lambda(e^0-1)}(1+\lambda e^0)] \\
-    &amp;= \lambda e^0[e^{\lambda(e^0-1)}(1+\lambda e^0] \\
-  &amp;= \lambda(1+\lambda) \\
-    &amp;= \lambda+\lambda^2 \\
-\\
-\\
-\mu
-    &amp;= E(X) \\
-    &amp;= \lambda \\
-\sigma^2
-    &amp;= E(X^2)-E(X) \\
-    &amp;= \lambda+\lambda^2-\lambda^2 \\
-    &amp;= \lambda
-\end{align*}\]</span></p>
-</div>
-<div id="maximum-likelihood-estimator-3" class="section level2">
-<h2><span class="header-section-number">27.5</span> Maximum Likelihood Estimator</h2>
-<p>Let <span class="math inline">\(x_1,x_2,\ldots,x_n\)</span> be a random sample drawn from a Poisson Distribution with parameter <span class="math inline">\(\lambda\)</span>.</p>
-<div id="likelihood-function-6" class="section level3">
-<h3><span class="header-section-number">27.5.1</span> Likelihood Function</h3>
-<p><span class="math display">\[\begin{align*}
-L(\theta)
-    &amp;= L(x_1,x_2,\ldots,x_n|\theta) \\
-    &amp;= p(x_1|\theta)p(x_2|\theta)\cdots p(x_n|\theta) \\
-  &amp;= \frac{e^{-\lambda}\lambda^{x_1}}{x_1!}\cdot\frac{e^{-\lambda}\lambda^{x_2}}{x_2!}
-        \cdot \ \cdots\ \cdot \frac{e^{-\lambda}\lambda^{x_n}}{x_n!} \\
-    &amp;= \frac{e^{-n\lambda}\lambda^{\sum\limits_{i=1}^{n}x_i}}{\prod\limits_{i=1}^{n}x_1!}
-\end{align*}\]</span></p>
-</div>
-<div id="log-likelihood" class="section level3">
-<h3><span class="header-section-number">27.5.2</span> Log-likelihood</h3>
-<p><span class="math display">\[\begin{align*} 
-\ell(\lambda)
-    &amp;= \ln(L(\lambda)) \\
-    &amp;= \ln\Big[\frac{e^{-n\lambda}\lambda^{\sum\limits_{i=1}^{n}x_i}}{\prod\limits_{i=1}^{n}x_1!}\Big] \\
-    &amp;= \ln(e^{-n\lambda})+\ln\Big(\lambda^{\sum\limits_{i=1}^{n}x_i}\Big)
-        - \ln\Big(\prod\limits_{i=1}^{n}x_1!\Big) \\
-  &amp;= -n\lambda + \sum\limits_{i=1}^{n}x_i\ln\Big(\lambda)-\ln(\prod\limits_{i=1}^{n}x_1!\Big)
-\end{align*}\]</span></p>
-</div>
-<div id="mle-for-lambda" class="section level3">
-<h3><span class="header-section-number">27.5.3</span> MLE for <span class="math inline">\(\lambda\)</span></h3>
-<p><span class="math display">\[\begin{align*} 
-\frac{d\ell}{d\lambda}
-    &amp;= -n - \frac{\sum\limits_{i=1}^{n}x_i}{\lambda} - 0 \\
-    &amp;= \frac{\sum\limits_{i=1}^{n}x_i}{\lambda} - n \\
-\\
-\\
-0 &amp;= \frac{\sum\limits_{i=1}^{n}x_i}{\lambda}-n\\
-\Rightarrow \frac{\sum\limits_{i=1}^{n}x_i}{\lambda} &amp;= n\\
-\Rightarrow \sum\limits_{i=1}^{n}x_i &amp;= n\lambda\\
-\Rightarrow \frac{\sum\limits_{i=1}^{n}x_i}{n} &amp;= \lambda
-\end{align*}\]</span></p>
-<p>so <span class="math inline">\(\displaystyle \hat\lambda=\frac{\sum\limits_{i=1}^{n}x_i}{n}\)</span> is the Maximum Likelihood Estimator for <span class="math inline">\(\lambda\)</span>.</p>
-</div>
-</div>
-<div id="theorems-for-the-poisson-distribution" class="section level2">
-<h2><span class="header-section-number">27.6</span> Theorems for the Poisson Distribution</h2>
-<div id="derivation-of-the-poisson-distribution" class="section level3">
-<h3><span class="header-section-number">27.6.1</span> Derivation of the Poisson Distribution</h3>
-<p>Suppose <span class="math inline">\(X\)</span> is a Binomial random variable in all respects but has an infinite (non-fixed) number of trials, each with probability of success <span class="math inline">\(p\)</span>.</p>
-<p>Then the pdf of <span class="math inline">\(X\)</span> is <span class="math inline">\(P(x)=\frac{e^{-\lambda}\lambda^x}{x!}\)</span></p>
-<p><em>Proof:</em></p>
-<p>For an infinite number of trials we take <span class="math inline">\(\lim\limits_{n\rightarrow\infty}{n\choose x}p^x(1-p)^{n-x}\)</span>.</p>
-<p>By rewriting <span class="math inline">\(p\)</span> in terms of <span class="math inline">\(\mu\ (\mu=np\ \Rightarrow p=\frac{\mu}{n})\)</span> we get</p>
-<p><span class="math display">\[\begin{align*} 
-\lim\limits_{n\rightarrow\infty}{n\choose x}\frac{\mu}{n}^x(1-\frac{\mu}{n})^{n-x}
-    &amp;= \lim\limits_{n\rightarrow\infty}{n\choose x}
-        \frac{\mu}{n}^x(1-\frac{\mu}{n})^n(1-\frac{\mu}{n})^{-x} \\
-  &amp;= \lim\limits_{n\rightarrow\infty}\bigg(\frac{n(n-1)\cdots(n-x+1)(n-x)!}{x!(n-x)!}\bigg)
-        \mu^x\frac{1}{n^x}(1-\frac{\mu}{n})^n(1-\frac{\mu}{n})^{-x} \\
-  &amp;= \lim\limits_{n\rightarrow\infty}\bigg(\frac{n(n-1)\cdots(n-x+1)}{x!}\bigg)
-        \mu^x\frac{1}{n^x}(1-\frac{\mu}{n})^n(1-\frac{\mu}{n})^{-x} \\
-  &amp;= \frac{\mu^x}{x!}\lim\limits_{n\rightarrow\infty}\bigg(\frac{n(n-1)\cdots(n-x+1)}{n^x}\bigg)
-        \frac{1}{n^x}(1-\frac{\mu}{n})^n(1-\frac{\mu}{n})^{-x} \\
-  &amp;= \frac{\mu^x}{x!}\lim\limits_{n\rightarrow\infty}\bigg(\frac{n(n-1)\cdots(n-x+1)}{n^x}\bigg)
-        \lim\limits_{n\rightarrow\infty}\frac{1}{n^x}(1-\frac{\mu}{n})^n
-        \lim\limits_{n\rightarrow\infty}(1-\frac{\mu}{n})^{-x} \\
-  &amp;= \frac{\mu^x}{x!}\cdot 1\cdot e^{-\mu}\cdot 1 \\
-  &amp;= \frac{e^{-\mu}\mu^x}{x!}
-\end{align*}\]</span></p>
-<blockquote>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(\lim\limits_{n\rightarrow\infty}(1-\frac{x}{n})^n=e^-x\)</span></li>
-</ol>
-</blockquote>
-<p>Traditionally, we use <span class="math inline">\(\lambda\)</span> in place of <span class="math inline">\(\mu\)</span> for the Poisson distribution, giving us the desired result.</p>
-</div>
-<div id="validity-of-the-distribution-7" class="section level3">
-<h3><span class="header-section-number">27.6.2</span> Validity of the Distribution</h3>
-<p><span class="math display">\[\sum\limits_{x=0}^{\infty}\frac{e^{-\lambda}\lambda^x}{x!} = 1\]</span></p>
-<p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{align*} 
-\sum\limits_{x=0}^{\infty}\frac{e^{-\lambda}\lambda^x}{x!}
-    &amp;= e^{-\lambda}\sum\limits_{x=0}^{\infty}\frac{\lambda^x}{x!} \\
-    &amp;= e^{-\lambda}\bigg(\frac{\lambda^0}{0!}+
-        \frac{\lambda^1}{1!}+\frac{\lambda^2}{2!}+\cdots\bigg) \\
-  &amp;= e^{-\lambda}\cdot e^\lambda \\
-  &amp;= e^0 \\
-  &amp;= 1
-\end{align*}\]</span></p>
-<blockquote>
-<ol style="list-style-type: decimal">
-<li>Taylor Series Expansion: <span class="math inline">\(e^x=\frac{x^0}{0!}+\frac{x^1}{1!}+\frac{x^2}{2!}+\cdots\)</span></li>
-</ol>
-</blockquote>
-</div>
-<div id="sum-of-poisson-random-variables" class="section level3">
-<h3><span class="header-section-number">27.6.3</span> Sum of Poisson Random Variables</h3>
-<p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent random variables from a Poisson distribution with parameter <span class="math inline">\(\lambda_i,\ i=1,2,\ldots,n\)</span>; that is, <span class="math inline">\(X_i\sim\)</span>Poisson<span class="math inline">\((\lambda_i)\)</span>.</p>
-<p>Let <span class="math inline">\(Y=\sum\limits_{i=1}^{n}X_i\)</span>.</p>
-<p>Then <span class="math inline">\(Y\sim\)</span>Poisson<span class="math inline">\((\sum\limits_{i=1}^{n}\lambda_i)\)</span>.\</p>
-<p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{align*}
-M_Y(t)
-    &amp;= E(e^{tY}) \\
-    &amp;= E(e^{t(X_1+X_2+\cdots+X_n)} \\
-    &amp;= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
-  &amp;= E(e^{tX_1})E(e^{tX_2})\cdots E(e^{tX_n}) \\
-  &amp;= e^{\lambda_1(e^t-1)}e^{\lambda_2(e^t-1)}\cdots e^{\lambda_n(e^t-1)} \\
-  &amp;= e^{(\lambda_1+\lambda_2+\cdots+\lambda_n)(e^t-1)} \\
-    &amp;= e^{(e^{t-1})\sum\limits_{i=1}^{n}\lambda_i}
-\end{align*}\]</span></p>
-<p>Which is the mgf of a Poisson random variable with parameter <span class="math inline">\(\sum\limits_{i=1}^{n}\lambda_i\)</span>. Thus <span class="math inline">\(Y\sim\)</span>Poisson<span class="math inline">\((\sum\limits_{i=1}^{n}\lambda_i)\)</span>.</p>
+<div id="references-5" class="section level1">
+<h1><span class="header-section-number">43</span> References</h1>
 
+<div id="refs" class="references">
+<div>
+<p>Agresti, Alan. 1996. <em>An Introduction to Categorical Data Analysis</em>. John Wiley; Sons.</p>
+</div>
+<div>
+<p>Brunette, John. 2003–2007a. “A Binomial Expansion Theorem with the Binomial Theorem as a Corrolary.” Lecture Notes.</p>
+</div>
+<div>
+<p>———. 2003–2007b. “Chebychev’s Theorem for Absolute Deviation.” Lecture Notes.</p>
+</div>
+<div>
+<p>Hogg, Robert V., Joseph W. McKean, and Allen T. Craig. 2005. <em>Introduction to Mathematical Statistics</em>. 6th ed. Pearson.</p>
+</div>
+<div>
+<p>Law, Averill M., and W. David Kelton. 2000. <em>Simulation Modeling and Analysis</em>. 3rd ed. McGraw-Hill.</p>
+</div>
+<div>
+<p>Mantel, Nathan. 1963. “Chi-Square Tests with One Degree of Freedom; Extensions of the Mantel- Haenszel Procedure.” <em>Journal of the American Statistical Association</em> 58 (303): 690–700.</p>
+</div>
+<div>
+<p>McDonald, Stephen. 2003–2007. “An Axiomatic Approach to the Real Number System.” Lecture Notes.</p>
+</div>
+<div>
+<p>Wackerly, Dennis D., William Mendenhall III, and Richard L. Scheaffer. 2002. <em>Mathematical Statistics with Applications</em>. 6th ed. Duxbury.</p>
 </div>
 </div>
 </div>
@@ -808,8 +588,8 @@ M_Y(t)
           </div>
         </div>
       </div>
-<a href="normal-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="z-test-of-sample-means.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -838,7 +618,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Poisson_Distribution.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/zzz-references.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],
