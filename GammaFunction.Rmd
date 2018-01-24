@@ -8,7 +8,32 @@ $$\Gamma(x) = \int\limits_0^{\infty}t^{x-1}e^{-t}dt$$
 
 Note that the definition defines a function of $x$ that is integrated over $t$.  Thus, for each value of $x$, a curve is defined, and the Gamma function calculates the area under the curve defined by $x$.
 
-## Theorem: The Reduction Relation {#gamma-function-reduction-relation}
+## Theorems for the Gamma Function
+
+### Lemma {#gamma-function-reduction-lemma}
+
+$$\left[ -t^{x-1} e^{-t} \right]_{t = 0}^{t = \infty} = 0$$
+
+_Proof:_
+
+$$\begin{aligned}
+\left[ -t^{x-1} e^{-t} \right]_{t = 0}^{t = \infty}
+ &= \lim_{t\to\infty}\big(-t^{x - 1} e^{-t}\big) - 
+       0^{x - 1} e^{-0} \\
+ &= \lim_{t\to\infty}\big(-t^{x - 1} e^{-t}\big) - 0 \\
+ &= \lim_{t\to\infty}\big(-t^{x - 1} e^{-t}\big) \\
+ &= - \lim_{t\to\infty}\frac{t^{x - 1}}{e^t} \\
+ &= - \lim_{t\to\infty} \left\{exp\left[ (x - 1) \ln t - t\right] \right\} \\
+ &= - \lim_{t\to\infty} \left\{ exp \left[(x - 1) \cdot t \cdot \Big( \frac{\ln t}{t} - 1\Big) \right]\right\} \\
+^{[1]} &= \lim_{t\to\infty} \left\{ exp \left[(x - 1) \cdot t \cdot \Big( 0 - 1\Big) \right]\right\} \\
+&= \lim_{t\to\infty} \left\{ exp \left[- (x - 1) \cdot t \right]\right\} \\
+ &= \lim_{t\to\infty} \frac{1}{e^{(x - 1) \cdot t}} \\
+ &= 0
+\end{aligned}$$
+
+> 1.  L'H\^{o}pital's Rule: $\lim_{x\to u}\frac{f(x)}{g(x)} = \lim_{x\to u} \frac{f'(x)}{g'(x)}$. This implies $\lim_{x\to \infty} \frac{\ln x}{x} = \lim_{x\to \infty} \frac{\frac{1}{x}}{1} = \lim_{x \to \infty} \frac{1}{x} = 0$
+
+### Theorem: The Reduction Relation {#gamma-function-reduction-relation}
 
 $\Gamma(x) = (x-1) \cdot \Gamma(x)$
 
@@ -32,19 +57,14 @@ $$\begin{aligned}
         \int\limits_0^\infty-e^{-t} \cdot (x-1)\cdot t^{(x-2)} dt \\
     &= -\Big[t^{x-1} \cdot e^{-t}\Big]_{t=0}^{t=\infty} - 
         (- (x - 1)) \int\limits_0^\infty e^{-t} \cdot t^{(x-2)} dt \\
-    &= -\Big[t^{x-1} \cdot e^{-t}\Big]_{t=0}^{t=\infty} + 
+^{[1]}    &= -0 +  
         (x - 1) \int\limits_0^\infty e^{-t} \cdot t^{(x-2)} dt \\
-    &= -\Big[t^{x-1} \cdot e^{-t}\Big]_{t=0}^{t=\infty} + 
-        (x - 1) \int\limits_0^\infty e^{-t} \cdot t^{(x-1)-1)} dt \\
-    &= -\Big[t^{x-1} \cdot e^{-t}\Big]_{t=0}^{t=\infty} +
-        (x - 1) \cdot \Gamma(x - 1) \\
-    &= -\Big[(\infty ^{x-1} \cdot e ^ {-\infty}) - 
-              x ^ {x-1} \cdot e ^ {-0}\Big] + 
-        (x - 1) \cdot \Gamma(x - 1) \\
-    &= -[0 - 0] + (x - 1) \cdot \Gamma(x - 1) \\
-    &= 0 + (x - 1) \cdot \Gamma(x - 1) \\
-    &= (x - 1) \cdot \Gamma(x - 1)
+    &= (x - 1) \int\limits_0^\infty e^{-t} \cdot t^{((x-1)-1)} dt \\
+    &= (x - 1) \int\limits_0^\infty t^{((x-1)-1)} \cdot e^{-t} dt \\
+    &= (x - 1) \cdot \Gamma(x - 1) 
 \end{aligned}$$
+
+> 1. \@ref(gamma-function-reduction-lemma)
 
 ### Corollary
 
@@ -71,6 +91,34 @@ This allows the recurrence relation to move toward $\Gamma(0)$ for any value of 
 $\Gamma(-1)$ can not be solved, and the recurrence relation results in a zero denominator.  Hence, the Gamma Function is defined for all $x \in \mathbb{R}$ so long as $x \not\in \mathbb{Z^-}$
 
 
+### Theorem:
 
+$$\Gamma\Big(\frac{1}{2}\Big) = \sqrt{\pi}$$
+
+_Proof:_
+
+$$\begin{aligned}
+\Gamma\Big(\frac{1}{2}\Big)
+  &= \int\limits_0^\infty t^{-\frac{1}{2}} e ^{-t} dt \\
+  &= \frac{2}{2} \int\limits_0^\infty t^{-\frac{1}{2}} e ^{-t} dt \\
+  &= 2 \int\limits_0^\infty \frac{1}{2} \cdot t ^{-\frac{1}{2}} 
+      e^{-(\sqrt{t})^2} dt \\
+  &= 2 \int\limits_0^\infty \frac{1}{2} \cdot t ^{-\frac{1}{2}} 
+      e^{-(\sqrt{t})^2} dt \\
+^{[1]}  &= 2 \int\limits_0^\infty \frac{1}{2} \cdot x ^{-1} 
+      e^{-x^2} \cdot 2\cdot x \ dx \\
+  &= 2 \int\limits_0^\infty \frac{2x}{2x} e^{-x^2} dx \\
+  &= 2 \int\limits_0^\infty e^{-x^2} dx \\
+^{[2]}  &= 2 \cdot \frac{\sqrt{\pi}}{2} \\
+  &= \sqrt{\pi} 
+\end{aligned}$$
+
+> 1. $x = \sqrt{t}$; $t = x^2$; and $dt = 2x dx$
+> 2. Theorem \@ref(gaussian-integral-sqrt-pi)
+
+## References
+
+* Pennsylvania State University, Elberly College of Science, STAT 414/415, https://onlinecourses.science.psu.edu/stat414/node/142
+* Theodore Hatch Whitfield, Lecture Notes, E156 _Mathematical Foundations of Statistical Software_.
 
 

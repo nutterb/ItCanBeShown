@@ -1,0 +1,125 @@
+# Gaussian Integral
+
+The Gaussian Integral is defined by
+
+$$ \int\limits_{-\infty}^\infty e^{-x^2} \cdot dx $$
+
+The Gaussian Integral may be generalized to the form
+
+$$\int\limits_{-\infty}^\infty e^{-a(x + b)^2} \cdot dx $$
+
+## Theorems for the Gaussian Integral
+
+### Theorem
+
+The Gaussian Integral is an even function.
+
+_Proof:_
+
+Recall that an even function is a function $f(x)$ such that $f(-x) = f(x)$.
+
+Let $f(x)$ be the Gaussian Integral
+
+$$f(x) = \int\limits_{-\infty}^\infty e^{-x^2} \cdot dx $$
+
+$$\begin{aligned}
+f(-x) 
+  &= \int\limits_{-\infty}^\infty e^{-(-x)^2} \cdot dx \\
+  &= \int\limits_{-\infty}^\infty e^{-x^2} \cdot dx \\
+  &= f(x) 
+\end{aligned}$$
+
+### Theorem {#gaussian-integral-sqrt-pi}
+
+$$ \int\limits_{-\infty}^\infty e^{-x^2} \cdot dx = \sqrt{\pi}$$
+
+_Proof:_
+
+Let $y = x$, and let $I = \int\limits_{-\infty}^\infty e^{-x^2} \cdot dx$. This permits the equation
+
+$$I = \int\limits_{-\infty}^\infty e^{-x^2} \cdot dx = 
+  \int\limits_{-\infty}^\infty e^{-y^2} \cdot dy $$
+
+We use this equality to define the double integral for $I^2$.
+
+$$\begin{aligned}
+I^2
+  &= I \cdot I \\
+  &= \Big(\int\limits_{-\infty}^\infty e^{-x^2} \cdot dx\Big) \cdot 
+     \Big(\int\limits_{-\infty}^\infty e^{-y^2} \cdot dx\Big) \\
+  &= \int\limits_{-\infty}^\infty\int\limits_{-\infty}^\infty
+      e^{-x^2} e^{-y^2} \cdot dx\ dy\\
+  &= \int\limits_{-\infty}^\infty\int\limits_{-\infty}^\infty
+      e^{-(x^2 + y^2)} \cdot dx\ dy\\
+^{[1]} &= \int\limits_0^{2\pi} \int\limits_{0}^\infty 
+      e^{-r^2} \cdot r \cdot dr\ d\theta \\
+  &= \int\limits_0^{2\pi} 
+        -\frac{1}{2} e ^{-r^2} \Big\rvert_{r = 0}^{r = \infty} 
+        \cdot d\theta \\
+  &= \int\limits_0^{2\pi} - 0 - \big(-\frac{1}{2}\big) \cdot d\theta\\
+  &= \int\limits_0^{2\pi} \frac{1}{2} \cdot d\theta\\
+  &= \frac{\theta}{2} \Big\rvert_{\theta = 0}^{\theta = 2\pi} \\
+  &= \frac{2\pi}{2} - \frac{0}{2} \\
+  &= \frac{2\pi}{2} \\
+  &= \pi
+\end{aligned}$$
+
+> 1. Conversion to polar coordinates. Let the radius be $r = x^2 + y^2$ on the domain of $[0, \infty]$ and let the angle be $\theta$ on the domain of $[0, 2\pi]$. $dx\ dy = r dr\ d\theta$.
+
+This establishes that $I^2 = \pi$.  It follows:
+
+$$\begin{aligned}
+I^2 &= \pi \\
+I   &= \sqrt{\pi} \\
+\int\limits_{-\infty}^\infty e^{-x^2} &= \sqrt{\pi}
+\end{aligned}$$
+
+
+### Theorem
+
+$$\int\limits_{-\infty}^\infty e^{-a(x + b)^2} \cdot dx = \sqrt{\frac{\pi}{a}}$$
+
+_Proof:_
+
+Let $y = x$, and let $I = \int\limits_{-\infty}^\infty e^{-a(x+b)^2} \cdot dx$. This permits the equation
+
+$$I = \int\limits_{-\infty}^\infty e^{-a(x+b)^2} \cdot dx = 
+  \int\limits_{-\infty}^\infty e^{-a(y+b)^2} \cdot dy $$
+
+We use this equality to define the double integral for $I^2$.
+
+$$\begin{aligned}
+I^2
+  &= I \cdot I \\
+  &= \Big(\int\limits_{-\infty}^\infty e^{-a(x+b)^2} \cdot dx\Big) \cdot 
+     \Big(\int\limits_{-\infty}^\infty e^{-a(y+b)^2} \cdot dx\Big) \\
+  &= \int\limits_{-\infty}^\infty\int\limits_{-\infty}^\infty
+      e^{-a(x+b)^2} e^{-a(y+b)^2} \cdot dx\ dy\\
+  &= \int\limits_{-\infty}^\infty\int\limits_{-\infty}^\infty
+      e^{-(a(x + b)^2 + a(y + b)^2)} \cdot dx\ dy\\
+^{[1]} &= \int\limits_0^{2\pi} \int\limits_{0}^\infty 
+      e^{-2a(r+b)^2} \cdot r \cdot dr\ d\theta \\
+  &= \int\limits_0^{2\pi} 
+        -\frac{1}{2a} e ^{-r^2} \Big\rvert_{r = 0}^{r = \infty} 
+        \cdot d\theta \\
+  &= \int\limits_0^{2\pi} - 0 - \big(-\frac{1}{2a}\big) \cdot d\theta\\
+  &= \int\limits_0^{2\pi} \frac{1}{2a} \cdot d\theta\\
+  &= \frac{\theta}{2a} \Big\rvert_{\theta = 0}^{\theta = 2\pi} \\
+  &= \frac{2\pi}{2a} - \frac{0}{2} \\
+  &= \frac{2\pi}{2a} \\
+  &= \frac{\pi}{a}
+\end{aligned}$$
+
+> 1. Conversion to polar coordinates. Let the radius be $r = a(x+b)^2 + a(y+b)^2$ on the domain of $[0, \infty]$ and let the angle be $\theta$ on the domain of $[0, 2\pi]$. $dx\ dy = r dr\ d\theta$.
+
+This establishes that $I^2 = \frac{\pi}{a}$.  It follows:
+
+$$\begin{aligned}
+I^2 &= \frac{\pi}{a} \\
+I   &= \sqrt{\frac{\pi}{a}} \\
+\int\limits_{-\infty}^\infty e^{-a(x+b)^2} &= \sqrt{\frac{\pi}{a}}
+\end{aligned}$$
+
+## References
+
+* Theodore Hatch Whitfield, Lecture Notes, E156 _Mathematical Foundations of Statistical Software_.
