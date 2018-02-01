@@ -16,8 +16,8 @@ A random variable is said to have an Exponential Distribution with parameter $\b
 $$\begin{align*}
 F(x)
 	&= \int\limits_{0}^{x}\frac{1}{\beta}\exp\Big\{{\frac{-t}{\beta}}\Big\}dt \\
-	&= \exp\Big\{{\frac{-t}{\beta}}\Big\}\Big|_0^x \\
-	&= \exp\Big\{{\frac{-x}{\beta}}\Big\}-\exp\Big\{{\frac{-0}{\beta}}\Big\} \\
+	&= -\exp\Big\{{\frac{-t}{\beta}}\Big\}\Big|_0^x \\
+	&= -\exp\Big\{{\frac{-x}{\beta}}\Big\}-\Big(-\exp\Big\{{\frac{-0}{\beta}}\Big\}\Big) \\
   &= \exp\Big\{{\frac{0}{\beta}}\Big\}-\exp\Big\{{\frac{-x}{\beta}}\Big\} \\
 	&= 1-\exp\Big\{{\frac{-x}{\beta}}\Big\}
 \end{align*}$$
