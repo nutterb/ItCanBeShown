@@ -376,3 +376,24 @@ So
 	\end{array} \right. 
 \]
 
+```{r, echo = FALSE, fig.path = 'figures/', fig.cap = 'The figures on the left and right display the Geometric probability and cumulative distirubtion functions, respectively, for the combinations of $p=.3$.'}
+Geometric <- 
+  data.frame(x = 0:5) %>%
+  mutate(pmf = dgeom(x, p = 0.3),
+         cmf = pgeom(x, p = 0.3)) %>%
+  gather(cumulative, prob, -x) %>%
+  mutate(cumulative = factor(cumulative,
+                             c("pmf", "cmf"),
+                             c("Probability Mass",
+                               "Cumulative Mass")))
+
+ggplot(data = Geometric,
+       mapping = aes(x = x)) + 
+  geom_bar(mapping = aes(y = prob), 
+           stat = "identity",
+           fill = palette[1]) + 
+  facet_grid(~ cumulative) + 
+  scale_x_continuous(breaks = 0:5) + 
+  ylab("P(x)") + 
+  theme_bw()
+```

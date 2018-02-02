@@ -2,7 +2,7 @@
 
 The Gamma Function is a function used frequently in statistical theory. It has properties that permit simplified calculations and is used in defining many probability distributions, particularly within the Exponential family of distributions.
 
-## Definition
+## Definition {#gamma-function-definition}
 
 $$\Gamma(x) = \int\limits_0^{\infty}t^{x-1}e^{-t}dt$$
 
@@ -115,6 +115,30 @@ $$\begin{aligned}
 
 > 1. $x = \sqrt{t}$; $t = x^2$; and $dt = 2x dx$
 > 2. Theorem \@ref(gaussian-integral-sqrt-pi)
+
+### Theorem:
+
+Let $c$ be a constant such that $c > 0$. Then 
+
+$$
+  \int_0^\infty t^x e^{-ct} \cdot dt = \frac{\Gamma(x+1)}{c^{x+1}}
+$$
+
+_Proof:_
+
+$$\begin{aligned}
+\int\limits_0^\infty t^x e^{-ct} dt \\
+^{[1]}  &= \int\limits_0^\infty \big(\frac{y}{c}\big) ^ x e ^{-c \frac{y}{c}} \frac{dy}{c} \\
+  &= \frac{1}{c^x} \cdot \frac{1}{c} 
+      \int\limits_0^\infty y ^ x e ^{-y} dy \\
+&= \frac{1}{c^{x + 1}}  
+      \int\limits_0^\infty y ^ {(x+1)-1} e ^{-y} dy \\
+^{[2]}  &= \frac{1}{c^{x + 1}} \cdot \Gamma(x + 1) \\
+  &= \frac{\Gamma(x + 1)}{c^{x + 1}}
+\end{aligned}$$
+
+> 1. Let $y = ct$. Then $y = \frac{y}{c}$ and $dt = \frac{dy}{c}. 
+> 2. $\int\limits_0^\infty y^{(x+1)-1} e^{-y} dy$ satisfies the form of a Gamma function. \@ref(gamma-function-definition)
 
 ## References
 
