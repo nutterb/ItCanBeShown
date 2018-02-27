@@ -160,7 +160,7 @@ $$\begin{align*}
 $$\begin{align*} 
 E(e^{tX})
 	&= \int\limits_{-\infty}^{\infty}\exp\{tx\}\frac{1}{\sqrt{2\pi}\sigma}
-		\exp\Big\{\frac{1}{2\sigma^2}(x-\mu)^2\Big\}dx \\
+		\exp\Big\{\frac{1}{2\sigma^2}-(x-\mu)^2\Big\}dx \\
 	&= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
 		\exp\Big\{tx-\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\}dx \\
 ^{[1]} &= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}

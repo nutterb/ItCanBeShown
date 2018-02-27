@@ -1,6 +1,10 @@
 # Geometric Distribution
 
-## Probability Mass Function
+## First Success as a Random Variable
+
+The Geometric Distribution random variable may be considered as the number of trials required to achieve the first success.  In this consideration, if $x$ is the total number of trials and $k$ is the number of failures, $x = k+1$.
+
+### Probability Mass Function
 
 A random variable $X$ is said to have a Geometric Distribution with parameter $p$ if its probability mass function is
 
@@ -14,7 +18,7 @@ A random variable $X$ is said to have a Geometric Distribution with parameter $p
 where $p$ is the probability of a success on any given trial and $x$ is the number of trials until the first success.
 
 
-## Cumulative Distribution Function
+### Cumulative Distribution Function
 
 The cumulative probability of $x$ is computed as the $x^{th}$ partial sum of the Geometric Series
 	See \@ref(geometric-series-partial-and-infinite-summations).
@@ -49,7 +53,8 @@ P(X=x+1)
 Geometric <- 
   data.frame(x = 0:5) %>%
   mutate(pmf = dgeom(x, p = 0.3),
-         cmf = pgeom(x, p = 0.3)) %>%
+         cmf = pgeom(x, p = 0.3),
+         x = x + 1) %>%
   gather(cumulative, prob, -x) %>%
   mutate(cumulative = factor(cumulative,
                              c("pmf", "cmf"),
@@ -62,14 +67,14 @@ ggplot(data = Geometric,
            stat = "identity",
            fill = palette[1]) + 
   facet_grid(~ cumulative) + 
-  scale_x_continuous(breaks = 0:1) + 
+  scale_x_continuous(breaks = 1:6) + 
   ylab("P(x)") + 
   theme_bw()
 ```
 
 
 
-## Expected Values
+### Expected Values
 
 $$\begin{align*} 
 E(X)
@@ -145,7 +150,7 @@ $$\begin{align*}
 
 
 
-## Moment Generating Function
+### Moment Generating Function
 
 $$\begin{align*}
 M_X(t)
@@ -209,11 +214,11 @@ E(X^2)
 
 
 
-## Maximum Likelihood Estimator
+### Maximum Likelihood Estimator
 
 Let $x_1, x_2 , \ldots , x_n$ be a random sample from a Geometric distribution with parameter $p$.
 
-### Likelihood Function
+#### Likelihood Function
 
 $$\begin{align*} 
 L(\theta)
@@ -221,7 +226,7 @@ L(\theta)
 	&= p(1-p)^{x-1}
 \end{align*}$$
 
-### Log-likelihood Function
+#### Log-likelihood Function
 
 $$\begin{align*}
 \ell(\theta)
@@ -231,7 +236,7 @@ $$\begin{align*}
 \end{align*}$$
 
 
-### MLE for $p$
+#### MLE for $p$
 $$\begin{align*} 
 \frac{d\ell}{dp}
 	&= \frac{1}{p} + \frac{-(x-1)}{1-p} \\
@@ -251,9 +256,9 @@ $$\begin{align*}
 So $$\hat p=\frac{1}{x}$$ is the Maximum Likelihood Estimator for $p$.
 
 
-## Theorems for the Geometric Distribution
+### Theorems for the Geometric Distribution
 
-### Validity of the Distribution
+#### Validity of the Distribution
 
 $$\sum\limits_{i=1}^{\infty}p(1-p)^{x-1} = 1$$
 
@@ -270,7 +275,7 @@ $$\begin{align*}
 		=\lim\limits_{k\rightarrow\infty}\frac{a-ar^k}{1-r}$ (Geometric Series \@ref(geometric-series-partial-and-infinite-summations))
 
 
-### Sum of Geometric Random Variables
+#### Sum of Geometric Random Variables
 
 Let $X_1,X_2,\ldots,X_n$ be independent random variables from a Geometric Distribution with parameter $p$, that is, $X_i\sim$Geometric$(p)$, $i=1,2,3,\ldots$.  Let $Y=\sum\limits_{i=1}^{n}X_i$.  Then $Y\sim$Negative Binomial$(n,p)$.
 
@@ -290,7 +295,7 @@ M_Y(t)
 Which is the mgf of a Negative Binomial random variable with parameters $n$ and $p$.  Thus $Y\sim$Negative Binomial$(n,p)$. 
 
 
-### Lemma {#geometric-distribution-memoryless-lemma}
+#### Lemma {#geometric-distribution-memoryless-lemma}
 
 Let $X$ be a Geometric random variable with parameter $p$.
 Then $P(X>a)=(1-p)^a$.
@@ -311,7 +316,7 @@ P(X>a)
 > 1. $S_k=\lim\limits_{k\rightarrow\infty}\frac{a-ar^k}{1-r}$ (Geometric Series \@ref(geometric-series-partial-and-infinite-summations))
 
 
-### Memoryless Property
+#### Memoryless Property
 
 $$P(X\geq k+j|X\geq k)=P(X\geq k)$$
 
@@ -333,3 +338,64 @@ P(X > k+j|X > k)
 > 1. Geometric Distribution \@ref(geometric-distribution-memoryless-lemma)
 > 2. Since $j$ must be a positive integer in the Geometric Distribution,
 		it is certain that \\$(k+j)\cap k=k+j$.
+		
+
+
+## Number of Failures as Random Variable
+
+The Geometric Distribution random variable may be considered the number of failures observed before a success is observed.  In this consideration, if $x$ is the number of failures, then the total number of trials is $x + 1$.
+
+### Probability Mass Function
+
+A random variable $X$ is said to have a Geometric Distribution with parameter $p$ if its probability mass function is
+
+\[p(x) = \left\{
+	\begin{array}{ll}
+		p(1-p)^{x}, & x=0,1,2,3,\ldots\\
+		0 & otherwise 
+	\end{array} \right. 
+\]
+
+### Cumulative Distribution Function
+
+The cumulative probability of $x$ is computed as the $x^{th}$ partial sum of the Geometric Series
+	See \@ref(geometric-series-partial-and-infinite-summations).
+	
+$$\begin{align*} 
+P(x) 
+	&= \sum\limits_{i=0}^{x}p(1-p)^{x} \\
+	&= \frac{p-p(1-p)^{x+1}}{1-(1-p)} \\
+	&= \frac{p[1-(1-p)^{x+1}]}{p} \\
+	&= 1-(1-p)^{x+1}
+\end{align*}$$
+
+So
+
+\[P(x) = \left\{
+	\begin{array}{ll}
+		1-(1-p)^{x+1},& x=0,1,2,3,\ldots\\
+		0 & otherwise 
+	\end{array} \right. 
+\]
+
+```{r, echo = FALSE, fig.path = 'figures/', fig.cap = 'The figures on the left and right display the Geometric probability and cumulative distirubtion functions, respectively, for the combinations of $p=.3$.'}
+Geometric <- 
+  data.frame(x = 0:5) %>%
+  mutate(pmf = dgeom(x, p = 0.3),
+         cmf = pgeom(x, p = 0.3)) %>%
+  gather(cumulative, prob, -x) %>%
+  mutate(cumulative = factor(cumulative,
+                             c("pmf", "cmf"),
+                             c("Probability Mass",
+                               "Cumulative Mass")))
+
+ggplot(data = Geometric,
+       mapping = aes(x = x)) + 
+  geom_bar(mapping = aes(y = prob), 
+           stat = "identity",
+           fill = palette[1]) + 
+  facet_grid(~ cumulative) + 
+  scale_x_continuous(breaks = 0:5) + 
+  ylab("P(x)") + 
+  theme_bw()
+```
