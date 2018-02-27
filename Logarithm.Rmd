@@ -33,7 +33,7 @@ $$\begin{aligned}
   &= \frac{\frac{1}{n}}{\frac{n}{n} + \frac{1}{n}} \\
   &= \frac{\frac{1}{n}}{\frac{n + 1}{n}} \\
   &= \frac{1}{n} \cdot \frac{n}{n + 1} \\
-  &= \frac{n}{n \cdot {n + 1}} \\
+  &= \frac{n}{n \cdot (n + 1)} \\
   &= \frac{1}{n + 1}
 \end{aligned}$$
 
@@ -49,6 +49,8 @@ $$\begin{aligned}
   &= 1 + \frac{1}{n} - 1 \\
   &= \frac{1}{n}
 \end{aligned}$$
+
+#### Theorem
 
 $$\lim\limits_{n \to \infty} \Big(1 + \frac{1}{n}\Big)^n = e$$
 

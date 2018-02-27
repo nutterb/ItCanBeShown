@@ -1,0 +1,208 @@
+# Central Limit Theorem
+
+## Theorem: Central Limit Theorem {#central-limit-theorem}
+
+Let $X_1$, $X_2$, $\ldots$, $X_n$ be independent and identically distributed random variables with $E(X_i) = \mu$ and $V(X_i) = \sigma^2$.
+
+Define 
+
+$$U = \sqrt{n}\Big(\frac{\bar{X} - \mu}{\sigma}\Big)$$
+
+where
+
+$$ \bar{X} = \frac{\sum\limits_{i = 1}^{n} X_i}{n} $$
+
+Then the distribution function of $U$ converges to a standard normal distribution function as $n \to \infty$.
+
+_Proof:_
+
+Recall the definition of the moment generating function \@ref(moment-definition-mgf) for a random variable $X$ can be written
+
+$$1 + tE(X) + \frac{t^2}{2!}E(X^2) + \frac{t^3}{3!} E(X^3) + \cdots $$
+
+Let $Z_i = \frac{X_i - \mu}{\sigma}$.  We observe the following preliminary results:
+
+**Preliminary 1**
+
+$$\begin{aligned}
+E(Z_i)
+  &= E\Big(\frac{X_i - \mu}{\sigma}\Big) \\
+  &= \frac{1}{\sigma} \cdot E(X_i - \mu) \\
+  &= \frac{1}{\sigma} \cdot \big(E(X_i) - \mu \big) \\
+  &= \frac{1}{\sigma} \cdot (\mu - \mu) \\
+  &= \frac{1}{\sigma} \cdot 0 \\
+  &= 0
+\end{aligned}$$
+
+**Preliminary 2**
+
+$$\begin{aligned}
+V(Z_i)
+  &= V\Big(\frac{X_i - \mu}{\sigma}\Big) \\
+  &= \frac{1}{\sigma^2} V(X_i - \mu) \\
+  &= \frac{1}{\sigma^2} \cdot \big(V(X_i) - V(\mu)\big)\\
+  &= \frac{1}{\sigma^2} \cdot \big(V(X_i) - 0\big) \\
+  &= \frac{1}{\sigma^2} \cdot V(X_i) \\
+  &= \frac{1}{\sigma^2} \cdot \sigma^2 \\
+  &= \frac{\sigma^2}{\sigma^2} \\
+  &= 1 \\
+\Rightarrow 
+  E(Z^2) - E(Z)^2
+  &= 1 \\
+\Rightarrow
+  E(Z^2) 
+  &= 1 - E(Z)^2 \\
+^{[1]}  &= 1 - 0 \\
+  &= 1
+\end{aligned}$$
+
+> From Preliminary 1, $E(Z) = 0$.
+
+**Preliminary 3**
+
+$$\begin{aligned}
+U 
+  &= \sqrt{n}\Big(\frac{\bar{X} - \mu}{\sigma}\Big) \\
+  &= \sqrt{n}\Big(\frac{\frac{\sum\limits_{i = 1}^{n} X_i}
+                             {n} - \mu}
+                       {\sigma}\Big) \\
+  &= \sqrt{n}\Big(\frac{\frac{\sum\limits_{i = 1}^n X_i}{n} - \frac{n \cdot \mu}{n}}
+                       {\sigma}\Big) \\
+  &= \sqrt{n}\Big(\frac{\frac{1}{n}\sum\limits_{i = 1}^n X_i - n \cdot \mu}{\sigma}\Big) \\
+  &= \frac{\sqrt{n}}{n} \Big(\frac{\sum\limits_{i = 1}^n X_i - n \cdot \mu}{\sigma}\Big) \\
+  &= \frac{1}{\sqrt{n}} \Big(\frac{\sum\limits_{i = 1}^n X_i - n \cdot \mu}{\sigma}\Big) \\
+  &= \frac{1}{\sqrt{n}} \Big(\frac{\sum\limits_{i = 1}^n X_i - n \cdot \mu}
+                        {\sigma}\Big) \\
+  &= \frac{1}{\sqrt{n}} \Big(\frac{\sum\limits_{i = 1}^n (X_i - \mu)}{\sigma}\Big) \\
+  &= \frac{1}{\sqrt{n}} \sum\limits_{i = 1}^n \frac{X_i - \mu}{\sigma} \\
+  &= \frac{1}{\sqrt{n}} \sum\limits_{i = 1}^n Z_i
+\end{aligned}$$ 
+
+Note that, due to the independence of the $X_i$ random variables, it follows that the $Z_i$ random variables are also independent.
+
+The moment generating function of $U$ is derived as
+
+$$\begin{aligned}
+M_U(t)
+  &= M_Z\Big(t \sum\limits_{i = 1}^{n} \frac{Z_i}{\sqrt{n}}\Big) \\
+  &= M_Z\Big(\frac{t}{\sqrt{n}} \sum\limits_{i = 1}^n Z_i\Big) \\
+  &= E\Big(\exp\left\{\sum\limits_{i = 1}^n \frac{t}{\sqrt{n}} Z_i
+      \right\} \Big) \\
+  &= E\Big(\prod\limits_{i = 1}^{n}\exp\left\{ \frac{t}{\sqrt{n}} Z_i
+      \right\} \Big) \\
+  &= \prod\limits_{i = 1}^{n}E\Big(\exp\left\{ \frac{t}{\sqrt{n}} Z_i
+      \right\} \Big) \\
+  &= \prod\limits_{i = 1}^{n}M_{Z_i}(t) \\
+^{[1]}&= \prod\limits_{i = 1}^{n}M_{Z}(t) \\
+  &= \big(M_{Z_i}(t)\big)^n \\
+^{[2]}  &= \Big(1 + 
+          \frac{t}{\sqrt{n}} E(Z) + 
+          \frac{1}{2!} \cdot \big(\frac{t}{\sqrt{n}}\big)^2 E(Z^2) + 
+          \frac{1}{3!} \cdot \big(\frac{t}{\sqrt{n}}\big)^3 E(Z^3) + \cdots
+      \Big)^n \\
+^{[3]}  &= \Big(1 + 
+          \frac{t}{\sqrt{n}} \cdot 0 + 
+          \frac{t}{2! \cdot n} E(Z^2) + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots
+      \Big)^n \\
+  &= \Big(1 + 
+          0 + 
+          \frac{t}{2! \cdot n} E(Z^2) + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots
+      \Big)^n \\
+  &= \Big(1 + 
+          \frac{t}{2! \cdot n} E(Z^2) + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots
+      \Big)^n \\
+^{[4]}  &= \Big(1 + 
+          \frac{t}{2! \cdot n} \cdot 1 + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots
+      \Big)\\
+  &= \Big(1 + 
+          \frac{t}{2! \cdot n} + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots
+      \Big)^n \\
+\Rightarrow
+\ln M_U(t) 
+  &= \ln\left[\Big(1 + 
+          \frac{t}{2! \cdot n} + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots
+      \Big)^n\right] \\
+  &= n \cdot \ln\Big(1 + 
+          \frac{t}{2! \cdot n} + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots
+      \Big) \\
+^{[5]} &= n \cdot \ln (1 + k) \\
+^{[6]} &= n \cdot (k - \frac{k^2}{2} + \frac{k^3}{3} - 
+          \frac{k^4}{4}) \\
+^{[7]} &=
+    n \cdot \Big(
+      \big(\frac{t}{2! \cdot n} + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots\big) -
+      \frac{1}{2} \big(\frac{t}{2! \cdot n} + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots\big)^2 +
+      \cdots 
+    \Big) \\
+  &= n \cdot \big(\frac{t}{2! \cdot n} + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots\big) -
+      \frac{n}{2} \big(\frac{t}{2! \cdot n} + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots\big)^2 +
+      \cdots  \\
+  &= \big(\frac{n\cdot t}{2! \cdot n} + 
+          \frac{n\cdot t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots\big) -
+      \frac{n}{2} \big(\frac{t}{2! \cdot n} + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots\big)^2 +
+      \cdots \\
+  &= \frac{n\cdot t}{2! \cdot n} + 
+      \big(\frac{n\cdot t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots\big) -
+      \frac{n}{2} \big(\frac{t}{2! \cdot n} + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots\big)^2 +
+      \cdots \\
+  &= \frac{t}{2!} + 
+      \big(\frac{n\cdot t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots\big) -
+      \frac{n}{2} \big(\frac{t}{2! \cdot n} + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots\big)^2 +
+      \cdots \\
+  &= \frac{t}{2} + 
+      \big(\frac{n\cdot t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots\big) -
+      \frac{n}{2} \big(\frac{t}{2! \cdot n} + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots\big)^2 +
+      \cdots 
+\end{aligned}$$
+
+> 1. Each of the $Z_i$ are identically distributed, so they each have the same moment generating function.
+> 2. Definition of the moment generating function \@ref{moment-definition-mgf}
+> 3. From Preliminary 1, $E(Z) = 0$.
+> 4. From Preliminary 2, $E(Z^2) = 1$.
+> 5. Let $k = \frac{t}{2! \cdot n} + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots$
+> 6. $\ln(1 + x)$ may be rewritten with a series expansion: $\ln(1 + x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots$
+
+To complete the proof, we take the limit as $n \to \infty$.
+
+$$
+\lim\limits_{n \to \infty} \ln[M_Z(t)]
+  = \lim\limits_{n \to \infty}\left[\frac{t}{2} + 
+      \big(\frac{n\cdot t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots\big) -
+      \frac{n}{2} \big(\frac{t}{2! \cdot n} + 
+          \frac{t^3}{3! \cdot n^{\frac{3}{2}}} E(Z^3) + \cdots\big)^2 +
+      \cdots \right]
+$$
+By noting that, with the exception of the $\frac{t}{2}$ term, every term in the series involves $n$ in the denominator.  Additionally, in each of those terms, the $n$ in the denominator is larger than the $n$ in the numerator.  Thus, as $n \to \infty$, each of those terms approaches $0$, yielding.
+
+$$\begin{aligned}
+\lim\limits_{n \to \infty} \ln[M_Z(t)]
+  &= \frac{t}{2} \\
+\Rightarrow
+  \lim\limits_{n \to \infty} \exp\left\{\ln[M_Z(t)]\right\}
+  &= \exp\left\{\frac{t}{2}\right\}\\
+\Rightarrow
+  \lim\limits_{n \to \infty} M_Z(t)
+  &= e^{\frac{t}{2}}
+\end{aligned}$$
+
+This is the form of the moment generating function for a normal random variable with $\mu = 0$ and $\sigma^2 = 1$.
+
+## References
+
+D Wackerly, W Mendenhall, R Scheaffer, _Mathematical Statistics with Applications_ 6th ed., Duxbury Thomson Learning, 2002 pp 352 - 354. 

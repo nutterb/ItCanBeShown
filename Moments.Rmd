@@ -53,7 +53,7 @@ It should be noticed that with all of these results, the moment about the mean c
 
 ## Moment Generating Functions
 
-### Definition: Moment Generating Function
+### Definition: Moment Generating Function {#moment-definition-mgf}
 
 The moment generating function of a random variable, denoted $M_X(t)$, is defined to be:
 
@@ -63,7 +63,7 @@ The moment generating function of $X$ is said to exist if for any positive const
 
 $$\begin{align*}
 M_X(t)
-	&= E(e^{tX} \\
+	&= E(e^{tX}) \\
 	&= \sum\limits_{i=1}^{\infty}e^{tx_i}p(x_i)  \\
 ^{[1]}  &= \sum\limits_{i=1}^{\infty}[\frac{(tx_i)^0}{0!}+\frac{(tx_i)^1}{1!}
 		+ \frac{(tx_i)^2}{2!}+\frac{(tx_i)^3}{3!}+\cdots]p(x_i) \\
@@ -77,8 +77,7 @@ M_X(t)
   &= \sum\limits_{i=1}^{\infty}p(x_i)+t\sum\limits_{i=1}^{\infty}x_ip(x_i)
 		+ \frac{t^2}{2!}\sum\limits_{i=1}^{\infty}x_i^2p(x_i)
 		+ \frac{t^3}{3!}\sum\limits_{i=1}^{\infty}x_i^3p(x_i)+\cdots \\
-  &= 1 + tE(X) \\
-	&= \frac{t^2}{2!}E(X^2) + \frac{t^3}{3!} + \cdots
+  &= 1 + tE(X) + \frac{t^2}{2!}E(X^2) + \frac{t^3}{3!} E(X^3) + \cdots
 \end{align*}$$
 	
 > 1. Taylor Series Expansion: 
