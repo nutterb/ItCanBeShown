@@ -338,6 +338,8 @@ P(X > k+j|X > k)
 > 1. Geometric Distribution \@ref(geometric-distribution-memoryless-lemma)
 > 2. Since $j$ must be a positive integer in the Geometric Distribution,
 		it is certain that \\$(k+j)\cap k=k+j$.
+		
+
 
 ## Number of Failures as Random Variable
 

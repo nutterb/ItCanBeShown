@@ -1,0 +1,167 @@
+# Logarithms
+
+## The Natural Logarithm 
+
+### Definition: The Natural Logarithm {#logarithm-natural-logarithm}
+
+For a positive number $x$ the natural logarithm of $x$ is defined as the integral
+
+$$\ln x = \int\limits_0^x \frac{1}{t} \ dt $$
+
+Additionally, the base of the natural logarithm, denoted $e$, is the value such that $\ln e = 1$.  That is
+
+$$ 1 = \ln e = \int\limits_0^e \frac{1}{t} \ dt $$
+
+### Theorem {#natural-log-limit-to-e}
+
+#### Lemma 1 {#natural-log-limit-to-e-lemma1}
+
+$$\int\limits_1^{1 + \frac{1}{n}} \frac{1}{1 + \frac{1}{n}}\ dt
+  = \frac{1}{n + 1}
+$$
+
+_Proof:_
+
+$$\begin{aligned}
+\int\limits_1^{1 + \frac{1}{n}} \frac{1}{1 + \frac{1}{n}}\ dt
+  &= \frac{1}{1 + \frac{1}{n}} \cdot t \ \ \Big\rvert_1^{1 + \frac{1}{n}} \\
+  &= \frac{1}{1 + \frac{1}{n}} \cdot \Big(1 + \frac{1}{n}\Big) - 
+      \frac{1}{1 + \frac{1}{n}} \cdot 1 \\
+  &= 1 - \frac{1}{1 + \frac{1}{n}}\\
+  &= \frac{1 + \frac{1}{n}}{1 + \frac{1}{n}} - \frac{1}{1 + \frac{1}{n}}\\
+  &= \frac{\frac{1}{n}}{1 + \frac{1}{n}} \\
+  &= \frac{\frac{1}{n}}{\frac{n}{n} + \frac{1}{n}} \\
+  &= \frac{\frac{1}{n}}{\frac{n + 1}{n}} \\
+  &= \frac{1}{n} \cdot \frac{n}{n + 1} \\
+  &= \frac{n}{n \cdot {n + 1}} \\
+  &= \frac{1}{n + 1}
+\end{aligned}$$
+
+#### Lemma 2 {#natural-log-limit-to-e-lemma2}
+
+$$\int\limits_1^{1 + \frac{1}{n}} 1\ dt = \frac{1}{n}$$
+
+_Proof:_
+
+$$\begin{aligned}
+\int\limits_1^{1 + \frac{1}{n}} 1 \ dt 
+  &= t \Big\rvert_{1}^{1 + \frac{1}{n}} \\
+  &= 1 + \frac{1}{n} - 1 \\
+  &= \frac{1}{n}
+\end{aligned}$$
+
+$$\lim\limits_{n \to \infty} \Big(1 + \frac{1}{n}\Big)^n = e$$
+
+_Proof:_
+
+Let $t$ be any real number such that $\frac{1}{1 + \frac{1}{n}} \leq \frac{1}{t} \leq 1$. It follows that
+
+$$\begin{aligned}
+\int\limits_0^{1 + \frac{1}{n}} \frac{1}{1 + \frac{1}{n}} \ dt
+      &\leq \int\limits_0^{1 + \frac{1}{n}} \frac{1}{t}\ dt
+      &\leq \int\limits_0^{1 + \frac{1}{n}} \frac{1}{1}\ dt 
+\end{aligned}$$
+
+Using Lemmas \@ref(natural-log-limit-to-e-lemma1) and \@ref(natural-log-limit-to-e-lemma2), we may write
+
+$$\begin{aligned}
+\frac{1}{n + 1} 
+  \leq \int\limits_0^{1 + \frac{1}{n}} \frac{1}{t}\ dt
+  \leq \frac{1}{n}
+\end{aligned}$$
+
+Next, by applying the definition of the natural logarithm (\@ref(logarithm-natural-logarithm))
+
+$$\begin{aligned}
+\frac{1}{n + 1} 
+  &\leq \ln \Big(1 + \frac{1}{n}\Big)
+  &\leq \frac{1}{n} \\
+\Rightarrow
+  \exp\left\{\frac{1}{n + 1}\right\}
+  &\leq \frac{1}{n + 1} 
+  &\leq \exp\left\{\frac{1}{n}\right\}
+\end{aligned}$$
+
+Now we isolate the left inequality to show
+
+$$\begin{aligned}
+\exp\left\{\frac{1}{n + 1}\right\}
+  &\leq 1 + \frac{1}{n} \\
+\Rightarrow
+  \exp\left\{\frac{1}{n + 1}\right\}^{n + 1}
+  &\leq \Big(1 + \frac{1}{n}\Big)^{n + 1} \\
+\Rightarrow
+  \exp\left\{\frac{n + 1}{n + 1}\right\}
+  &\leq \Big(1 + \frac{1}{n}\Big)^{n + 1} \\
+\Rightarrow
+  e &\leq \Big(1 + \frac{1}{n}\Big)^{n + 1}
+\end{aligned}$$
+
+Isolating the right inequality allows us to show
+
+$$\begin{aligned}
+1 + \frac{1}{n} 
+  &\leq \exp\left\{\frac{1}{n}\right\} \\
+\Rightarrow
+  \Big(1 + \frac{1}{n}\Big)^n
+  &\leq \exp\left\{\frac{1}{n}\right\}^n \\
+\Rightarrow
+  \Big(1 + \frac{1}{n}\Big)^n
+  &\leq \exp\left\{\frac{n}{n}\right\} \\
+\Rightarrow
+  \Big(1 + \frac{1}{n}\Big)^n
+  &\leq e
+\end{aligned}$$
+
+Aligning these two inequalities, we have
+
+$$\begin{aligned}
+\Big(1 + \frac{1}{n}\Big)^n
+  &\leq e
+  &\leq \Big(1 + \frac{1}{n}\Big)^{n + 1}
+\end{aligned}$$
+
+Notice now that, on the right-most inequality
+
+$$\begin{aligned}
+e
+  &\leq \Big(1 + \frac{1}{n}\Big)^{n + 1} \\
+\Rightarrow
+  \frac{e}{1 + \frac{1}{n}} 
+  &\leq \Big(1 + \frac{1}{n}\Big)^n
+\end{aligned}$$
+
+The left-most inequality shows that $\Big(1 + \frac{1}{n}\Big)^n < e$, so we may construct the inequality that 
+
+$$\begin{aligned}
+\frac{e}{1 + \frac{1}{n}} 
+  &\leq \Big(1 + \frac{1}{n}\Big)^n 
+  &\leq e
+\end{aligned}$$
+
+Finally, taking the limit as $n$ goes to $\infty$
+
+$$\begin{aligned}
+\lim_{n \to \infty} \frac{e}{1 + \frac{1}{n}}
+  &\leq \lim_{n \to \infty} \Big(1 + \frac{1}{n}\Big)^n 
+  &\leq \lim_{n \to \infty} e \\
+\Rightarrow
+  \frac{e}{1 + 0}
+  &\leq \lim_{n \to \infty} \Big(1 + \frac{1}{n}\Big)^n
+  &\leq e \\
+\Rightarrow
+  \frac{e}{1}
+  &\leq \lim_{n \to \infty} \Big(1 + \frac{1}{n}\Big)^n
+  &\leq e \\
+\Rightarrow
+  e 
+  &\leq \lim_{n \to \infty} \Big(1 + \frac{1}{n}\Big)^n 
+  &\leq e
+\end{aligned}$$
+
+Since $\lim_{n \to \infty} \Big(1 + \frac{1}{n}\Big)^n$ is bounded on both sides by $e$, $\lim_{n \to \infty} \Big(1 + \frac{1}{n}\Big)^n = e$ 
+
+## References
+
+D Joyce, "$e$ as the limit of $(1 + 1/n)^n$," Clark University, https://mathcs.clarku.edu/~djoyce/ma122/elimit.pdf
+
