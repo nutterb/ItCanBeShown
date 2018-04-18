@@ -25,7 +25,7 @@
 <meta name="author" content="Benjamin Nutter">
 
 
-<meta name="date" content="2018-02-27">
+<meta name="date" content="2018-04-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -49,6 +49,43 @@
 
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -496,6 +533,7 @@
 <li class="chapter" data-level="41.3" data-path="variance-parameter.html"><a href="variance-parameter.html#computational-formulae-1"><i class="fa fa-check"></i><b>41.3</b> Computational Formulae</a><ul>
 <li class="chapter" data-level="41.3.1" data-path="variance-parameter.html"><a href="variance-parameter.html#computational-formula-population-variance"><i class="fa fa-check"></i><b>41.3.1</b> Computational Formula for <span class="math inline">\(\sigma\)</span>^2</a></li>
 <li class="chapter" data-level="41.3.2" data-path="variance-parameter.html"><a href="variance-parameter.html#computational-formula-sample-variance"><i class="fa fa-check"></i><b>41.3.2</b> Computational Formula for <span class="math inline">\(s\)</span>^2</a></li>
+<li class="chapter" data-level="41.3.3" data-path="variance-parameter.html"><a href="variance-parameter.html#corollary-alternative-computational-formula-for-s2"><i class="fa fa-check"></i><b>41.3.3</b> Corollary: Alternative Computational Formula for <span class="math inline">\(s^2\)</span></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="42" data-path="weibull-distribution.html"><a href="weibull-distribution.html"><i class="fa fa-check"></i><b>42</b> Weibull Distribution</a><ul>
@@ -749,7 +787,101 @@ s^2
         + \frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}}{n-1} \\
     &amp;= \frac{\sum\limits_{i=1}^{n}x_i^2-\frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}}{n-1}
 \end{align*}\]</span></p>
+</div>
+<div id="corollary-alternative-computational-formula-for-s2" class="section level3">
+<h3><span class="header-section-number">41.3.3</span> Corollary: Alternative Computational Formula for <span class="math inline">\(s^2\)</span></h3>
+<p><span class="math display">\[\begin{aligned}
+s^2
+  &amp;= \frac{1}{n \cdot (n - 1)}
+      \Big(n \cdot \sum\limits_{i=1}^n x_i^2 - 
+        \big(\sum\limits_{i = 1}^n x_i\big)^2\Big)
+\end{aligned}\]</span></p>
+<p><em>Proof:</em></p>
+<p>Beginning with the result from <a href="variance-parameter.html#computational-formula-sample-variance">41.3.2</a>:</p>
+<p><span class="math display">\[\begin{aligned}
+s^2
+  &amp;= \frac{\sum\limits_{i=1}^{n}x_i^2-\frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}}{n-1} \\
+  &amp;= \frac{1}{n-1} \Big(\sum\limits_{i=1}^{n}x_i^2-\frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}\Big) \\
+  &amp;= \frac{1}{n-1}\Big(\frac{n \cdot \sum\limits_{i=1}^{n}x_i^2}{n} - 
+  \frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}\Big) \\
+  &amp;= \frac{1}{n \cdot (n - 1)}
+      \Big(n \cdot \sum\limits_{i=1}^n x_i^2 - 
+        \big(\sum\limits_{i = 1}^n x_i\big)^2\Big)
+\end{aligned}\]</span></p>
+<div id="application" class="section level4">
+<h4><span class="header-section-number">41.3.3.1</span> Application</h4>
+<p>Both this result and the previous result may be used to optimize calculation of the sample variance in that they permit calculation to occur in one pass of the data. Consider the following sample:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">11</span>, <span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">13</span>, <span class="dv">3</span>, <span class="dv">20</span>)</code></pre></div>
+<p>Using the formula</p>
+<p><span class="math display">\[s^2 = \frac{\sum\limits_{i=1}^n(x_i - \bar{x})^2)}{n - 1}\]</span></p>
+<p>the sample variance is calculated</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x_bar &lt;-<span class="st"> </span><span class="dv">0</span>
+n &lt;-<span class="st"> </span><span class="kw">length</span>(x)
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(x)){
+  x_bar &lt;-<span class="st"> </span>x_bar <span class="op">+</span><span class="st"> </span>x[i] <span class="op">/</span><span class="st"> </span>n
+}
 
+variance &lt;-<span class="st"> </span><span class="dv">0</span>
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(x)){
+  variance &lt;-<span class="st"> </span>variance <span class="op">+</span><span class="st"> </span>(x[i] <span class="op">-</span><span class="st"> </span>x_bar)<span class="op">^</span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)
+}</code></pre></div>
+<p>This calculation required the use of two <code>for</code> loops. Using the computational formula</p>
+<p><span class="math display">\[\begin{aligned}
+s^2
+  &amp;= \frac{1}{n \cdot (n - 1)}
+      \Big(n \cdot \sum\limits_{i=1}^n x_i^2 - 
+        \big(\sum\limits_{i = 1}^n x_i\big)^2\Big)
+\end{aligned}\]</span></p>
+<p>the sample variance can be calculated using one <code>for</code> loop.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sum_square &lt;-<span class="st"> </span><span class="dv">0</span>
+sum_i &lt;-<span class="st"> </span><span class="dv">0</span>
+n &lt;-<span class="st"> </span><span class="kw">length</span>(x)
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">seq_along</span>(x)){
+  sum_square &lt;-<span class="st"> </span>sum_square <span class="op">+</span><span class="st"> </span>x[i]<span class="op">^</span><span class="dv">2</span>
+  sum_i &lt;-<span class="st"> </span>sum_i <span class="op">+</span><span class="st"> </span>x[i]
+}
+
+variance &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(n <span class="op">*</span><span class="st"> </span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)) <span class="op">*</span><span class="st"> </span>(n <span class="op">*</span><span class="st"> </span>sum_square <span class="op">-</span><span class="st"> </span>sum_i<span class="op">^</span><span class="dv">2</span>)</code></pre></div>
+<p>Comparing the processing time of these two approaches shows that the computational formula, utilizing a single <code>for</code> loop, requires less than half the processing time of the definitional formula.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(microbenchmark)
+<span class="co"># sample of 1,000 values between 1 and 100</span>
+x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">1000</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
+<span class="kw">microbenchmark</span>(
+  <span class="dt">standard =</span> 
+  {
+    x_bar &lt;-<span class="st"> </span><span class="dv">0</span>
+    n &lt;-<span class="st"> </span><span class="kw">length</span>(x)
+    <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(x)){
+      x_bar &lt;-<span class="st"> </span>x_bar <span class="op">+</span><span class="st"> </span>x[i] <span class="op">/</span><span class="st"> </span>n
+    }
+    
+    variance &lt;-<span class="st"> </span><span class="dv">0</span>
+    <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(x)){
+      variance &lt;-<span class="st"> </span>variance <span class="op">+</span><span class="st"> </span>(x[i] <span class="op">-</span><span class="st"> </span>x_bar)<span class="op">^</span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)
+    }
+  },
+  <span class="dt">computational =</span> 
+  {
+    sum_square &lt;-<span class="st"> </span><span class="dv">0</span>
+    sum_i &lt;-<span class="st"> </span><span class="dv">0</span>
+    n &lt;-<span class="st"> </span><span class="kw">length</span>(x)
+    <span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">seq_along</span>(x)){
+      sum_square &lt;-<span class="st"> </span>sum_square <span class="op">+</span><span class="st"> </span>x[i]<span class="op">^</span><span class="dv">2</span>
+      sum_i &lt;-<span class="st"> </span>sum_i <span class="op">+</span><span class="st"> </span>x[i]
+    }
+    
+    variance &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(n <span class="op">*</span><span class="st"> </span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)) <span class="op">*</span><span class="st"> </span>(n <span class="op">*</span><span class="st"> </span>sum_square <span class="op">-</span><span class="st"> </span>sum_i<span class="op">^</span><span class="dv">2</span>)
+  }
+)</code></pre></div>
+<pre><code>## Unit: milliseconds
+##           expr      min        lq      mean    median        uq      max
+##       standard 9.972811 10.641843 12.743299 11.218395 14.349670 23.85900
+##  computational 4.624481  5.014903  5.969748  5.346105  6.072952 13.77419
+##  neval
+##    100
+##    100</code></pre>
+
+</div>
 </div>
 </div>
 </div>
