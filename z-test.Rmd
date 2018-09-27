@@ -21,26 +21,26 @@ The hypotheses for these test take the forms:
 
 For a two-sided test:
 $$
-  \begin{align*}
+  \begin{aligned}
   H_0: \mu &= \mu_0\\
   H_a: \mu &\neq \mu_0
-  \end{align*}
+  \end{aligned}
 $$
 
 For a one-sided test:
 $$
-  \begin{align*}
+  \begin{aligned}
   H_0: \mu &\leq \mu_0\\
   H_a: \mu &> \mu_0
-  \end{align*}
+  \end{aligned}
 $$
 
 or 
 $$
-  \begin{align*}
+  \begin{aligned}
   H_0: \mu &\geq \mu_0\\
   H_a: \mu &< \mu_0
-  \end{align*}
+  \end{aligned}
 $$
 
 To compare a sample $(X_1, \ldots, X_n)$ against the hypothesized value, a 
@@ -159,23 +159,23 @@ $\bar{x} \geq \mu_0 + z_\alpha \cdot \sigma/\sqrt{n}$.
 This change can be justified by:
 
 $$
-\begin{align*}
+\begin{aligned}
 |Z| &\geq z_{1-\alpha}\\
 \Big|\frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}}\Big| &\geq z_{1-\alpha} 
-\end{align*}
+\end{aligned}
 $$
 
 
 
 $$
-\begin{align*}
+\begin{aligned}
 -\Big(\frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}}\Big) &\geq z_{1-\alpha} &
     \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}} &\geq z_{1-\alpha}\\
 \bar{x} - \mu_0 &\leq - z_{1-\alpha} \cdot \sigma/\sqrt{n} &
     \bar{x} - \mu_0 &\geq z_{1-\alpha} \cdot \sigma/\sqrt{n}\\
 \bar{x} &\leq \mu_0 - z_{1-\alpha} \cdot \sigma/\sqrt{n} &
     \bar{x} &\geq \mu_0 + z_{1-\alpha} \cdot \sigma/\sqrt{n} 
-\end{align*}
+\end{aligned}
 $$
 
 For a two-sided test, both the conditions apply.  The left side condition is used
@@ -201,7 +201,7 @@ The derivations below make use of the following symbols:
 **Two-Sided Test**
 
 $$
-\begin{align*}
+\begin{aligned}
 \gamma(\mu_a) &= P_{\mu_a}(\bar{x} \in C)\\
 &= P_\mu\big(\bar{x} \leq \mu_0 - z_{\alpha/2} \cdot \sigma/\sqrt{n}\big) +
                P_{\mu_a}\big(\bar{x} \geq \mu_0 + z_{1-\alpha/2} \cdot \sigma/\sqrt{n}\big)\\
@@ -217,7 +217,7 @@ $$
    P_{\mu_a}\Big(Z \geq z_{1-\alpha/2} + \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}}\Big)\\
 &= P_{\mu_a}\Big(Z \leq -z_{\alpha/2} + \frac{\sqrt{n} \cdot (\mu_0 - \mu_a)}{\sigma}\Big) + 
    P_{\mu_a}\Big(Z \geq z_{1-\alpha/2} + \frac{\sqrt{n} \cdot (\mu_0 - \mu_a)}{\sigma}\Big)
-\end{align*}
+\end{aligned}
 $$
 
 ** This sentence needs work **
@@ -233,7 +233,7 @@ Reject $H_0$ when $|Z| \geq z_{1-\alpha}$.  Thus, where $Z$ occurs in the
 derivation below, it may reasonably be replaced with $|Z|$.
 
 $$
-\begin{align*}
+\begin{aligned}
 \gamma(\mu_a)  &= P_{\mu_a}(\bar{x} \in C)\\
 &= P_{\mu_a}\big(\bar{x} \geq \mu_0 + z_{1-\alpha} \cdot \sigma / \sqrt{n}\big)\\
 &= P_{\mu_a}\big(\bar{x} - \mu_a \geq \mu_0 - \mu_a + z_{1-\alpha} \cdot \sigma / \sqrt{n}\big)\\
@@ -242,7 +242,7 @@ $$
 &= P_{\mu_a}\Big(Z \geq \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}} + z_{1-\alpha} \Big)\\
 &= P_{\mu_a}\Big(Z \geq z_{1-\alpha} + \frac{\mu_0 - \mu_a}{\sigma/\sqrt{n}}\Big)\\
 &= P_{\mu_a}\Big(Z \geq z_{1-\alpha} + \frac{\sqrt{n} \cdot (\mu_0 -\mu_a)}{\sigma}\Big)
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -424,7 +424,7 @@ $$ \begin{aligned}
 **Two Sided Test**
 
 $$
-\begin{align*}
+\begin{aligned}
 \gamma(\mu_{1a} - \mu_{2a}) 
   &= P_{\mu_{1a} - \mu_{2a}}(\bar{x} \in C)\\
 %%%
@@ -447,7 +447,7 @@ $$
   &\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\Big(T \geq \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*} + t_{1-\alpha/2, \nu}\Big)\\
   &= P_{\mu_{1a} - \mu_{2a}}\Big(T \leq -t_{\alpha/2, \nu} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\Big) + \\
   &\ \ \ \ P_{\mu_{1a} - \mu_{2a}}\Big(T \geq t_{1-\alpha/2, \nu} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\Big)
-\end{align*}
+\end{aligned}
 $$
 
 Both $-t_{\alpha/2, \nu} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}$ and $t_{1-\alpha/2, \nu} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}$ have non-central T-distributions with non-centrality parameter $\frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}$.
@@ -461,7 +461,7 @@ Reject $H_0$ when $|T| \geq t_{1-\alpha}$.  Thus, where $T$ occurs in the
 derivation below, it may reasonably be replaced with $|T|$.
 
 $$
-\begin{align*}
+\begin{aligned}
 \gamma(\mu_{1a} - \mu_{2a}) 
   &= P_{\mu_{1a} - \mu_{2a}}(\bar{x} \in C)\\
 %%%
@@ -476,7 +476,7 @@ $$
 %%%
   &= P_{\mu_{1a} - \mu_{2a}}\Big(T \geq \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*} + t_{1-\alpha, \nu}\Big)\\
   &= P_{\mu_{1a} - \mu_{2a}}\Big(T \geq t_{1-\alpha, \nu} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}\Big)
-\end{align*}
+\end{aligned}
 $$
 
 $t_{1-\alpha/2, \nu} + \frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}$ has a non-central T-distribution with non-centrality parameter $\frac{(\mu_1 - \mu_2) - (\mu_{1a} - \mu_{2a})}{SE^*}$.

@@ -19,13 +19,13 @@ $$
 
 Since all $(x_i-\mu)^2$ must necessarily be positive,
 
-$$\begin{align*}
-\sum\limits_{i=1}^{r}(x_i-\mu)^2 &< \sum\limits_{i=1}^{n}(x_i-\mu)^2 \\
-\ \ \ \ \Rightarrow rh^2\sigma^2 &< \sum\limits_{i=1}^{n}(x_i-\mu)^2 \\
-\ \ \ \ ^{[1]} \Rightarrow rh^2\sigma^2 &< n\sigma^2 \\
-\ \ \ \ \Rightarrow rh^2 &< n \\
-\ \ \ \ \Rightarrow\frac{r}{n} &< \frac{1}{h^2}
-\end{align*}$$
+$$\begin{array}{rrcl}
+&\sum\limits_{i=1}^{r}(x_i-\mu)^2 &<& \sum\limits_{i=1}^{n}(x_i-\mu)^2 \\
+\Rightarrow & rh^2\sigma^2 &<& \sum\limits_{i=1}^{n}(x_i-\mu)^2 \\
+^{[1]} \Rightarrow & rh^2\sigma^2 &<& n\sigma^2 \\
+\Rightarrow & rh^2 &<& n \\
+\Rightarrow & \frac{r}{n} &<& \frac{1}{h^2}
+\end{array}$$
 
 > 1. $\sigma^2 = \frac{1}{n}\sum\limits_{i=1}^{n}(x_i-\mu)^2$  
 >		 $\ \ \ \ \Rightarrow n\sigma^2 = \sum\limits_{i=1}^{n}(x_i-\mu)^2$
@@ -41,38 +41,43 @@ _Proof:_
 
 The proof here is done for the discrete case, but is applicable also in the continuous case by replacing the summations with integrals (with integrals, the limits will be from $-\infty$ to $\infty$).
 
-$$\begin{align*}
-\sigma^2
-	&= E(x-\mu)^2 \\
-	&= \sum\limits_{y=0}^{\infty}(y-\mu)^2p(y) \\
-  &= \sum\limits_{y=0}^{\mu-h\sigma}(y-\mu)^2p(y) + 
+$$\begin{array}{rrcl}
+& \sigma^2
+	&=& E(x-\mu)^2 \\
+&	&=& \sum\limits_{y=0}^{\infty}(y-\mu)^2p(y) \\
+& &=& \sum\limits_{y=0}^{\mu-h\sigma}(y-\mu)^2p(y) + 
         \sum\limits_{y=\mu-h\sigma+1}^{\mu+h\sigma-1}(y-\mu)^2p(y)
 		    + \sum\limits_{y=\mu+h\sigma}^{\infty}(y-\mu)^2p(y) \\
-^{[1]} \Rightarrow \sigma^2 &\geq \sum\limits_{y=0}^{\mu-h\sigma}(y-\mu)^2p(y)
+^{[1]} \Rightarrow & 
+  \sigma^2 &\geq& \sum\limits_{y=0}^{\mu-h\sigma}(y-\mu)^2p(y)
 		+ \sum\limits_{y=\mu+h\sigma}^{\infty}(y-\mu)^2p(y)\\
-\end{align*}$$
+\end{array}$$
 
 > 1. Since all the $(y-\mu)^2$ must be positive, removing the middle term will surely result in this inequality.
 
 In both of these summations $y$ is outside the interval $(\mu-h\cdot\sigma , \mu+h\cdot\sigma)$, so
 
-$$\begin{align*}
-              |y-\mu|   &\geq   h\sigma \\
-\Rightarrow (y-\mu^2)   &\geq   h^2\sigma^2 \\
-\Rightarrow \sigma^2    &\geq   \sum\limits_{y=0}^{\mu-h\sigma}h^2\sigma^2p(y)
-		+ \sum\limits_{\mu+h\sigma}^{\infty}h^2\sigma^2p(y) \\
-\Rightarrow\sigma^2     &\geq   h^2\sigma^2\Big[\sum\limits_{y=0}^{\mu-h\sigma}p(y)
-		+ \sum\limits_{\mu+h\sigma}^{\infty}p(y)\Big]
-\end{align*}$$
+$$\begin{array}{rrcl}
+            & |y-\mu|     &\geq&   h\sigma \\
+\Rightarrow & (y-\mu^2)   &\geq&   h^2\sigma^2 \\
+\Rightarrow & \sigma^2    &\geq&   
+    \sum\limits_{y=0}^{\mu-h\sigma}h^2\sigma^2 \Pr(Y = y)
+		+ \sum\limits_{\mu+h\sigma}^{\infty}h^2\sigma^2 \Pr(Y = y) \\
+\Rightarrow & \sigma^2    &\geq&   
+    h^2\sigma^2\Big[\sum\limits_{y=0}^{\mu-h\sigma} \Pr(Y = y)
+		+ \sum\limits_{\mu+h\sigma}^{\infty} \Pr(Y = y)\Big]
+\end{array}$$
 
 The first summation is the sum of all probabilities that $y-\mu < h\sigma$, i.e. $P(y-\mu < h\sigma)$.  Likewise, the second summation is $P(y-\mu > h\sigma)$.
 
-$$\begin{align*} 
-\Rightarrow \sigma^2         &\geq   h^2\sigma^2[P(y-\mu<h\sigma) + P(y-\mu>h\sigma)] \\
-\Rightarrow \sigma^2         &\geq   h^2\sigma^2[P(|y-\mu|>h\sigma)] \\
-\Rightarrow \frac{1}{h^2}    &\geq   P(|y-\mu|>h\sigma) \\
-\Rightarrow 1-\frac{1}{h^2}  &\leq   P(|y-\mu|>h\sigma)
-\end{align*}$$
+$$\begin{array}{rrcl} 
+\Rightarrow & \sigma^2         &\geq& 
+      h^2\sigma^2[P(y-\mu<h\sigma) + P(y-\mu>h\sigma)] \\
+\Rightarrow & \sigma^2         &\geq&   
+      h^2\sigma^2[P(|y-\mu|>h\sigma)] \\
+\Rightarrow & \frac{1}{h^2}    &\geq&   \Pr(|y-\mu|>h\sigma) \\
+\Rightarrow & 1-\frac{1}{h^2}  &\leq&   \Pr(|y-\mu|>h\sigma)
+\end{array}$$
 
 
 ## Chebychev's Theorem for Absolute Deviation
@@ -89,20 +94,26 @@ For a set $\{x_1,x_2,\ldots,x_r,x_{r+1},\ldots,x_n\}$ where, by choice of labeli
 $$h \cdot Ab \leq |x_1-\bar x| ,\ h \cdot Ab \leq |x_1-\bar x| ,\ldots ,\ h \cdot Ab 
     \leq |x_1-\bar x| $$
     
-$$\begin{align*}
-\Rightarrow r \cdot h \cdot Ab 
-    &\leq \sum\limits_{i=1}^{r}|x_i-\bar x| \\
-\Rightarrow r \cdot h \cdot Ab 
-    &\leq \sum\limits_{i=1}^{n}|x_i-\bar x| \\
-^{[1]} \Rightarrow r \cdot h \cdot Ab 
-    &\leq n \cdot Ab\\
-\Rightarrow \frac{r}{n} 
-    &\leq \frac{1}{h}\\
-\Rightarrow -\frac{r}{n} 
-    &\geq -\frac{1}{h}\\
-\Rightarrow 1-\frac{r}{n} 
-    &\geq 1-\frac{1}{h}
-\end{align*}$$
+$$\begin{array}{rrcl}
+\Rightarrow  
+    & r \cdot h \cdot Ab 
+    &\leq& \sum\limits_{i=1}^{r}|x_i-\bar x| \\
+\Rightarrow 
+    & r \cdot h \cdot Ab 
+    &\leq& \sum\limits_{i=1}^{n}|x_i-\bar x| \\
+^{[1]} \Rightarrow 
+    & r \cdot h \cdot Ab 
+    &\leq& n \cdot Ab\\
+\Rightarrow 
+    & \frac{r}{n} 
+    &\leq& \frac{1}{h}\\
+\Rightarrow 
+    & -\frac{r}{n} 
+    &\geq& -\frac{1}{h}\\
+\Rightarrow 
+    & 1-\frac{r}{n} 
+    &\geq& 1-\frac{1}{h}
+\end{array}$$
 
 > 1. $Ab = \frac{1}{n}\sum\limits_{i=1}^{n}|x_i-\bar x|$  
 >    $\Rightarrow n \cdot Ab = \sum\limits_{i=1}^{n}|x_i-\bar x|$ 

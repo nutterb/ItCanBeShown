@@ -13,14 +13,14 @@ A random variable is said to have an Exponential Distribution with parameter $\b
 
 ## Cumulative Distribution Function
 
-$$\begin{align*}
+$$\begin{aligned}
 F(x)
 	&= \int\limits_{0}^{x}\frac{1}{\beta}\exp\Big\{{\frac{-t}{\beta}}\Big\}dt \\
 	&= -\exp\Big\{{\frac{-t}{\beta}}\Big\}\Big|_0^x \\
 	&= -\exp\Big\{{\frac{-x}{\beta}}\Big\}-\Big(-\exp\Big\{{\frac{-0}{\beta}}\Big\}\Big) \\
   &= \exp\Big\{{\frac{0}{\beta}}\Big\}-\exp\Big\{{\frac{-x}{\beta}}\Big\} \\
 	&= 1-\exp\Big\{{\frac{-x}{\beta}}\Big\}
-\end{align*}$$
+\end{aligned}$$
 
 And so the cumulative distribution function is given by
 \[F(x)=\left\{
@@ -59,7 +59,7 @@ ggplot(data = Exponential,
 
 ## Expected Values
 
-$$\begin{align*}
+$$\begin{aligned}
 E(X)
 	      &= \int\limits_{0}^{\infty}xf(x)dx \\
 	      &= \int\limits_{0}^{\infty}x\frac{1}{\beta}e^{\frac{-x}{\beta}}dx \\
@@ -68,11 +68,11 @@ E(X)
 ^{[1]}  &= \frac{1}{\beta}(\beta^2\Gamma(2)) \\
         &=\frac{\beta^2\cdot 1!}{\beta} \\
         &=\beta
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx = \beta^\alpha\Gamma(\alpha)$
 
-$$\begin{align*}
+$$\begin{aligned}
 E(X^2)
       	&= \int\limits_{0}^{\infty}x^2f(x)dx \\
       	&= \int\limits_{0}^{\infty}x^2\frac{1}{\beta}e^{\frac{-x}{\beta}}dx \\
@@ -81,11 +81,11 @@ E(X^2)
 ^{[1]}  &= \frac{1}{\beta}(\beta^3\Gamma(3)) \\
         &= \frac{\beta^3\cdot 2!}{\beta} \\
         &= 2\beta^2
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx = \beta^\alpha\Gamma(\alpha)$
 
-$$\begin{align*}
+$$\begin{aligned}
 \mu
 	&= E(X) \\
 	&= \beta \\
@@ -95,12 +95,12 @@ $$\begin{align*}
 	&= E(X^2)-E(X)^2 \\
 	&= 2\beta^2-\beta^2 \\
 	&= \beta^2
-\end{align*}$$
+\end{aligned}$$
 
 
 ## Moment Generating Function
 
-$$\begin{align*} 
+$$\begin{aligned} 
 M_X(t)
 	&= E(e^{tX}) \\
 	&= \int\limits_{0}^{\infty}e^{tx}\frac{1}{\beta}e^{\frac{-x}{\beta}}dx \\
@@ -150,7 +150,7 @@ E(X^2)
 	&= E(X^2) - E(X)^2 \\
 	&= 2\beta^2 - \beta^2 \\
 	&= \beta^2
-\end{align*}$$
+\end{aligned}$$
 
 
 ## Maximum Likelihood Estimator
@@ -159,7 +159,7 @@ Let $x_1,x_2,\ldots,x_n$ be a random sample from an Exponential distribution wit
 
 ### Likelihood Function
 
-$$\begin{align*}
+$$\begin{aligned}
 L(\theta)
 	&= L(x_1,x_2,\ldots,x_n|\theta) \\
 	&= f(x_1|\theta)f(x_2|\theta)\cdots f(x_n|\theta)\\
@@ -167,20 +167,20 @@ L(\theta)
 		\cdot\frac{1}{\theta}\exp\bigg\{-\frac{x_n}{\theta}\bigg\}
 		\cdots\frac{1}{\theta}\exp\bigg\{-\frac{x_n}{\theta}\bigg\} \\
 	&= \frac{1}{\theta^n}\exp\bigg\{-\frac{1}{\theta}\sum\limits_{i=1}^{n}x_i\bigg\}
-\end{align*}$$
+\end{aligned}$$
 
 ### Log-likelihood Function
-$$\begin{align*} 
+$$\begin{aligned} 
 \ell(\theta)
 	&= \ln(L(\theta)) \\
 	&= \ln(1)-n\ln(\theta)-\frac{1}{\theta}\sum\limits_{i=1}^{n}x_i \\
 	&= 0-n\ln(\theta)-\theta^{-1}\sum\limits_{i=1}^{n}x_i \\
   &= -n\ln(\theta)-\theta^{-1}\sum\limits_{i=1}^{n}x_i
-\end{align*}$$
+\end{aligned}$$
 
 ### MLE for $\beta$
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \frac{d\ell(\beta)}{d\beta}
 	&= -\frac{n}{\beta}+\beta^2\sum\limits_{i=1}^{n}x_i \\
 \\
@@ -190,7 +190,7 @@ $$\begin{align*}
 \Rightarrow\frac{n\beta^2}{\beta} &= \sum\limits_{i=1}^{n}x_i \\
 \Rightarrow n\beta                &= \sum\limits_{i=1}^{n}x_i \\
 \Rightarrow \beta                 &= \frac{1}{n}\sum\limits_{i=1}^{n}x_i
-\end{align*}$$
+\end{aligned}$$
 
 So $\hat\beta=\frac{1}{n}\sum\limits_{i=1}^{n}x_i$ is the maximum likelihood estimator for $\beta$.
 
@@ -203,14 +203,14 @@ $$ \int\limits_{0}^{\infty}\frac{1}{\beta}e^{\frac{-x}{B}}dx = 1 $$
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 \int\limits_{0}^{\infty}\frac{1}{\beta}e^{\frac{-x}{\beta}}dx
 	&= -e^{\frac{-x}{\beta}}\Big|_0^\infty \\
 	&= -e^{\frac{-\infty}{\beta}}-(-e^{\frac{-0}{\beta}}) \\
 	&= e^{\frac{0}{\beta}}-e^{\frac{-\infty}{\beta}} \\
 	&= 1-0 \\
 	&= 1
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Sum of Exponential Random Variables
@@ -219,13 +219,13 @@ Let $X_1,X_2,\ldots,X_n$ be independent random variables from an Exponential dis
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 M_Y(t)
 	&= E(e^{tY}) \\
 	&= E(e^{t(X_1+X_2+\cdots+X_n}) \\
 	&= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
   &= (1-\beta t)^{-1}(1-\beta t)^{-1}\cdots(1-\beta t)^{-1} \\
 	&= (1-\beta t)^{-n}
-\end{align*}$$
+\end{aligned}$$
 
 Which is the mgf for a Gamma random variable with parameters $n$ and $\beta$.  Thus $Y\sim$Gamma$(n,\beta)$. 

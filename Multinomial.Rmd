@@ -71,16 +71,16 @@ $Cov(X_i,Y_i) = E(X_i\cdot Y_i) - E(X_i)E(Y_i) = 0 - p_j p_m = -p_j p_m$. ($Cov(
 
 Using these results we find the Covariance of $n_j$ and $n_m$.
 
-$$\begin{align*}
+$$\begin{aligned}
 Cov(n_j,n_m) 
   &= \sum\limits_{j=1}^{N}\sum\limits_{m=1}^{N}Cov(X_i,Y_i) \\
   &= \sum\limits_{i=1}^{N}Cov(X_iY_i) + \sum\sum\limits_{i\neq j}Cov(X_i,Y_i) \\
   &= \sum\limits_{i=1}^{n}-p_jp_m + \sum\sum\limits_{i\neq j}0=-np_jp_m
-\end{align*}$$
+\end{aligned}$$
 
 The Expected Values of the $p_j$'s can be found by
 
-$$\begin{align*} 
+$$\begin{aligned} 
 E(\hat p_j)
 	&= E(\frac{n_j}{N}) \\
 	&= \frac{1}{N}E(n_j) \\
@@ -100,4 +100,4 @@ Cov(\hat p_j,\hat p_m)
 	&= \frac{1}{N^2}Cov(n_j,n_m) \\
 	&= \frac{1}{N^2}(-Np_jp_m) \\
 	&= \frac{-p_jp_m}{N}
-\end{align*}$$
+\end{aligned}$$

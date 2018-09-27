@@ -12,13 +12,13 @@ A random variable $X$ is said to have a Uniform Distribution with parameters $a$
 
 ## Cumulative Density Function
 
-$$\begin{align*}
+$$\begin{aligned}
 F(x)
 	&= \int\limits_{a}^{x}\frac{1}{b-a}dt \\
 	&= \frac{t}{b-a}|_{a}^{x} \\
 	&= \frac{x}{b-a}-\frac{a}{b-a} \\
 	&= \frac{x-a}{b-a}
-\end{align*}$$
+\end{aligned}$$
 
 \[F(x)=\left\{
 	\begin{array}{lll}
@@ -53,7 +53,7 @@ ggplot(data = Uniform,
 
 ## Expected Values
 
-$$\begin{align*} 
+$$\begin{aligned} 
 E(X)
 	&= \int\limits_{a}^{b}x\frac{1}{b-a}dx \\
 	&= \frac{1}{b-a}\int\limits_{a}^{b}x\ dx \\
@@ -88,18 +88,18 @@ E(X^2)
 	&= \frac{4b^2+4ab+4a^2-3b^2-6ab-3a^2)}{12} \\
   &= \frac{4b^2-3b^2+4ab-6ab+4a^2-3a^2}{12} \\
 	&= \frac{b^2-2a+a^2}{12}=\frac{(b-a)^2}{12} 
-\end{align*}$$
+\end{aligned}$$
 
 
 ## Moment Generating Function
 
-$$\begin{align*} 
+$$\begin{aligned} 
 M_X(t) 
 	&= E(e^{tX})=\int\limits_{a}^{b}e^{tx}\frac{1}{b-a}dx \\
 	&= \frac{1}{b-a}\int\limits_{a}^{b}e^{tx}dx \\
   &= \frac{1}{b-a}\Big[\frac{e^{tb}-e^{ta}}{t}\Big] \\
 	&= \frac{e^{t(b-a)}}{t(b-a)}
-\end{align*}$$
+\end{aligned}$$
 
 $M_X^{(k)}(0)$ will lead to an undefined operation (division by 0).  Thus, in the case of the Uniform distribution, we are unable to use the method of moments to identify parameter values.
 
@@ -112,10 +112,10 @@ $$\int\limits_{a}^{b}\frac{1}{b-a} = 1$$
 
 _Proof:_
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \int\limits_{a}^{b}\frac{1}{b-a}
 	&= \frac{x}{b-a}\Big|_a^b \\
 	&= \frac{b}{b-a}-\frac{a}{b-a} \\
 	&= \frac{b-a}{b-a} \\
 	&= 1
-\end{align*}$$
+\end{aligned}$$

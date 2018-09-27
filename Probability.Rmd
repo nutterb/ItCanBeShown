@@ -39,23 +39,23 @@ _Proof:_
 
 By the definition of conditional probability
 
-$$\begin{align*}
+$$\begin{aligned}
 P(A|B) 
   &= \frac{P(A\cap B)}{P(B)} \\
 \Rightarrow P(A|B) \cdot P(B) &= P(A \cap B)
-\end{align*}$$
+\end{aligned}$$
 
 Likewise
 
-$$\begin{align*}
+$$\begin{aligned}
 P(B|A) 
   &= \frac{P(B\cap A)}{P(A)} \\
 \Rightarrow P(B|A) \cdot P(A) &= P(B \cap A)
-\end{align*}$$
+\end{aligned}$$
 
 Since $P(A \cap B) = P(B \cap A)$
 
-$$\begin{align*} 
+$$\begin{aligned} 
 P(A|B) \cdot P(B) 
   &= P(A \cap B) \\
   &= P(B \cap A) \\
@@ -63,7 +63,7 @@ P(A|B) \cdot P(B)
 \Rightarrow P(A \cap B) 
   &= P(A|B) \cdot P(B) \\ 
   &= P(B|A) \cdot P(A)
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Corollary
@@ -76,12 +76,12 @@ _Proof:_
 
 When $A$ and $B$ are independent, by the definition of independence\footnote{Definition \ref{Probability1.3}}, 
 
-$$\begin{align*}
+$$\begin{aligned}
 P(A \cap B) 
   & = P(A|B) \cdot P(B) 
   = P(B|A) \cdot P(A) \\
 \Rightarrow &= P(A) \cdot P(B) = P(B) \cdot P(A)
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -111,11 +111,11 @@ _Proof:_
 
 When $A$ and $B$ are mutually exclusive, $(A \cap B) = \emptyset$ and $P(A \cap B) = 0$.  By Theorem \ref{Probability1.5},
 
-$$\begin{align*}
+$$\begin{aligned}
 P(A \cup B) &= P(A) + P(B) - P(A \cap B) \\
  \Rightarrow P(A \cup B) &= P(A) + P(B) - 0 \\
  \Rightarrow P(A \cup B) &= P(A) + P(B)
-\end{align*}$$
+\end{aligned}$$
  
 
 ### Theorem: Law of Complements
@@ -126,7 +126,7 @@ _Proof:_
 
 Let $S$ be the sample space.
 
-$$\begin{align*}
+$$\begin{aligned}
 S &= A \cup A^c \\
  \Rightarrow P(S) &= P(A \cup A^c) \\
  \Rightarrow P(S) &= P(A) + P(A^c) - P(A \cap A^c) \\
@@ -135,7 +135,7 @@ S &= A \cup A^c \\
  \Rightarrow 1 &= P(A) + P(A^c) \\
  \Rightarrow 1 - P(A^c) &= P(A) \\
  \Rightarrow P(A) &= 1 - P(A^c)
-\end{align*}$$
+\end{aligned}$$
  
 
 ### Definition: Partition of a Sample Space
@@ -171,11 +171,11 @@ Since ${B_1, B_2, \ldots, B_k}$ is a partition of $S$, if $i \neq j$,
 
 $(A \cap B_i) \cup (A \cap B_j) = A \cap (B_i \cap B_j) = A \cap \emptyset = \emptyset$.  That is, $(A \cap B_i)$ and $(A \cap B_j)$ are mutually exclusive events.  Thus,
 
-$$\begin{align*}
+$$\begin{aligned}
 P(A) &= P(A \cap B_1) + P(A \cap B_2) + \cdots + P(A \cap B_k) \\
 ^{[1]} \Rightarrow &= P(A|B_1)P(B_1) + P(A|B_2)P(B_2) + \cdots + P(A|B_k)P(B_k) \\
 \Rightarrow &= \sum\limits_{i=1}^k P(A|B_i)P(B_i)
-\end{align*}$$
+\end{aligned}$$
  
 > 1. Theorem \ref{Probability1.4}: Multiplicative Law of Probability
  
@@ -188,11 +188,11 @@ $$ P(B_j|A) = \frac{P(A|B_j)P(B_j)}{\sum\limits_{i=1}^k P(A|B_i)P(B_i)} $$
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
  \ ^{[1]} P(B_j|A)  &= \frac{P(A \cap B)}{P(A)} \\
  ^{[2]} \Rightarrow &= \frac{P(A|B_j)P(B_j)}{P(A)} \\
  ^{[3]} \Rightarrow &= \frac{P(A|B_j)P(B_j)}{\sum\limits_{i=1}^k P(A|B_i)P(B_i)}
-\end{align*}$$
+\end{aligned}$$
 
 > 1. Definition \ref{Probability1.2}, Conditional Probability
 > 2. Definition \ref{Probability1.2}, Conditional Probability

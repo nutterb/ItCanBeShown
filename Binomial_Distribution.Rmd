@@ -3,7 +3,7 @@
 ## Probability Mass Function
 A random variable is said to follow a Binomial distribution with parameters $n$ and $\pi$ if its probability mass function is:
 
-\[p(x)=
+\[\Pr(X = x)=
 	\left\{
 		\begin{array}{ll}
 			{n \choose x} \pi^x (1-\pi)^{n-x},	& x=0,1,2,\ldots,n\\
@@ -15,7 +15,7 @@ Where $n$ is the number of trials performed and $\pi$ is the probability of a su
 
 ## Cumulative Mass Function
 
-\[ P(x)=
+\[ \Pr(X \leq x)=
 	\left\{
 		\begin{array} {lll}
 			0							& x<0\\
@@ -26,7 +26,7 @@ Where $n$ is the number of trials performed and $\pi$ is the probability of a su
 	
 A recursive form of the cdf can be derived and has some usefulness in computer applications.  With it, one need only initiate the first value and additional cumulative probabilities can be calculated.  It is derived as follows:
 
-$$\begin{align*} 
+$$\begin{aligned} 
 F(x+1)
 	&= {n\choose x+1} \pi^{x+1} (1-\pi)^{n-(x+1)} \\
 	&= \frac{n!}{(x+1)!(n-(x+1))!} \pi^{x+1} (1-\pi)^{n-(x+1)} \\
@@ -36,7 +36,7 @@ F(x+1)
   &= \frac{\pi}{1-\pi} \cdot \frac{n-x}{x+1} \cdot \frac{n!}{x!(n-x)!} \pi^x (1-\pi)^{n-x} \\
   &= \frac{\pi}{1-\pi} \cdot \frac{n-x}{x+1} \cdot {n\choose x} \pi^x (1-\pi)^{n-x} \\
 	&= \frac{\pi}{1-\pi} \cdot \frac{n-x}{x+1} \cdot F(x)
-\end{align*}$$
+\end{aligned}$$
 
 ```{r Binomial_Distribution, echo = FALSE, fig.path = 'figures/', fig.cap = 'The graphs on the left and right show a Binomial Probability Distribution and Cumulative Distribution Function, respectively, with $n=10$ and $\\pi=.4$.'}
 Binomial <- 
@@ -60,9 +60,9 @@ ggplot(data = Binomial,
 ```
 
 ## Expected Values
-$$\begin{align*}
+$$\begin{aligned}
 E(X)
-    	    &= \sum\limits_{x=0}^n x \cdot p(x) \\
+    	    &= \sum\limits_{x=0}^n x \cdot \Pr(X = x) \\
     	    &= \sum\limits_{x=0}^n x {n\choose x} \pi^x (1-\pi)^{n-x} \\
 	^{[1]}  &= \sum\limits_{x=0}^n x {n\choose x} \pi^x q^{n-x} \\
           &= 0 \cdot {n\choose 0}\pi^0q^n+1 \cdot {n\choose 1}\pi^1q^{n-1} 
@@ -80,14 +80,14 @@ E(X)
         	&= n\pi(1)^{n-1} \\
         	&= n\pi(1) \\
         	&= n\pi
-\end{align*}$$
+\end{aligned}$$
 
 > 1. Let $q = (1 - \pi)$
 > 2. By the Binomial Theorem (\@ref(binomial-theorem-traditional)), $\sum\limits_{x=0}^n{n\choose x}a^xb^{n-x}=(a+b)^n$
 
-$$\begin{align*}
+$$\begin{aligned}
 E(X^2)
-	        &= \sum\limits_{x=0}^{n} x^2 p(x) \\
+	        &= \sum\limits_{x=0}^{n} x^2 \Pr(X = x) \\
 	        &= \sum\limits_{x=0}^{n} x^2 {n\choose x} \pi^x (1-\pi)^{n-x} \\
 	^{[1]}  &= \sum\limits_{x=0}^{n} x^2 {n\choose x} \pi^x q^{n-x} \\
           &= 0^2 \frac{n!}{0!(n-0)!} \pi^0q^n + 1^2 \frac{n!}{1!(n-1)!} \pi^1q^{n-1}
@@ -108,7 +108,7 @@ E(X^2)
         	&= n\pi[(n-1)\pi+1] \\
         	&=n\pi(n\pi-\pi+1) \\
         	&=n^2\pi^2 - n\pi^2 + n\pi
-\end{align*}$$
+\end{aligned}$$
 	
 >1. $q = (1 - \pi)$
 >2. Let $y = x - 1$ and $n = m + 1$  
@@ -119,7 +119,7 @@ E(X^2)
 >		is the sum of all probabilities over the domain of $Y$ which is 1.
 
 
-$$\begin{align*}
+$$\begin{aligned}
 \mu
 	&= E(X) \\
 	&= n\pi \\
@@ -131,25 +131,25 @@ $$\begin{align*}
 	&= -n\pi^2 + n\pi \\
 	&= n\pi(-\pi-1) \\
   &= n\pi(1-\pi)
-\end{align*}$$
+\end{aligned}$$
 
 ## Moment Generating Function
 
 $$
-\begin{align*} 
+\begin{aligned} 
 M_X(t)
           &= E(e^{tX})=\sum\limits_{x=0}^{n}e^{tx}p(x) \\
         	&= \sum\limits_{x=0}^{n}e^{tx}{n\choose x}\pi^x(1-\pi)^{n-x} \\
           &= \sum\limits_{x=0}^{n}{n\choose x}e^{tx}\pi^x(1-\pi)^{n-x} \\
 	        &= \sum\limits_{x=0}^{n}{n\choose x}(\pi e^{tx})^x(1-\pi)^{n-x} \\
   ^{[1]}  &= [(1-\pi)+\pi e^t]^n
-\end{align*}
+\end{aligned}
 $$
 	
 > 1. By the Binomial Theorem (\@ref(binomial-theorem-traditional)), $\sum\limits_{x=0}^n{n\choose x}a^xb^{n-x}=(a+b)^n$
 
 $$
-\begin{align*}
+\begin{aligned}
 M_X^{(1)}(t) &= n[(1 - \pi) + \pi e^t] ^ {n - 1} \pi e^t\\
 \\
 M_X^{(2)}(t) &= n[(1-\pi) + \pi e^t] ^ {n-1} \pi e^t + n(n-1)[(1-\pi) + \pi e^t] ^ {n-2}(\pi e^t)^2\\
@@ -184,7 +184,7 @@ E(X^2)
   &= n\pi + n^2\pi^2 - n\pi^2 - n^2\pi^2 \\
   &= n\pi - n\pi^2\\
   &= n\pi(1-\pi)
-\end{align*}$$
+\end{aligned}$$
 
 
 
@@ -195,7 +195,7 @@ Since $n$ is fixed in each Binomial experiment, and must therefore be given, it 
 Let $X$ be a Binomial random variable with parameter $\pi$ and $n$ outcomes $(x_1,x_2,\ldots,x_n)$.  Let $x_i=0$ for a failure and $x_i=1$ for a success.  In other words, $X$ is the sum of $n$ Bernoulli trials with equal probability of success and $X=\sum\limits_{i=1}^{n}x_i$.
 
 ### Likelihood Function
-$$\begin{align*} 
+$$\begin{aligned} 
 L(\theta)
 	&= L(x_1,x_2,\ldots,x_n|\theta) \\
 	&= P(x_1|\theta) P(x_2|\theta) \cdots P(x_n|\theta) \\
@@ -204,19 +204,19 @@ L(\theta)
   &= \exp_\theta\bigg\{\sum\limits_{i=1}^{n}x_i\bigg\}
         \exp_{(1-\theta)}\bigg\{n-\sum\limits_{i=1}^{n}x_i\bigg\} \\
   &= \theta^X(1-\theta)^{n-X}
-\end{align*}$$
+\end{aligned}$$
 
 ### Log-likelihood Function
-$$\begin{align*}
+$$\begin{aligned}
 \ell(\theta)
 	&= \ln L(\theta) \\
 	&= \ln\big(\theta^X(1-\theta)^{n-X}\big) \\
 	&= X\ln(\theta)+(n-X)\ln(1-\theta)
-\end{align*}$$
+\end{aligned}$$
 
-### MLE for p
+### MLE for $\pi$
 
-$$\begin{align*} 
+$$\begin{aligned} 
                 \frac{d\ell(p)}{d \pi} 
                             &= \frac{X}{\pi}-\frac{n-X}{1-\pi} \\
 \\
@@ -227,7 +227,7 @@ $$\begin{align*}
   \Rightarrow  X-\pi X        &= n\pi-\pi X \\
   \Rightarrow  X           &= n\pi \\
   \Rightarrow  \frac{X}{n} &= \pi \\
-\end{align*}$$
+\end{aligned}$$
 
 So $\displaystyle \hat p = \frac{X}{n} = \frac{1}{n}\sum\limits_{i=1}^{n}x_i$ is the maximum likelihood estimator for $\pi$.
 
@@ -236,18 +236,18 @@ So $\displaystyle \hat p = \frac{X}{n} = \frac{1}{n}\sum\limits_{i=1}^{n}x_i$ is
 
 ### Validity of the Distribution
 
-$$\begin{align*}
+$$\begin{aligned}
 \sum\limits_{x=0}^n{n\choose x}p^x(1-p)^{n-x}	= 1
-\end{align*}$$
+\end{aligned}$$
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 \sum\limits_{x=0}^n {n\choose x} \pi^x (1-\pi)^{n-x} \\
 	^{[1]}  &= \big(\pi + (1-\pi)\big)^n \\
 	        &= (1)^n \\
 	        &= 1 
-\end{align*}$$
+\end{aligned}$$
 
 > 1. By the Binomial Theorem (\@ref(binomial-theorem-traditional)), $\sum\limits_{x=0}^n{n\choose x}a^xb^{n-x}=(a+b)^n$
 
@@ -260,7 +260,7 @@ Let $Y = \sum\limits_{i=1}{k} X_i$.  Then $Y\sim$Binomial$(\sum\limits_{i=1}^{k}
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 M_Y(t)
 	&= E(e^{tY}) \\
 	&= E(e^{t(x_1 + X_2 + \cdots + X_k)} \\
@@ -268,7 +268,7 @@ M_Y(t)
   &= E(e^{tX_1}) E(e^{tX_2}) \cdots E(e^{tX_k}) \\
   &= \prod\limits_{i=1}^{k} [(1-\pi)+\pi e^t]^{n_i} \\
 	&= [(1-\pi)+\pi e^t]^{\sum\limits_{i=1}^{k}n_i}
-\end{align*}$$
+\end{aligned}$$
 
 Which is the mgf of a Binomial random variable with parameters $\sum\limits_{i=1}^{k}n_i$ and $\pi$.  
 Thus $Y\sim$Binomial$(\sum\limits_{i=1}^{k}n_i,\pi)$.
@@ -279,13 +279,13 @@ Let $X_1,X_2,\ldots,X_n$ be independent and identically distributed random varia
 Then $Y\sim$Binomial$(n,\pi)$
 
 _Proof:_
-$$\begin{align*}
+$$\begin{aligned}
 M_Y(t)
 	&= E(e^{tY}) \\
 	&= E(e^{tX_1} e^{tX_2} \cdots e^{tX_n}) \\
 	&= E(e^{tX_1}) E(e^{tX_2}) \cdots E(e^{tX_n}) \\
   &= (\pi e^t+(1-\pi))(\pi e^t+(1-\pi))\cdots (\pi e^t+(1-\pi)) \\
 	&= (\pi e^t+(1-\pi))^n
-\end{align*}$$
+\end{aligned}$$
 
-Which is the mgf of a Binomial random variable with parameters $n$ and $p$.  Thus, $Y\sim$ Binomial$(n,p)$. 
+Which is the mgf of a Binomial random variable with parameters $n$ and $\pi$.  Thus, $Y\sim$ Binomial$(n,\pi)$. 

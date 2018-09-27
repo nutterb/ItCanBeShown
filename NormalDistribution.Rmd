@@ -65,7 +65,7 @@ ggplot(data = Normal,
 
 ## Expected Values
 
-$$\begin{align*}
+$$\begin{aligned}
 E(X)
 	&= \int\limits_{-\infty}^{\infty}x\frac{1}{\sqrt{2\pi}\sigma}\exp\Big\{-\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\} \\
 ^{[1]}	&= \frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}x\exp\Big\{-\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\} \\
@@ -86,7 +86,7 @@ E(X)
 ^{[4]}  &= \frac{\mu}{\sqrt{2\pi}}2^{\frac{1}{2}}\Gamma\Big(\frac{1}{2}\Big) \\
 ^{[5]}	&= \frac{\mu\sqrt{2\pi}}{\sqrt{2\pi}} \\
   &= \mu
-\end{align*}$$
+\end{aligned}$$
 
 > 1. Let $z=\frac{x-\mu}{\sigma}\\ \Rightarrow x=z\sigma+\mu \Rightarrow dx=\sigma dz$
 > 2. This change can be made because the function being integrated is an even function.  See Theorem \ref{Integration1.2}
@@ -96,7 +96,7 @@ E(X)
 > 5. $\Gamma(\frac{1}{2})=\sqrt{\pi}$
 
 
-$$\begin{align*} 
+$$\begin{aligned} 
 E(X^2)
 	&= \int\limits_{-\infty}^{\infty}x^2\frac{1}{\sqrt{2\pi}\sigma}
 		\exp\Big\{\frac{1}{2}\Big(\frac{x-\mu}{\sigma}\Big)^2\Big\}dx \\
@@ -129,7 +129,7 @@ E(X^2)
 		\frac{1}{\sqrt{2\pi}}\exp\Big\{-\frac{z^2}{2}\Big\}dz\Bigg)+\mu^2 \\
 ^{[5]} &= \sigma^2(1)+\mu^2 \\
   &=\sigma^2+\mu^2
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $z=\frac{x-\mu}{\sigma} \\
 		\Rightarrow x=z\sigma+\mu\Rightarrow dx=\sigma dz$
@@ -141,7 +141,7 @@ E(X^2)
 		 and $dv=z\exp\{-\frac{z^2}{2}\}\Rightarrow v=-\exp\{-\frac{z^2}{2}\}$
 > 5. See footnote 2.
 
-$$\begin{align*}
+$$\begin{aligned}
 \mu
 	&= E(X) \\
 	&= \mu \\
@@ -151,13 +151,13 @@ $$\begin{align*}
 	&= E(X^2)-E(X)^2 \\
 	&= \sigma^2+\mu^2-\mu^2 \\
 	&= \sigma^2
-\end{align*}$$
+\end{aligned}$$
 
 
 
 ## Moment Generating Function
 
-$$\begin{align*} 
+$$\begin{aligned} 
 E(e^{tX})
 	&= \int\limits_{-\infty}^{\infty}\exp\{tx\}\frac{1}{\sqrt{2\pi}\sigma}
 		\exp\Big\{\frac{1}{2\sigma^2}-(x-\mu)^2\Big\}dx \\
@@ -184,14 +184,14 @@ E(e^{tX})
 		\exp\Big\{\frac{1}{2}(u)^2\Big\}du \\
  &= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\cdot 1 \\
  &= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $z=\frac{x-\mu}{\sigma}\\ 
 		\Rightarrow x=z\cdot\sigma+\mu\Rightarrow dx=\sigma dz$
 > 2. $u=z-\sigma t\\ \Rightarrow z=u+\sigma t \Rightarrow dz=du$
 > 3. See Theorems \ref{Normal4.1} and \ref{Normal4.2}
 
-$$\begin{align*}
+$$\begin{aligned}
 M_X^{(1)}(t)
 	&= \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}\cdot(\mu+t\sigma^2) \\
 \\
@@ -228,7 +228,7 @@ E(X^2)
 	&= E(X^2)-E(X) \\
 	&= \sigma^2+\mu^2-\mu^2 \\
 	&= \sigma^2
-\end{align*}$$
+\end{aligned}$$
 
 
 ## Maximum Likelihood Estimators
@@ -236,7 +236,7 @@ E(X^2)
 Let $x_1,x_2,\ldots,x_n$ be a random sample from a Normal distribution with mean $\mu$ and variance $\sigma^2$.
 
 ### Likelihood Function
-$$\begin{align*}
+$$\begin{aligned}
 L(x_1,x_2,\ldots,x_n|\theta)
 	&= f(x_1|\theta)f(x_2|\theta)\cdots f(x_n|\theta) \\
   &= \frac{1}{\sqrt{2\pi}\sigma}\exp\bigg\{\frac{-(x_1-\mu)^2}{2\sigma^2}\bigg\}
@@ -246,11 +246,11 @@ L(x_1,x_2,\ldots,x_n|\theta)
 	&= \bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n  \prod\limits_{i=1}^{n}\exp\bigg\{\frac{-(x_i-\mu)^2}{2\sigma^2} \bigg\} \\
   &= \bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n \exp\bigg\{ \sum\limits_{i=1}^{n}\frac{-(x_i-\mu)^2}{2\sigma^2} \bigg\} \\
   &= \bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n \exp\bigg\{ \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \bigg\}
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Log-likelihood Function
-$$\begin{align*} 
+$$\begin{aligned} 
 \ell(\theta)
 	&= \ln\big(L(\theta)\big) \\
 	&= \ln\Bigg(\bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n 
@@ -265,12 +265,12 @@ $$\begin{align*}
 		+ \frac{2\mu}{2\sigma^2}\sum\limits_{i=1}^{n}x_i - \frac{1}{2\sigma^2}n\mu^2 \\
   &= n\ln\bigg(\frac{1}{\sqrt{2\pi}}\sigma^{-1}\bigg) - \frac{\sigma^{-2}}{2}\sum\limits_{i=1}^{n}x_i^2
 		+ \mu\sigma^{-2}\sum\limits_{i=1}^{n}x_i - \frac{n\mu^2\sigma^{-2}}{2}
-\end{align*}$$
+\end{aligned}$$
 
 
 ### MLE for $\mu$
 
-$$\begin{align*}
+$$\begin{aligned}
 \frac{d\ell}{d\mu}
 	&= 0 - 0 + \sigma^{-2}\sum\limits_{i=1}^{n} - \frac{2n\mu\sigma^{-2}}{2} \\
 	&= \sigma^{-2}\sum\limits_{i=1}^{n} - n\mu\sigma^{-2}\\
@@ -280,7 +280,7 @@ $$\begin{align*}
  \Rightarrow n\mu\sigma^{-2} &= \sigma^{-2}\sum\limits_{i=1}^{n}\\
  \Rightarrow n\mu\ &= \sum\limits_{i=1}^{n}\\
  \Rightarrow \mu &= \frac{1}{n}\sum\limits_{i=1}^{n}
-\end{align*}$$
+\end{aligned}$$
 
 So $\hat\mu = \frac{1}{n}\sum\limits_{i=1}^{n}$ is the maximum likelihood estimator for $\mu$.
 
@@ -289,7 +289,7 @@ So $\hat\mu = \frac{1}{n}\sum\limits_{i=1}^{n}$ is the maximum likelihood estima
 
 The work in deriving the MLE for $\sigma^2$ is greatly reduced if we use
 
-$$\begin{align*}
+$$\begin{aligned}
 \ell(\theta)
 	&= n\ln\frac{1}{\sqrt{2\pi}\sigma} - \frac{1}{2\sigma^2} \sum\limits_{i=1}^{n}-(x_i-\mu)^2\\
 	&= n\ln\bigg(\frac{1}{\sqrt{2\pi}}\sigma^{-1}\bigg) - \frac{1}{2\sigma^2}  \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
@@ -306,7 +306,7 @@ $$\begin{align*}
  \Rightarrow \frac{n}{\sigma} &= \frac{1}{\sigma} \sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
  \Rightarrow \frac{\sigma^3}{\sigma} &= \frac{1}{n}\sum\limits_{i=1}^{n}-(x_i-\mu)^2 \\
  \Rightarrow \sigma^2 &= \frac{1}{n}\sum\limits_{i=1}^{n}-(x_i-\mu)^2
-\end{align*}$$
+\end{aligned}$$
 
 So $\hat\sigma^2 = \frac{1}{n}\sum\limits_{i=1}^{n}-(x_i-\mu)^2$ is the maximum likelihood estimator for $\sigma^2$.  Notice however that this $MLE$ is a biased estimator\footnote{See \ref{Variance2}}.
 
@@ -324,7 +324,7 @@ $A = \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2
 
 By using the identity transformation $y=x$, we may also write 
 
-$$\begin{align*}
+$$\begin{aligned}
 A &= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(y-\mu)^2}{2\sigma^2}dy \\
 \Rightarrow A^2 &= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}
 			e^\frac{-(x-\mu)^2}{2\sigma^2}dx\cdot 
@@ -350,7 +350,7 @@ A &= \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(y-\mu)^2
 	&=1\\
 \Rightarrow A^2 &= 1 \\
 \Rightarrow A &= 1
-\end{align*}$$
+\end{aligned}$$
 
 > 1. Substitute $t=x-\mu$ and $u=y-\mu$
 > 2. $t=r\cos\theta$ and $u=r\sin\theta$.\\ Thus 
@@ -365,7 +365,7 @@ $$\int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 \int\limits_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu)^2}{2\sigma^2}dx \\
 	      &=\frac{1}{\sqrt{2\pi}\sigma}\int\limits_{-\infty}^{\infty}e^\frac{-(x-\mu)^2}{2\sigma^2}dx \\
 ^{[1]}	&= \frac{1}{\sqrt{2\pi}\sigma}
@@ -382,7 +382,7 @@ $$\begin{align*}
 ^{[4]}  &= \frac{1}{\sqrt{2\pi}}2^\frac{1}{2}\Gamma\big(\frac{1}{2}\big) \\
 ^{[5]}	&= \frac{\sqrt{2\pi}}{\sqrt{2\pi}} \\
         &= 1
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $y=x-\mu\ \Rightarrow x=y+\mu\ \Rightarrow dx=dy$
 > 2. $u=(\frac{y}{\sigma})^2\ \Rightarrow y=\sigma u^\frac{1}{2}\ 
@@ -401,13 +401,13 @@ Let $X$ be a Normal random variable with parameters $\mu$ and $\sigma^2$, and le
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 M_Y(t)
   &= E(e^{tY}) \\
   &= E(e^{tcX}) \\
   &= \exp\Big\{\mu tc+\frac{t^2c^2\sigma^2}{2}\Big\} \\
   &= \exp\Big\{c\mu t+\frac{t^2c^2\sigma^2}{2}\Big\}
-\end{align*}$$
+\end{aligned}$$
 
 Which is the Moment Generating Function of a Normal random variable with mean $c\mu$ and variance $c^2\sigma^2$.  Thus $Y\sim Normal(c\mu,\ c^2\sigma^2)$. 
 
@@ -420,7 +420,7 @@ If $Y=\sum\limits_{i=1}^{n}a_iX_i$, then $Y\sim Normal\big(\sum\limits_{i=1}^{n}
 
 _Proof:_
 
-$$\begin{align*} 
+$$\begin{aligned} 
 M_Y(t)
   &=E(e^{tY}) \\
   &=E(e^{t(a_1X_1+a_2X_2+\cdots+a_nX_n}) \\
@@ -433,7 +433,7 @@ M_Y(t)
 		+\cdots+ta_n\mu_n+\frac{ta_n^2\sigma_n^2}{2}\Big\} \\
   &=\exp\Big\{t\sum\limits_{i=1}^{n}a_i\mu_i +
       \frac{t\sum\limits_{i=1}^{n}a_i^2\sigma_i^2}{2}\Big\}
-\end{align*}$$
+\end{aligned}$$
 
 Which is the mgf of a Normal random variable with parameters $\sum\limits_{i=1}^{n}a_i\mu_i$ and $\sum\limits_{i=1}^{n}a_i^2\sigma_i^2$.  Thus $Y\sim Normal\big(\sum\limits_{i=1}^{n}a_i\mu_i,\ \sum\limits_{i=1}^{n}a_i^2\sigma_i^2\big)$.
 
@@ -458,7 +458,7 @@ _Proof:_
 
 First, since $X\sim Normal(\mu,\sigma^2$) and $Z=\frac{X-\mu}{\sigma}$
 
-$$\begin{align*}
+$$\begin{aligned}
 E(e^{tZ})
   &=E\Big(\exp\Big\{t\frac{x-\mu}{\sigma}\Big\}\Big) \\
   &=E\Big(\exp\Big\{\frac{tx-t\mu}{\sigma}\Big\}\Big) \\
@@ -468,20 +468,20 @@ E(e^{tZ})
   &=\exp\Big\{\frac{-t\mu}{\sigma}\Big\}\exp\Big\{\frac{t\mu}{\sigma}+\frac{t^2\sigma^2}{2\sigma^2}\Big\} \\
 	&=\exp\Big\{\frac{-t\mu}{\sigma}-\frac{t\mu}{\sigma}+\frac{t^2\sigma^2}{2\sigma^2}\Big\} \\
 	&=\exp\Big\{\frac{t^2\sigma^2}{2\sigma^2}\Big\}
-\end{align*}$$
+\end{aligned}$$
 
 Which is the Moment Generating Function of a Normal random variable with $\mu=0$ and $\sigma^2=1$.  Thus $Z\sim Normal(0,1)$.
 
 To complete the proof, we start with $Z\sim$Normal(0,1) and let $X=Z\cdot\sigma+\mu$.
 
-$$\begin{align*}
+$$\begin{aligned}
 E(e^{tX})
   = E(e^{t(z\sigma+\mu)}) \\
   = E(e^{tz\sigma}e^{t\mu}) \\
   = e^{t\mu}E(e^{t\sigma z}) \\
   = \exp\{t\mu\}\exp\Big\{\frac{t^2\sigma^2}{2}\Big\} \\
   = \exp\Big\{\mu t+\frac{t^2\sigma^2}{2}\Big\}
-\end{align*}$$
+\end{aligned}$$
 
 Which is the Moment Generating Funciton of a Normal random variable with mean $\mu$ and variance $\sigma^2$.  Thus $X\sim Normal(\mu,\sigma^2)$.
 
@@ -495,13 +495,13 @@ _Proof:_
 
 $\bar X=\frac{1}{n}\sum\limits_{i=1}^{n}X_i$ is a special case of the Weighted Sum of Normal Random Variables where $a_i=\frac{1}{n},\ i=1,2,\ldots,n$.  It follows then that
 
-$$\begin{align*}
+$$\begin{aligned}
 M_{\bar X}(t)
   &=exp\Big(t\sum\limits_{i=1}^{n}\frac{1}{n}\mu
 		+t\frac{\sum\limits_{i=1}^{n}\frac{1}{n}\sigma^2}{2}\Big) \\
 	&=exp\big(t\frac{n\mu}{n}+\frac{t\frac{n\sigma^2}{n}}{2}\big) \\
 	&=exp\big(t\mu+\frac{t\frac{\sigma^2}{n}}{2}\big) 
-\end{align*}$$
+\end{aligned}$$
 
 Which is the mgf of a Normal random variable with parameters $\mu$ and $\frac{\sigma^2}{n}$.  Thus $\bar X\sim Normal\big(\mu,\ \frac{\sigma^2}{n}\big)$. 
 
@@ -511,7 +511,7 @@ Which is the mgf of a Normal random variable with parameters $\mu$ and $\frac{\s
 If $Z\sim N(0,1)$, then $Z^2\sim\chi^2(1)$. 
 
 _Proof:_
-$$\begin{align*}
+$$\begin{aligned}
 M_{Z^2}(t)
       	&= E(e^{tZ^2}) \\
       	&= \int\limits_{-\infty}^{\infty}e^{tz^2}\frac{1}{\sqrt{2\pi}}
@@ -533,7 +533,7 @@ M_{Z^2}(t)
 ^{[3]}  &= \frac{1}{\sqrt{\pi}(1-2t)^{\frac{1}{2}}}\Gamma(\frac{1}{2}) \\
       	&= \frac{\sqrt{\pi}}{\sqrt{\pi}(1-2t)^{\frac{1}{2}}} \\
       	&= \frac{1}{(1-2t)^{\frac{1}{2}}}=(1-2t)^{-\frac{1}{2}} \\
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $\int\limits_{-\infty}^{\infty}f(x)dx
 		= 2\int\limits_{0}^{\infty}f(x)dx$ when f(x) is an even function (\ref{Integration1.2})

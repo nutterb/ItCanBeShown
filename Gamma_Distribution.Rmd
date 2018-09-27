@@ -58,7 +58,7 @@ ggplot(data = Gamma,
 
 ## Expected Values
 
-$$\begin{align*} 
+$$\begin{aligned} 
 E(X)
       	&= \int\limits_{0}^{\infty}x\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
       		{\Gamma(\alpha)\beta^\alpha}dx \\
@@ -71,13 +71,13 @@ E(X)
       	&= \frac{\Gamma(\alpha+1)\beta^{\alpha+1}}{\Gamma(\alpha)\beta^\alpha} \\
       	&= \frac{\alpha\Gamma(\alpha)\beta^{\alpha+1}}{\Gamma(\alpha)\beta^\alpha} \\
       	&= \alpha\beta
-\end{align*}$$
+\end{aligned}$$
 	
 > 1. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
 		=\beta^\alpha\Gamma(\alpha)$
 
 
-$$\begin{align*} 
+$$\begin{aligned} 
 E(X^2)
       	&= \int\limits_{0}^{\infty}x^2\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
       		{\Gamma(\alpha)\beta^\alpha}dx \\
@@ -96,12 +96,12 @@ E(X^2)
       	&= \alpha(\alpha+1)\beta^2 \\
       	&= (\alpha^2+\alpha)\beta^2 \\
       	&= \alpha^2\beta^2+\alpha\beta^2 
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
 		=\beta^\alpha\Gamma(\alpha)$
 		
-$$\begin{align*}
+$$\begin{aligned}
 \mu
 	&= E(X) \\
 	&= \alpha\beta \\
@@ -111,13 +111,13 @@ $$\begin{align*}
 	&= E(X^2) - E(X)^2 \\
 	&= \alpha^2\beta^2 + \alpha\beta^2 - \alpha^2\beta^2 \\
 	&= \alpha\beta^2
-\end{align*}$$
+\end{aligned}$$
 
 
 
 ## Moment Generating Function
 
-$$\begin{align*} 
+$$\begin{aligned} 
 M_X(t) 
       	&= E(e^{tX}) \\
       	&= \int\limits_{0}^{\infty}e^{tx}
@@ -149,12 +149,12 @@ M_X(t)
       	&= \frac{\Gamma(\alpha)\beta^\alpha}
       		{\Gamma(\alpha)\beta^\alpha(1-\beta t)^\alpha} \\
         &= \frac{1}{(1-\beta t)^\alpha}=(1-\beta t)^{-\alpha}
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
 	      =\beta^\alpha\Gamma(\alpha)$
 
-$$\begin{align*}
+$$\begin{aligned}
 M_X^{(1)}(t)
 	&= -\alpha(1-\beta t)^{-\alpha-1}(-\beta) \\
 	&= \alpha\beta(1-\beta t)^{-\alpha-1} \\
@@ -186,7 +186,7 @@ E(X^2)
 	&= E(X^2) - E(X)^2 \\
 	&= \alpha^2\beta^2 + \alpha\beta^2 - \alpha^2\beta^2 \\
 	&= \alpha\beta^2
-\end{align*}$$
+\end{aligned}$$
 
 
 
@@ -197,7 +197,7 @@ Let $x_1,x_2,\ldots,x_n$ denote a random sample from a Gamma Distribution with p
 
 ### Likelihood Function
 
-$$\begin{align*}
+$$\begin{aligned}
 L(\theta)
 	&= L(x_1,x_2,\ldots,x_n|\theta) \\
 	&= f(x_1|\theta) f(x_2|\theta) \cdots f(x_n|\theta) \\
@@ -215,12 +215,12 @@ L(\theta)
   &= \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
 		\exp\bigg\{-\frac{1}{\beta}\sum\limits_{i=1}^{n}x_i \bigg\}
 		\prod\limits_{i=1}^{n}x_i^{\alpha-1}
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Log-likelihood Function
 
-$$\begin{align*}
+$$\begin{aligned}
 \ell(\theta)
 	&= \ln\bigg[ \big( \Gamma(\alpha)\beta^\alpha \big)^{-n} 
 		\exp\bigg\{-\frac{1}{\beta}\sum\limits_{i=1}^{n}x_i \bigg\}
@@ -237,13 +237,13 @@ $$\begin{align*}
   &= -n\ln\Gamma(\alpha) - n\alpha\ln\beta
 		- \frac{1}{\beta}\sum\limits_{i=1}^{n}x_i
 		+ (\alpha-1)\sum\limits_{i=1}^{n}\ln x_i
-\end{align*}$$
+\end{aligned}$$
 
 
 
 ### MLE for $\alpha$
 
-$$\begin{align*}
+$$\begin{aligned}
 \frac{d\ell}{d\alpha}
 	&= -n\frac{1}{\Gamma(\alpha)}\Gamma^\prime(\alpha) - n\ln\beta - 0
 		+ \sum\limits_{i=1}^{n}\ln x_i \\
@@ -257,7 +257,7 @@ $$\begin{align*}
 		&= \sum\limits_{i=1}^{n}\ln x_i - n\ln\beta \\
 \Rightarrow \frac{\Gamma^\prime(\alpha)}{\Gamma(\alpha)}
 		&= \frac{1}{n}\bigg( \sum\limits_{i=1}^{n}\ln x_i - n\ln\beta \bigg)
-\end{align*}$$
+\end{aligned}$$
 
 However, this must be solved numerically.  Notice also that the MLE for $\alpha$ depends on $\beta$.
 
@@ -265,7 +265,7 @@ However, this must be solved numerically.  Notice also that the MLE for $\alpha$
 
 ### MLE for $\beta$
 
-$$\begin{align*}
+$$\begin{aligned}
 \frac{d\ell}{d\beta}
 	&= 0 - n\alpha\frac{1}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i + 0 \\
 	&= -\frac{n\alpha}{\beta} + \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i \\
@@ -275,7 +275,7 @@ $$\begin{align*}
 \Rightarrow \frac{n\alpha}{\beta} &= \frac{1}{\beta^2}\sum\limits_{i=1}^{n}x_i \\
 \Rightarrow n\alpha\beta &= \sum\limits_{i=1}^{n}x_i \\
 \Rightarrow \beta &= \frac{1}{n\alpha} \sum\limits_{i=1}^{n}x_i
-\end{align*}$$
+\end{aligned}$$
 
 This estimate, however, depends on $\alpha$.  Since each estimator depends on the value of the other parameter, we must maximize the likelihood functions simulatneously.  That is, we must simultaneously solve the system
 \[ \left\{
@@ -294,11 +294,11 @@ Solving this system will require numerical methods.
 ### Approximation of $\hat\alpha$ and $\hat\beta$
 
 Approximations of $\hat\alpha$ and $\hat\beta$ can be obtained by noticing that\\
-$$\begin{align*}
+$$\begin{aligned}
 \frac{d\ell}{d\beta}    &= 0 \\
 \Rightarrow \beta       &= \frac{1}{n\alpha}\sum\limits_{i=1}^{n}x_i\\
 \Rightarrow \alpha\beta &= \frac{1}{n}\sum\limits_{i=1}^{n}x_i
-\end{align*}$$
+\end{aligned}$$
 
 So $\widehat{\alpha\beta} = \frac{1}{n}\sum\limits_{i=1}^{n}x_i$.  Recall that $\alpha\beta$ and $\alpha\beta^2$ are the mean and variance of the Gamma Distribution, respectively.  We utilize
 \[ \frac{\alpha\beta^2}{\alpha\beta} = \beta \]
@@ -310,11 +310,11 @@ Where $\beta^*$ denotes an approximation to $\hat\beta$
 
 We now substitute $\beta^*$ into
 
-$$\begin{align*}
+$$\begin{aligned}
 \widehat{\alpha\beta}       &= \frac{1}{n}\sum\limits_{i=1}^{n}x_i\\
 \Rightarrow \alpha^*\beta^* &= \frac{1}{n}\sum\limits_{i=1}^{n}x_i\\
 \Rightarrow \alpha^*        &= \frac{1}{n\beta^*}\sum\limits_{i=1}^{n}x_i \approx \hat\alpha
-\end{align*}$$
+\end{aligned}$$
 
 Where $\alpha^*$ denotes an approximation to $\hat\alpha$.
 
@@ -332,7 +332,7 @@ $$ \int\limits_{0}^{\infty}x\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
  \int\limits_{0}^{\infty}\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}
 		{\Gamma(\alpha)\beta^\alpha}dx 
       	&= \frac{1}{\Gamma(\alpha)\beta^\alpha}
@@ -340,7 +340,7 @@ $$\begin{align*}
 ^{[1]}	&= \frac{1}{\Gamma(\alpha)\beta^\alpha}[\Gamma(\alpha)\beta^\alpha] \\
         &= \frac{\Gamma(\alpha)\beta^\alpha}{\Gamma(\alpha)\beta^\alpha} \\
         &= 1
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
 		= \beta^\alpha\Gamma(\alpha)$
@@ -353,14 +353,14 @@ Then $Y\sim$Gamma$(\sum\limits_{i=1}^{n}\alpha_i,\beta)$.
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 M_Y(t)
 	&= E(e^{tY})=E(e^{t(X_1+X_2+\cdots+X_n)} \\
 	&= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
 	&= E(e^{tX_1})E(e^{tX_2})\cdots E(e^{tX_n}) \\
   &= (1-\beta t)^{-\alpha_1}(1-\beta t)^{-\alpha_2}\cdots
 		(1-\beta t)^{-\alpha_n}=(1-\beta t)^{-\sum\limits_{i=1}^{n}\alpha_i}
-\end{align*}$$
+\end{aligned}$$
 
 Which is the moment generating function of a Gamma random variable with parameters $\sum\limits_{i=1}^{n}\alpha_i$ and \nolinebreak$\beta$.  Thus $Y\sim$Gamma$(\sum\limits_{i=1}^{n}\alpha_i,\beta)$. 
 
@@ -372,14 +372,14 @@ Let $X_1,X_2,\ldots,X_n$ be independent random variables from an Exponential dis
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 M_Y(t)
 	&= E(e^{tY}) \\
 	&= E(e^{t(X_1+X_2+\cdots+X_n}) \\
 	&= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
   &= (1-\beta t)^{-1}(1-\beta t)^{-1}\cdots(1-\beta t)^{-1} \\
 	&= (1-\beta t)^{-n}
-\end{align*}$$
+\end{aligned}$$
 
 Which is the moment generating function for a Gamma random variable with parameters $n$ and $\beta$.  Thus $Y\sim$Gamma$(n,\beta)$. 
 

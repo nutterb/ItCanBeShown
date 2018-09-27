@@ -10,7 +10,7 @@ $$ C = \frac{D+1}{2} $$
 
 ### Theorem: Distribution of Somers' Derived Concordance
 
-Let $D \sim$ Normal$(\mu, \sigma^2)$.  Then $C \sim $Normal$(\frac{\mu+1}{2},\frac{\sigma^2}{4})$.
+Let $D \sim$ Normal$(\mu, \sigma^2)$.  Then $C \sim$ Normal $(\frac{\mu+1}{2},\frac{\sigma^2}{4})$.
 
 _Proof:_
 

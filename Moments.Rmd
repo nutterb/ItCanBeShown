@@ -19,7 +19,7 @@ The $k^{th}$ moment of a random variable $X$ about the mean $\mu$ is defined to 
 
 Using these definitions we can derive the first three central moments as follows:
 
-$$\begin{align*}
+$$\begin{aligned}
 E[(X-\mu)^1]
 	&= E(X - \mu) \\
 	&= E(X) - \mu \\
@@ -47,7 +47,7 @@ E[(X-\mu)^3]
   &= E(X^3) - 3\mu E(X^2) + 3\mu^2E(X) - \mu^3 \\
 	&= E(X^3) - 3\mu E(X^2) + 3\mu^3 - \mu^3 \\
   &= E(X^3) - 3\mu E(X^2) + 2\mu^3
-\end{align*}$$
+\end{aligned}$$
 
 It should be noticed that with all of these results, the moment about the mean can be evaluated by finding the ordinary moments.  Thus, if we can find a consistent way to generate ordinary moments , we may use these results to find various parameters of a distribution.
 
@@ -61,7 +61,7 @@ The moment generating function of a random variable, denoted $M_X(t)$, is define
 
 The moment generating function of $X$ is said to exist if for any positive constant $c,\ M_X(t)$ is finite for $|t|<c$.  The definition can be expanded to
 
-$$\begin{align*}
+$$\begin{aligned}
 M_X(t)
 	&= E(e^{tX}) \\
 	&= \sum\limits_{i=1}^{\infty}e^{tx_i}p(x_i)  \\
@@ -78,7 +78,7 @@ M_X(t)
 		+ \frac{t^2}{2!}\sum\limits_{i=1}^{\infty}x_i^2p(x_i)
 		+ \frac{t^3}{3!}\sum\limits_{i=1}^{\infty}x_i^3p(x_i)+\cdots \\
   &= 1 + tE(X) + \frac{t^2}{2!}E(X^2) + \frac{t^3}{3!} E(X^3) + \cdots
-\end{align*}$$
+\end{aligned}$$
 	
 > 1. Taylor Series Expansion: 
 		$e^x=\frac{x^0}{0!}+\frac{x^1}{1!}+\frac{x^2}{2!}\cdots
@@ -91,7 +91,7 @@ Let $M_X^{(k)}(t)$ denote the $k^{th}$ derivative of $M_X(t)$ with respect to $t
 
 _Proof:_
 
-$$\begin{align*} 
+$$\begin{aligned} 
 M_X(t)
 	&= 1 + tE(X) \\
 	&= \frac{t^2}{2!}E(X^2) + \frac{t^3}{3!} + \cdots \\
@@ -129,4 +129,4 @@ M_X^{(2)}(0)
 M_X^{(0)}(t)
 	&= 0 + E(X^k) + \frac{2\cdot 0}{2!}E(X^{k+1}) + \frac{3\cdot 0^2}{3!}E(X^{k+2}) + \cdots \\
 	&= E(X^k)
-\end{align*}$$
+\end{aligned}$$

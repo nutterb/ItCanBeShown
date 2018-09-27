@@ -62,21 +62,21 @@ We claim that $A$ has no largest element and that $B$ has no smallest element; i
 
 For any $p\in Q^+$, let 
 
-$$\begin{align*}
+$$\begin{aligned}
 q
   &=p-\frac{p^2-2}{p+2} \\
   &=\frac{p^2+2p-p^2+2}{p+2} \\
   &=\frac{2p+2}{p+2}
-\end{align*}$$  
+\end{aligned}$$  
 
 Then 
 
-$$\begin{align*}
+$$\begin{aligned}
 q^2-2
   &=\frac{4p^2+8p+r-2p^2-8p-8}{(p+2)^2}
   &=\frac{2p^2-4}{(p+2)^2}
   &=\frac{2(p+2)}{(p+2)^2}
-\end{align*}$$
+\end{aligned}$$
   
 Now if $p\in A,\ p^2-2<0$, 
 
@@ -127,12 +127,12 @@ _Proof:_
 
 Suppose $a\star b=a\star c$.  Then 
 
-$$\begin{align*}
+$$\begin{aligned}
 a^\prime\star(a\star b)             &= a^\prime\star(a\star c)\\
 \Rightarrow(a^\prime\star a)\star b &= (a^\prime\star a)\star c\\
 \Rightarrow e\star b                &= e\star c\\
 \Rightarrow b                       &= c
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Corollary: Right Cancellation
@@ -164,12 +164,12 @@ $\forall x\in\Re,\ x\cdot 0=0$.
 
 _Proof:_ 
 
-$$\begin{align*}
+$$\begin{aligned}
 0 + x\cdot 0    &= x\cdot 0\\
                 &= x\cdot(0+0)\\
                 &= x\cdot 0 + x\cdot 0\\
   Rightarrow 0  &= x\cdot 0
-\end{align*}$$
+\end{aligned}$$
 
 ### Theorem
 
@@ -179,10 +179,10 @@ _Proof:_
 
 $-(-x)+(-x) = 0$ and $0 = x+(-x)$.  So
 
-$$\begin{align*}
+$$\begin{aligned}
 -(-x)+(-x) &= x+(-x)
   \Rightarrow -(-x) &= x 
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Theorem {#real-numbers-theorem-4-9}
@@ -191,24 +191,24 @@ $$\forall x,y\in\Re,\ x\cdot(-y) = -(x\cdot y)=(-x)\cdot y$$
 
 _Proof:_ 
 
-$$\begin{align*}
+$$\begin{aligned}
             x(-y)+xy  &= x(-y+y) 
                       &= x\cdot 0 \\
                       &= 0 \\
                       &= -(xy)+xy\\
 \Rightarrow x(-y)+xy  &= -(xy)+xy\\
 \Rightarrow x(-y)     &= -(xy)
-\end{align*}$$
+\end{aligned}$$
 
 Similarly, 
 
-$$\begin{align*}
+$$\begin{aligned}
           (-x)y+xy &= (-x+x)y \\
                    &= 0\cdot y \\
                    &= 0 \\
                    &= -(xy)+xy\\
 \Rightarrow (-x)y   &= -(xy)
-\end{align*}$$
+\end{aligned}$$
 
 By transitivity, $(-x)y = -(xy) = x(-y)$. 
 
@@ -220,10 +220,10 @@ _Proof:_
 
 By Theorem \@ref(real-numbers-theorem-4-9)
 
-$$\begin{align*}
+$$\begin{aligned}
 (-1)x &= -(1x)
       &= -x
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Corollary {#real-numbers-theorem-4-11}
@@ -244,14 +244,14 @@ _Proof:_
 
 By Corollary \@ref(real-numbers-theorem-4-11)
 
-$$\begin{align*}
+$$\begin{aligned}
 (-x)(-x) 
   &= -(x(-x)) \\
   &= -((-x)x) \\
   &= -(-(x\cdot x)) \\
   &= (x\cdot x) \\
   &= x\cdot x
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Theorem
@@ -279,7 +279,7 @@ $$\forall a,b,c\in\Re,\ (a<b \wedge b<c)\Rightarrow a<c$$
 
 _Proof:_ 
 
-$$\begin{align*}
+$$\begin{aligned}
               a<b &\wedge b<c \\ 
 \Rightarrow b-a>0 &\wedge c-b>0 \\ 
 \Rightarrow^{[1]}(b-a)+(c-b)>0 \\
@@ -287,7 +287,7 @@ $$\begin{align*}
 \Rightarrow c-b+b-a>0 \\ 
 \Rightarrow c-a>0 \\ 
 \Rightarrow a<c 
-\end{align*}$$
+\end{aligned}$$
 
 > 1. Axiom 12
 
@@ -297,14 +297,14 @@ $\forall a,b,c \in\Re,\ (a<b \ \Rightarrow a+c<b+c)$.
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
             a           &< b \\
 \Rightarrow b-a         &> 0 \\
 \Rightarrow b-c+c-a     &> 0 \\
 \Rightarrow b+c-a-c     &> 0 \\
 \Rightarrow (b+c)-(a+c) &> 0 \\ 
 \Rightarrow a+c         &< b+c\ 
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Theorem
@@ -313,13 +313,13 @@ $\forall a,b,c\in\Re,\ (a<b\wedge c>0)\Rightarrow ac<bc$.\\
 
 _Proof:_ 
 
-$$\begin{align*}
+$$\begin{aligned}
 a &< b \\
 \Rightarrow b-a           &> 0 \\  
 ^{[1]} \Rightarrow c(b-a) &> 0 \\
 	     \Rightarrow bc-ac  &> 0 \\
 	     \Rightarrow ac     &< bc
-\end{align*}$$
+\end{aligned}$$
 
 > 1. Axiom 12 states that $\Re^+$ is closed under $\cdot$.
 
@@ -329,13 +329,13 @@ $\forall a,b,c\in\Re,\ (a<b\wedge c<0)\Rightarrow bc<ba$.
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 a                   &< b \\ 
 \Rightarrow b-a     &> 0 \\ 
 \Rightarrow c(b-a)  &< 0 \\ 
 \Rightarrow bc-ba   &< 0 \\ 
 \Rightarrow bc      &< ba
-\end{align*}$$
+\end{aligned}$$
 
 > 1. Theorem \ref{RealNumbers4.9}.
 
@@ -345,7 +345,7 @@ If $a>b>0$ and $c>d>0$, then $ac>bd$.
 
 _Proof:_ 
 
-$$\begin{align*}
+$$\begin{aligned}
 a>b &\wedge c>d \\ 
 \Rightarrow a-b>0 &\wedge c-d>0 \\ 
 \Rightarrow c(a-b)>0 &\wedge b(c-d)>0 \\ 
@@ -353,7 +353,7 @@ a>b &\wedge c>d \\
 \Rightarrow ac-bc+bc-bd>0 & \\ 
 \Rightarrow ac-bd>0 & \\ 
 \Rightarrow ac>bd &
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Theorem

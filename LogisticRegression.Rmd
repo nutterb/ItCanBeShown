@@ -6,18 +6,18 @@ Logistic regression intends to model the probability that a given response will 
 ### Obtaining the Logit Transformation
 Let us call the response for our logistic model the probability $p$ that an event will occur.  Since $p$ is a probability, by definition, it's domain is from 0 to 1.  Ideally, we would like to have a response whose domain is $\Re$.  First, let us consider the transformation $\frac{p}{1-p}$ (also called the odds of $p$) and it's limits as $p$ approaches 0 and 1.
 
-$$\begin{align*}
+$$\begin{aligned}
 \lim\limits_{p\rightarrow 0} \frac{p}{1-p} 
     = \frac{0}{1-0} 
     = 0
-\end{align*}$$
+\end{aligned}$$
 
 and
 
-$$\begin{align*}
+$$\begin{aligned}
 \lim\limits_{p\rightarrow 1} \frac{p}{1-p} 
     = \infty
-\end{align*}$$
+\end{aligned}$$
   
 So the domain of $\frac{p}{1-p}$ is $(0,\infty)$.  This is handy, as we do know that the $\ln$ function takes a variable on the domain $(0,\infty)$ and maps it onto the range $(-\infty,\infty)$.  Thus, the equation for our logistic model the transformation (called the logit, or log-odds):
 
@@ -27,7 +27,7 @@ $$\ln\bigg(\frac{p}{1-p}\bigg) = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \b
 ## Retrieving the Modelled Probability
 While the logit transformation allows us to perform the logistic regression, the resulting measure tells us about the risk of an event associated with a predictor, but does not tell us directly about the probability of the event occuring.  If we need to know the probability of the event ocurring, we must back transform the results of our regression equation.  Essentially, we extract $\hat p$ from the modelled log-odds.  This is done as by:
 
-$$\begin{align*}
+$$\begin{aligned}
 \ln\bigg(\frac{\hat{p}}{1-\hat{p}}\bigg)  
 		    &= \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n \\
 ^{[1]}  &= B \\
@@ -39,6 +39,6 @@ $$\begin{align*}
 \Rightarrow \hat{p} &= \frac{\exp(B)}{1 + \exp(B)} \\
 \Rightarrow \hat{p} &= \frac{\exp(\beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n)}
                      {1 + \exp(\beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n)}
-\end{align*}$$
+\end{aligned}$$
 
 > 1. Let $B = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n$

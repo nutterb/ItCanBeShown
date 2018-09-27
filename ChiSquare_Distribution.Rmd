@@ -52,7 +52,7 @@ ggplot(data = ChiSquare,
 
 
 ## Expected Values
-$$\begin{align*}
+$$\begin{aligned}
 E(X)
       	&= \int\limits_{0}^{\infty}x\frac{x^{\frac{\nu}{2}-1}e^{-\frac{x}{2}}}
       		{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}dx \\
@@ -68,12 +68,12 @@ E(X)
       		{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})} \\
       	&= \frac{2\nu}{2} \\
       	&= \nu
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
 		= \beta^\alpha\Gamma(\alpha)$
 
-$$\begin{align*}
+$$\begin{aligned}
 E(X^2)
       	&= \int\limits_{0}^{\infty}x^2\frac{x^{\frac{\nu}{2}-1}e^{-\frac{x}{2}}}
       		{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}dx \\
@@ -91,12 +91,12 @@ E(X^2)
       		{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})} \\
       	&= \Big(\frac{\nu}{2}+1\Big)\frac{\nu}{2}\cdot 2^2=2\Big(\frac{\nu}{2}+1\Big)\nu \\
       	&= (\nu+2)\nu=\nu^2+2\nu
-\end{align*}$$
+\end{aligned}$$
 	
 > 1. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
 		= \beta^\alpha\Gamma(\alpha)$
 		
-$$\begin{align*}
+$$\begin{aligned}
 \mu
 	&= E(X) \\
 	&= \nu \\
@@ -106,13 +106,13 @@ $$\begin{align*}
 	&= E(X^2)-E(X)^2 \\
 	&= \nu^2+2\nu-\nu^2 \\
 	&= 2\nu
-\end{align*}$$
+\end{aligned}$$
 
 
 
 ## Moment Generating Function
 
-$$\begin{align*}
+$$\begin{aligned}
 M_X(t)
         	&= E(e^{tX}) \\
         	&= \int\limits_{0}^{\infty}e^{tx}
@@ -148,12 +148,12 @@ M_X(t)
         	  	{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})(1-2t)^{\frac{\nu}{2}}} \\
         	&= \frac{1}{(1-2t)^{\frac{\nu}{2}}} \\
         	&= (1-2t)^{-\frac{\nu}{2}}
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
 		= \beta^\alpha\Gamma(\alpha)$
 
-$$\begin{align*}
+$$\begin{aligned}
 M_X^{(1)}(t)
 	&= -\frac{\nu}{2}(1-2t)^{-\frac{\nu}{2}-1}(-2) \\
 	&= \frac{2\nu}{2}(1-2t)^{-\frac{\nu}{2}-1} \\
@@ -196,7 +196,7 @@ E(X^2)
 	&= E(X^2)-E(X)^2 \\
 	&= \nu^2+2\nu-\nu^2 \\
 	&= 2\nu
-\end{align*}$$
+\end{aligned}$$
 
 
 
@@ -206,7 +206,7 @@ Let $x_1,x_2,\ldots,x_n$ be a random sample from a Chi-square distribution with 
 
 ### Likelihood Function
 
-$$\begin{align*}
+$$\begin{aligned}
 L(\theta)
 	&= f(x_1|\theta) f(x_2|\theta) \cdots f(x_n|\theta) \\
   &= \frac{x_1^{\nu/2-1}e^{-x_1/2}}{2^{\nu/2}\Gamma\big(\frac{\nu}{2}\big)}
@@ -222,10 +222,10 @@ L(\theta)
   &= \bigg(2^{\nu/2}\Gamma\Big(\frac{\nu}{2}\Big)\bigg)
 	  	\cdot \exp\bigg\{ \frac{1}{2}\sum\limits_{i=1}^{n}x_i \bigg\}
 	  	\cdot \prod\limits_{i=1}^{n}x_i^{\nu/2-1}
-\end{align*}$$
+\end{aligned}$$
 
 ### Log-likelihood Function
-$$\begin{align*}
+$$\begin{aligned}
 \ell(\theta)
 	&= \ln\big(L(\theta)\big) \\
 	&= \ln\Bigg[ \bigg(2^{\nu/2}\Gamma\Big(\frac{\nu}{2}\Big)\bigg)
@@ -246,12 +246,12 @@ $$\begin{align*}
   &= -\frac{n\nu}{2} \ln 2 - n\ln \Gamma\Big( \frac{\nu}{2} \Big)
 		+ \frac{1}{2}\sum\limits_{i=1}^{n}x_i
 		+ \bigg( \frac{\nu}{2}-1 \bigg) \sum\limits_{i=1}^{n}\ln x_i
-\end{align*}$$
+\end{aligned}$$
 
 
 ### MLE for $\nu$
 
-$$\begin{align*}
+$$\begin{aligned}
 \frac{d\ell}{d\nu}
 	&= -\frac{n}{2} \ln 2 
 		- \frac{n}{\Gamma\big(\frac{\nu}{2}\big)} \Gamma^\prime\Big(\frac{\nu}{2}\Big) \cdot \frac{1}{2}
@@ -270,7 +270,7 @@ $$\begin{align*}
 		&= -\frac{n}{\Gamma\big(\frac{\nu}{2}\big)} \Gamma^\prime\Big(\frac{\nu}{2}\Big)\\
 \Rightarrow \frac{\sum\limits_{i=1}^{n}\ln x_i - n\ln 2}{n}
 		&= \frac{\Gamma^\prime\big(\frac{\nu}{2}\big)}{\Gamma\big(\frac{\nu}{2}\big)}
-\end{align*}$$
+\end{aligned}$$
 
 Due to the complexity of the Gamma function in this equation, no solution can be developed for $\nu$ in closed form.  Thus, we have to rely on numerical methods to obtain a solution to the equation and find the maximum likelihood estimator.
 
@@ -287,7 +287,7 @@ $$
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 \int\limits_{0}^{\infty}\frac{x^{\frac{\nu}{2}-1}e^{-\frac{x}{2}}}
 		{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}dx
         	&= \frac{1}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}
@@ -297,7 +297,7 @@ $$\begin{align*}
           &= \frac{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}{2^{\frac{\nu}{2}}
               \Gamma(\frac{\nu}{2})} \\
         	&= 1
-\end{align*}$$
+\end{aligned}$$
 	
 > 1. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-\frac{x}{\beta}}dx
 		= \beta^\alpha\Gamma(\alpha)$
@@ -311,7 +311,7 @@ Suppose $Y = \sum\limits_{i=1}^{n}X_i$. Then $Y\sim\chi^2(\sum\limits_{i=1}^{n}\
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 M_Y(t)
 	&= E(e^{tY}=E(e^{t(X_1+X_2+\cdots+X_n}) \\
 	&= E(e^{tX_1}e^{tX_2}\cdots e^{tX_n}) \\
@@ -319,7 +319,7 @@ M_Y(t)
   &= (1-2t)^{-\frac{\nu_1}{2}}(1-2t)^{-\frac{\nu_2}{2}}\cdots
 	  	(1-2t)^{-\frac{\nu_n}{2}} \\
 	&= (1-2t)^{\sum\limits_{i=1}^{n}\nu_i}
-\end{align*}$$
+\end{aligned}$$
 
 Which is the mgf of a Chi-Square random variable with parameter $\sum\limits_{i=1}^{n}\nu_i$.  
 Thus $Y\sim\chi^2\bigg(\sum\limits_{i=1}^{n}\nu_i\bigg)$. 
@@ -332,12 +332,12 @@ Suppose $Y = c \cdot X$. Then $Y\sim Gamma(\frac{\nu}{2}, 2 \cdot c)$.
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 M_Y(t)
 	&= E(e^{tY})=E(e^{tcX}) \\
 	&= (1-2tc)^{-\frac{\nu}{2}} \\
 	&= (1-2c \cdot t)^{-\frac{\nu}{2}}
-\end{align*}$$
+\end{aligned}$$
 
 Which is the mgf of a Gamma distributed variable with parameters $\alpha = 
 \frac{\nu}{2}$ and $\beta = 2c$. Thus, $Y\sim Gamma(\frac{\nu}{2}, 2 \cdot c)$.
@@ -347,7 +347,7 @@ Which is the mgf of a Gamma distributed variable with parameters $\alpha =
 If $Z\sim N(0,1)$, then $Z^2\sim\chi^2(1)$.
 
 _Proof:_
-$$\begin{align*}
+$$\begin{aligned}
 M_{Z^2}(t)
       	&= E(e^{tZ^2}) \\
       	&= \int\limits_{-\infty}^{\infty}e^{tz^2}\frac{1}{\sqrt{2\pi}}
@@ -369,7 +369,7 @@ M_{Z^2}(t)
 ^{[3]}  &= \frac{1}{\sqrt{\pi}(1-2t)^{\frac{1}{2}}}\Gamma(\frac{1}{2}) \\
       	&= \frac{\sqrt{\pi}}{\sqrt{\pi}(1-2t)^{\frac{1}{2}}} \\
       	&= \frac{1}{(1-2t)^{\frac{1}{2}}}=(1-2t)^{-\frac{1}{2}} \\
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $\int\limits_{-\infty}^{\infty}f(x)dx
 		= 2\int\limits_{0}^{\infty}f(x)dx$ when f(x) is an even function (\ref{Integration1.2})

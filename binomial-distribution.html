@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>It Can Be Shown</title>
   <meta name="description" content="Notes on the Development of Statistical Theory">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="It Can Be Shown" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Benjamin Nutter">
 
 
-<meta name="date" content="2018-04-17">
+<meta name="date" content="2018-09-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -101,9 +101,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">It Can Be Shown</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>2</b> Analysis of Variance</a><ul>
 <li class="chapter" data-level="2.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-way-design"><i class="fa fa-check"></i><b>2.1</b> One-Way Design</a><ul>
@@ -134,7 +131,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.5" data-path="binomial-distribution.html"><a href="binomial-distribution.html#maximum-likelihood-estimator"><i class="fa fa-check"></i><b>4.5</b> Maximum Likelihood Estimator</a><ul>
 <li class="chapter" data-level="4.5.1" data-path="binomial-distribution.html"><a href="binomial-distribution.html#likelihood-function"><i class="fa fa-check"></i><b>4.5.1</b> Likelihood Function</a></li>
 <li class="chapter" data-level="4.5.2" data-path="binomial-distribution.html"><a href="binomial-distribution.html#log-likelihood-function"><i class="fa fa-check"></i><b>4.5.2</b> Log-likelihood Function</a></li>
-<li class="chapter" data-level="4.5.3" data-path="binomial-distribution.html"><a href="binomial-distribution.html#mle-for-p"><i class="fa fa-check"></i><b>4.5.3</b> MLE for p</a></li>
+<li class="chapter" data-level="4.5.3" data-path="binomial-distribution.html"><a href="binomial-distribution.html#mle-for-pi"><i class="fa fa-check"></i><b>4.5.3</b> MLE for <span class="math inline">\(\pi\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="binomial-distribution.html"><a href="binomial-distribution.html#theorems-for-the-binomial-distribution"><i class="fa fa-check"></i><b>4.6</b> Theorems for the Binomial Distribution</a><ul>
 <li class="chapter" data-level="4.6.1" data-path="binomial-distribution.html"><a href="binomial-distribution.html#validity-of-the-distribution-1"><i class="fa fa-check"></i><b>4.6.1</b> Validity of the Distribution</a></li>
@@ -495,112 +492,120 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="37.1.8" data-path="summation-chapter.html"><a href="summation-chapter.html#summation-theorem-8"><i class="fa fa-check"></i><b>37.1.8</b> Theorem</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="38" data-path="method-of-transformations.html"><a href="method-of-transformations.html"><i class="fa fa-check"></i><b>38</b> Method of Transformations</a><ul>
-<li class="chapter" data-level="38.1" data-path="method-of-transformations.html"><a href="method-of-transformations.html#example-cauchy-distribution"><i class="fa fa-check"></i><b>38.1</b> Example: Cauchy Distribution</a></li>
+<li class="chapter" data-level="38" data-path="analysis-of-variance-1.html"><a href="analysis-of-variance-1.html"><i class="fa fa-check"></i><b>38</b> Analysis of Variance</a><ul>
+<li class="chapter" data-level="38.1" data-path="analysis-of-variance-1.html"><a href="analysis-of-variance-1.html#one-way-design-1"><i class="fa fa-check"></i><b>38.1</b> One-Way Design</a><ul>
+<li class="chapter" data-level="38.1.1" data-path="analysis-of-variance-1.html"><a href="analysis-of-variance-1.html#decomposition-of-sums-of-squares-2"><i class="fa fa-check"></i><b>38.1.1</b> Decomposition of Sums of Squares</a></li>
 </ul></li>
-<li class="chapter" data-level="39" data-path="t-test.html"><a href="t-test.html"><i class="fa fa-check"></i><b>39</b> T-test</a><ul>
-<li class="chapter" data-level="39.1" data-path="t-test.html"><a href="t-test.html#one-sample-t-test"><i class="fa fa-check"></i><b>39.1</b> One-Sample T-test</a><ul>
-<li class="chapter" data-level="39.1.1" data-path="t-test.html"><a href="t-test.html#t-statistic"><i class="fa fa-check"></i><b>39.1.1</b> T-Statistic</a></li>
-<li class="chapter" data-level="39.1.2" data-path="t-test.html"><a href="t-test.html#definitions-and-terminology"><i class="fa fa-check"></i><b>39.1.2</b> Definitions and Terminology</a></li>
-<li class="chapter" data-level="39.1.3" data-path="t-test.html"><a href="t-test.html#hypotheses-1"><i class="fa fa-check"></i><b>39.1.3</b> Hypotheses</a></li>
-<li class="chapter" data-level="39.1.4" data-path="t-test.html"><a href="t-test.html#decision-rule-1"><i class="fa fa-check"></i><b>39.1.4</b> Decision Rule</a></li>
-<li class="chapter" data-level="39.1.5" data-path="t-test.html"><a href="t-test.html#power-1"><i class="fa fa-check"></i><b>39.1.5</b> Power</a></li>
-<li class="chapter" data-level="39.1.6" data-path="t-test.html"><a href="t-test.html#confidence-interval"><i class="fa fa-check"></i><b>39.1.6</b> Confidence Interval</a></li>
-</ul></li>
-<li class="chapter" data-level="39.2" data-path="t-test.html"><a href="t-test.html#two-sample-t-test"><i class="fa fa-check"></i><b>39.2</b> Two-Sample T-test</a><ul>
-<li class="chapter" data-level="39.2.1" data-path="t-test.html"><a href="t-test.html#t-statistic-1"><i class="fa fa-check"></i><b>39.2.1</b> T-Statistic</a></li>
-<li class="chapter" data-level="39.2.2" data-path="t-test.html"><a href="t-test.html#definitions-and-terminology-1"><i class="fa fa-check"></i><b>39.2.2</b> Definitions and Terminology</a></li>
-<li class="chapter" data-level="39.2.3" data-path="t-test.html"><a href="t-test.html#hypotheses-2"><i class="fa fa-check"></i><b>39.2.3</b> Hypotheses</a></li>
-<li class="chapter" data-level="39.2.4" data-path="t-test.html"><a href="t-test.html#decision-rule-2"><i class="fa fa-check"></i><b>39.2.4</b> Decision Rule</a></li>
-</ul></li>
-<li class="chapter" data-level="39.3" data-path="t-test.html"><a href="t-test.html#one-sided-test"><i class="fa fa-check"></i><b>39.3</b> One Sided Test</a><ul>
-<li class="chapter" data-level="39.3.1" data-path="t-test.html"><a href="t-test.html#power-2"><i class="fa fa-check"></i><b>39.3.1</b> Power</a></li>
-<li class="chapter" data-level="39.3.2" data-path="t-test.html"><a href="t-test.html#confidence-interval-1"><i class="fa fa-check"></i><b>39.3.2</b> Confidence Interval</a></li>
-</ul></li>
-<li class="chapter" data-level="39.4" data-path="t-test.html"><a href="t-test.html#references-5"><i class="fa fa-check"></i><b>39.4</b> References</a></li>
-</ul></li>
-<li class="chapter" data-level="40" data-path="uniform-distribution.html"><a href="uniform-distribution.html"><i class="fa fa-check"></i><b>40</b> Uniform Distribution</a><ul>
-<li class="chapter" data-level="40.1" data-path="uniform-distribution.html"><a href="uniform-distribution.html#probability-density-function"><i class="fa fa-check"></i><b>40.1</b> Probability Density Function</a></li>
-<li class="chapter" data-level="40.2" data-path="uniform-distribution.html"><a href="uniform-distribution.html#cumulative-density-function"><i class="fa fa-check"></i><b>40.2</b> Cumulative Density Function</a></li>
-<li class="chapter" data-level="40.3" data-path="uniform-distribution.html"><a href="uniform-distribution.html#expected-values-11"><i class="fa fa-check"></i><b>40.3</b> Expected Values</a></li>
-<li class="chapter" data-level="40.4" data-path="uniform-distribution.html"><a href="uniform-distribution.html#moment-generating-function-9"><i class="fa fa-check"></i><b>40.4</b> Moment Generating Function</a></li>
-<li class="chapter" data-level="40.5" data-path="uniform-distribution.html"><a href="uniform-distribution.html#theorems-for-the-uniform-distribution"><i class="fa fa-check"></i><b>40.5</b> Theorems for the Uniform Distribution</a></li>
-<li class="chapter" data-level="40.6" data-path="uniform-distribution.html"><a href="uniform-distribution.html#validity-of-the-distribution-8"><i class="fa fa-check"></i><b>40.6</b> Validity of the Distribution</a></li>
-</ul></li>
-<li class="chapter" data-level="41" data-path="variance-parameter.html"><a href="variance-parameter.html"><i class="fa fa-check"></i><b>41</b> Variance Parameter</a><ul>
-<li class="chapter" data-level="41.1" data-path="variance-parameter.html"><a href="variance-parameter.html#defining-variance-with-expected-values"><i class="fa fa-check"></i><b>41.1</b> Defining Variance With Expected Values</a></li>
-<li class="chapter" data-level="41.2" data-path="variance-parameter.html"><a href="variance-parameter.html#unbiased-estimator"><i class="fa fa-check"></i><b>41.2</b> Unbiased Estimator</a></li>
-<li class="chapter" data-level="41.3" data-path="variance-parameter.html"><a href="variance-parameter.html#computational-formulae-1"><i class="fa fa-check"></i><b>41.3</b> Computational Formulae</a><ul>
-<li class="chapter" data-level="41.3.1" data-path="variance-parameter.html"><a href="variance-parameter.html#computational-formula-population-variance"><i class="fa fa-check"></i><b>41.3.1</b> Computational Formula for <span class="math inline">\(\sigma\)</span>^2</a></li>
-<li class="chapter" data-level="41.3.2" data-path="variance-parameter.html"><a href="variance-parameter.html#computational-formula-sample-variance"><i class="fa fa-check"></i><b>41.3.2</b> Computational Formula for <span class="math inline">\(s\)</span>^2</a></li>
-<li class="chapter" data-level="41.3.3" data-path="variance-parameter.html"><a href="variance-parameter.html#corollary-alternative-computational-formula-for-s2"><i class="fa fa-check"></i><b>41.3.3</b> Corollary: Alternative Computational Formula for <span class="math inline">\(s^2\)</span></a></li>
+<li class="chapter" data-level="38.2" data-path="analysis-of-variance-1.html"><a href="analysis-of-variance-1.html#computational-formulas-1"><i class="fa fa-check"></i><b>38.2</b> Computational Formulas</a></li>
+<li class="chapter" data-level="38.3" data-path="analysis-of-variance-1.html"><a href="analysis-of-variance-1.html#randomized-complete-block-design-1"><i class="fa fa-check"></i><b>38.3</b> Randomized Complete Block Design</a><ul>
+<li class="chapter" data-level="38.3.1" data-path="analysis-of-variance-1.html"><a href="analysis-of-variance-1.html#decomposition-of-sums-of-squares-3"><i class="fa fa-check"></i><b>38.3.1</b> Decomposition of Sums of Squares</a></li>
+<li class="chapter" data-level="38.3.2" data-path="analysis-of-variance-1.html"><a href="analysis-of-variance-1.html#computational-formulae-1"><i class="fa fa-check"></i><b>38.3.2</b> Computational Formulae</a></li>
+<li class="chapter" data-level="38.3.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#anova-rcbd-cross-products"><i class="fa fa-check"></i><b>38.3.3</b> RCBD Cross Products</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="42" data-path="weibull-distribution.html"><a href="weibull-distribution.html"><i class="fa fa-check"></i><b>42</b> Weibull Distribution</a><ul>
-<li class="chapter" data-level="42.1" data-path="weibull-distribution.html"><a href="weibull-distribution.html#probability-distribution-function-4"><i class="fa fa-check"></i><b>42.1</b> Probability Distribution Function</a></li>
-<li class="chapter" data-level="42.2" data-path="weibull-distribution.html"><a href="weibull-distribution.html#cumulative-distribution-function-7"><i class="fa fa-check"></i><b>42.2</b> Cumulative Distribution Function</a></li>
-<li class="chapter" data-level="42.3" data-path="weibull-distribution.html"><a href="weibull-distribution.html#expected-values-12"><i class="fa fa-check"></i><b>42.3</b> Expected Values</a></li>
-<li class="chapter" data-level="42.4" data-path="weibull-distribution.html"><a href="weibull-distribution.html#theorems-for-the-weibull-distribution"><i class="fa fa-check"></i><b>42.4</b> Theorems for the Weibull Distribution</a><ul>
-<li class="chapter" data-level="42.4.1" data-path="weibull-distribution.html"><a href="weibull-distribution.html#validity-of-the-distribution-9"><i class="fa fa-check"></i><b>42.4.1</b> Validity of the Distribution</a></li>
+<li class="chapter" data-level="39" data-path="method-of-transformations.html"><a href="method-of-transformations.html"><i class="fa fa-check"></i><b>39</b> Method of Transformations</a><ul>
+<li class="chapter" data-level="39.1" data-path="method-of-transformations.html"><a href="method-of-transformations.html#example-cauchy-distribution"><i class="fa fa-check"></i><b>39.1</b> Example: Cauchy Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="t-test.html"><a href="t-test.html"><i class="fa fa-check"></i><b>40</b> T-test</a><ul>
+<li class="chapter" data-level="40.1" data-path="t-test.html"><a href="t-test.html#one-sample-t-test"><i class="fa fa-check"></i><b>40.1</b> One-Sample T-test</a><ul>
+<li class="chapter" data-level="40.1.1" data-path="t-test.html"><a href="t-test.html#t-statistic"><i class="fa fa-check"></i><b>40.1.1</b> T-Statistic</a></li>
+<li class="chapter" data-level="40.1.2" data-path="t-test.html"><a href="t-test.html#definitions-and-terminology"><i class="fa fa-check"></i><b>40.1.2</b> Definitions and Terminology</a></li>
+<li class="chapter" data-level="40.1.3" data-path="t-test.html"><a href="t-test.html#hypotheses-1"><i class="fa fa-check"></i><b>40.1.3</b> Hypotheses</a></li>
+<li class="chapter" data-level="40.1.4" data-path="t-test.html"><a href="t-test.html#decision-rule-1"><i class="fa fa-check"></i><b>40.1.4</b> Decision Rule</a></li>
+<li class="chapter" data-level="40.1.5" data-path="t-test.html"><a href="t-test.html#power-1"><i class="fa fa-check"></i><b>40.1.5</b> Power</a></li>
+<li class="chapter" data-level="40.1.6" data-path="t-test.html"><a href="t-test.html#confidence-interval"><i class="fa fa-check"></i><b>40.1.6</b> Confidence Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="40.2" data-path="t-test.html"><a href="t-test.html#two-sample-t-test"><i class="fa fa-check"></i><b>40.2</b> Two-Sample T-test</a><ul>
+<li class="chapter" data-level="40.2.1" data-path="t-test.html"><a href="t-test.html#t-statistic-1"><i class="fa fa-check"></i><b>40.2.1</b> T-Statistic</a></li>
+<li class="chapter" data-level="40.2.2" data-path="t-test.html"><a href="t-test.html#definitions-and-terminology-1"><i class="fa fa-check"></i><b>40.2.2</b> Definitions and Terminology</a></li>
+<li class="chapter" data-level="40.2.3" data-path="t-test.html"><a href="t-test.html#hypotheses-2"><i class="fa fa-check"></i><b>40.2.3</b> Hypotheses</a></li>
+<li class="chapter" data-level="40.2.4" data-path="t-test.html"><a href="t-test.html#decision-rule-2"><i class="fa fa-check"></i><b>40.2.4</b> Decision Rule</a></li>
+</ul></li>
+<li class="chapter" data-level="40.3" data-path="t-test.html"><a href="t-test.html#one-sided-test"><i class="fa fa-check"></i><b>40.3</b> One Sided Test</a><ul>
+<li class="chapter" data-level="40.3.1" data-path="t-test.html"><a href="t-test.html#power-2"><i class="fa fa-check"></i><b>40.3.1</b> Power</a></li>
+<li class="chapter" data-level="40.3.2" data-path="t-test.html"><a href="t-test.html#confidence-interval-1"><i class="fa fa-check"></i><b>40.3.2</b> Confidence Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="40.4" data-path="t-test.html"><a href="t-test.html#references-5"><i class="fa fa-check"></i><b>40.4</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="41" data-path="uniform-distribution.html"><a href="uniform-distribution.html"><i class="fa fa-check"></i><b>41</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="41.1" data-path="uniform-distribution.html"><a href="uniform-distribution.html#probability-density-function"><i class="fa fa-check"></i><b>41.1</b> Probability Density Function</a></li>
+<li class="chapter" data-level="41.2" data-path="uniform-distribution.html"><a href="uniform-distribution.html#cumulative-density-function"><i class="fa fa-check"></i><b>41.2</b> Cumulative Density Function</a></li>
+<li class="chapter" data-level="41.3" data-path="uniform-distribution.html"><a href="uniform-distribution.html#expected-values-11"><i class="fa fa-check"></i><b>41.3</b> Expected Values</a></li>
+<li class="chapter" data-level="41.4" data-path="uniform-distribution.html"><a href="uniform-distribution.html#moment-generating-function-9"><i class="fa fa-check"></i><b>41.4</b> Moment Generating Function</a></li>
+<li class="chapter" data-level="41.5" data-path="uniform-distribution.html"><a href="uniform-distribution.html#theorems-for-the-uniform-distribution"><i class="fa fa-check"></i><b>41.5</b> Theorems for the Uniform Distribution</a></li>
+<li class="chapter" data-level="41.6" data-path="uniform-distribution.html"><a href="uniform-distribution.html#validity-of-the-distribution-8"><i class="fa fa-check"></i><b>41.6</b> Validity of the Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="42" data-path="variance-parameter.html"><a href="variance-parameter.html"><i class="fa fa-check"></i><b>42</b> Variance Parameter</a><ul>
+<li class="chapter" data-level="42.1" data-path="variance-parameter.html"><a href="variance-parameter.html#defining-variance-with-expected-values"><i class="fa fa-check"></i><b>42.1</b> Defining Variance With Expected Values</a></li>
+<li class="chapter" data-level="42.2" data-path="variance-parameter.html"><a href="variance-parameter.html#unbiased-estimator"><i class="fa fa-check"></i><b>42.2</b> Unbiased Estimator</a></li>
+<li class="chapter" data-level="42.3" data-path="variance-parameter.html"><a href="variance-parameter.html#computational-formulae-2"><i class="fa fa-check"></i><b>42.3</b> Computational Formulae</a><ul>
+<li class="chapter" data-level="42.3.1" data-path="variance-parameter.html"><a href="variance-parameter.html#computational-formula-population-variance"><i class="fa fa-check"></i><b>42.3.1</b> Computational Formula for <span class="math inline">\(\sigma\)</span>^2</a></li>
+<li class="chapter" data-level="42.3.2" data-path="variance-parameter.html"><a href="variance-parameter.html#computational-formula-sample-variance"><i class="fa fa-check"></i><b>42.3.2</b> Computational Formula for <span class="math inline">\(s\)</span>^2</a></li>
+<li class="chapter" data-level="42.3.3" data-path="variance-parameter.html"><a href="variance-parameter.html#corollary-alternative-computational-formula-for-s2"><i class="fa fa-check"></i><b>42.3.3</b> Corollary: Alternative Computational Formula for <span class="math inline">\(s^2\)</span></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="43" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html"><i class="fa fa-check"></i><b>43</b> Z-test of Sample Proportions</a><ul>
-<li class="chapter" data-level="43.1" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#one-sample-z-test"><i class="fa fa-check"></i><b>43.1</b> One-Sample Z-test</a><ul>
-<li class="chapter" data-level="43.1.1" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#z-statistic"><i class="fa fa-check"></i><b>43.1.1</b> Z-Statistic</a></li>
-<li class="chapter" data-level="43.1.2" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#definitions-and-terminology-2"><i class="fa fa-check"></i><b>43.1.2</b> Definitions and Terminology</a></li>
-<li class="chapter" data-level="43.1.3" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#hypotheses-3"><i class="fa fa-check"></i><b>43.1.3</b> Hypotheses</a></li>
-<li class="chapter" data-level="43.1.4" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#decision-rule-3"><i class="fa fa-check"></i><b>43.1.4</b> Decision Rule</a></li>
-<li class="chapter" data-level="43.1.5" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#power-3"><i class="fa fa-check"></i><b>43.1.5</b> Power</a></li>
-<li class="chapter" data-level="43.1.6" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#confidence-interval-2"><i class="fa fa-check"></i><b>43.1.6</b> Confidence Interval</a></li>
+<li class="chapter" data-level="43" data-path="weibull-distribution.html"><a href="weibull-distribution.html"><i class="fa fa-check"></i><b>43</b> Weibull Distribution</a><ul>
+<li class="chapter" data-level="43.1" data-path="weibull-distribution.html"><a href="weibull-distribution.html#probability-distribution-function-4"><i class="fa fa-check"></i><b>43.1</b> Probability Distribution Function</a></li>
+<li class="chapter" data-level="43.2" data-path="weibull-distribution.html"><a href="weibull-distribution.html#cumulative-distribution-function-7"><i class="fa fa-check"></i><b>43.2</b> Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="43.3" data-path="weibull-distribution.html"><a href="weibull-distribution.html#expected-values-12"><i class="fa fa-check"></i><b>43.3</b> Expected Values</a></li>
+<li class="chapter" data-level="43.4" data-path="weibull-distribution.html"><a href="weibull-distribution.html#theorems-for-the-weibull-distribution"><i class="fa fa-check"></i><b>43.4</b> Theorems for the Weibull Distribution</a><ul>
+<li class="chapter" data-level="43.4.1" data-path="weibull-distribution.html"><a href="weibull-distribution.html#validity-of-the-distribution-9"><i class="fa fa-check"></i><b>43.4.1</b> Validity of the Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="43.2" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#references-6"><i class="fa fa-check"></i><b>43.2</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="44" data-path="z-test.html"><a href="z-test.html"><i class="fa fa-check"></i><b>44</b> Z-test</a><ul>
-<li class="chapter" data-level="44.1" data-path="z-test.html"><a href="z-test.html#one-sample-z-test-1"><i class="fa fa-check"></i><b>44.1</b> One-Sample Z-test</a><ul>
-<li class="chapter" data-level="44.1.1" data-path="z-test.html"><a href="z-test.html#z-statistic-1"><i class="fa fa-check"></i><b>44.1.1</b> Z-Statistic</a></li>
-<li class="chapter" data-level="44.1.2" data-path="z-test.html"><a href="z-test.html#definitions-and-terminology-3"><i class="fa fa-check"></i><b>44.1.2</b> Definitions and Terminology</a></li>
-<li class="chapter" data-level="44.1.3" data-path="z-test.html"><a href="z-test.html#hypotheses-4"><i class="fa fa-check"></i><b>44.1.3</b> Hypotheses</a></li>
-<li class="chapter" data-level="44.1.4" data-path="z-test.html"><a href="z-test.html#decision-rule-4"><i class="fa fa-check"></i><b>44.1.4</b> Decision Rule</a></li>
-<li class="chapter" data-level="44.1.5" data-path="z-test.html"><a href="z-test.html#power-4"><i class="fa fa-check"></i><b>44.1.5</b> Power</a></li>
-<li class="chapter" data-level="44.1.6" data-path="z-test.html"><a href="z-test.html#confidence-interval-3"><i class="fa fa-check"></i><b>44.1.6</b> Confidence Interval</a></li>
+<li class="chapter" data-level="44" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html"><i class="fa fa-check"></i><b>44</b> Z-test of Sample Proportions</a><ul>
+<li class="chapter" data-level="44.1" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#one-sample-z-test"><i class="fa fa-check"></i><b>44.1</b> One-Sample Z-test</a><ul>
+<li class="chapter" data-level="44.1.1" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#z-statistic"><i class="fa fa-check"></i><b>44.1.1</b> Z-Statistic</a></li>
+<li class="chapter" data-level="44.1.2" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#definitions-and-terminology-2"><i class="fa fa-check"></i><b>44.1.2</b> Definitions and Terminology</a></li>
+<li class="chapter" data-level="44.1.3" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#hypotheses-3"><i class="fa fa-check"></i><b>44.1.3</b> Hypotheses</a></li>
+<li class="chapter" data-level="44.1.4" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#decision-rule-3"><i class="fa fa-check"></i><b>44.1.4</b> Decision Rule</a></li>
+<li class="chapter" data-level="44.1.5" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#power-3"><i class="fa fa-check"></i><b>44.1.5</b> Power</a></li>
+<li class="chapter" data-level="44.1.6" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#confidence-interval-2"><i class="fa fa-check"></i><b>44.1.6</b> Confidence Interval</a></li>
 </ul></li>
-<li class="chapter" data-level="44.2" data-path="z-test.html"><a href="z-test.html#two-sample-t-test-1"><i class="fa fa-check"></i><b>44.2</b> Two-Sample T-test</a><ul>
-<li class="chapter" data-level="44.2.1" data-path="z-test.html"><a href="z-test.html#t-statistic-2"><i class="fa fa-check"></i><b>44.2.1</b> T-Statistic</a></li>
-<li class="chapter" data-level="44.2.2" data-path="z-test.html"><a href="z-test.html#definitions-and-terminology-4"><i class="fa fa-check"></i><b>44.2.2</b> Definitions and Terminology</a></li>
-<li class="chapter" data-level="44.2.3" data-path="z-test.html"><a href="z-test.html#hypotheses-5"><i class="fa fa-check"></i><b>44.2.3</b> Hypotheses</a></li>
-<li class="chapter" data-level="44.2.4" data-path="z-test.html"><a href="z-test.html#decision-rule-5"><i class="fa fa-check"></i><b>44.2.4</b> Decision Rule</a></li>
+<li class="chapter" data-level="44.2" data-path="z-test-of-sample-proportions.html"><a href="z-test-of-sample-proportions.html#references-6"><i class="fa fa-check"></i><b>44.2</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="44.3" data-path="z-test.html"><a href="z-test.html#one-sided-test-1"><i class="fa fa-check"></i><b>44.3</b> One Sided Test</a><ul>
-<li class="chapter" data-level="44.3.1" data-path="z-test.html"><a href="z-test.html#power-5"><i class="fa fa-check"></i><b>44.3.1</b> Power</a></li>
-<li class="chapter" data-level="44.3.2" data-path="z-test.html"><a href="z-test.html#confidence-interval-4"><i class="fa fa-check"></i><b>44.3.2</b> Confidence Interval</a></li>
+<li class="chapter" data-level="45" data-path="z-test.html"><a href="z-test.html"><i class="fa fa-check"></i><b>45</b> Z-test</a><ul>
+<li class="chapter" data-level="45.1" data-path="z-test.html"><a href="z-test.html#one-sample-z-test-1"><i class="fa fa-check"></i><b>45.1</b> One-Sample Z-test</a><ul>
+<li class="chapter" data-level="45.1.1" data-path="z-test.html"><a href="z-test.html#z-statistic-1"><i class="fa fa-check"></i><b>45.1.1</b> Z-Statistic</a></li>
+<li class="chapter" data-level="45.1.2" data-path="z-test.html"><a href="z-test.html#definitions-and-terminology-3"><i class="fa fa-check"></i><b>45.1.2</b> Definitions and Terminology</a></li>
+<li class="chapter" data-level="45.1.3" data-path="z-test.html"><a href="z-test.html#hypotheses-4"><i class="fa fa-check"></i><b>45.1.3</b> Hypotheses</a></li>
+<li class="chapter" data-level="45.1.4" data-path="z-test.html"><a href="z-test.html#decision-rule-4"><i class="fa fa-check"></i><b>45.1.4</b> Decision Rule</a></li>
+<li class="chapter" data-level="45.1.5" data-path="z-test.html"><a href="z-test.html#power-4"><i class="fa fa-check"></i><b>45.1.5</b> Power</a></li>
+<li class="chapter" data-level="45.1.6" data-path="z-test.html"><a href="z-test.html#confidence-interval-3"><i class="fa fa-check"></i><b>45.1.6</b> Confidence Interval</a></li>
 </ul></li>
-<li class="chapter" data-level="44.4" data-path="z-test.html"><a href="z-test.html#references-7"><i class="fa fa-check"></i><b>44.4</b> References</a></li>
+<li class="chapter" data-level="45.2" data-path="z-test.html"><a href="z-test.html#two-sample-t-test-1"><i class="fa fa-check"></i><b>45.2</b> Two-Sample T-test</a><ul>
+<li class="chapter" data-level="45.2.1" data-path="z-test.html"><a href="z-test.html#t-statistic-2"><i class="fa fa-check"></i><b>45.2.1</b> T-Statistic</a></li>
+<li class="chapter" data-level="45.2.2" data-path="z-test.html"><a href="z-test.html#definitions-and-terminology-4"><i class="fa fa-check"></i><b>45.2.2</b> Definitions and Terminology</a></li>
+<li class="chapter" data-level="45.2.3" data-path="z-test.html"><a href="z-test.html#hypotheses-5"><i class="fa fa-check"></i><b>45.2.3</b> Hypotheses</a></li>
+<li class="chapter" data-level="45.2.4" data-path="z-test.html"><a href="z-test.html#decision-rule-5"><i class="fa fa-check"></i><b>45.2.4</b> Decision Rule</a></li>
 </ul></li>
-<li class="chapter" data-level="45" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html"><i class="fa fa-check"></i><b>45</b> Z-test of Sample Means</a><ul>
-<li class="chapter" data-level="45.1" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#one-sample-z-test-2"><i class="fa fa-check"></i><b>45.1</b> One-Sample Z-test</a><ul>
-<li class="chapter" data-level="45.1.1" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#z-statistic-2"><i class="fa fa-check"></i><b>45.1.1</b> Z-Statistic</a></li>
-<li class="chapter" data-level="45.1.2" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#definitions-and-terminology-5"><i class="fa fa-check"></i><b>45.1.2</b> Definitions and Terminology</a></li>
-<li class="chapter" data-level="45.1.3" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#hypotheses-6"><i class="fa fa-check"></i><b>45.1.3</b> Hypotheses</a></li>
-<li class="chapter" data-level="45.1.4" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#decision-rule-6"><i class="fa fa-check"></i><b>45.1.4</b> Decision Rule</a></li>
-<li class="chapter" data-level="45.1.5" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#power-6"><i class="fa fa-check"></i><b>45.1.5</b> Power</a></li>
-<li class="chapter" data-level="45.1.6" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#confidence-interval-5"><i class="fa fa-check"></i><b>45.1.6</b> Confidence Interval</a></li>
+<li class="chapter" data-level="45.3" data-path="z-test.html"><a href="z-test.html#one-sided-test-1"><i class="fa fa-check"></i><b>45.3</b> One Sided Test</a><ul>
+<li class="chapter" data-level="45.3.1" data-path="z-test.html"><a href="z-test.html#power-5"><i class="fa fa-check"></i><b>45.3.1</b> Power</a></li>
+<li class="chapter" data-level="45.3.2" data-path="z-test.html"><a href="z-test.html#confidence-interval-4"><i class="fa fa-check"></i><b>45.3.2</b> Confidence Interval</a></li>
 </ul></li>
-<li class="chapter" data-level="45.2" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#two-sample-z-test"><i class="fa fa-check"></i><b>45.2</b> Two-Sample Z-test</a><ul>
-<li class="chapter" data-level="45.2.1" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#z-statistic-3"><i class="fa fa-check"></i><b>45.2.1</b> Z-Statistic</a></li>
-<li class="chapter" data-level="45.2.2" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#definitions-and-terminology-6"><i class="fa fa-check"></i><b>45.2.2</b> Definitions and Terminology</a></li>
-<li class="chapter" data-level="45.2.3" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#hypotheses-7"><i class="fa fa-check"></i><b>45.2.3</b> Hypotheses</a></li>
-<li class="chapter" data-level="45.2.4" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#decision-rule-7"><i class="fa fa-check"></i><b>45.2.4</b> Decision Rule</a></li>
+<li class="chapter" data-level="45.4" data-path="z-test.html"><a href="z-test.html#references-7"><i class="fa fa-check"></i><b>45.4</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="45.3" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#one-sided-test-2"><i class="fa fa-check"></i><b>45.3</b> One Sided Test</a><ul>
-<li class="chapter" data-level="45.3.1" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#power-7"><i class="fa fa-check"></i><b>45.3.1</b> Power</a></li>
-<li class="chapter" data-level="45.3.2" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#confidence-interval-6"><i class="fa fa-check"></i><b>45.3.2</b> Confidence Interval</a></li>
+<li class="chapter" data-level="46" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html"><i class="fa fa-check"></i><b>46</b> Z-test of Sample Means</a><ul>
+<li class="chapter" data-level="46.1" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#one-sample-z-test-2"><i class="fa fa-check"></i><b>46.1</b> One-Sample Z-test</a><ul>
+<li class="chapter" data-level="46.1.1" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#z-statistic-2"><i class="fa fa-check"></i><b>46.1.1</b> Z-Statistic</a></li>
+<li class="chapter" data-level="46.1.2" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#definitions-and-terminology-5"><i class="fa fa-check"></i><b>46.1.2</b> Definitions and Terminology</a></li>
+<li class="chapter" data-level="46.1.3" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#hypotheses-6"><i class="fa fa-check"></i><b>46.1.3</b> Hypotheses</a></li>
+<li class="chapter" data-level="46.1.4" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#decision-rule-6"><i class="fa fa-check"></i><b>46.1.4</b> Decision Rule</a></li>
+<li class="chapter" data-level="46.1.5" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#power-6"><i class="fa fa-check"></i><b>46.1.5</b> Power</a></li>
+<li class="chapter" data-level="46.1.6" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#confidence-interval-5"><i class="fa fa-check"></i><b>46.1.6</b> Confidence Interval</a></li>
 </ul></li>
-<li class="chapter" data-level="45.4" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#references-8"><i class="fa fa-check"></i><b>45.4</b> References</a></li>
+<li class="chapter" data-level="46.2" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#two-sample-z-test"><i class="fa fa-check"></i><b>46.2</b> Two-Sample Z-test</a><ul>
+<li class="chapter" data-level="46.2.1" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#z-statistic-3"><i class="fa fa-check"></i><b>46.2.1</b> Z-Statistic</a></li>
+<li class="chapter" data-level="46.2.2" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#definitions-and-terminology-6"><i class="fa fa-check"></i><b>46.2.2</b> Definitions and Terminology</a></li>
+<li class="chapter" data-level="46.2.3" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#hypotheses-7"><i class="fa fa-check"></i><b>46.2.3</b> Hypotheses</a></li>
+<li class="chapter" data-level="46.2.4" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#decision-rule-7"><i class="fa fa-check"></i><b>46.2.4</b> Decision Rule</a></li>
 </ul></li>
-<li class="chapter" data-level="46" data-path="references-9.html"><a href="references-9.html"><i class="fa fa-check"></i><b>46</b> References</a></li>
-<li class="divider"></li>
-<li>Benjamin Nutter</li>
-
+<li class="chapter" data-level="46.3" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#one-sided-test-2"><i class="fa fa-check"></i><b>46.3</b> One Sided Test</a><ul>
+<li class="chapter" data-level="46.3.1" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#power-7"><i class="fa fa-check"></i><b>46.3.1</b> Power</a></li>
+<li class="chapter" data-level="46.3.2" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#confidence-interval-6"><i class="fa fa-check"></i><b>46.3.2</b> Confidence Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="46.4" data-path="z-test-of-sample-means.html"><a href="z-test-of-sample-means.html#references-8"><i class="fa fa-check"></i><b>46.4</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="47" data-path="references-9.html"><a href="references-9.html"><i class="fa fa-check"></i><b>47</b> References</a></li>
 </ul>
 
       </nav>
@@ -623,7 +628,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="probability-mass-function-1" class="section level2">
 <h2><span class="header-section-number">4.1</span> Probability Mass Function</h2>
 <p>A random variable is said to follow a Binomial distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\pi\)</span> if its probability mass function is:</p>
-<p><span class="math display">\[p(x)=
+<p><span class="math display">\[\Pr(X = x)=
     \left\{
         \begin{array}{ll}
             {n \choose x} \pi^x (1-\pi)^{n-x},  &amp; x=0,1,2,\ldots,n\\
@@ -634,7 +639,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="cumulative-mass-function-1" class="section level2">
 <h2><span class="header-section-number">4.2</span> Cumulative Mass Function</h2>
-<p><span class="math display">\[ P(x)=
+<p><span class="math display">\[ \Pr(X \leq x)=
     \left\{
         \begin{array} {lll}
             0                           &amp; x&lt;0\\
@@ -643,7 +648,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
         \end{array}
     \right. \]</span></p>
 <p>A recursive form of the cdf can be derived and has some usefulness in computer applications. With it, one need only initiate the first value and additional cumulative probabilities can be calculated. It is derived as follows:</p>
-<p><span class="math display">\[\begin{align*} 
+<p><span class="math display">\[\begin{aligned} 
 F(x+1)
     &amp;= {n\choose x+1} \pi^{x+1} (1-\pi)^{n-(x+1)} \\
     &amp;= \frac{n!}{(x+1)!(n-(x+1))!} \pi^{x+1} (1-\pi)^{n-(x+1)} \\
@@ -653,7 +658,7 @@ F(x+1)
   &amp;= \frac{\pi}{1-\pi} \cdot \frac{n-x}{x+1} \cdot \frac{n!}{x!(n-x)!} \pi^x (1-\pi)^{n-x} \\
   &amp;= \frac{\pi}{1-\pi} \cdot \frac{n-x}{x+1} \cdot {n\choose x} \pi^x (1-\pi)^{n-x} \\
     &amp;= \frac{\pi}{1-\pi} \cdot \frac{n-x}{x+1} \cdot F(x)
-\end{align*}\]</span></p>
+\end{aligned}\]</span></p>
 <div class="figure">
 <img src="figures/Binomial_Distribution-1.png" alt="The graphs on the left and right show a Binomial Probability Distribution and Cumulative Distribution Function, respectively, with $n=10$ and $\pi=.4$." width="672" />
 <p class="caption">
@@ -663,9 +668,9 @@ F(x+1)
 </div>
 <div id="expected-values-1" class="section level2">
 <h2><span class="header-section-number">4.3</span> Expected Values</h2>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{aligned}
 E(X)
-            &amp;= \sum\limits_{x=0}^n x \cdot p(x) \\
+            &amp;= \sum\limits_{x=0}^n x \cdot \Pr(X = x) \\
             &amp;= \sum\limits_{x=0}^n x {n\choose x} \pi^x (1-\pi)^{n-x} \\
     ^{[1]}  &amp;= \sum\limits_{x=0}^n x {n\choose x} \pi^x q^{n-x} \\
           &amp;= 0 \cdot {n\choose 0}\pi^0q^n+1 \cdot {n\choose 1}\pi^1q^{n-1} 
@@ -683,16 +688,16 @@ E(X)
             &amp;= n\pi(1)^{n-1} \\
             &amp;= n\pi(1) \\
             &amp;= n\pi
-\end{align*}\]</span></p>
+\end{aligned}\]</span></p>
 <blockquote>
 <ol style="list-style-type: decimal">
 <li>Let <span class="math inline">\(q = (1 - \pi)\)</span></li>
 <li>By the Binomial Theorem (<a href="binomial-theorem.html#binomial-theorem-traditional">6.1.2</a>), <span class="math inline">\(\sum\limits_{x=0}^n{n\choose x}a^xb^{n-x}=(a+b)^n\)</span></li>
 </ol>
 </blockquote>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{aligned}
 E(X^2)
-            &amp;= \sum\limits_{x=0}^{n} x^2 p(x) \\
+            &amp;= \sum\limits_{x=0}^{n} x^2 \Pr(X = x) \\
             &amp;= \sum\limits_{x=0}^{n} x^2 {n\choose x} \pi^x (1-\pi)^{n-x} \\
     ^{[1]}  &amp;= \sum\limits_{x=0}^{n} x^2 {n\choose x} \pi^x q^{n-x} \\
           &amp;= 0^2 \frac{n!}{0!(n-0)!} \pi^0q^n + 1^2 \frac{n!}{1!(n-1)!} \pi^1q^{n-1}
@@ -713,7 +718,7 @@ E(X^2)
             &amp;= n\pi[(n-1)\pi+1] \\
             &amp;=n\pi(n\pi-\pi+1) \\
             &amp;=n^2\pi^2 - n\pi^2 + n\pi
-\end{align*}\]</span></p>
+\end{aligned}\]</span></p>
 <blockquote>
 <ol style="list-style-type: decimal">
 <li><span class="math inline">\(q = (1 - \pi)\)</span></li>
@@ -722,7 +727,7 @@ E(X^2)
 <li><span class="math inline">\(\sum\limits_{y=0}^{m}y{m \choose y}\pi^yq^{m-y}\)</span> is of the form of the expected value of <span class="math inline">\(Y\)</span>, and <span class="math inline">\(E(Y)=m\pi=(n-1)\pi\)</span>. <span class="math inline">\(\sum\limits_{y=0}^{m}{m \choose y}\pi^yq^{m-y}\)</span> is the sum of all probabilities over the domain of <span class="math inline">\(Y\)</span> which is 1.</li>
 </ol>
 </blockquote>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{aligned}
 \mu
     &amp;= E(X) \\
     &amp;= n\pi \\
@@ -734,19 +739,19 @@ E(X^2)
     &amp;= -n\pi^2 + n\pi \\
     &amp;= n\pi(-\pi-1) \\
   &amp;= n\pi(1-\pi)
-\end{align*}\]</span></p>
+\end{aligned}\]</span></p>
 </div>
 <div id="moment-generating-function-1" class="section level2">
 <h2><span class="header-section-number">4.4</span> Moment Generating Function</h2>
 <p><span class="math display">\[
-\begin{align*} 
+\begin{aligned} 
 M_X(t)
           &amp;= E(e^{tX})=\sum\limits_{x=0}^{n}e^{tx}p(x) \\
             &amp;= \sum\limits_{x=0}^{n}e^{tx}{n\choose x}\pi^x(1-\pi)^{n-x} \\
           &amp;= \sum\limits_{x=0}^{n}{n\choose x}e^{tx}\pi^x(1-\pi)^{n-x} \\
             &amp;= \sum\limits_{x=0}^{n}{n\choose x}(\pi e^{tx})^x(1-\pi)^{n-x} \\
   ^{[1]}  &amp;= [(1-\pi)+\pi e^t]^n
-\end{align*}
+\end{aligned}
 \]</span></p>
 <blockquote>
 <ol style="list-style-type: decimal">
@@ -754,7 +759,7 @@ M_X(t)
 </ol>
 </blockquote>
 <p><span class="math display">\[
-\begin{align*}
+\begin{aligned}
 M_X^{(1)}(t) &amp;= n[(1 - \pi) + \pi e^t] ^ {n - 1} \pi e^t\\
 \\
 M_X^{(2)}(t) &amp;= n[(1-\pi) + \pi e^t] ^ {n-1} \pi e^t + n(n-1)[(1-\pi) + \pi e^t] ^ {n-2}(\pi e^t)^2\\
@@ -789,7 +794,7 @@ E(X^2)
   &amp;= n\pi + n^2\pi^2 - n\pi^2 - n^2\pi^2 \\
   &amp;= n\pi - n\pi^2\\
   &amp;= n\pi(1-\pi)
-\end{align*}\]</span></p>
+\end{aligned}\]</span></p>
 </div>
 <div id="maximum-likelihood-estimator" class="section level2">
 <h2><span class="header-section-number">4.5</span> Maximum Likelihood Estimator</h2>
@@ -797,7 +802,7 @@ E(X^2)
 <p>Let <span class="math inline">\(X\)</span> be a Binomial random variable with parameter <span class="math inline">\(\pi\)</span> and <span class="math inline">\(n\)</span> outcomes <span class="math inline">\((x_1,x_2,\ldots,x_n)\)</span>. Let <span class="math inline">\(x_i=0\)</span> for a failure and <span class="math inline">\(x_i=1\)</span> for a success. In other words, <span class="math inline">\(X\)</span> is the sum of <span class="math inline">\(n\)</span> Bernoulli trials with equal probability of success and <span class="math inline">\(X=\sum\limits_{i=1}^{n}x_i\)</span>.</p>
 <div id="likelihood-function" class="section level3">
 <h3><span class="header-section-number">4.5.1</span> Likelihood Function</h3>
-<p><span class="math display">\[\begin{align*} 
+<p><span class="math display">\[\begin{aligned} 
 L(\theta)
     &amp;= L(x_1,x_2,\ldots,x_n|\theta) \\
     &amp;= P(x_1|\theta) P(x_2|\theta) \cdots P(x_n|\theta) \\
@@ -806,20 +811,20 @@ L(\theta)
   &amp;= \exp_\theta\bigg\{\sum\limits_{i=1}^{n}x_i\bigg\}
         \exp_{(1-\theta)}\bigg\{n-\sum\limits_{i=1}^{n}x_i\bigg\} \\
   &amp;= \theta^X(1-\theta)^{n-X}
-\end{align*}\]</span></p>
+\end{aligned}\]</span></p>
 </div>
 <div id="log-likelihood-function" class="section level3">
 <h3><span class="header-section-number">4.5.2</span> Log-likelihood Function</h3>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{aligned}
 \ell(\theta)
     &amp;= \ln L(\theta) \\
     &amp;= \ln\big(\theta^X(1-\theta)^{n-X}\big) \\
     &amp;= X\ln(\theta)+(n-X)\ln(1-\theta)
-\end{align*}\]</span></p>
+\end{aligned}\]</span></p>
 </div>
-<div id="mle-for-p" class="section level3">
-<h3><span class="header-section-number">4.5.3</span> MLE for p</h3>
-<p><span class="math display">\[\begin{align*} 
+<div id="mle-for-pi" class="section level3">
+<h3><span class="header-section-number">4.5.3</span> MLE for <span class="math inline">\(\pi\)</span></h3>
+<p><span class="math display">\[\begin{aligned} 
                 \frac{d\ell(p)}{d \pi} 
                             &amp;= \frac{X}{\pi}-\frac{n-X}{1-\pi} \\
 \\
@@ -830,7 +835,7 @@ L(\theta)
   \Rightarrow  X-\pi X        &amp;= n\pi-\pi X \\
   \Rightarrow  X           &amp;= n\pi \\
   \Rightarrow  \frac{X}{n} &amp;= \pi \\
-\end{align*}\]</span></p>
+\end{aligned}\]</span></p>
 <p>So <span class="math inline">\(\displaystyle \hat p = \frac{X}{n} = \frac{1}{n}\sum\limits_{i=1}^{n}x_i\)</span> is the maximum likelihood estimator for <span class="math inline">\(\pi\)</span>.</p>
 </div>
 </div>
@@ -838,16 +843,16 @@ L(\theta)
 <h2><span class="header-section-number">4.6</span> Theorems for the Binomial Distribution</h2>
 <div id="validity-of-the-distribution-1" class="section level3">
 <h3><span class="header-section-number">4.6.1</span> Validity of the Distribution</h3>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{aligned}
 \sum\limits_{x=0}^n{n\choose x}p^x(1-p)^{n-x}   = 1
-\end{align*}\]</span></p>
+\end{aligned}\]</span></p>
 <p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{aligned}
 \sum\limits_{x=0}^n {n\choose x} \pi^x (1-\pi)^{n-x} \\
     ^{[1]}  &amp;= \big(\pi + (1-\pi)\big)^n \\
             &amp;= (1)^n \\
             &amp;= 1 
-\end{align*}\]</span></p>
+\end{aligned}\]</span></p>
 <blockquote>
 <ol style="list-style-type: decimal">
 <li>By the Binomial Theorem (<a href="binomial-theorem.html#binomial-theorem-traditional">6.1.2</a>), <span class="math inline">\(\sum\limits_{x=0}^n{n\choose x}a^xb^{n-x}=(a+b)^n\)</span></li>
@@ -859,7 +864,7 @@ L(\theta)
 <p>Let <span class="math inline">\(X_1,X_2,\ldots,X_k\)</span> be independent random variables where <span class="math inline">\(X_i\)</span> comes from a Binomial distribution with parameters <span class="math inline">\(n_i\)</span> and <span class="math inline">\(\pi\)</span>. That is <span class="math inline">\(X_i\sim(n_i,\pi)\)</span>.</p>
 <p>Let <span class="math inline">\(Y = \sum\limits_{i=1}{k} X_i\)</span>. Then <span class="math inline">\(Y\sim\)</span>Binomial<span class="math inline">\((\sum\limits_{i=1}^{k}n_i,\pi)\)</span>.</p>
 <p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{aligned}
 M_Y(t)
     &amp;= E(e^{tY}) \\
     &amp;= E(e^{t(x_1 + X_2 + \cdots + X_k)} \\
@@ -867,7 +872,7 @@ M_Y(t)
   &amp;= E(e^{tX_1}) E(e^{tX_2}) \cdots E(e^{tX_k}) \\
   &amp;= \prod\limits_{i=1}^{k} [(1-\pi)+\pi e^t]^{n_i} \\
     &amp;= [(1-\pi)+\pi e^t]^{\sum\limits_{i=1}^{k}n_i}
-\end{align*}\]</span></p>
+\end{aligned}\]</span></p>
 <p>Which is the mgf of a Binomial random variable with parameters <span class="math inline">\(\sum\limits_{i=1}^{k}n_i\)</span> and <span class="math inline">\(\pi\)</span>.<br />
 Thus <span class="math inline">\(Y\sim\)</span>Binomial<span class="math inline">\((\sum\limits_{i=1}^{k}n_i,\pi)\)</span>.</p>
 </div>
@@ -875,15 +880,15 @@ Thus <span class="math inline">\(Y\sim\)</span>Binomial<span class="math inline"
 <h3><span class="header-section-number">4.6.3</span> Sum of Bernoulli Random Variables</h3>
 <p>Let <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> be independent and identically distributed random variables from a Bernoulli distribution with parameter <span class="math inline">\(\pi\)</span>. Let <span class="math inline">\(Y = \sum\limits_{i=1}^{n}X_i\)</span>.<br />
 Then <span class="math inline">\(Y\sim\)</span>Binomial<span class="math inline">\((n,\pi)\)</span></p>
-<p><em>Proof:</em> <span class="math display">\[\begin{align*}
+<p><em>Proof:</em> <span class="math display">\[\begin{aligned}
 M_Y(t)
     &amp;= E(e^{tY}) \\
     &amp;= E(e^{tX_1} e^{tX_2} \cdots e^{tX_n}) \\
     &amp;= E(e^{tX_1}) E(e^{tX_2}) \cdots E(e^{tX_n}) \\
   &amp;= (\pi e^t+(1-\pi))(\pi e^t+(1-\pi))\cdots (\pi e^t+(1-\pi)) \\
     &amp;= (\pi e^t+(1-\pi))^n
-\end{align*}\]</span></p>
-<p>Which is the mgf of a Binomial random variable with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>. Thus, <span class="math inline">\(Y\sim\)</span> Binomial<span class="math inline">\((n,p)\)</span>.</p>
+\end{aligned}\]</span></p>
+<p>Which is the mgf of a Binomial random variable with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\pi\)</span>. Thus, <span class="math inline">\(Y\sim\)</span> Binomial<span class="math inline">\((n,\pi)\)</span>.</p>
 
 </div>
 </div>
@@ -912,23 +917,25 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
-"theme": "white",
-"family": "sans",
+"theme": "sepia",
+"family": "serif",
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/devel/Binomial_Distribution.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/gh-pages/Binomial_Distribution.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],
 "toc": {
-"collapse": "section"
+"collapse": "section",
+"scroll_highlight": true
 }
 });
 });
@@ -939,9 +946,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

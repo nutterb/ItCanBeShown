@@ -19,12 +19,26 @@ It is common to write the $ran(f)$ as some expression of $x$.  For example, $f: 
 ### Function Operations
 
 The three basic operations that can be performed on functions are addition, multipilication, and composition.  For any two functions $f$ and $g$ these operations are defined as:
-
+<!--
 |                |      |
 |----------------|------|
-| Addition       | $\lbrack f+g\rbrack(x)=:\big\{\big(x,f(x)+g(x)\big)\mid x\in dom(f)\cap dom(g)\big\}$      |
-| Multiplication |  $\lbrack f\cdot g\rbrack(x):=\big\{\big(x,f(x)\cdot g(x)\big) \mid x\in dom(f)\cap dom(g)\big\}$     |
-| Composition    | $\lbrack f\circ g\rbrack(x)=\big\{\big(x,f\big(g(x)\big) \mid x\in dom(g)$ and  $g(x)\in dom(f)\big\}$      |
+| Addition       | $$\lbrack f+g\rbrack(x)=:\big\{\big(x,f(x)+g(x)\big)\mid x\in dom(f)\cap dom(g)\big\}$$      |
+| Multiplication |  $$\lbrack f\cdot g\rbrack(x):=\big\{\big(x,f(x)\cdot g(x)\big) \mid x\in dom(f)\cap dom(g)\big\}$$     |
+| Composition    | $$\lbrack f\circ g\rbrack(x)=\big\{\big(x,f\big(g(x)\big) \mid x\in dom(g)$$ and  $$g(x)\in dom(f)\big\}$$      |
+-->
+
+```{r, echo = FALSE}
+df <- 
+  data.frame(x1 = c("Addition", "Multiplication", "Composition"),
+             x2 = c("$\\lbrack f+g\\rbrack(x)=:\\big\\{\\big(x,f(x)+g(x)\\big)\\mid x\\in dom(f)\\cap dom(g)\\big\\}$",
+                    "$\\lbrack f\\cdot g\\rbrack(x):=\\big\\{\\big(x,f(x)\\cdot g(x)\\big) \\mid x\\in dom(f)\\cap dom(g)\\big\\}$",
+                    "$\\lbrack f\\circ g\\rbrack(x)=\\big\\{\\big(x,f\\big(g(x)\\big) \\mid x\\in dom(g)$ and  $g(x)\\in dom(f)\\big\\}$"),
+             stringsAsFactors = FALSE)
+knitr::kable(df, 
+             col.names = c("", ""),
+             escape = FALSE)
+```
+
 
 
 Notice that the composition $\lbrack f\circ g\rbrack(x)=f \circ g: g(x)\mapsto f(x)$.  In other words, the result of $g$ is then applied to $f$ to produce the result of the composition.
@@ -79,31 +93,31 @@ iii. $[f\circ g](x)$ is an even function.
 
 _Proof:_
 
-i. $$\begin{align*}
+i. $$\begin{aligned}
      [f+g](-x)
         &= f(-x)+g(-x) \\
 	      &= f(x)+g(x) \\
 	      &= [f+g](x)
-	 \end{align*}$$
+	 \end{aligned}$$
 
 so $[f+g](x)$ is an even function.
 
 
-ii. $$\begin{align*}
+ii. $$\begin{aligned}
       [f\cdot g](-x)
         &= f(-x)\cdot g(-x) \\
 	      &= f(x)\cdot g(x) \\
 	      &= [f\cdot g](x)
-	  \end{align*}$$
+	  \end{aligned}$$
 	  
 so $[f\cdot g](x)$ is an even function.
 
-iii. $$\begin{align*}
+iii. $$\begin{aligned}
       [f\circ g](-x)
         &= f\big(g(-x)\big) \\
 	      &= f\big(g(x)\big) \\
 	      &= [f\circ g](x)
-	   \end{align*}$$
+	   \end{aligned}$$
 	   
 so $[f\circ g](x)$ is an even function.
 
@@ -119,32 +133,32 @@ iii. $[f\circ g](x)$ is an odd function.
 
 _Proof:_
 
-i. $$\begin{align*} 
+i. $$\begin{aligned} 
     [f+g](-x)
       &= f(-x) + g(-x) \\
 	    &= -f(x) - g(x) \\
 	    &= -[f+g](x)
-	 \end{align*}$$
+	 \end{aligned}$$
 	 
 so $[f+g](x)$ is an odd function.
 
-ii. $$\begin{align*}
+ii. $$\begin{aligned}
       [f\cdot g](-x)
         &= f(-x)\cdot g(-x) \\
 	      &= -f(x)\cdot -g(x) \\
 	      &= f(x)\cdot g(x) \\
 	      &= [f\cdot g](x)
-	   \end{align*}$$
+	   \end{aligned}$$
 	   
 so $[f\cdot g](x)$ is an even function.
 
-iii. $$\begin{align*}
+iii. $$\begin{aligned}
       [f\circ g](-x)
         &= f\big(g(-x)\big) \\
 	      &= f\big(-g(x)\big) \\
 	      &= -f\big(g(x)\big) \\
 	      &= -[f\circ g](x)
-	   \end{align*}$$
+	   \end{aligned}$$
 	   
 so $[f\circ g](x)$ is an odd function.
 
@@ -161,40 +175,40 @@ iv.  $[g\circ f](x)$ is an even function.
 
 _Proof:_
 
-i. $$\begin{align*}
+i. $$\begin{aligned}
     [f+g](-x)
       &= f(-x) + g(-x) \\
 	    &= -f(x) - g(x)
-	 \end{align*}$$
+	 \end{aligned}$$
  
 so $[f+g](x)$ is neither an odd nor an even function.
 
-ii. $$\begin{align*}
+ii. $$\begin{aligned}
       [f\cdot g](-x)
         &= f(-x)\cdot g(-x) \\
 	      &= f(x)\cdot -g(x) \\
 	      &= -\big(f(x)\cdot g(x)\big) \\
 	      &= -[f\cdot g](x)
-	   \end{align*}$$
+	   \end{aligned}$$
 	   
 so $[f\cdot g](x)$ is an odd function.
 
-iii. $$\begin{align*}
+iii. $$\begin{aligned}
       [f\circ g](-x)
         &= f\big(g(-x)\big) \\
 	      &= f\big(-g(x)\big) \\
 	      &= f\big(g(x)\big) \\
 	      &= [f\circ g](x)
-	   \end{align*}$$
+	   \end{aligned}$$
 
 so $\lbrack f\circ g\rbrack(x)$ is an even function.
 
-iv. $$\begin{align*}
+iv. $$\begin{aligned}
       [g\circ f](-x)
         &= g\big(f(-x)\big) \\
 	      &= g\big(f(x)\big) \\
 	      &= [g\circ f](x)
-	   \end{align*}$$
+	   \end{aligned}$$
 
 so $\lbrack f\circ g\rbrack(x)$ is an even function.
 \end{itemize}
@@ -207,7 +221,7 @@ Let $f$ be an odd function and let $f^\prime$ and $F$ denote the derivative and 
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
   f(-x) &= -f(x)\\
 \Rightarrow \frac{d}{dx}\big\lbrack f(-x)\big\rbrack
 		&= \frac{d}{dx}\big\lbrack-f(x)\big\rbrack \\
@@ -217,17 +231,17 @@ $$\begin{align*}
     &= -f^\prime(x) \\
 \Rightarrow f^\prime(-x) 
     &= f^\prime(x)
-\end{align*}$$
+\end{aligned}$$
 
 So $f^\prime$ is an even function.
 
-$$\begin{align*}
+$$\begin{aligned}
 f(-x)                    &= -f(x) \\
 \Rightarrow \int f(-x)   &= \int-f(x)\\
 \Rightarrow F(-x)\cdot-1 &= -F(x)\\
 \Rightarrow -F(-x)       &= -F(x)\\
 \Rightarrow F(-x)        &= F(x)
-\end{align*}$$
+\end{aligned}$$
 
 So $F$ is also an even function.\ \ \rule{.05in}{.05in}
 
@@ -240,7 +254,7 @@ Let $g$ be an even function, and let $g^\prime$ and $G$ denote the derivative an
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 g(-x) &= g(x) \\
 \Rightarrow \frac{d}{dx}\big\lbrack g(-x)\big\rbrack
 		&= \frac{d}{dx}\big\lbrack g(x)\big\rbrack \\
@@ -250,17 +264,17 @@ g(-x) &= g(x) \\
     &= g^\prime(x) \\
 \Rightarrow g^\prime(-x) 
     &= -g^\prime(x)
-\end{align*}$$
+\end{aligned}$$
 
 So $g^\prime$ is an odd function.
 
-$$\begin{align*}
+$$\begin{aligned}
 g(-x)                    &= g(x)\\
 \Rightarrow \int g(-x)   &= \int g(x)\\
 \Rightarrow G(-x)\cdot-1 &= G(x)\\
 \Rightarrow -G(-x)       &= G(x)\\
 \Rightarrow G(-x)        &= -G(x)
-\end{align*}$$
+\end{aligned}$$
 
 So $G$ is also an odd function.
 

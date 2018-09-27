@@ -8,13 +8,13 @@ Let $Y$ be a categorical variable of ordinal type with $C$ levels.
 
 Suppose we take a sample of size $n$ and take a measurement on each item in the sample with respect to $X$ and $Y$.  The presence of a progresive between $X$ and $Y$ can be tested using the correlation coefficient $\rho$ [@Mantel1963a].  We may begin by taking the estimate of $\rho$
 
-$$\begin{align*} 
+$$\begin{aligned} 
 r
 	&= \frac{\widehat{Cov}(X,Y)}{\sqrt{s_X^2 s_Y^2}} \\
 	&= \frac{\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}(x_i-\bar x)(y_j-\bar y)p(x_i,y_j)}
 		{\sqrt{\sum\limits_{i=1}^{n}(x_i-\bar x)^2p(x_i)
 		 \sum\limits_{j=1}^{n}(y_j-\bar y)^2p(y_j)}}
-\end{align*}$$
+\end{aligned}$$
 
 But since $X$ and $Y$ are categorical, we cannot sensibly perform any of the operations.  Instead, we define the variables $U$ and $V$ to be the ordinal scoring of $X$ and $Y$ respecitively.  In other words, $U_i$ is the score for the category of $X_i$ and $V_i$ is the score for the category of $Y_i$.  Using this replacement we get
 
@@ -29,6 +29,41 @@ To obtain the values of $\bar u$ and $\bar v$, we consider the following table. 
 
 *u~1~*
 
+```{r, echo = FALSE}
+df <- data.frame(x1 = c("Category of $U$",
+                        "1", "2", "...", "$R$", "Total", "$V$"),
+                 x2 = c("1", "$n_{1,1}$", "$n_{2,1}$", "...",
+                        "$n_{r,1}$", "$n_{+,1}$", "$V_1$"),
+                 x3 = c("2", "$n_{1,2}$", "$n_{2,2}$", "...",
+                        "$n_{r,2}$", "$n_{+,2}$", "$V_2$"),
+                 x4 = rep("...", 7),
+                 x5 = c("$C$", "$n_{1,c}$", "$n_{2,c}$", "...",
+                        "$n_{r,c}$", "$n_{+,c}$", "$V_c$"),
+                 x6 = c("Total", "$n_{1,+}$", "$n_{2,+}$", "...",
+                        "$n_{r,+}$", "$n_{+,+}$", ""),
+                 x7 = c("$U$", "$U_1$", "$U_2$", "...", "$U_r$", "", ""),
+                 stringsAsFactors = FALSE)
+tab <- dust(df) %>% 
+  sprinkle_colnames("", "Category", "of", "$V$", "", "", "") %>% 
+  sprinkle(sanitize = FALSE,
+           part = "head") %>% 
+  sprinkle(sanitize = FALSE) 
+
+if (knitr::opts_knit$get("rmarkdown.pandoc.to") == "latex"){
+  tab <- 
+    tab %>% 
+    medley_all_borders(rows = 3:4,
+                       cols = 4:5) 
+} else if (knitr::opts_knit$get("rmarkdown.pandoc.to") == "html"){
+  tab <- 
+    tab %>% 
+    sprinkle_print_method("markdown")
+}
+
+tab
+```
+
+<!--
 |                 |          |         |     |         |         |        |
 |-----------------|----------|---------|-----|---------|---------|--------|
 |                 | Category |      of | _V_ |         |         |        |
@@ -39,11 +74,11 @@ To obtain the values of $\bar u$ and $\bar v$, we consider the following table. 
 |             _R_ |  _n~r1~_ | _n~r2~_ | ... | _n~rc~_ | _n~r+~_ | _U~r~_ |
 |           Total |  _n~+1~_ | _n~+2~_ | ... | _n~+c~_ | _n~++~_ |        |
 |             _V_ |   _V~1~_ |  _V~2~_ | ... |  _V~c~_ |         |        | 
-
+-->
 
 In the table, $n_{rc},\ r=1,2,\ldots,R,\ c=1,2,\ldots,C$ is the number of observations in the sample with scores $r$ and $c$.  From the table we can understand the marginal distributions of $U$ and $V$, and we see that for $r=1,2,\ldots,R,\ c=1,2,\ldots,C$
 
-$$\begin{align*}
+$$\begin{aligned}
 p(u_r) &= \frac{n_{r+}}{n} \\
 \\
 p(v_c) &= \frac{n_{+ c}}{n} \\
@@ -53,11 +88,11 @@ p(u_r,v_c) &= \frac{n_{rc}}{n} \\
 \bar u &= \sum\limits_{r=1}^{R}u_i\frac{n_{r+}}{n} \\
 \\
 \bar v &= \sum\limits_{c=1}^{C}v_i\frac{n_{+ c}}{n}
-\end{align*}$$
+\end{aligned}$$
 
 With these observations, we can derive the value of $r$ as
 
-$$\begin{align*} 
+$$\begin{aligned} 
 r
 	&= \frac{\widehat{Cov}(U,V)}{\sqrt{s_U^2s_V^2}} \\
 	&= \frac{\frac{\sum\limits_{r=1}^{R}\sum\limits_{c=1}^{C}
@@ -134,4 +169,4 @@ r
 			- \frac{1}{n}\Big(\sum\limits_{r=1}^{R}u_rn_{r+}\Big)^2\bigg)
 		 \bigg(\sum\limits_{c=1}^{C}v_c^2n_{+ c}
 			- \frac{1}{n}\Big(\sum\limits_{c=1}^{C}v_cn_{+ c}\Big)^2\bigg)}}
-\end{align*}$$
+\end{aligned}$$
