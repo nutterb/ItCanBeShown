@@ -10,12 +10,12 @@ $N$ is the number of ways all $n$ of the elements of the set can be arranged in 
 
 The number of distinct arrangements of the $n$ elements in which the order of selection is important, $P_k^n$, is equal to $N$ multiplied by the number of ways each individual group of $k_i$ can be selected in which the order is important, i.e.
 
-$$\begin{align*}
+$$\begin{aligned}
 P_n^n 
                   &= N \cdot P_{k_1}^{k_1} P_{k_2}^{k_2} \cdots P_{k_m}^{k_m} \\
   \Rightarrow n!  &= N \cdot k_1! k_2! \cdots k_m! \\
   \Rightarrow N   &= \frac{n!}{k_1! k_2! \cdots k_m!}
-\end{align*}$$
+\end{aligned}$$
 
 ### Combinations Theorem {#combinations-theorem}
 
@@ -43,7 +43,7 @@ $$
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 {n\choose k}	
 	&= \frac{n!}{k!(n-k)!} \\
 	&= \frac{n(n-1)!}{k(k-1)!(n-k)!} \\
@@ -59,4 +59,4 @@ $$\begin{align*}
 		\cdot \frac{(n-a)!}{(k-a)![(n-a)-(k-a)]!} \\
   &= \frac{n(n-1)(n-2)\cdots(n-a+1)}{k(k-1)(k-2)\cdots(k-a+1)}
 		\cdot {n-a\choose k-a}
-\end{align*}$$
+\end{aligned}$$

@@ -3,16 +3,14 @@ bookdown::gitbook:
   config:
     toc:
       collapse: section
-      before: |
-        <li><a href="./">It Can Be Shown</a></li>
-      after: |
-        <li>Benjamin Nutter</li>
-    download: [pdf]
-    edit:
-      link: https://github.com/nutterb/ItCanBeShown/edit/devel/%s
-      text: "Edit"
+      scroll_highlight: true
+      before: null
+      after: null
+    edit: https://github.com/nutterb/ItCanBeShown/edit/gh-pages/%s
+    fontsettings:
+      theme: sepia
+      family: serif
+    download: ["pdf"]
 bookdown::pdf_book:
-  includes:
-    in_header: preamble.tex
   keep_tex: yes
-  
+bookdown::epub_book:

@@ -23,13 +23,13 @@ where $p$ is the probability of a success on any given trial and $x$ is the numb
 The cumulative probability of $x$ is computed as the $x^{th}$ partial sum of the Geometric Series
 	See \@ref(geometric-series-partial-and-infinite-summations).
 	
-$$\begin{align*} 
+$$\begin{aligned} 
 P(x) 
 	&= \sum\limits_{i=1}^{x}p(1-p)^{x-1} \\
 	&= \frac{p-p(1-p)^{x-1}}{1-(1-p)} \\
 	&= \frac{p[1-(1-p)^{x-1}]}{p} \\
 	&= 1-(1-p)^{x-1}
-\end{align*}$$
+\end{aligned}$$
 
 So
 
@@ -42,12 +42,12 @@ So
 
 A recursive form of the cdf can be derived and has some usefulness in computer applications.  With it, one need only initiate the first value and additional cumulative probabilities can be calculated.  It is derived as follows:
 
-$$\begin{align*}
+$$\begin{aligned}
 P(X=x+1)
 	&= p(1-p)^x \\
 	&= (1-p)p(1-p)^{x-1} \\
 	&= (1-p)P(X=x)
-\end{align*}$$
+\end{aligned}$$
 
 ```{r, echo = FALSE, fig.path = 'figures/', fig.cap = 'The figures on the left and right display the Geometric probability and cumulative distirubtion functions, respectively, for the combinations of $p=.3$.'}
 Geometric <- 
@@ -76,7 +76,7 @@ ggplot(data = Geometric,
 
 ### Expected Values
 
-$$\begin{align*} 
+$$\begin{aligned} 
 E(X)
       	&= \sum\limits_{x=1}^{\infty}x\cdot p(1-p)^{x-1} \\
       	&= p\sum\limits_{x=1}^{\infty}x\cdot (1-p)^{x-1} \\
@@ -90,7 +90,7 @@ E(X)
 ^{[5]}  &= p\cdot\frac{1}{p^2}
         &= \frac{p}{p^2}
         &= \frac{1}{p}
-\end{align*}$$
+\end{aligned}$$
 
 > 1. Let $1-p = 1$
 > 2. $a\cdot x^{a-1}=\frac{d}{dx}(x^a)$
@@ -101,7 +101,7 @@ E(X)
 > 5. $1-p=q \ \ \Rightarrow p=1-q$
 
 
-$$\begin{align*} 
+$$\begin{aligned} 
 E[X(X-1)]
 ^{[1]}	&= \sum\limits_{x=2}^{\infty}x(x-1)p(1-p)^{x-1} \\
 	      &= p(1-p)\sum\limits_{x=2}^{\infty}x(x-1)(1-p)^{x-2} \\
@@ -114,7 +114,7 @@ E[X(X-1)]
         &= \frac{2pq}{(1-q)^3} \\
 ^{[7]}  &= \frac{2p(1-p)}{p^3} \\
         & =\frac{2(1-p)}{p^2}
-\end{align*}$$
+\end{aligned}$$
 
 > 1. We start the summand at $x=2$ because the term for $x=1$ is 0.
 > 2. Let $1-p = 1$
@@ -128,7 +128,7 @@ E[X(X-1)]
 > 6. $\frac{d}{dx}-(1-x)^{-2}=2(1-x)^{-3}=\frac{2}{(1-x)^3}$
 > 7. See note number 5.
 		
-$$\begin{align*}
+$$\begin{aligned}
 \mu
 	&= E(X) \\
 	&= \frac{1}{p} \\
@@ -146,13 +146,13 @@ $$\begin{align*}
   &= \frac{2-2p+p-1}{p^2} \\
 	&= \frac{2-1+p-2p}{p^2} \\
 	&= \frac{1-p}{p^2}
-\end{align*}$$
+\end{aligned}$$
 
 
 
 ### Moment Generating Function
 
-$$\begin{align*}
+$$\begin{aligned}
 M_X(t)
       	&= E(e^{tX}) \\
       	&= \sum\limits_{x=1}^{\infty}e^{tx}p(1-p)^{x-1} \\
@@ -162,12 +162,12 @@ M_X(t)
       	&= pe^t\sum\limits_{x=1}^{\infty}[(1-p)e^t]^{x-1} \\
 ^{[1]}  &= pe^t\frac{1}{1-(1-p)e^t} \\
         &= \frac{pe^t}{1-(1-p)e^t}
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $\sum\limits_{k=1}^{\infty}ar^{k-1}=\frac{a}{1-r}$, (Geometric Series \@ref(geometric-series-partial-and-infinite-summations))
 
 
-$$\begin{align*} 
+$$\begin{aligned} 
 M_X^{(1)}(t)
 	&= \frac{[1-(1-p)e^t]pe^t-pe^t[-(1-p)e^t]}{\big(1-(1-p)e^t\big)^2} \\
 	&= \frac{pe^t[1-(1-p)e^t+(1-pe^t)]}{\big(1-(1-p)e^t\big)^2} \\
@@ -210,7 +210,7 @@ E(X^2)
 	&= E(X^2) - E(X)^2 \\
 	&= \frac{2-p}{p^2} - \frac{1}{p^2} \\
 	&= \frac{1-p}{p^2}
-\end{align*}$$
+\end{aligned}$$
 
 
 
@@ -220,24 +220,24 @@ Let $x_1, x_2 , \ldots , x_n$ be a random sample from a Geometric distribution w
 
 #### Likelihood Function
 
-$$\begin{align*} 
+$$\begin{aligned} 
 L(\theta)
 	&= P(x_1,x_2,\ldots,x_n|\theta) \\
 	&= p(1-p)^{x-1}
-\end{align*}$$
+\end{aligned}$$
 
 #### Log-likelihood Function
 
-$$\begin{align*}
+$$\begin{aligned}
 \ell(\theta)
 	&= \ln p(1-p)^{x-1} \\
 	&= \ln p+\ln(1-p)^{x-1} \\
 	&= \ln p+(x-1)\ln(1-p)
-\end{align*}$$
+\end{aligned}$$
 
 
 #### MLE for $p$
-$$\begin{align*} 
+$$\begin{aligned} 
 \frac{d\ell}{dp}
 	&= \frac{1}{p} + \frac{-(x-1)}{1-p} \\
 	&= \frac{1}{p} + \frac{1-x}{1-p}\\
@@ -251,7 +251,7 @@ $$\begin{align*}
                                 &= \frac{p+1-p}{p} \\
                                 &= \frac{1}{p}\\
 \Rightarrow p                   &= \frac{1}{x}
-\end{align*}$$
+\end{aligned}$$
 
 So $$\hat p=\frac{1}{x}$$ is the Maximum Likelihood Estimator for $p$.
 
@@ -264,12 +264,12 @@ $$\sum\limits_{i=1}^{\infty}p(1-p)^{x-1} = 1$$
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 \sum\limits_{i=1}^{\infty}p(1-p)^{x-1}
   	&= \frac{p}{1-(1-p)} \\
     &= \frac{p}{p} \\
     &= 1
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $S=\lim\limits_{k\rightarrow\infty}S_k
 		=\lim\limits_{k\rightarrow\infty}\frac{a-ar^k}{1-r}$ (Geometric Series \@ref(geometric-series-partial-and-infinite-summations))
@@ -281,7 +281,7 @@ Let $X_1,X_2,\ldots,X_n$ be independent random variables from a Geometric Distri
 
 _Proof:_
 
-$$\begin{align*} 
+$$\begin{aligned} 
 M_Y(t)
   &= E(e^{tY}) \\
   &= E(e^{t(X_1+X_2+\cdots+X_n)}) \\
@@ -290,7 +290,7 @@ M_Y(t)
 	&=\frac{pe^t}{1-(1-p)e^t}\cdot\frac{pe^t}{1-(1-p)e^t}\cdot\ \cdots
 		\ \cdot\frac{pe^t}{1-(1-p)e^t} \\
   &= \Big(\frac{pe^t}{1-(1-p)e^t}\Big)^n
-\end{align*}$$
+\end{aligned}$$
 
 Which is the mgf of a Negative Binomial random variable with parameters $n$ and $p$.  Thus $Y\sim$Negative Binomial$(n,p)$. 
 
@@ -302,7 +302,7 @@ Then $P(X>a)=(1-p)^a$.
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 P(X>a)
   &= 1-P(X\leq a)=1-\sum\limits_{i=1}^{a}p(1-p)^i-1 \\
 ^{[1]}  &= 1-\frac{p-p(1-p)^a}{1-(1-p)} \\
@@ -311,7 +311,7 @@ P(X>a)
         &= 1-\big(1-(1-p)^a\big) \\
         &= 1-1+(1-p)^a \\
         &= (1-p)^a
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $S_k=\lim\limits_{k\rightarrow\infty}\frac{a-ar^k}{1-r}$ (Geometric Series \@ref(geometric-series-partial-and-infinite-summations))
 
@@ -322,7 +322,7 @@ $$P(X\geq k+j|X\geq k)=P(X\geq k)$$
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 P(X > a+b)
 ^{[1]}  &= (1-p)^{a+b}=(1-p)^a(1-p)^b \\
 \\
@@ -333,7 +333,7 @@ P(X > k+j|X > k)
         &= \frac{(1-p)^k(1-p)^j}{(1-p)^k} \\
         &= (1-p)^j \\
         &= P(X > j)
-\end{align*}$$
+\end{aligned}$$
 
 > 1. Geometric Distribution \@ref(geometric-distribution-memoryless-lemma)
 > 2. Since $j$ must be a positive integer in the Geometric Distribution,
@@ -361,13 +361,13 @@ A random variable $X$ is said to have a Geometric Distribution with parameter $p
 The cumulative probability of $x$ is computed as the $x^{th}$ partial sum of the Geometric Series
 	See \@ref(geometric-series-partial-and-infinite-summations).
 	
-$$\begin{align*} 
+$$\begin{aligned} 
 P(x) 
 	&= \sum\limits_{i=0}^{x}p(1-p)^{x} \\
 	&= \frac{p-p(1-p)^{x+1}}{1-(1-p)} \\
 	&= \frac{p[1-(1-p)^{x+1}]}{p} \\
 	&= 1-(1-p)^{x+1}
-\end{align*}$$
+\end{aligned}$$
 
 So
 

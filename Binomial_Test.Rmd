@@ -18,24 +18,24 @@ The hypotheses for the Binomial test may take the following forms:
 
 For a two-sided test:
 
-$$\begin{align}
+$$\begin{aligned}
 H_0: \pi = \pi_0 \\
 H_a: \pi \neq \pi_0
-\end{align}$$
+\end{aligned}$$
 
 For a one-sided test:
 
-$$\begin{align}
+$$\begin{aligned}
 H_0: \pi < \pi_0 \\
 H_a: \pi \geq \pi_0
-\end{align}$$
+\end{aligned}$$
 
 or 
 
-$$\begin{align}
+$$\begin{aligned}
 H_0: \pi > \pi_0 \\
 H_a: \pi \leq \pi_0
-\end{align}$$
+\end{aligned}$$
 
 ### Decision Rule
 
@@ -177,25 +177,25 @@ The derivations below make use of the following symbols:
 
 **Two Sided Test**
 
-$$\begin{align}
+$$\begin{aligned}
 \gamma(\pi_a) &= P_{\pi_a}(x \in C) \\
  &= P_{\pi_a}(Binomial(\alpha/2, n, \pi_0) \leq Binomial(\alpha / 2, n, \pi_a)) + \\
  & \ \ \ \ \ \ \ P_{\pi_a}(Binomial(1 - \alpha / 2, n, \pi_0) \geq Binomial(1 - \alpha / 2, n, \pi_a))
-\end{align}$$
+\end{aligned}$$
 
 **Left Sided Test**
 
-$$\begin{align}
+$$\begin{aligned}
 \gamma(\pi_a) &= P_{\pi_a}(x \in C) \\
  &= P_{\pi_a}(Binomial(\alpha, n, \pi_0) \leq Binomial(\alpha, n, \pi_a)) 
-\end{align}$$
+\end{aligned}$$
 
 **Right Sided Test**
 
-$$\begin{align}
+$$\begin{aligned}
 \gamma(\pi_a) &= P_{\pi_a}(x \in C) \\
  &= P_{\pi_a}(Binomial(1 - \alpha, n, \pi_0) \geq Binomial(1 - \alpha, n, \pi_a)) 
-\end{align}$$
+\end{aligned}$$
 
 Since the Binomial distribution is discrete, the power curve has the interesting characteristic of not being monotonic.  It is sometimes described as having a "sawtooth" appearance. This behavior means that a larger sample size is not always preferred.  For example, in the following figure, a sample size of 10 has better power than a sample size of 12.
 

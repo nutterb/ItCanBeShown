@@ -12,7 +12,7 @@ A random variable $X$ is said to have a Weibull Distribution with parameters $\a
 
 ## Cumulative Distribution Function
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \int\limits_{0}^{x}\alpha\beta t^{\beta-1}e^{-\alpha t^\beta}dt
 	&= \alpha\beta\int\limits_{0}^{x}t^{\beta-1}e^{-\alpha t^\beta}dt \\
 	&= \alpha\beta\Big[\frac{-1}{\alpha\beta}e^{-\alpha t^\beta}\Big]_0^x \\
@@ -20,7 +20,7 @@ $$\begin{align*}
 		+ \frac{1}{\alpha\beta}\Big] \\
 	&= \frac{\alpha\beta}{\alpha\beta}\big(-e^{-\alpha x^\beta}+1\big) \\
 	&= 1-e^{-\alpha x^\beta}
-\end{align*}$$
+\end{aligned}$$
 
 Using this result, we can write the Cumulative Distribution Function as
 
@@ -33,7 +33,7 @@ Using this result, we can write the Cumulative Distribution Function as
 
 ## Expected Values
 
-$$\begin{align*} 
+$$\begin{aligned} 
 E(X)
 	&= \int\limits_{0}^{\infty}x\alpha\beta 
 	 	x^{\beta-1}e^{-\alpha x^{\beta}}dx \\
@@ -55,7 +55,7 @@ E(X)
   &= \alpha^{-\frac{1}{\beta}}
 		\int\limits_{0}^{\infty}y^{\frac{\beta+1}{\beta}-1}e^{-y} \\
 ^{[2]}	&= \alpha^{-\frac{1}{\beta}}\Gamma\Big(\frac{\beta+1}{\beta}\Big)
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $y=\alpha x^\beta\ \Rightarrow 
 		x=(\frac{y}{\alpha})^\frac{1}{\beta}\ \Rightarrow
@@ -63,7 +63,7 @@ E(X)
 > 2. $\int\limits_{0}^{\infty}x^{\alpha-1}e^{-x}dx
 		=\Gamma(\alpha)$
 		
-$$\begin{align*} 
+$$\begin{aligned} 
 E(X^2)
 	&= \alpha\beta\int\limits_{0}^{\infty}x^2x^{\beta-1}e^{-\alpha x^\beta}dx \\
 	&= \alpha\beta\int\limits_{0}^{\infty}x^{\beta+1}e^{-\alpha x^\beta}dx \\
@@ -76,7 +76,7 @@ E(X^2)
 		\int\limits_{0}^{\infty}y^{\frac{\beta+2}{\beta}-1}e^{-y}dy \\
 	&= \alpha^{-\frac{2}{\beta}}\int\limits_{0}^{\infty}y^{\frac{\beta+2}{\beta}-1}e^{-y}dy \\
 ^{[2]} = \alpha^{-\frac{2}{\beta}}\Gamma\Big(\frac{\beta+2}{\beta}\Big)
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $y=\alpha x^\beta\ \Rightarrow 
 		x=(\frac{y}{\alpha})^\frac{1}{\beta}\ \Rightarrow
@@ -85,7 +85,7 @@ E(X^2)
 		=\Gamma(\alpha)$
 		
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \mu
 	&= E(X) \\
 	&= \alpha^{-\frac{1}{\beta}}\Gamma\Big(\frac{\beta+1}{\beta}\Big)\\
@@ -97,7 +97,7 @@ $$\begin{align*}
 		- \alpha^{-\frac{2}{\beta}}\Gamma\Big(\frac{\beta+1}{\beta}\Big)^2 \\
   &= \alpha^{-\frac{2}{\beta}}\Big[\Gamma\Big(\frac{\beta+2}{\beta}\Big)
 		- \Gamma\Big(\frac{\beta+1}{\beta}\Big)^2\Big]
-\end{align*}$$
+\end{aligned}$$
 
 ## Theorems for the Weibull Distribution
 
@@ -110,7 +110,7 @@ $$
 
 _Proof:_
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \int\limits_{0}^{\infty}\alpha\beta x^{\beta-1}e^{-\alpha x^\beta}dx
 	      &= \alpha\beta\int\limits_{0}^{\infty}x^{\beta-1}e^{-\alpha x^\beta}dx \\
 ^{[1]}  &= \alpha\beta\int\limits_{0}^{\infty}\Big(\big(\frac{y}{\alpha}\big)^
@@ -122,7 +122,7 @@ $$\begin{align*}
       	&= \int\limits_{0}^{\infty}\frac{y^0}{\alpha^0}e^{-y}dy \\
       	&= \int\limits_{0}^{\infty}y^{1-1}e^{-y}dy \\
 ^{[2]}	&= \Gamma(1)=1
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $y=\alpha x^\beta\ \Rightarrow 
 		x = (\frac{y}{\alpha})^\frac{1}{\beta}\ \Rightarrow

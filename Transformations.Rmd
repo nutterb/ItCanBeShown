@@ -2,22 +2,22 @@
 
 Suppose we wish to find the distribution funciton for the random variable $Y$ that is either a strictly increasing or strictly decreasing function (Such a function is sure to have an inverse, whereas a function like $Y=X^2$ does not have an inverse)..  If we know the distribution of $X$, we may use the following to determine the cdf of $Y$.
 
-$$\begin{align*} 
+$$\begin{aligned} 
 P(Y\leq y)
 	&= P(h(X)\leq y) \\
 	&= P(h^{-1}(h(y))\leq h^{-1}(x)) \\
 	&= P(Y\leq h^{-1}(x)) \\
 \Rightarrow F_Y(y) &= F_X(h^{-1}(x))
-\end{align*}$$
+\end{aligned}$$
 
 The pdf can now be found by taking the deriviative of the cdf.
 
-$$\begin{align*}
+$$\begin{aligned}
 f_Y(y)
 	&= \frac{d(F_Y(y))}{d y} \\
 	&= \frac{d F_Y(h^{-1}(y))}{d y} \\
 	&= f_X(h^{-1}(y))\frac{d(h^{-1}(y))}{dy}
-\end{align*}$$
+\end{aligned}$$
 
 
 ## Example: Cauchy Distribution
@@ -33,7 +33,7 @@ Let $X$ have the Uniform pdf
 
 Let $Y = \tan (X)$.  The pdf of $Y$ can be found as follows:
 
-$$\begin{align*} 
+$$\begin{aligned} 
 h(x)                                &= \tan (x) \\
 \Rightarrow h^{-1}(x)               &= \tan^{-1}(x) \\
 \Rightarrow \frac{d h^{-1}(x)}{d x} &= \frac{1}{1+x^2} \\
@@ -41,7 +41,7 @@ h(x)                                &= \tan (x) \\
                                   	&= f_X(tan^{-1}(x))\frac{1}{1+y^2} \\
                                   	&= \frac{1}{\pi}\frac{1}{1+y^2} \\
                                   	&= \frac{1}{\pi(1+y^2)}
-\end{align*}$$
+\end{aligned}$$
 
 The domain of $Y$ is transformed
 

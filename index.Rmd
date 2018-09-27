@@ -4,13 +4,6 @@ subtitle: "Notes on Statistical Theory"
 author: "Benjamin Nutter"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-bookdown::gitbook:
-  config:
-    toc:
-      collapse: section
-      scroll_highlight: true
-      before: null
-      after: null
 documentclass: book
 bibliography: Biblio.bib
 biblio-style: "apalike"
@@ -19,6 +12,16 @@ github-repo: nutterb/ItCanBeShown
 nocite: | 
   @Hogg2005a, @Law2000a, @Wacke2002a
 description: "Notes on the Development of Statistical Theory"
+header-includes:
+- \usepackage{amssymb} 
+- \usepackage{arydshln} 
+- \usepackage{caption} 
+- \usepackage{graphicx} 
+- \usepackage{hhline} 
+- \usepackage{longtable} 
+- \usepackage{multirow} 
+- \usepackage[dvipsnames,table]{xcolor} 
+- \allowdisplaybreaks
 ---
 
 ```{r, warning = FALSE, message = FALSE, echo = FALSE}

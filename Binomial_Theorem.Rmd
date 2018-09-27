@@ -12,7 +12,7 @@ Then ${n-1\choose x} + {n-1\choose x-1} = {n\choose x}$.
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 {n-1\choose x} + {n-1\choose x-1}
 	&= \frac{(n-1)!}{x!(n-1-x)!} + \frac{(n-1)!}{(x-1)!((n-1)-(x-1))!}\\
   &= \frac{(n-1)!}{x!(n-x-1)!} + \frac{(n-1)!}{(x-1)!(n-1-x+1)!}\\
@@ -25,7 +25,7 @@ $$\begin{align*}
   &= \frac{n(n-1)!}{x(x-1)!(n-x)(n-x-1)!} \\
 	&= \frac{n!}{x!(n-x)!} \\
 	&= {n\choose x}
-\end{align*}$$
+\end{aligned}$$
 
 
 ### The Binomial Theorem {#binomial-theorem-traditional}
@@ -40,17 +40,17 @@ This proof is completed by mathematical induction.
 
 Base Step: $n=1$
 
-$$\begin{align*}
+$$\begin{aligned}
 (a+b)^1
 	&= \sum\limits_{x=0}^{1} {1\choose x} a^{1-x} b^x \\
 	&= {1\choose 0} a^{1-0} b^0 + {1\choose 1} a^{1-1} b^1 \\
 	&= 1\cdot a\cdot 1 + 1\cdot 1\cdot b \\
 	&= a+b
-\end{align*}$$
+\end{aligned}$$
 
 Inductive Step: Assume that the Theorem holds for $n$, and show it is true for $n+1$.
 
-$$\begin{align*}
+$$\begin{aligned}
 (a+b)^{n+1}
       	&= (a+b)(a+b)^n \\
       	&= a(a+b)^n + b(a+b)^n \\
@@ -67,7 +67,7 @@ $$\begin{align*}
 ^{[3]}  &= a^{n+1} + \sum\limits_{x+1}^{n}{n+1\choose x}a^{n-x+1}b^x + b^{n+1} \\
         &=a^{n+1}+\sum\limits_{x=1}^{n}{n+1\choose x}a^{(n+1)-x}b^x+b^{n+1} \\
 ^{[4]}	&= \sum\limits_{x=0}^{n+1}{n+1\choose x}a^{(n+1)-x}b^x
-\end{align*}$$
+\end{aligned}$$
 
 This completes both the inductive step and the proof.
 

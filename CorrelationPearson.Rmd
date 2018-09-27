@@ -16,7 +16,7 @@ $$\rho
 
 _Proof:_
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \rho
 	&= \frac{Cov(X,Y)}{\sqrt{\sigma_X^2\sigma_Y^2}} \\
 	&= \frac{Cov(X,Y)}{\sqrt{\sigma_X^2\sigma_Y^2}} \\
@@ -26,4 +26,4 @@ $$\begin{align*}
 		{\frac{1}{N}\sqrt{\sum\limits_{i=1}^{N}(x_i-\mu_X)^2\sum\limits_{i=1}^{N}(y_i-\mu_Y)^2}} \\
 	&= \frac{\sum\limits_{i=1}^{N}(x_i-\mu_X)(y_i-\mu_Y)}
 		{\sqrt{\sum\limits_{i=1}^{N}(x_i-\mu_X)\sum\limits_{i=1}^{N}(y_i-\mu_Y)}}
-\end{align*}$$
+\end{aligned}$$

@@ -10,26 +10,26 @@ _Proof:_
 
 By the assumptions, we know
 
-$$\begin{align*}
+$$\begin{aligned}
 n &= n_1 + n_2 \\
   &= w \cdot n + (1 - w) \cdot n
-\end{align*}$$
+\end{aligned}$$
 
 This implies
 
-$$\begin{align*}
+$$\begin{aligned}
 n_1 &= w \cdot n\\
 n_2 &= (1-w) \cdot n
-\end{align*}$$
+\end{aligned}$$
 
 We observe the following:
 
-$$\begin{align*}
+$$\begin{aligned}
 \frac{n_2}{n_1} 
   &= \frac{(1-w) \cdot n}{w \cdot n} \\
   &= \frac{(1-w)}{w} \\
 \Rightarrow n_2 &= \frac{n_1 \cdot (1-w)}{w}
-\end{align*}$$
+\end{aligned}$$
 
 This further implies
 
@@ -51,10 +51,10 @@ Suppose, further, that there exists a vector of weights $W$ that satisfy the fol
 
 Let us assign the values $n_1 = w_1 \cdot n$, $n_2 = w_2 \cdot n$, ..., $n_k = w_k \cdot n$. Then for all $i | i \leq k$, 
 
-$$\begin{align*}
+$$\begin{aligned}
 \frac{n_i}{n_1} &= \frac{w_i \cdot n}{w_1 \cdot n} \\
                 &= \frac{w_i}{w_1} \\
 \Rightarrow n_i &= \frac{n_1 \cdot w_i}{w_1}
-\end{align*}$$
+\end{aligned}$$
 
 Thus, each $n_i$ may be estimated by estimating the value of $n_1$ provided $W$ is a fully specified vector of weights for each of the $k$ groups.

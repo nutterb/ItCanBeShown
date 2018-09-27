@@ -4,42 +4,42 @@
 
 For any two random variables $X$ and $Y$, the covariance of $X$ and $Y$ is defined as
 
-$$Cov(X,Y) = E[(X-\mu_X)(Y-\mu_Y)]$$
+$$\mathrm{Cov}(X,Y) = E[(X-\mu_X)(Y-\mu_Y)]$$
 
 ## Theorems on Covariance
 
 ### Theorem
 
 Let $X$ be a random variable.  Then
-$$Cov(X,X) = V(X)$$
+$$\mathrm{Cov}(X,X) = V(X)$$
 
 _Proof:_
 
-$$\begin{align*}
-Cov(X,X)
+$$\begin{aligned}
+\mathrm{Cov}(X,X)
 	&= E[(X-\mu)(X-\mu)] \\
 	&= E[(X-\mu)^2] \\
 	&= V(X)
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Theorem {#covariance-theorem2}
 
 Let $X$ and $Y$ be random variables.  Then
 
-$$Cov(X,Y) = E(XY)-E(X)E(Y)$$
+$$\mathrm{Cov(X,Y)} = E(XY)-E(X)E(Y)$$
 
 _Proof:_
 
-$$\begin{align*}
-Cov(X,Y)
+$$\begin{aligned}
+\mathrm{Cov(X,Y)}
   &= E[(X-\mu_x)(Y-\mu_Y)] \\
   &= E[XY - X\mu_y - Y\mu_X + \mu_X\mu_Y] \\
   &= E(XY) - E(X)\mu_Y - \mu_XE(Y) + \mu_X\mu_Y \\
   &= E(XY) - E(X)E(Y) - E(X)E(Y) + E(X)E(Y) \\
   &= E(XY) - 2E(X)E(Y) + E(X)E(Y) \\
   &= E(XY) - E(X)E(Y)
-\end{align*}$$
+\end{aligned}$$
 
 
 
@@ -47,17 +47,17 @@ Cov(X,Y)
 
 Let $X$ and $Y$ be random variables and let $a$ and $b$ be constants.  Then
 
-$$Cov(aX,bY) = abCov(X,Y)$$
+$$\mathrm{Cov(aX,bY)} = ab \mathrm{Cov}(X,Y)$$
 
 _Proof:_
 
-$$\begin{align*}
-Cov(aX,bY)
+$$\begin{aligned}
+\mathrm{Cov}(aX,bY)
 	&= E(aXbY) - E(aX)E(bY) \\
   &= abE(XY) - abE(X)E(Y) \\
 	&= ab[E(XY) - E(X)E(Y)] \\
-  &= abCov(X,Y)
-\end{align*}$$
+  &= ab \cdot \mathrm{Cov}(X,Y)
+\end{aligned}$$
 
 
 ### Theorem
@@ -67,20 +67,20 @@ Let $X_1 , X_2 , \ldots , X_n$ be random variables with $E(X_i) = \mu_i$ for $i 
 If $U_1 = \sum\limits_{i=1}^{n}a_iX_i$
  and $U_2 = \sum\limits_{i=1}^{m}b_iY_i$, then 
  
-$$Cov(U_1,U_2) = \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_jCov(X_i,Y_j)$$
+$$\mathrm{Cov}(U_1,U_2) = \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_j \cdot \mathrm{Cov}(X_i,Y_j)$$
 
 _Proof:_
 
-$$\begin{align*}
-Cov(U_1,U_2)
+$$\begin{aligned}
+\mathrm{Cov}(U_1,U_2)
 	&= E[(U_1-E(U_1))(U_2-E(U_2))] \\
   &= E\Big[\big(\sum\limits_{i=1}^{n}a_iX_i-\sum\limits_{i=1}^{n}a_i\mu_i\big)
 		\big(\sum\limits_{j=1}^{m}b_jY_j-\sum\limits_{j=1}^{m}b_j\phi_j\big)\Big] \\
   &= E\Big[\big(\sum\limits_{i=1}^{n}a_i(X_i-\mu_i)\big)\big(\sum\limits_{j=1}^{m}b_j(Y_j-\phi_j)\big)\Big] \\
   &= E\Big[\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_j(X_i-\mu_i)(Y_j-\phi_j)\Big] \\
   &= \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_jE[(X_i-\mu_i)(Y_j-\phi_j)] \\
-  &= \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_j\ Cov(X_i,Y_j)
-\end{align*}$$
+  &= \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_j\ \mathrm{Cov}(X_i,Y_j)
+\end{aligned}$$
 
 
 ### Theorem
@@ -90,20 +90,20 @@ Let $X_1,X_2,\ldots,X_n$ be random variables with $E(X_i)=\mu_i$ for $i=1,2,\ldo
 If $Y = \sum\limits_{i=1}^{n}a_iX_i$ then
 
 $$V(Y) = 
-  \sum\limits_{i=1}^{n}a_i^2V(X_i)+2\sum\limits_{\ \ i<}\sum\limits_{j\ \ }a_ia_jCov(X_i,X_j)$$
+  \sum\limits_{i=1}^{n}a_i^2V(X_i)+2\sum\limits_{\ \ i<}\sum\limits_{j\ \ }a_ia_j\ \mathrm{Cov}(X_i,X_j)$$
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 V(Y)
 	&= E[(Y-\mu_Y)^2] \\
 	&= E[(Y-\mu_Y)(Y-\mu_Y)] \\
   &= E\Big[\big(\sum\limits_{i=1}^{n}a_iX_i-a_i\mu_i\big)
       \big(\sum\limits_{n=1}^{n}a_jX_j-a_j\mu_j\big)\Big] \\
   &= \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}a_ia_jE[(X_i-\mu_i)(X_j-\mu_j)] \\
-  &= \sum\limits_{i=1}^{n}a_i^2Cov(X_i,X_i)+
+  &= \sum\limits_{i=1}^{n}a_i^2\ \mathrm{Cov}(X_i,X_i)+
 		\sum\limits_{\ \ i\neq}\sum\limits_{j\ \ \ \ }a_ia_jE[(X_i-\mu_i)(X_j-\mu_j)] \\
   &= \sum\limits_{i=1}^{n}a_i^2V(X_i)+
-      2\sum\limits_{\ \ i<}\sum\limits_{j\ \ \ \ }a_ia_jCov(X_i,X_j)
-\end{align*}$$
+      2\sum\limits_{\ \ i<}\sum\limits_{j\ \ \ \ }a_ia_j\ \mathrm{Cov}(X_i,X_j)
+\end{aligned}$$
 

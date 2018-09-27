@@ -22,12 +22,12 @@ A random variable is said to have a Poisson distribution with parameter $\lambda
 
 A recursive form of the cdf can be derived and has some usefulness in computer applications.  With it, one need only initiate the first value and additional cumulative probabilities can be calculated.  It is derived as follows:
 
-$$\begin{align*} 
+$$\begin{aligned} 
 P(X=x+1)
 	&= \frac{e^{-\lambda}\lambda^{x+1}}{(x+1)!} \\
 	&= \frac{\lambda}{x+1}\frac{e^{-\lambda}\lambda^x}{x!} \\
 	&= \frac{\lambda}{x+1}P(X=x)
-\end{align*}$$
+\end{aligned}$$
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE, fig.path = 'figures/', fig.cap = 'The graphs on the left and right show a Poisson probability cumulative distribution function, respectively, for $\\lambda=3$.'}
 Poisson <- 
@@ -54,7 +54,7 @@ ggplot(data = Poisson,
 
 ## Expected Values
 
-$$\begin{align*}
+$$\begin{aligned}
 E(X)
 	&= \sum\limits_{x=0}^{\infty}x\frac{\lambda^xe^{-\lambda}}{x!} \\
 	&= e^{-\lambda}\sum\limits_{x=0}^{\infty}x\frac{\lambda^x}{x!} \\
@@ -67,13 +67,13 @@ E(X)
 	&= \lambda e^{-\lambda}e^\lambda \\
 	&= \lambda e^(-\lambda+\lambda) \\
 	&= \lambda
-\end{align*}$$
+\end{aligned}$$
 
 > 1. Taylor Series Expansion: $e^x=\frac{x^0}{0!}+\frac{x^1}{1!}
 			+\frac{x^2}{2!}+\cdots
 		=1+\frac{x^1}{1!}+\frac{x^2}{2!}+\cdots$
 		
-$$\begin{align*}
+$$\begin{aligned}
 E(X^2)
 	&= \sum\limits_{x=0}^{\infty}x\frac{\lambda^xe^{-\lambda}}{x!} \\
 	&= e^{-\lambda}\sum\limits_{x=0}^{\infty}x\frac{\lambda^x}{x!} \\
@@ -101,13 +101,13 @@ E(X^2)
 	&= E(X^2) - E(X) \\
 	&= \lambda^2 + \lambda - \lambda^2 \\
 	&= \lambda
-\end{align*}$$
+\end{aligned}$$
 
 
 
 ## Moment Generating Function
 
-$$\begin{align*} 
+$$\begin{aligned} 
 M_X(t)
 	&= E(e^{tX}) \\
 	&= \sum\limits_{x=0}^{\infty}e^{tx}\frac{\lambda^xe^{-\lambda}}{x!} \\
@@ -118,13 +118,13 @@ M_X(t)
   &= e^{-\lambda}e^{\lambda e^t} \\
   &= e^{(\lambda e^t-\lambda)} \\
   &= e^{\lambda(e^t-1)}
-\end{align*}$$
+\end{aligned}$$
 
 > 1. Taylor Series Expansion: $e^x=\frac{x^0}{0!}+\frac{x^1}{1!}
 			+\frac{x^2}{2!}+\cdots
 		=1+\frac{x^1}{1!}+\frac{x^2}{2!}+\cdots$
 
-$$\begin{align*}
+$$\begin{aligned}
 M_X^{(1)}(t)
 	&= e^{\lambda(e^t-1)}\lambda e^t=\lambda e^te^{\lambda(e^t-1)} \\
 \\
@@ -155,7 +155,7 @@ E(X^2)
 	&= E(X^2)-E(X) \\
 	&= \lambda+\lambda^2-\lambda^2 \\
 	&= \lambda
-\end{align*}$$
+\end{aligned}$$
 
 
 ## Maximum Likelihood Estimator
@@ -164,30 +164,30 @@ Let $x_1,x_2,\ldots,x_n$ be a random sample drawn from a Poisson Distribution wi
 
 ### Likelihood Function
 
-$$\begin{align*}
+$$\begin{aligned}
 L(\theta)
 	&= L(x_1,x_2,\ldots,x_n|\theta) \\
 	&= p(x_1|\theta)p(x_2|\theta)\cdots p(x_n|\theta) \\
   &= \frac{e^{-\lambda}\lambda^{x_1}}{x_1!}\cdot\frac{e^{-\lambda}\lambda^{x_2}}{x_2!}
 		\cdot \ \cdots\ \cdot \frac{e^{-\lambda}\lambda^{x_n}}{x_n!} \\
 	&= \frac{e^{-n\lambda}\lambda^{\sum\limits_{i=1}^{n}x_i}}{\prod\limits_{i=1}^{n}x_1!}
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Log-likelihood
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \ell(\lambda)
 	&= \ln(L(\lambda)) \\
 	&= \ln\Big[\frac{e^{-n\lambda}\lambda^{\sum\limits_{i=1}^{n}x_i}}{\prod\limits_{i=1}^{n}x_1!}\Big] \\
 	&= \ln(e^{-n\lambda})+\ln\Big(\lambda^{\sum\limits_{i=1}^{n}x_i}\Big)
 		- \ln\Big(\prod\limits_{i=1}^{n}x_1!\Big) \\
   &= -n\lambda + \sum\limits_{i=1}^{n}x_i\ln\Big(\lambda)-\ln(\prod\limits_{i=1}^{n}x_1!\Big)
-\end{align*}$$
+\end{aligned}$$
 
 ### MLE for $\lambda$
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \frac{d\ell}{d\lambda}
 	&= -n - \frac{\sum\limits_{i=1}^{n}x_i}{\lambda} - 0 \\
 	&= \frac{\sum\limits_{i=1}^{n}x_i}{\lambda} - n \\
@@ -197,7 +197,7 @@ $$\begin{align*}
 \Rightarrow \frac{\sum\limits_{i=1}^{n}x_i}{\lambda} &= n\\
 \Rightarrow \sum\limits_{i=1}^{n}x_i &= n\lambda\\
 \Rightarrow \frac{\sum\limits_{i=1}^{n}x_i}{n} &= \lambda
-\end{align*}$$
+\end{aligned}$$
 
 so $\displaystyle \hat\lambda=\frac{\sum\limits_{i=1}^{n}x_i}{n}$ is the Maximum Likelihood Estimator for $\lambda$.
 
@@ -217,7 +217,7 @@ $\lim\limits_{n\rightarrow\infty}{n\choose x}p^x(1-p)^{n-x}$.
 
 By rewriting $p$ in terms of $\mu\ (\mu=np\ \Rightarrow p=\frac{\mu}{n})$ we get
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \lim\limits_{n\rightarrow\infty}{n\choose x}\frac{\mu}{n}^x(1-\frac{\mu}{n})^{n-x}
 	&= \lim\limits_{n\rightarrow\infty}{n\choose x}
 		\frac{\mu}{n}^x(1-\frac{\mu}{n})^n(1-\frac{\mu}{n})^{-x} \\
@@ -227,16 +227,16 @@ $$\begin{align*}
 		\mu^x\frac{1}{n^x}(1-\frac{\mu}{n})^n(1-\frac{\mu}{n})^{-x} \\
   &= \frac{\mu^x}{x!}\lim\limits_{n\rightarrow\infty}\bigg(\frac{n(n-1)\cdots(n-x+1)}{n^x}\bigg)
 		\frac{1}{n^x}(1-\frac{\mu}{n})^n(1-\frac{\mu}{n})^{-x} \\
-  &= \frac{\mu^x}{x!}\lim\limits_{n\rightarrow\infty}\bigg(\frac{n(n-1)\cdots(n-x+1)}{n^x}\bigg)
+  ^{[1]}&= \frac{\mu^x}{x!}\lim\limits_{n\rightarrow\infty}\bigg(\frac{n(n-1)\cdots(n-x+1)}{n^x}\bigg)
 		\lim\limits_{n\rightarrow\infty}\frac{1}{n^x}(1-\frac{\mu}{n})^n
 		\lim\limits_{n\rightarrow\infty}(1-\frac{\mu}{n})^{-x} \\
   &= \frac{\mu^x}{x!}\cdot 1\cdot e^{-\mu}\cdot 1 \\
   &= \frac{e^{-\mu}\mu^x}{x!}
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $\lim\limits_{n\rightarrow\infty}(1-\frac{x}{n})^n=e^-x$
 
-Traditionally, we use $\lambda$ in place of $\mu$ for the Poisson distribution, giving us the desired result. 
+Traditionally, we use $\lambda$ in place of $\mu$ for the Poisson distribution, giving us the desired result. [@Wacke2002a, p. 125]
 
 
 ### Validity of the Distribution
@@ -245,7 +245,7 @@ $$\sum\limits_{x=0}^{\infty}\frac{e^{-\lambda}\lambda^x}{x!} = 1$$
 
 _Proof:_
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \sum\limits_{x=0}^{\infty}\frac{e^{-\lambda}\lambda^x}{x!}
 	&= e^{-\lambda}\sum\limits_{x=0}^{\infty}\frac{\lambda^x}{x!} \\
 	&= e^{-\lambda}\bigg(\frac{\lambda^0}{0!}+
@@ -253,7 +253,7 @@ $$\begin{align*}
   &= e^{-\lambda}\cdot e^\lambda \\
   &= e^0 \\
   &= 1
-\end{align*}$$
+\end{aligned}$$
 	
 > 1. Taylor Series Expansion: $e^x=\frac{x^0}{0!}+\frac{x^1}{1!}+\frac{x^2}{2!}+\cdots$
 
@@ -268,7 +268,7 @@ Then $Y\sim$Poisson$(\sum\limits_{i=1}^{n}\lambda_i)$.\\
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 M_Y(t)
 	&= E(e^{tY}) \\
 	&= E(e^{t(X_1+X_2+\cdots+X_n)} \\
@@ -277,6 +277,6 @@ M_Y(t)
   &= e^{\lambda_1(e^t-1)}e^{\lambda_2(e^t-1)}\cdots e^{\lambda_n(e^t-1)} \\
   &= e^{(\lambda_1+\lambda_2+\cdots+\lambda_n)(e^t-1)} \\
 	&= e^{(e^{t-1})\sum\limits_{i=1}^{n}\lambda_i}
-\end{align*}$$
+\end{aligned}$$
 
 Which is the mgf of a Poisson random variable with parameter $\sum\limits_{i=1}^{n}\lambda_i$.  Thus $Y\sim$Poisson$(\sum\limits_{i=1}^{n}\lambda_i)$.

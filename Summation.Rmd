@@ -23,12 +23,12 @@ $$
 
 _Proof:_
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \sum\limits_{i=1}^{n}ca_i
 	&= ca_1 + ca_2 + \cdots + ca_n \\
 	&= c(a_1+a_2+\cdots+a_n) \\
 	&= c\sum\limits_{i=1}^{n}a_i
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Theorem {#summation-theorem-3}
@@ -41,12 +41,12 @@ $$
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 \sum\limits_{i=1}^{n}(a_i+b_i)
 	&= a_1 + b_1 + a_2 + b_2 + \cdots + a_n + b_n \\
   &= a_1 + a_2 + \cdots + a_n + b_1 + b_2 + \cdots + b_n \\
 	&= \sum\limits_{i=1}^{n}a_i + \sum\limits_{i=1}^{n}b_i
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Theorem {#summation-theorem-4}
@@ -61,13 +61,13 @@ $$
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_i b_j
 	&= \sum\limits_{i=1}^{n}\bigg(a_i\sum\limits_{j=1}^{m}b_j\bigg) \\
 	&= \sum\limits_{i=1}^{n}a_i b_{+} \\
 	&= b_{+} \sum\limits_{i=1}^{n}a_i \\
 	&= a_{+} b_{+}
-\end{align*}$$
+\end{aligned}$$
 
 
 
@@ -81,12 +81,12 @@ $$
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_i b
 	&= \sum\limits_{i=1}^{n}m a_i b \\
 	&= m b\sum\limits_{i=1}^{n}a_i \\
 	&= m a_{+} b
-\end{align*}$$
+\end{aligned}$$
 
 
 
@@ -100,12 +100,12 @@ $$
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_j b
 	&= \sum\limits_{i=1}^{n}\bigg( b \sum\limits_{j=1}^{m} a_j \bigg) \\
 	&= \sum\limits_{i=1}^{n}a_{+}b \\
 	&= n a_{+} b
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Theorem {#summation-theorem-7}
@@ -118,11 +118,11 @@ $$
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_{ij}
 	&= \sum\limits_{i=1}^{n}\bigg(a_i\sum\limits_{j=1}^{m}b_{ij}\bigg) \\
 	&= \sum\limits_{i=1}^{n}a_ib_{i+}
-\end{align*}$$
+\end{aligned}$$
 
 
 ### Theorem {#summation-theorem-8}
@@ -136,7 +136,7 @@ $$
 
 _Proof:_
 
-$$\begin{align*}
+$$\begin{aligned}
 \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_jb_{ij}
   &= a_1b_{11}+a_2b_{12}+\cdots+a_mb_{1m} \\
   & \ \ \ \  +a_1b_{21}+a_2b_{22}+\cdots+a_mb_{2m} \\
@@ -152,4 +152,4 @@ $$\begin{align*}
   & \ \ \ \ +a_m(b_{1m}+b_{2m}+\cdots+b_{nm}) \\
   &= a_1b_{+ 1}+a_2b_{+ 2}+\cdots+a_mb_{+ m} \\
   &=\sum\limits_{j=1}^{m}a_jb_{+ j}
-\end{align*}$$
+\end{aligned}$$

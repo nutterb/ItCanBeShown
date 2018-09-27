@@ -3,7 +3,7 @@
 ## Defining Variance With Expected Values
 
 In the case of a discrete random variable, the variance is
-$$\begin{align*} 
+$$\begin{aligned} 
 \sigma^2
 	&= \sum\limits_{x=0}^{\infty}(x-\mu)^2p(x) \\
 	&= \sum\limits_{x=0}^{\infty}(x^2-2\mu x+\mu^2)p(x) \\
@@ -15,10 +15,10 @@ $$\begin{align*}
   &= \sum\limits_{x=0}^{\infty}x^2p(x)-2\mu\cdot\mu+\mu^2 \\
 	&= \sum\limits_{x=0}^{\infty}x^2p(x)-\mu^2 \\
 	&= E(X^2)-E(X)^2\\
-\end{align*}$$
+\end{aligned}$$
 
 In the case of a continuous random variable, the variance is
-$$\begin{align*}
+$$\begin{aligned}
 \sigma^2 
 	&= \int\limits_{-\infty}^{\infty}(x-\mu)^2f(x)dx \\
 	&= \int\limits_{-\infty}^{\infty}(x^2-2\mu x+\mu^2)f(x)dx \\
@@ -30,11 +30,11 @@ $$\begin{align*}
   &= \int\limits_{-\infty}^{\infty}x^2f(x)dx-2\mu\cdot\mu+\mu^2 \\
 	&= \int\limits_{-\infty}^{\infty}x^2f(x)dx-\mu^2 \\
 	&= E(X^2)-E(X)^2
-\end{align*}$$
+\end{aligned}$$
 
 In general, these results may be summarized as follows:
 
-$$\begin{align*}
+$$\begin{aligned}
 \sigma^2
 	&= E[(X-\mu)^2] \\
 	&= E[(X^2-2\mu X+\mu^2)] \\
@@ -44,13 +44,13 @@ $$\begin{align*}
 	&= E(X^2) - 2\mu^2 + \mu \\
   &= E(X^2) - \mu^2 \\
 	&= E(X^2) - E(X)^2
-\end{align*}$$
+\end{aligned}$$
 
 
 
 ## Unbiased Estimator
 
-$$\begin{align*}
+$$\begin{aligned}
 E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n}\Bigg)
       	&= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}(x_i-\bar x)^2\Big) \\
       	&= \frac{1}{n}E\Big(\sum\limits_{i=1}^{n}(x_i^2-2\bar x x_i+\bar x^2)\Big) \\
@@ -77,7 +77,7 @@ E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n}\Bigg)
         &=\frac{1}{n}(n\sigma^2-\sigma) \\
         &= \frac{1}{n}(n-1)\sigma^2 \\
         &= \frac{n-1}{n}\sigma^2
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $V(X)=E(X^2)-E(X)^2$  
 >    $\ \ \ \ \Rightarrow E(X^2)=V(X)+E(X)^2=\sigma^2+\mu^2$
@@ -87,7 +87,7 @@ E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n}\Bigg)
 
 Since $E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n}\Bigg)\neq\sigma^2$ it is a biased estimator.  Notice, however, that the bias can be eliminated by dividing by $n-1$ instead of by $n$
 
-$$\begin{align*} 
+$$\begin{aligned} 
 E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1}\Bigg)
       	&= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}(x_i-\bar x)^2\Big) \\
       	&= \frac{1}{n-1}E\Big(\sum\limits_{i=1}^{n}(x_i^2-2\bar x x_i+\bar x^2)\Big) \\
@@ -115,7 +115,7 @@ E\Bigg(\frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1}\Bigg)
         &= \frac{1}{n-1}(n-1)\sigma^2 \\
         &= \frac{n-1}{n-1}\sigma^2 \\
         &=\sigma^2
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $V(X)=E(X^2)-E(X)^2$  
 >    $\ \ \ \ \Rightarrow E(X^2)=V(X)+E(X)^2=\sigma^2+\mu^2$
@@ -131,15 +131,15 @@ $$s^2= \frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1}$$
 
 ### Computational Formula for $\sigma$^2 {#computational-formula-population-variance}
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \sigma^2
 	&= \frac{\sum\limits_{i=1}^{N}(x_i-\mu)^2}{N} \\
 	&= \frac{\sum\limits_{i=1}^{N}x_i^2-\frac{\Big(\sum\limits_{i=1}^{N}x_i\Big)^2}{N}}{N}
-\end{align*}$$
+\end{aligned}$$
 
 _Proof:_
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \frac{\sum\limits_{i=1}^{N}(x_i-\mu)^2}{N}
 	&= \frac{\sum\limits_{i=1}^{N}(x_i^2-2\mu x_i+\mu^2)}{N} \\
 	&= \frac{\sum\limits_{i=1}^{N}
@@ -154,21 +154,21 @@ $$\begin{align*}
             x_i^2-2\frac{\Big(\sum\limits_{i=1}^{N}x_i\Big)^2}{N}
             + \frac{\Big(\sum\limits_{i=1}^{N}x_i\Big)^2}{N}}{N} \\
 	&= \frac{\sum\limits_{i=1}^{N}x_i^2-\frac{\Big(\sum\limits_{i=1}^{N}x_i\Big)^2}{N}}{N}
-\end{align*}$$
+\end{aligned}$$
 
 
 
 ### Computational Formula for $s$^2 {#computational-formula-sample-variance}
 
-$$\begin{align*} 
+$$\begin{aligned} 
 s^2
 	&= \frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1} \\
 	&= \frac{\sum\limits_{i=1}^{n}x_i^2-\frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}}{n-1}
-\end{align*}$$
+\end{aligned}$$
 
 _Proof:_
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \frac{\sum\limits_{i=1}^{n}(x_i-\bar x)^2}{n-1}
 	&= \frac{\sum\limits_{i=1}^{n}(x_i^2-2\bar x x_i+\bar x^2)}{n-1} \\
 	&= \frac{\sum\limits_{i=1}^{n}x_i^2-\sum\limits_{i=1}^{n}2\bar x x_i
@@ -179,4 +179,113 @@ $$\begin{align*}
   &= \frac{\sum\limits_{i=1}^{n}x_i^2-2\frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}
 		+ \frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}}{n-1} \\
 	&= \frac{\sum\limits_{i=1}^{n}x_i^2-\frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}}{n-1}
-\end{align*}$$
+\end{aligned}$$
+
+### Corollary: Alternative Computational Formula for $s^2$
+
+$$\begin{aligned}
+s^2
+  &= \frac{1}{n \cdot (n - 1)}
+      \Big(n \cdot \sum\limits_{i=1}^n x_i^2 - 
+        \big(\sum\limits_{i = 1}^n x_i\big)^2\Big)
+\end{aligned}$$
+
+_Proof:_
+
+Beginning with the result from \@ref(computational-formula-sample-variance):
+
+$$\begin{aligned}
+s^2
+  &= \frac{\sum\limits_{i=1}^{n}x_i^2-\frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}}{n-1} \\
+  &= \frac{1}{n-1} \Big(\sum\limits_{i=1}^{n}x_i^2-\frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}\Big) \\
+  &= \frac{1}{n-1}\Big(\frac{n \cdot \sum\limits_{i=1}^{n}x_i^2}{n} - 
+  \frac{\Big(\sum\limits_{i=1}^{n}x_i\Big)^2}{n}\Big) \\
+  &= \frac{1}{n \cdot (n - 1)}
+      \Big(n \cdot \sum\limits_{i=1}^n x_i^2 - 
+        \big(\sum\limits_{i = 1}^n x_i\big)^2\Big)
+\end{aligned}$$
+
+#### Application
+
+Both this result and the previous result may be used to optimize calculation of the sample variance in that they permit calculation to occur in one pass of the data.  Consider the following sample:
+
+```{r}
+x <- c(2, 11, 9, 7, 13, 3, 20)
+```
+
+Using the formula
+
+$$s^2 = \frac{\sum\limits_{i=1}^n(x_i - \bar{x})^2)}{n - 1}$$
+
+the sample variance is calculated
+
+```{r}
+x_bar <- 0
+n <- length(x)
+for (i in seq_along(x)){
+  x_bar <- x_bar + x[i] / n
+}
+
+variance <- 0
+for (i in seq_along(x)){
+  variance <- variance + (x[i] - x_bar)^2 / (n - 1)
+}
+```
+
+This calculation required the use of two `for` loops.  Using the computational formula 
+
+$$\begin{aligned}
+s^2
+  &= \frac{1}{n \cdot (n - 1)}
+      \Big(n \cdot \sum\limits_{i=1}^n x_i^2 - 
+        \big(\sum\limits_{i = 1}^n x_i\big)^2\Big)
+\end{aligned}$$
+
+the sample variance can be calculated using one `for` loop.
+
+```{r}
+sum_square <- 0
+sum_i <- 0
+n <- length(x)
+for(i in seq_along(x)){
+  sum_square <- sum_square + x[i]^2
+  sum_i <- sum_i + x[i]
+}
+
+variance <- 1 / (n * (n - 1)) * (n * sum_square - sum_i^2)
+```
+
+Comparing the processing time of these two approaches shows that the computational formula, utilizing a single `for` loop, requires less than half the processing time of the definitional formula.
+
+```{r}
+library(microbenchmark)
+# sample of 1,000 values between 1 and 100
+x <- sample(1:100, 1000, replace = TRUE)
+microbenchmark(
+  standard = 
+  {
+    x_bar <- 0
+    n <- length(x)
+    for (i in seq_along(x)){
+      x_bar <- x_bar + x[i] / n
+    }
+    
+    variance <- 0
+    for (i in seq_along(x)){
+      variance <- variance + (x[i] - x_bar)^2 / (n - 1)
+    }
+  },
+  computational = 
+  {
+    sum_square <- 0
+    sum_i <- 0
+    n <- length(x)
+    for(i in seq_along(x)){
+      sum_square <- sum_square + x[i]^2
+      sum_i <- sum_i + x[i]
+    }
+    
+    variance <- 1 / (n * (n - 1)) * (n * sum_square - sum_i^2)
+  }
+)
+```

@@ -20,26 +20,26 @@ The hypotheses for these test take the forms:
 
 For a two-sided test:
 $$
-  \begin{align*}
+  \begin{aligned}
   H_0: \pi &= \pi_0\\
   H_a: \pi &\neq \pi_0
-  \end{align*}
+  \end{aligned}
 $$
 
 For a one-sided test:
 $$
-  \begin{align*}
+  \begin{aligned}
   H_0: \pi &< \pi_0\\
   H_a: \pi &\geq \pi_0
-  \end{align*}
+  \end{aligned}
 $$
 
 or 
 $$
-  \begin{align*}
+  \begin{aligned}
   H_0: \pi &> \pi_0\\
   H_a: \pi &\leq \pi_0
-  \end{align*}
+  \end{aligned}
 $$
 
 To compare a sample $(X_1, \ldots, X_n)$ against the hypothesized value, a 
@@ -158,23 +158,23 @@ $p \geq \pi_0 + z_\alpha \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}$.
 This change can be justified by:
 
 $$
-\begin{align*}
+\begin{aligned}
 |Z| &\geq z_{1-\alpha}\\
 \Big|\frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}\Big| &\geq z_{1-\alpha} 
-\end{align*}
+\end{aligned}
 $$
 
 
 
 $$
-\begin{align*}
+\begin{aligned}
 -\Big(\frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}\Big) &\geq z_{1-\alpha} &
     \frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}} &\geq z_{1-\alpha}\\
 p - \pi_0 &\leq - z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}} &
     p - \pi_0 &\geq z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\\
 p &\leq \pi_0 - z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}} &
     p &\geq \pi_0 + z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}} 
-\end{align*}
+\end{aligned}
 $$
 
 For a two-sided test, both the conditions apply.  The left side condition is used for a left-tailed test, and the right side condition for a right-tailed test.
@@ -197,7 +197,7 @@ The derivations below make use of the following symbols:
 **Two-Sided Test**
 
 $$
-\begin{align*}
+\begin{aligned}
 \gamma(\pi_a) &= P_{\pi_a}(p \in C)\\
   &= P_\mu\Big(p \leq \pi_0 - z_{\alpha/2} \cdot 
       \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\Big) +
@@ -217,7 +217,7 @@ $$
    P_{\pi_a}\Big(Z \geq z_{1-\alpha/2} + \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big)\\
 &= P_{\pi_a}\Big(Z \leq -z_{\alpha/2} + \frac{\sqrt{n} \cdot (\pi_0 - \pi_a)}{\sqrt{\pi_a \cdot (1 - \pi_a)}}\Big) + 
    P_{\pi_a}\Big(Z \geq z_{1-\alpha/2} + \frac{\sqrt{n} \cdot (\pi_0 - \pi_a)}{\sqrt{\pi_a \cdot (1 - \pi_a)}}\Big)
-\end{align*}
+\end{aligned}
 $$
 
 Both $z_{\alpha/2}$ and $z_{1-\alpha/2}$ have Standard Normal distributions.
@@ -231,7 +231,7 @@ Reject $H_0$ when $|Z| \geq z_{1-\alpha}$.  Thus, where $Z$ occurs in the
 derivation below, it may reasonably be replaced with $|Z|$.
 
 $$
-\begin{align*}
+\begin{aligned}
 \gamma(\pi_a)  &= P_{\pi_a}(p \in C)\\
 &= P_{\pi_a}\big(p \geq \pi_0 + z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\big)\\
 &= P_{\pi_a}\big(p - \pi_a \geq \pi_0 - \pi_a + z_{1-\alpha} \cdot \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\big)\\
@@ -240,7 +240,7 @@ $$
 &= P_{\pi_a}\Big(Z \geq \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}} + z_{1-\alpha} \Big)\\
 &= P_{\pi_a}\Big(Z \geq z_{1-\alpha} + \frac{\pi_0 - \pi_a}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big)\\
 &= P_{\pi_a}\Big(Z \geq z_{1-\alpha} + \frac{\sqrt{n} \cdot (\pi_0 -\pi_a)}{\sqrt{\frac{\pi_a \cdot (1 - \pi_a)}{n}}}\Big)
-\end{align*}
+\end{aligned}
 $$
 
 Where $z_{1-\alpha}$ has a Standard Normal distribution.

@@ -137,7 +137,7 @@ $$\begin{aligned}
   &= \frac{\Gamma(x + 1)}{c^{x + 1}}
 \end{aligned}$$
 
-> 1. Let $y = ct$. Then $y = \frac{y}{c}$ and $dt = \frac{dy}{c}. 
+> 1. Let $y = ct$. Then $y = \frac{y}{c}$ and $dt = \frac{dy}{c}$. 
 > 2. $\int\limits_0^\infty y^{(x+1)-1} e^{-y} dy$ satisfies the form of a Gamma function. \@ref(gamma-function-definition)
 
 ## References

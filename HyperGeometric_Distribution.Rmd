@@ -31,7 +31,7 @@ where
 
 ## Expected Values
 
-$$\begin{align*} 
+$$\begin{aligned} 
 E(X)
       	&= \sum\limits_{x=0}^{n}x\frac{{r\choose x}{N-r\choose n-x}}{{N\choose n}} \\
       	&= \sum\limits_{x=0}^{n}x{r\choose x}\frac{{N-r\choose n-x}}{{N\choose n}} \\
@@ -47,7 +47,7 @@ E(X)
             \frac{{r-1\choose y}{N-r\choose n-y-1}}{{N-1\choose n-1}} \\
 ^{[3]}	&= \frac{rn}{N}\cdot 1 \\
         &= \frac{rn}{N}
-\end{align*}$$
+\end{aligned}$$
 
 > 1. For any integer $a$ such that $0\leq a\leq k,\ 
 		{n\choose k}=\frac{n(n-1)\cdots(n-a+1)}{k(k-1)\cdots(k-a+1)}{n-a\choose k-a}$ (Theorem \@ref(combinations-theorem-1)).
@@ -56,7 +56,7 @@ E(X)
 		\indent with $N_1=r,\ N_2=N-r,\ i=x$.  (Theorem \@ref(binomialtheorem-other-theorem-2)
 	
 	
-$$\begin{align*} 
+$$\begin{aligned} 
 E[X(X-1)]
 	      &= \sum\limits_{x=0}^{n}x(x-1)\frac{{r\choose x}{N-r\choose n-x}}{{N\choose n}} \\
 ^{[1]}	&= \sum\limits_{x=0}^{n}\frac{x(x-1)r(r-1)}{x(x-1)}\frac{{r-2\choose x-2}
@@ -67,7 +67,7 @@ E[X(X-1)]
           \frac{{r-2\choose y}{N-r\choose n-y-2}}{{N-2\choose n-2}} \\
 ^{[3]}  &= \frac{r(r-1)n(n-1)}{N(N-1)}\cdot 1 \\
         &=\frac{r(r-1)n(n-1)}{N(N-1)}
-\end{align*}$$
+\end{aligned}$$
 
 > 1. For any integer $a$ such that $0\leq a\leq k,\ 
 		{n\choose k}=\frac{n(n-1)\cdots(n-a+1)}{k(k-1)\cdots(k-a+1)}{n-a\choose k-a}$ (Theorem \@ref(combinations-theorem-1)).
@@ -75,7 +75,7 @@ E[X(X-1)]
 > 3. $\frac{\sum\limits_{i=1}^{n}{N_1\choose i}{N_2\choose n-i}}{{N_1+N_2\choose n}}=1$\\
 		\indent with $N_1=r,\ N_2=N-r,\ i=x$.  (Theorem \@ref(binomialtheorem-other-theorem-2)
 		
-$$\begin{align*}
+$$\begin{aligned}
 \mu
 	&= E(X) \\
 	&= \frac{rn}{N} \\
@@ -98,12 +98,12 @@ $$\begin{align*}
 	&= \frac{nr(N-r)(N-n)}{N^2(N-1)} \\
 	&= \frac{nr(N-r)(N-n)}{N\cdot N(N-1)} \\
   &= \frac{nr}{N}\cdot\frac{N-r}{N}\cdot\frac{N-n}{N-1}
-\end{align*}$$
+\end{aligned}$$
 
 
 ## Moment Generating Function
 
-$$\begin{align*}
+$$\begin{aligned}
 M_X(t)
 	&= E(e^{tX}) \\
 	&= \sum\limits_{x=0}^{n}e^{tx}\frac{{r\choose x}{N-r\choose n-x}}{{N\choose n}} \\
@@ -114,7 +114,7 @@ M_X(t)
       e^{nt}{r\choose n}{N-r\choose n-n}] \\
   &= \frac{1}{{N\choose n}}[{N-r\choose n-0}+e^{t}{r\choose 1}{N-r\choose n-1}
 		+ e^{2t}{r\choose 2}{N-r\choose n-2}+\cdots+e^{nt}{r\choose n}{N-r\choose n-n}]
-\end{align*}$$
+\end{aligned}$$
 
 This mgf does not reduce to any form which can be differentiated, and we cannot use it to generate moments for the distribution.
 
@@ -139,9 +139,9 @@ $$
 $$
 
 Using $N_1 = r$ and $N_2 = N-r$ we have
-$$\begin{align*}
+$$\begin{aligned}
 \sum\limits_{x=0}^{n}\frac{{r\choose x}{N-r\choose n-x}}{{N\choose n}}
 	&= \frac{{r+N-r\choose n}}{{N\choose n}} \\
 	&= \frac{{N\choose n}}{{N\choose n}} \\
 	&= 1
-\end{align*}$$
+\end{aligned}$$

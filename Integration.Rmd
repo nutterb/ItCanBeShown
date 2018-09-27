@@ -13,7 +13,7 @@ _Proof:_
 
 First, let $f$ be an even function.  Then, by Theorem \@ref(derivatives-and-anti-derivatives-of-even-functions), the anti-derivative $F$ is an odd function.
 
-$$\begin{align*}
+$$\begin{aligned}
 \int\limits_{-x_0}^{0}f(x)dx 
 	      &= F(0) - F(-x_0) \\
 	      &= F(0) + F(x_0) \\
@@ -23,16 +23,16 @@ $$\begin{align*}
 \int\limits_{0}^{x_0}f(x)dx 
 	      &= F(x_0) - F(0) \\
 	      &= F(x_0)
-\end{align*}$$
+\end{aligned}$$
 
 > 1. $F(0)=\int\limits_{0}^{0}f(x)dx=0$.
 
 So 
-$$\begin{align*} 
+$$\begin{aligned} 
 \int\limits_{-x_0}^{0}f(x)dx
 	&= F(x_0) \\
 	&= \int\limits_{0}^{x_0}f(x)dx
-\end{align*}$$
+\end{aligned}$$
 
 Now suppose 
 
@@ -43,25 +43,25 @@ $$
 
 Then
 
-$$\begin{align*}
+$$\begin{aligned}
 \int\limits_{-x_0}^{0}f(x)dx
 	&= F(0) - F(-x_0) \\
 	&= -F(-x_0)
-\end{align*}$$
+\end{aligned}$$
 
 and
 
-$$\begin{align*} 
+$$\begin{aligned} 
 \int\limits_{0}^{x_0}f(x)dx
 	= F(x_0) - F(0) \\
-	= F(x_0)$
-\end{align*}$$
+	= F(x_0)
+\end{aligned}$$
 
 So 
-$$\begin{align*}
+$$\begin{aligned}
 -F(-x_0)          	&= F(x_0) \\
 \Rightarrow F(-x_0) &= -F(x_0)
-\end{align*}$$
+\end{aligned}$$
 
 This satisfies the definition of an odd function.  So by Theorem \@ref(derivatives-and-anti-derivatives-of-odd-functions), $f$ must be an even function.
 
@@ -80,20 +80,20 @@ $$\int\limits_{-\infty}^{\infty}f(x)dx
 _Proof:_
 Since $f(x)$ is even and by Theorem \@ref(integration-even-function-about-zero)
 
-$$\begin{align*}
+$$\begin{aligned}
 \int\limits_{-t}^{0}f(-x)dx
 	&= \int\limits_{-t}^{0}f(x)dx \\
 	&= \int\limits_{0}^{t}f(x)dx
-\end{align*}$$
+\end{aligned}$$
 
 It follows that
 
-$$\begin{align*}
+$$\begin{aligned}
 \int\limits_{-t}^{t}f(x)dx
 	&= \int\limits_{-t}^{0}f(-x)dx + \int\limits_{0}^{t}f(x)dx \\
 	&= \int\limits_{0}^{t}f(x)dx + \int\limits_{0}^{t}f(x)dx \\
 	&= 2\int\limits_{0}^{t}f(x)dx
-\end{align*}$$
+\end{aligned}$$
 
 The second statement is proven by taking the limits as $t\rightarrow\infty$. 
 
@@ -111,23 +111,23 @@ $$\int\limits_{a}^{b}f(x)dx$$
 
 We let 
 
-$$\begin{align*}
+$$\begin{aligned}
             y &= x+c \\
 \Rightarrow x &= y-c
-\end{align*}$$
+\end{aligned}$$
 
 So $dx=dy$.
 
-$$\begin{align*}
+$$\begin{aligned}
 x &= a   & \Rightarrow \ \ \ \   y &= a+c\\
 x &= b   & \Rightarrow \ \ \ \   y &= b+c
-\end{align*}$$. 
+\end{aligned}$$. 
 
 Thus
 
-$$\begin{align*}
+$$\begin{aligned}
 \int\limits_{a}^{b}f(x)dx
 	&= \int\limits_{a+c}^{b+c}f(y)dy \\
 	&= \int\limits_{a+c}^{b+c}f(x+c)dx
-\end{align*}$$
+\end{aligned}$$
 
