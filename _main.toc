@@ -141,277 +141,275 @@
 \contentsline {subsection}{\numberline {18.1.2}Theorem}{104}{subsection.18.1.2}
 \contentsline {subsection}{\numberline {18.1.3}Theorem}{105}{subsection.18.1.3}
 \contentsline {section}{\numberline {18.2}References}{106}{section.18.2}
-\contentsline {chapter}{\numberline {19}Geometric Distribution}{107}{chapter.19}
-\contentsline {section}{\numberline {19.1}First Success as a Random Variable}{107}{section.19.1}
-\contentsline {subsection}{\numberline {19.1.1}Probability Mass Function}{107}{subsection.19.1.1}
-\contentsline {subsection}{\numberline {19.1.2}Cumulative Distribution Function}{107}{subsection.19.1.2}
-\contentsline {subsection}{\numberline {19.1.3}Expected Values}{109}{subsection.19.1.3}
-\contentsline {subsection}{\numberline {19.1.4}Moment Generating Function}{111}{subsection.19.1.4}
-\contentsline {subsection}{\numberline {19.1.5}Maximum Likelihood Estimator}{113}{subsection.19.1.5}
-\contentsline {subsubsection}{\numberline {19.1.5.1}Likelihood Function}{113}{subsubsection.19.1.5.1}
-\contentsline {subsubsection}{\numberline {19.1.5.2}Log-likelihood Function}{113}{subsubsection.19.1.5.2}
-\contentsline {subsubsection}{\numberline {19.1.5.3}MLE for \(p\)}{113}{subsubsection.19.1.5.3}
-\contentsline {subsection}{\numberline {19.1.6}Theorems for the Geometric Distribution}{114}{subsection.19.1.6}
-\contentsline {subsubsection}{\numberline {19.1.6.1}Validity of the Distribution}{114}{subsubsection.19.1.6.1}
-\contentsline {subsubsection}{\numberline {19.1.6.2}Sum of Geometric Random Variables}{114}{subsubsection.19.1.6.2}
-\contentsline {subsubsection}{\numberline {19.1.6.3}Lemma}{114}{subsubsection.19.1.6.3}
-\contentsline {subsubsection}{\numberline {19.1.6.4}Memoryless Property}{115}{subsubsection.19.1.6.4}
-\contentsline {section}{\numberline {19.2}Number of Failures as Random Variable}{115}{section.19.2}
-\contentsline {subsection}{\numberline {19.2.1}Probability Mass Function}{115}{subsection.19.2.1}
-\contentsline {subsection}{\numberline {19.2.2}Cumulative Distribution Function}{116}{subsection.19.2.2}
-\contentsline {chapter}{\numberline {20}Geometric Series}{117}{chapter.20}
-\contentsline {section}{\numberline {20.1}Series Starts at \(k = 1\)}{117}{section.20.1}
-\contentsline {subsection}{\numberline {20.1.1}Partial and Infinite Summations}{117}{subsection.20.1.1}
-\contentsline {subsection}{\numberline {20.1.2}Proofs of Convergence}{118}{subsection.20.1.2}
-\contentsline {section}{\numberline {20.2}Series Starts at \(k = 0\)}{118}{section.20.2}
-\contentsline {subsection}{\numberline {20.2.1}Partial and Infinite Summations}{118}{subsection.20.2.1}
-\contentsline {subsection}{\numberline {20.2.2}Proofs of Convergence}{119}{subsection.20.2.2}
-\contentsline {chapter}{\numberline {21}Hypergeometric Distribution}{121}{chapter.21}
-\contentsline {section}{\numberline {21.1}Probability Mass Function}{121}{section.21.1}
-\contentsline {section}{\numberline {21.2}Cumulative Mass Function}{121}{section.21.2}
-\contentsline {section}{\numberline {21.3}Expected Values}{122}{section.21.3}
-\contentsline {section}{\numberline {21.4}Moment Generating Function}{123}{section.21.4}
-\contentsline {section}{\numberline {21.5}Theorems for the Hypergeometric Distribution}{124}{section.21.5}
-\contentsline {subsection}{\numberline {21.5.1}Validity of the Distribution}{124}{subsection.21.5.1}
-\contentsline {chapter}{\numberline {22}Integration: Techniques and Theorems}{125}{chapter.22}
-\contentsline {section}{\numberline {22.1}Elementary Theorems}{125}{section.22.1}
-\contentsline {subsection}{\numberline {22.1.1}Integration of Even Functions about Zero}{125}{subsection.22.1.1}
-\contentsline {subsection}{\numberline {22.1.2}Corollary}{126}{subsection.22.1.2}
-\contentsline {subsection}{\numberline {22.1.3}Integrals of Horizontal Translations}{127}{subsection.22.1.3}
-\contentsline {chapter}{\numberline {23}Logarithms}{129}{chapter.23}
-\contentsline {section}{\numberline {23.1}The Natural Logarithm}{129}{section.23.1}
-\contentsline {subsection}{\numberline {23.1.1}Definition: The Natural Logarithm}{129}{subsection.23.1.1}
-\contentsline {subsection}{\numberline {23.1.2}Theorem}{129}{subsection.23.1.2}
-\contentsline {subsubsection}{\numberline {23.1.2.1}Lemma 1}{129}{subsubsection.23.1.2.1}
-\contentsline {subsubsection}{\numberline {23.1.2.2}Lemma 2}{130}{subsubsection.23.1.2.2}
-\contentsline {subsubsection}{\numberline {23.1.2.3}Theorem}{130}{subsubsection.23.1.2.3}
-\contentsline {section}{\numberline {23.2}References}{132}{section.23.2}
-\contentsline {chapter}{\numberline {24}Logistic Regression}{133}{chapter.24}
-\contentsline {section}{\numberline {24.1}The Logit Transformation}{133}{section.24.1}
-\contentsline {subsection}{\numberline {24.1.1}Obtaining the Logit Transformation}{133}{subsection.24.1.1}
-\contentsline {section}{\numberline {24.2}Retrieving the Modelled Probability}{133}{section.24.2}
-\contentsline {chapter}{\numberline {25}Mantel-Haenszel Test of Linear Trend}{135}{chapter.25}
-\contentsline {chapter}{\numberline {26}McNemar Test}{139}{chapter.26}
-\contentsline {section}{\numberline {26.1}Sample Size Calculations for Paired Design}{140}{section.26.1}
-\contentsline {subsection}{\numberline {26.1.1}Miettenen's Sample Size Calculation}{140}{subsection.26.1.1}
-\contentsline {subsection}{\numberline {26.1.2}Connor's Sample Size Calculation}{140}{subsection.26.1.2}
-\contentsline {section}{\numberline {26.2}Power Calculation for Paired Design}{140}{section.26.2}
-\contentsline {subsection}{\numberline {26.2.1}Power Calculation for Miettenen Method}{141}{subsection.26.2.1}
-\contentsline {subsection}{\numberline {26.2.2}Power Calculation for Connor Method}{141}{subsection.26.2.2}
-\contentsline {chapter}{\numberline {27}Moments and Moment Generating Functions}{143}{chapter.27}
-\contentsline {section}{\numberline {27.1}Definitions of Moments}{143}{section.27.1}
-\contentsline {subsection}{\numberline {27.1.1}Definition: General Definition of Moments}{143}{subsection.27.1.1}
-\contentsline {subsection}{\numberline {27.1.2}Definition: Ordinary Moments}{143}{subsection.27.1.2}
-\contentsline {subsection}{\numberline {27.1.3}Definition: Central Moments}{143}{subsection.27.1.3}
-\contentsline {section}{\numberline {27.2}Moment Generating Functions}{144}{section.27.2}
-\contentsline {subsection}{\numberline {27.2.1}Definition: Moment Generating Function}{144}{subsection.27.2.1}
-\contentsline {subsection}{\numberline {27.2.2}Theorem: Extraction of Moments from Moment Generating Functions}{145}{subsection.27.2.2}
-\contentsline {chapter}{\numberline {28}Multinomial Distribution}{147}{chapter.28}
-\contentsline {section}{\numberline {28.1}Cumulative Distribution Function}{147}{section.28.1}
-\contentsline {section}{\numberline {28.2}Expected Values}{147}{section.28.2}
-\contentsline {chapter}{\numberline {29}Normal Distribution}{151}{chapter.29}
-\contentsline {section}{\numberline {29.1}Probability Distribution Function}{151}{section.29.1}
-\contentsline {section}{\numberline {29.2}Cumulative Distribution Function}{151}{section.29.2}
-\contentsline {section}{\numberline {29.3}Expected Values}{154}{section.29.3}
-\contentsline {section}{\numberline {29.4}Moment Generating Function}{157}{section.29.4}
-\contentsline {section}{\numberline {29.5}Maximum Likelihood Estimators}{158}{section.29.5}
-\contentsline {subsection}{\numberline {29.5.1}Likelihood Function}{159}{subsection.29.5.1}
-\contentsline {subsection}{\numberline {29.5.2}Log-likelihood Function}{159}{subsection.29.5.2}
-\contentsline {subsection}{\numberline {29.5.3}MLE for \(\mu \)}{160}{subsection.29.5.3}
-\contentsline {subsection}{\numberline {29.5.4}MLE for \(\sigma ^2\)}{160}{subsection.29.5.4}
-\contentsline {section}{\numberline {29.6}Theorems for the Normal Distribution}{161}{section.29.6}
-\contentsline {subsection}{\numberline {29.6.1}Validity of the Distribution (Polar Coordinates)}{161}{subsection.29.6.1}
-\contentsline {subsection}{\numberline {29.6.2}Validity of the Distribution (Gamma Function)}{163}{subsection.29.6.2}
-\contentsline {subsection}{\numberline {29.6.3}Multiple of a Normal Random Variable}{163}{subsection.29.6.3}
-\contentsline {subsection}{\numberline {29.6.4}Weighted Sum of Normal Random Variables}{164}{subsection.29.6.4}
-\contentsline {subsection}{\numberline {29.6.5}Sum of Normal Random Variables}{164}{subsection.29.6.5}
-\contentsline {subsection}{\numberline {29.6.6}Standard Normal Transformation}{165}{subsection.29.6.6}
-\contentsline {subsection}{\numberline {29.6.7}Distribution of \(\mathaccentV {bar}016X\)}{165}{subsection.29.6.7}
-\contentsline {subsection}{\numberline {29.6.8}Square of a Standard Normal Random Variable}{166}{subsection.29.6.8}
-\contentsline {chapter}{\numberline {30}Poisson Distribution}{169}{chapter.30}
-\contentsline {section}{\numberline {30.1}Probability Mass Function}{169}{section.30.1}
-\contentsline {section}{\numberline {30.2}Cumulative Mass Function}{169}{section.30.2}
-\contentsline {section}{\numberline {30.3}Expected Values}{171}{section.30.3}
-\contentsline {section}{\numberline {30.4}Moment Generating Function}{173}{section.30.4}
-\contentsline {section}{\numberline {30.5}Maximum Likelihood Estimator}{174}{section.30.5}
-\contentsline {subsection}{\numberline {30.5.1}Likelihood Function}{174}{subsection.30.5.1}
-\contentsline {subsection}{\numberline {30.5.2}Log-likelihood}{174}{subsection.30.5.2}
-\contentsline {subsection}{\numberline {30.5.3}MLE for \(\lambda \)}{175}{subsection.30.5.3}
-\contentsline {section}{\numberline {30.6}Theorems for the Poisson Distribution}{175}{section.30.6}
-\contentsline {subsection}{\numberline {30.6.1}Derivation of the Poisson Distribution}{175}{subsection.30.6.1}
-\contentsline {subsection}{\numberline {30.6.2}Validity of the Distribution}{176}{subsection.30.6.2}
-\contentsline {subsection}{\numberline {30.6.3}Sum of Poisson Random Variables}{176}{subsection.30.6.3}
-\contentsline {chapter}{\numberline {31}Probability}{179}{chapter.31}
-\contentsline {section}{\numberline {31.1}Elementary Probability Concepts}{179}{section.31.1}
-\contentsline {subsection}{\numberline {31.1.1}Definition of Probability}{179}{subsection.31.1.1}
-\contentsline {subsection}{\numberline {31.1.2}Definition: Conditional Probability}{179}{subsection.31.1.2}
-\contentsline {subsection}{\numberline {31.1.3}Definition: Independence}{179}{subsection.31.1.3}
-\contentsline {subsection}{\numberline {31.1.4}Theorem: Multiplicative Law of Probability}{180}{subsection.31.1.4}
-\contentsline {subsection}{\numberline {31.1.5}Corollary}{180}{subsection.31.1.5}
-\contentsline {subsection}{\numberline {31.1.6}Additive Law of Probability}{180}{subsection.31.1.6}
-\contentsline {subsection}{\numberline {31.1.7}Corollary}{181}{subsection.31.1.7}
-\contentsline {subsection}{\numberline {31.1.8}Theorem: Law of Complements}{181}{subsection.31.1.8}
-\contentsline {subsection}{\numberline {31.1.9}Definition: Partition of a Sample Space}{181}{subsection.31.1.9}
-\contentsline {subsection}{\numberline {31.1.10}Definition: Decomposition}{181}{subsection.31.1.10}
-\contentsline {subsection}{\numberline {31.1.11}Theorem: Total Law of Probability}{182}{subsection.31.1.11}
-\contentsline {subsection}{\numberline {31.1.12}Theorem: Bayes' Rule}{182}{subsection.31.1.12}
-\contentsline {chapter}{\numberline {32}Real Number System}{183}{chapter.32}
-\contentsline {section}{\numberline {32.1}Historical Note}{183}{section.32.1}
-\contentsline {section}{\numberline {32.2}The Field of Real Numbers}{183}{section.32.2}
-\contentsline {subsection}{\numberline {32.2.1}Definition: The Field of Real Numbers}{183}{subsection.32.2.1}
-\contentsline {subsection}{\numberline {32.2.2}Field Axioms}{184}{subsection.32.2.2}
-\contentsline {subsection}{\numberline {32.2.3}Definiton: Less Than (or Equal To)}{184}{subsection.32.2.3}
-\contentsline {subsection}{\numberline {32.2.4}Definition: Bounded Above (and Below)}{184}{subsection.32.2.4}
-\contentsline {subsection}{\numberline {32.2.5}Definition: Least Upper (and Lower) Bound}{184}{subsection.32.2.5}
-\contentsline {subsection}{\numberline {32.2.6}Completeness Axiom}{184}{subsection.32.2.6}
-\contentsline {section}{\numberline {32.3}Proof that the Field of Rationals is not Complete}{184}{section.32.3}
-\contentsline {section}{\numberline {32.4}Preliminary Results in the Field of Real Numbers}{185}{section.32.4}
-\contentsline {subsection}{\numberline {32.4.1}Theorem: Uniqueness of Identities}{185}{subsection.32.4.1}
-\contentsline {subsection}{\numberline {32.4.2}Theorem 2: Uniqueness of Inverses}{185}{subsection.32.4.2}
-\contentsline {subsection}{\numberline {32.4.3}Theorem: Left Cancellation Law}{186}{subsection.32.4.3}
-\contentsline {subsection}{\numberline {32.4.4}Corollary: Right Cancellation}{186}{subsection.32.4.4}
-\contentsline {subsection}{\numberline {32.4.5}Lemma}{186}{subsection.32.4.5}
-\contentsline {subsection}{\numberline {32.4.6}Theorem}{186}{subsection.32.4.6}
-\contentsline {subsection}{\numberline {32.4.7}Theorem}{186}{subsection.32.4.7}
-\contentsline {subsection}{\numberline {32.4.8}Theorem}{187}{subsection.32.4.8}
-\contentsline {subsection}{\numberline {32.4.9}Theorem}{187}{subsection.32.4.9}
-\contentsline {subsection}{\numberline {32.4.10}Theorem}{187}{subsection.32.4.10}
-\contentsline {subsection}{\numberline {32.4.11}Corollary}{187}{subsection.32.4.11}
-\contentsline {subsection}{\numberline {32.4.12}Theorem}{188}{subsection.32.4.12}
-\contentsline {subsection}{\numberline {32.4.13}Theorem}{188}{subsection.32.4.13}
-\contentsline {subsection}{\numberline {32.4.14}Theorem}{188}{subsection.32.4.14}
-\contentsline {subsection}{\numberline {32.4.15}Theorem}{189}{subsection.32.4.15}
-\contentsline {subsection}{\numberline {32.4.16}Theorem}{189}{subsection.32.4.16}
-\contentsline {subsection}{\numberline {32.4.17}Theorem}{189}{subsection.32.4.17}
-\contentsline {subsection}{\numberline {32.4.18}Theorem}{189}{subsection.32.4.18}
-\contentsline {subsection}{\numberline {32.4.19}Theorem}{190}{subsection.32.4.19}
-\contentsline {subsection}{\numberline {32.4.20}Theorem}{190}{subsection.32.4.20}
-\contentsline {chapter}{\numberline {33}Rounding}{191}{chapter.33}
-\contentsline {section}{\numberline {33.1}Floor (Next Lowest Integer)}{191}{section.33.1}
-\contentsline {section}{\numberline {33.2}Ceiling}{191}{section.33.2}
-\contentsline {section}{\numberline {33.3}Nearest Integer}{191}{section.33.3}
-\contentsline {section}{\numberline {33.4}Nearest Multiple}{191}{section.33.4}
-\contentsline {section}{\numberline {33.5}Nearest Place (Base 10)}{192}{section.33.5}
-\contentsline {section}{\numberline {33.6}Breaking Ties}{192}{section.33.6}
-\contentsline {subsection}{\numberline {33.6.1}Rounding Even}{192}{subsection.33.6.1}
-\contentsline {subsection}{\numberline {33.6.2}Rounding Odd}{192}{subsection.33.6.2}
-\contentsline {subsection}{\numberline {33.6.3}Round Away From Zero}{192}{subsection.33.6.3}
-\contentsline {subsection}{\numberline {33.6.4}Round Toward Zero}{192}{subsection.33.6.4}
-\contentsline {section}{\numberline {33.7}References}{192}{section.33.7}
-\contentsline {chapter}{\numberline {34}Sample Size Estimation}{193}{chapter.34}
-\contentsline {section}{\numberline {34.1}Solving Group Sample Sizes Using Weights}{193}{section.34.1}
-\contentsline {subsection}{\numberline {34.1.1}Corollary}{194}{subsection.34.1.1}
-\contentsline {chapter}{\numberline {35}Skew-Normal Distribution}{195}{chapter.35}
-\contentsline {section}{\numberline {35.1}Preliminary Theorems}{195}{section.35.1}
-\contentsline {section}{\numberline {35.2}Lemma: A Symmetry Theorem}{195}{section.35.2}
-\contentsline {section}{\numberline {35.3}Lemma}{195}{section.35.3}
-\contentsline {section}{\numberline {35.4}Expected Values}{196}{section.35.4}
-\contentsline {section}{\numberline {35.5}Estimation of \(\lambda \)}{197}{section.35.5}
-\contentsline {chapter}{\numberline {36}Somers' D}{201}{chapter.36}
-\contentsline {section}{\numberline {36.1}Theorems for Somers' \(D\)}{201}{section.36.1}
-\contentsline {subsection}{\numberline {36.1.1}Theorem: Distribution of Somers' Derived Concordance}{201}{subsection.36.1.1}
-\contentsline {chapter}{\numberline {37}Summation}{203}{chapter.37}
-\contentsline {section}{\numberline {37.1}Theorems of Summation}{203}{section.37.1}
-\contentsline {subsection}{\numberline {37.1.1}Theorem}{203}{subsection.37.1.1}
-\contentsline {subsection}{\numberline {37.1.2}Theorem}{203}{subsection.37.1.2}
-\contentsline {subsection}{\numberline {37.1.3}Theorem}{204}{subsection.37.1.3}
-\contentsline {subsection}{\numberline {37.1.4}Theorem}{204}{subsection.37.1.4}
-\contentsline {subsection}{\numberline {37.1.5}Theorem}{204}{subsection.37.1.5}
-\contentsline {subsection}{\numberline {37.1.6}Theorem}{205}{subsection.37.1.6}
-\contentsline {subsection}{\numberline {37.1.7}Theorem}{205}{subsection.37.1.7}
-\contentsline {subsection}{\numberline {37.1.8}Theorem}{205}{subsection.37.1.8}
-\contentsline {chapter}{\numberline {38}Analysis of Variance}{207}{chapter.38}
-\contentsline {section}{\numberline {38.1}One-Way Design}{208}{section.38.1}
-\contentsline {subsection}{\numberline {38.1.1}Decomposition of Sums of Squares}{208}{subsection.38.1.1}
-\contentsline {section}{\numberline {38.2}Computational Formulas}{209}{section.38.2}
-\contentsline {section}{\numberline {38.3}Randomized Complete Block Design}{209}{section.38.3}
-\contentsline {subsection}{\numberline {38.3.1}Decomposition of Sums of Squares}{210}{subsection.38.3.1}
-\contentsline {subsection}{\numberline {38.3.2}Computational Formulae}{210}{subsection.38.3.2}
-\contentsline {subsection}{\numberline {38.3.3}RCBD Cross Products}{211}{subsection.38.3.3}
-\contentsline {chapter}{\numberline {39}Method of Transformations}{215}{chapter.39}
-\contentsline {section}{\numberline {39.1}Example: Cauchy Distribution}{215}{section.39.1}
-\contentsline {chapter}{\numberline {40}T-test}{217}{chapter.40}
-\contentsline {section}{\numberline {40.1}One-Sample T-test}{217}{section.40.1}
-\contentsline {subsection}{\numberline {40.1.1}T-Statistic}{217}{subsection.40.1.1}
-\contentsline {subsection}{\numberline {40.1.2}Definitions and Terminology}{217}{subsection.40.1.2}
-\contentsline {subsection}{\numberline {40.1.3}Hypotheses}{217}{subsection.40.1.3}
-\contentsline {subsection}{\numberline {40.1.4}Decision Rule}{218}{subsection.40.1.4}
-\contentsline {subsection}{\numberline {40.1.5}Power}{219}{subsection.40.1.5}
-\contentsline {subsection}{\numberline {40.1.6}Confidence Interval}{220}{subsection.40.1.6}
-\contentsline {section}{\numberline {40.2}Two-Sample T-test}{221}{section.40.2}
-\contentsline {subsection}{\numberline {40.2.1}T-Statistic}{221}{subsection.40.2.1}
-\contentsline {subsection}{\numberline {40.2.2}Definitions and Terminology}{221}{subsection.40.2.2}
-\contentsline {subsection}{\numberline {40.2.3}Hypotheses}{221}{subsection.40.2.3}
-\contentsline {subsection}{\numberline {40.2.4}Decision Rule}{222}{subsection.40.2.4}
-\contentsline {subsubsection}{\numberline {40.2.4.1}Two Sided Test}{222}{subsubsection.40.2.4.1}
-\contentsline {section}{\numberline {40.3}One Sided Test}{222}{section.40.3}
-\contentsline {subsection}{\numberline {40.3.1}Power}{223}{subsection.40.3.1}
-\contentsline {subsection}{\numberline {40.3.2}Confidence Interval}{224}{subsection.40.3.2}
-\contentsline {section}{\numberline {40.4}References}{225}{section.40.4}
-\contentsline {chapter}{\numberline {41}Uniform Distribution}{227}{chapter.41}
-\contentsline {section}{\numberline {41.1}Probability Density Function}{227}{section.41.1}
-\contentsline {section}{\numberline {41.2}Cumulative Density Function}{227}{section.41.2}
-\contentsline {section}{\numberline {41.3}Expected Values}{230}{section.41.3}
-\contentsline {section}{\numberline {41.4}Moment Generating Function}{231}{section.41.4}
-\contentsline {section}{\numberline {41.5}Theorems for the Uniform Distribution}{231}{section.41.5}
-\contentsline {section}{\numberline {41.6}Validity of the Distribution}{231}{section.41.6}
-\contentsline {chapter}{\numberline {42}Variance Parameter}{233}{chapter.42}
-\contentsline {section}{\numberline {42.1}Defining Variance With Expected Values}{233}{section.42.1}
-\contentsline {section}{\numberline {42.2}Unbiased Estimator}{235}{section.42.2}
-\contentsline {section}{\numberline {42.3}Computational Formulae}{238}{section.42.3}
-\contentsline {subsection}{\numberline {42.3.1}Computational Formula for \(\sigma \)\^{}2}{238}{subsection.42.3.1}
-\contentsline {subsection}{\numberline {42.3.2}Computational Formula for \(s\)\^{}2}{239}{subsection.42.3.2}
-\contentsline {subsection}{\numberline {42.3.3}Corollary: Alternative Computational Formula for \(s^2\)}{239}{subsection.42.3.3}
-\contentsline {subsubsection}{\numberline {42.3.3.1}Application}{240}{subsubsection.42.3.3.1}
-\contentsline {chapter}{\numberline {43}Weibull Distribution}{243}{chapter.43}
-\contentsline {section}{\numberline {43.1}Probability Distribution Function}{243}{section.43.1}
-\contentsline {section}{\numberline {43.2}Cumulative Distribution Function}{243}{section.43.2}
-\contentsline {section}{\numberline {43.3}Expected Values}{244}{section.43.3}
-\contentsline {section}{\numberline {43.4}Theorems for the Weibull Distribution}{245}{section.43.4}
-\contentsline {subsection}{\numberline {43.4.1}Validity of the Distribution}{245}{subsection.43.4.1}
-\contentsline {chapter}{\numberline {44}Z-test of Sample Proportions}{247}{chapter.44}
-\contentsline {section}{\numberline {44.1}One-Sample Z-test}{247}{section.44.1}
-\contentsline {subsection}{\numberline {44.1.1}Z-Statistic}{247}{subsection.44.1.1}
-\contentsline {subsection}{\numberline {44.1.2}Definitions and Terminology}{247}{subsection.44.1.2}
-\contentsline {subsection}{\numberline {44.1.3}Hypotheses}{247}{subsection.44.1.3}
-\contentsline {subsection}{\numberline {44.1.4}Decision Rule}{248}{subsection.44.1.4}
-\contentsline {subsection}{\numberline {44.1.5}Power}{249}{subsection.44.1.5}
-\contentsline {subsection}{\numberline {44.1.6}Confidence Interval}{251}{subsection.44.1.6}
-\contentsline {section}{\numberline {44.2}References}{251}{section.44.2}
-\contentsline {chapter}{\numberline {45}Z-test}{253}{chapter.45}
-\contentsline {section}{\numberline {45.1}One-Sample Z-test}{253}{section.45.1}
-\contentsline {subsection}{\numberline {45.1.1}Z-Statistic}{253}{subsection.45.1.1}
-\contentsline {subsection}{\numberline {45.1.2}Definitions and Terminology}{253}{subsection.45.1.2}
-\contentsline {subsection}{\numberline {45.1.3}Hypotheses}{253}{subsection.45.1.3}
-\contentsline {subsection}{\numberline {45.1.4}Decision Rule}{254}{subsection.45.1.4}
-\contentsline {subsection}{\numberline {45.1.5}Power}{255}{subsection.45.1.5}
-\contentsline {subsection}{\numberline {45.1.6}Confidence Interval}{256}{subsection.45.1.6}
-\contentsline {section}{\numberline {45.2}Two-Sample T-test}{257}{section.45.2}
-\contentsline {subsection}{\numberline {45.2.1}T-Statistic}{257}{subsection.45.2.1}
-\contentsline {subsection}{\numberline {45.2.2}Definitions and Terminology}{257}{subsection.45.2.2}
-\contentsline {subsection}{\numberline {45.2.3}Hypotheses}{257}{subsection.45.2.3}
-\contentsline {subsection}{\numberline {45.2.4}Decision Rule}{257}{subsection.45.2.4}
-\contentsline {subsubsection}{\numberline {45.2.4.1}Two Sided Test}{258}{subsubsection.45.2.4.1}
-\contentsline {section}{\numberline {45.3}One Sided Test}{258}{section.45.3}
-\contentsline {subsection}{\numberline {45.3.1}Power}{259}{subsection.45.3.1}
-\contentsline {subsection}{\numberline {45.3.2}Confidence Interval}{260}{subsection.45.3.2}
-\contentsline {section}{\numberline {45.4}References}{261}{section.45.4}
-\contentsline {chapter}{\numberline {46}Z-test of Sample Means}{263}{chapter.46}
-\contentsline {section}{\numberline {46.1}One-Sample Z-test}{263}{section.46.1}
-\contentsline {subsection}{\numberline {46.1.1}Z-Statistic}{263}{subsection.46.1.1}
-\contentsline {subsection}{\numberline {46.1.2}Definitions and Terminology}{263}{subsection.46.1.2}
-\contentsline {subsection}{\numberline {46.1.3}Hypotheses}{263}{subsection.46.1.3}
-\contentsline {subsection}{\numberline {46.1.4}Decision Rule}{264}{subsection.46.1.4}
-\contentsline {subsection}{\numberline {46.1.5}Power}{265}{subsection.46.1.5}
-\contentsline {subsection}{\numberline {46.1.6}Confidence Interval}{266}{subsection.46.1.6}
-\contentsline {section}{\numberline {46.2}Two-Sample Z-test}{267}{section.46.2}
-\contentsline {subsection}{\numberline {46.2.1}Z-Statistic}{267}{subsection.46.2.1}
-\contentsline {subsection}{\numberline {46.2.2}Definitions and Terminology}{267}{subsection.46.2.2}
-\contentsline {subsection}{\numberline {46.2.3}Hypotheses}{267}{subsection.46.2.3}
-\contentsline {subsection}{\numberline {46.2.4}Decision Rule}{267}{subsection.46.2.4}
-\contentsline {subsubsection}{\numberline {46.2.4.1}Two Sided Test}{268}{subsubsection.46.2.4.1}
-\contentsline {section}{\numberline {46.3}One Sided Test}{268}{section.46.3}
-\contentsline {subsection}{\numberline {46.3.1}Power}{269}{subsection.46.3.1}
-\contentsline {subsection}{\numberline {46.3.2}Confidence Interval}{270}{subsection.46.3.2}
-\contentsline {section}{\numberline {46.4}References}{271}{section.46.4}
-\contentsline {chapter}{\numberline {47}References}{273}{chapter.47}
+\contentsline {chapter}{\numberline {19}Geometric Distribution (0)}{107}{chapter.19}
+\contentsline {section}{\numberline {19.1}Probability Mass Function}{107}{section.19.1}
+\contentsline {section}{\numberline {19.2}Cumulative Distribution Function}{107}{section.19.2}
+\contentsline {section}{\numberline {19.3}Expected Values}{109}{section.19.3}
+\contentsline {chapter}{\numberline {20}Geometric Distribution (1)}{111}{chapter.20}
+\contentsline {section}{\numberline {20.1}Probability Mass Function}{111}{section.20.1}
+\contentsline {section}{\numberline {20.2}Cumulative Distribution Function}{111}{section.20.2}
+\contentsline {section}{\numberline {20.3}Expected Values}{113}{section.20.3}
+\contentsline {section}{\numberline {20.4}Moment Generating Function}{115}{section.20.4}
+\contentsline {section}{\numberline {20.5}Maximum Likelihood Estimator}{117}{section.20.5}
+\contentsline {subsection}{\numberline {20.5.1}Likelihood Function}{117}{subsection.20.5.1}
+\contentsline {subsection}{\numberline {20.5.2}Log-likelihood Function}{117}{subsection.20.5.2}
+\contentsline {subsection}{\numberline {20.5.3}MLE for \(p\)}{117}{subsection.20.5.3}
+\contentsline {section}{\numberline {20.6}Theorems for the Geometric Distribution}{118}{section.20.6}
+\contentsline {subsection}{\numberline {20.6.1}Validity of the Distribution}{118}{subsection.20.6.1}
+\contentsline {subsection}{\numberline {20.6.2}Sum of Geometric Random Variables}{118}{subsection.20.6.2}
+\contentsline {subsection}{\numberline {20.6.3}Lemma}{118}{subsection.20.6.3}
+\contentsline {subsection}{\numberline {20.6.4}Memoryless Property}{119}{subsection.20.6.4}
+\contentsline {chapter}{\numberline {21}Geometric Series}{121}{chapter.21}
+\contentsline {section}{\numberline {21.1}Partial Summation}{121}{section.21.1}
+\contentsline {subsection}{\numberline {21.1.1}Summation for the Series on the Natural Numbers}{121}{subsection.21.1.1}
+\contentsline {subsection}{\numberline {21.1.2}Summation for the Series on the Non-negative Integers}{122}{subsection.21.1.2}
+\contentsline {section}{\numberline {21.2}Proofs of Convergence}{122}{section.21.2}
+\contentsline {chapter}{\numberline {22}Hypergeometric Distribution}{125}{chapter.22}
+\contentsline {section}{\numberline {22.1}Probability Mass Function}{125}{section.22.1}
+\contentsline {section}{\numberline {22.2}Cumulative Mass Function}{125}{section.22.2}
+\contentsline {section}{\numberline {22.3}Expected Values}{126}{section.22.3}
+\contentsline {section}{\numberline {22.4}Moment Generating Function}{127}{section.22.4}
+\contentsline {section}{\numberline {22.5}Theorems for the Hypergeometric Distribution}{128}{section.22.5}
+\contentsline {subsection}{\numberline {22.5.1}Validity of the Distribution}{128}{subsection.22.5.1}
+\contentsline {chapter}{\numberline {23}Integration: Techniques and Theorems}{129}{chapter.23}
+\contentsline {section}{\numberline {23.1}Elementary Theorems}{129}{section.23.1}
+\contentsline {subsection}{\numberline {23.1.1}Integration of Even Functions about Zero}{129}{subsection.23.1.1}
+\contentsline {subsection}{\numberline {23.1.2}Corollary}{130}{subsection.23.1.2}
+\contentsline {subsection}{\numberline {23.1.3}Integrals of Horizontal Translations}{131}{subsection.23.1.3}
+\contentsline {chapter}{\numberline {24}Logarithms}{133}{chapter.24}
+\contentsline {section}{\numberline {24.1}The Natural Logarithm}{133}{section.24.1}
+\contentsline {subsection}{\numberline {24.1.1}Definition: The Natural Logarithm}{133}{subsection.24.1.1}
+\contentsline {subsection}{\numberline {24.1.2}Theorem}{133}{subsection.24.1.2}
+\contentsline {subsubsection}{\numberline {24.1.2.1}Lemma 1}{133}{subsubsection.24.1.2.1}
+\contentsline {subsubsection}{\numberline {24.1.2.2}Lemma 2}{134}{subsubsection.24.1.2.2}
+\contentsline {subsubsection}{\numberline {24.1.2.3}Theorem}{134}{subsubsection.24.1.2.3}
+\contentsline {section}{\numberline {24.2}References}{136}{section.24.2}
+\contentsline {chapter}{\numberline {25}Logistic Regression}{137}{chapter.25}
+\contentsline {section}{\numberline {25.1}The Logit Transformation}{137}{section.25.1}
+\contentsline {subsection}{\numberline {25.1.1}Obtaining the Logit Transformation}{137}{subsection.25.1.1}
+\contentsline {section}{\numberline {25.2}Retrieving the Modelled Probability}{137}{section.25.2}
+\contentsline {chapter}{\numberline {26}Mantel-Haenszel Test of Linear Trend}{139}{chapter.26}
+\contentsline {chapter}{\numberline {27}McNemar Test}{143}{chapter.27}
+\contentsline {section}{\numberline {27.1}Sample Size Calculations for Paired Design}{144}{section.27.1}
+\contentsline {subsection}{\numberline {27.1.1}Miettenen's Sample Size Calculation}{144}{subsection.27.1.1}
+\contentsline {subsection}{\numberline {27.1.2}Connor's Sample Size Calculation}{144}{subsection.27.1.2}
+\contentsline {section}{\numberline {27.2}Power Calculation for Paired Design}{144}{section.27.2}
+\contentsline {subsection}{\numberline {27.2.1}Power Calculation for Miettenen Method}{145}{subsection.27.2.1}
+\contentsline {subsection}{\numberline {27.2.2}Power Calculation for Connor Method}{145}{subsection.27.2.2}
+\contentsline {chapter}{\numberline {28}Moments and Moment Generating Functions}{147}{chapter.28}
+\contentsline {section}{\numberline {28.1}Definitions of Moments}{147}{section.28.1}
+\contentsline {subsection}{\numberline {28.1.1}Definition: General Definition of Moments}{147}{subsection.28.1.1}
+\contentsline {subsection}{\numberline {28.1.2}Definition: Ordinary Moments}{147}{subsection.28.1.2}
+\contentsline {subsection}{\numberline {28.1.3}Definition: Central Moments}{147}{subsection.28.1.3}
+\contentsline {section}{\numberline {28.2}Moment Generating Functions}{148}{section.28.2}
+\contentsline {subsection}{\numberline {28.2.1}Definition: Moment Generating Function}{148}{subsection.28.2.1}
+\contentsline {subsection}{\numberline {28.2.2}Theorem: Extraction of Moments from Moment Generating Functions}{149}{subsection.28.2.2}
+\contentsline {chapter}{\numberline {29}Multinomial Distribution}{151}{chapter.29}
+\contentsline {section}{\numberline {29.1}Cumulative Distribution Function}{151}{section.29.1}
+\contentsline {section}{\numberline {29.2}Expected Values}{151}{section.29.2}
+\contentsline {chapter}{\numberline {30}Normal Distribution}{155}{chapter.30}
+\contentsline {section}{\numberline {30.1}Probability Distribution Function}{155}{section.30.1}
+\contentsline {section}{\numberline {30.2}Cumulative Distribution Function}{155}{section.30.2}
+\contentsline {section}{\numberline {30.3}Expected Values}{158}{section.30.3}
+\contentsline {section}{\numberline {30.4}Moment Generating Function}{161}{section.30.4}
+\contentsline {section}{\numberline {30.5}Maximum Likelihood Estimators}{162}{section.30.5}
+\contentsline {subsection}{\numberline {30.5.1}Likelihood Function}{163}{subsection.30.5.1}
+\contentsline {subsection}{\numberline {30.5.2}Log-likelihood Function}{163}{subsection.30.5.2}
+\contentsline {subsection}{\numberline {30.5.3}MLE for \(\mu \)}{164}{subsection.30.5.3}
+\contentsline {subsection}{\numberline {30.5.4}MLE for \(\sigma ^2\)}{164}{subsection.30.5.4}
+\contentsline {section}{\numberline {30.6}Theorems for the Normal Distribution}{165}{section.30.6}
+\contentsline {subsection}{\numberline {30.6.1}Validity of the Distribution (Polar Coordinates)}{165}{subsection.30.6.1}
+\contentsline {subsection}{\numberline {30.6.2}Validity of the Distribution (Gamma Function)}{167}{subsection.30.6.2}
+\contentsline {subsection}{\numberline {30.6.3}Multiple of a Normal Random Variable}{167}{subsection.30.6.3}
+\contentsline {subsection}{\numberline {30.6.4}Weighted Sum of Normal Random Variables}{168}{subsection.30.6.4}
+\contentsline {subsection}{\numberline {30.6.5}Sum of Normal Random Variables}{168}{subsection.30.6.5}
+\contentsline {subsection}{\numberline {30.6.6}Standard Normal Transformation}{169}{subsection.30.6.6}
+\contentsline {subsection}{\numberline {30.6.7}Distribution of \(\mathaccentV {bar}016X\)}{169}{subsection.30.6.7}
+\contentsline {subsection}{\numberline {30.6.8}Square of a Standard Normal Random Variable}{170}{subsection.30.6.8}
+\contentsline {chapter}{\numberline {31}Poisson Distribution}{173}{chapter.31}
+\contentsline {section}{\numberline {31.1}Probability Mass Function}{173}{section.31.1}
+\contentsline {section}{\numberline {31.2}Cumulative Mass Function}{173}{section.31.2}
+\contentsline {section}{\numberline {31.3}Expected Values}{175}{section.31.3}
+\contentsline {section}{\numberline {31.4}Moment Generating Function}{177}{section.31.4}
+\contentsline {section}{\numberline {31.5}Maximum Likelihood Estimator}{178}{section.31.5}
+\contentsline {subsection}{\numberline {31.5.1}Likelihood Function}{178}{subsection.31.5.1}
+\contentsline {subsection}{\numberline {31.5.2}Log-likelihood}{178}{subsection.31.5.2}
+\contentsline {subsection}{\numberline {31.5.3}MLE for \(\lambda \)}{179}{subsection.31.5.3}
+\contentsline {section}{\numberline {31.6}Theorems for the Poisson Distribution}{179}{section.31.6}
+\contentsline {subsection}{\numberline {31.6.1}Derivation of the Poisson Distribution}{179}{subsection.31.6.1}
+\contentsline {subsection}{\numberline {31.6.2}Validity of the Distribution}{180}{subsection.31.6.2}
+\contentsline {subsection}{\numberline {31.6.3}Sum of Poisson Random Variables}{180}{subsection.31.6.3}
+\contentsline {chapter}{\numberline {32}Probability}{183}{chapter.32}
+\contentsline {section}{\numberline {32.1}Elementary Probability Concepts}{183}{section.32.1}
+\contentsline {subsection}{\numberline {32.1.1}Definition of Probability}{183}{subsection.32.1.1}
+\contentsline {subsection}{\numberline {32.1.2}Definition: Conditional Probability}{183}{subsection.32.1.2}
+\contentsline {subsection}{\numberline {32.1.3}Definition: Independence}{183}{subsection.32.1.3}
+\contentsline {subsection}{\numberline {32.1.4}Theorem: Multiplicative Law of Probability}{184}{subsection.32.1.4}
+\contentsline {subsection}{\numberline {32.1.5}Corollary}{184}{subsection.32.1.5}
+\contentsline {subsection}{\numberline {32.1.6}Additive Law of Probability}{184}{subsection.32.1.6}
+\contentsline {subsection}{\numberline {32.1.7}Corollary}{185}{subsection.32.1.7}
+\contentsline {subsection}{\numberline {32.1.8}Theorem: Law of Complements}{185}{subsection.32.1.8}
+\contentsline {subsection}{\numberline {32.1.9}Definition: Partition of a Sample Space}{185}{subsection.32.1.9}
+\contentsline {subsection}{\numberline {32.1.10}Definition: Decomposition}{185}{subsection.32.1.10}
+\contentsline {subsection}{\numberline {32.1.11}Theorem: Total Law of Probability}{186}{subsection.32.1.11}
+\contentsline {subsection}{\numberline {32.1.12}Theorem: Bayes' Rule}{186}{subsection.32.1.12}
+\contentsline {chapter}{\numberline {33}Real Number System}{187}{chapter.33}
+\contentsline {section}{\numberline {33.1}Historical Note}{187}{section.33.1}
+\contentsline {section}{\numberline {33.2}The Field of Real Numbers}{187}{section.33.2}
+\contentsline {subsection}{\numberline {33.2.1}Definition: The Field of Real Numbers}{187}{subsection.33.2.1}
+\contentsline {subsection}{\numberline {33.2.2}Field Axioms}{188}{subsection.33.2.2}
+\contentsline {subsection}{\numberline {33.2.3}Definiton: Less Than (or Equal To)}{188}{subsection.33.2.3}
+\contentsline {subsection}{\numberline {33.2.4}Definition: Bounded Above (and Below)}{188}{subsection.33.2.4}
+\contentsline {subsection}{\numberline {33.2.5}Definition: Least Upper (and Lower) Bound}{188}{subsection.33.2.5}
+\contentsline {subsection}{\numberline {33.2.6}Completeness Axiom}{188}{subsection.33.2.6}
+\contentsline {section}{\numberline {33.3}Proof that the Field of Rationals is not Complete}{188}{section.33.3}
+\contentsline {section}{\numberline {33.4}Preliminary Results in the Field of Real Numbers}{189}{section.33.4}
+\contentsline {subsection}{\numberline {33.4.1}Theorem: Uniqueness of Identities}{189}{subsection.33.4.1}
+\contentsline {subsection}{\numberline {33.4.2}Theorem 2: Uniqueness of Inverses}{189}{subsection.33.4.2}
+\contentsline {subsection}{\numberline {33.4.3}Theorem: Left Cancellation Law}{190}{subsection.33.4.3}
+\contentsline {subsection}{\numberline {33.4.4}Corollary: Right Cancellation}{190}{subsection.33.4.4}
+\contentsline {subsection}{\numberline {33.4.5}Lemma}{190}{subsection.33.4.5}
+\contentsline {subsection}{\numberline {33.4.6}Theorem}{190}{subsection.33.4.6}
+\contentsline {subsection}{\numberline {33.4.7}Theorem}{190}{subsection.33.4.7}
+\contentsline {subsection}{\numberline {33.4.8}Theorem}{191}{subsection.33.4.8}
+\contentsline {subsection}{\numberline {33.4.9}Theorem}{191}{subsection.33.4.9}
+\contentsline {subsection}{\numberline {33.4.10}Theorem}{191}{subsection.33.4.10}
+\contentsline {subsection}{\numberline {33.4.11}Corollary}{191}{subsection.33.4.11}
+\contentsline {subsection}{\numberline {33.4.12}Theorem}{192}{subsection.33.4.12}
+\contentsline {subsection}{\numberline {33.4.13}Theorem}{192}{subsection.33.4.13}
+\contentsline {subsection}{\numberline {33.4.14}Theorem}{192}{subsection.33.4.14}
+\contentsline {subsection}{\numberline {33.4.15}Theorem}{193}{subsection.33.4.15}
+\contentsline {subsection}{\numberline {33.4.16}Theorem}{193}{subsection.33.4.16}
+\contentsline {subsection}{\numberline {33.4.17}Theorem}{193}{subsection.33.4.17}
+\contentsline {subsection}{\numberline {33.4.18}Theorem}{193}{subsection.33.4.18}
+\contentsline {subsection}{\numberline {33.4.19}Theorem}{194}{subsection.33.4.19}
+\contentsline {subsection}{\numberline {33.4.20}Theorem}{194}{subsection.33.4.20}
+\contentsline {chapter}{\numberline {34}Rounding}{195}{chapter.34}
+\contentsline {section}{\numberline {34.1}Floor (Next Lowest Integer)}{195}{section.34.1}
+\contentsline {section}{\numberline {34.2}Ceiling}{195}{section.34.2}
+\contentsline {section}{\numberline {34.3}Nearest Integer}{195}{section.34.3}
+\contentsline {section}{\numberline {34.4}Nearest Multiple}{195}{section.34.4}
+\contentsline {section}{\numberline {34.5}Nearest Place (Base 10)}{196}{section.34.5}
+\contentsline {section}{\numberline {34.6}Breaking Ties}{196}{section.34.6}
+\contentsline {subsection}{\numberline {34.6.1}Rounding Even}{196}{subsection.34.6.1}
+\contentsline {subsection}{\numberline {34.6.2}Rounding Odd}{196}{subsection.34.6.2}
+\contentsline {subsection}{\numberline {34.6.3}Round Away From Zero}{196}{subsection.34.6.3}
+\contentsline {subsection}{\numberline {34.6.4}Round Toward Zero}{196}{subsection.34.6.4}
+\contentsline {section}{\numberline {34.7}References}{196}{section.34.7}
+\contentsline {chapter}{\numberline {35}Sample Size Estimation}{197}{chapter.35}
+\contentsline {section}{\numberline {35.1}Solving Group Sample Sizes Using Weights}{197}{section.35.1}
+\contentsline {subsection}{\numberline {35.1.1}Corollary}{198}{subsection.35.1.1}
+\contentsline {chapter}{\numberline {36}Skew-Normal Distribution}{199}{chapter.36}
+\contentsline {section}{\numberline {36.1}Preliminary Theorems}{199}{section.36.1}
+\contentsline {section}{\numberline {36.2}Lemma: A Symmetry Theorem}{199}{section.36.2}
+\contentsline {section}{\numberline {36.3}Lemma}{199}{section.36.3}
+\contentsline {section}{\numberline {36.4}Expected Values}{200}{section.36.4}
+\contentsline {section}{\numberline {36.5}Estimation of \(\lambda \)}{201}{section.36.5}
+\contentsline {chapter}{\numberline {37}Somers' D}{205}{chapter.37}
+\contentsline {section}{\numberline {37.1}Theorems for Somers' \(D\)}{205}{section.37.1}
+\contentsline {subsection}{\numberline {37.1.1}Theorem: Distribution of Somers' Derived Concordance}{205}{subsection.37.1.1}
+\contentsline {chapter}{\numberline {38}Summation}{207}{chapter.38}
+\contentsline {section}{\numberline {38.1}Theorems of Summation}{207}{section.38.1}
+\contentsline {subsection}{\numberline {38.1.1}Theorem}{207}{subsection.38.1.1}
+\contentsline {subsection}{\numberline {38.1.2}Theorem}{207}{subsection.38.1.2}
+\contentsline {subsection}{\numberline {38.1.3}Theorem}{208}{subsection.38.1.3}
+\contentsline {subsection}{\numberline {38.1.4}Theorem}{208}{subsection.38.1.4}
+\contentsline {subsection}{\numberline {38.1.5}Theorem}{208}{subsection.38.1.5}
+\contentsline {subsection}{\numberline {38.1.6}Theorem}{209}{subsection.38.1.6}
+\contentsline {subsection}{\numberline {38.1.7}Theorem}{209}{subsection.38.1.7}
+\contentsline {subsection}{\numberline {38.1.8}Theorem}{209}{subsection.38.1.8}
+\contentsline {chapter}{\numberline {39}Analysis of Variance}{211}{chapter.39}
+\contentsline {section}{\numberline {39.1}One-Way Design}{212}{section.39.1}
+\contentsline {subsection}{\numberline {39.1.1}Decomposition of Sums of Squares}{212}{subsection.39.1.1}
+\contentsline {section}{\numberline {39.2}Computational Formulas}{213}{section.39.2}
+\contentsline {section}{\numberline {39.3}Randomized Complete Block Design}{213}{section.39.3}
+\contentsline {subsection}{\numberline {39.3.1}Decomposition of Sums of Squares}{214}{subsection.39.3.1}
+\contentsline {subsection}{\numberline {39.3.2}Computational Formulae}{214}{subsection.39.3.2}
+\contentsline {subsection}{\numberline {39.3.3}RCBD Cross Products}{215}{subsection.39.3.3}
+\contentsline {chapter}{\numberline {40}Method of Transformations}{219}{chapter.40}
+\contentsline {section}{\numberline {40.1}Example: Cauchy Distribution}{219}{section.40.1}
+\contentsline {chapter}{\numberline {41}T-test}{221}{chapter.41}
+\contentsline {section}{\numberline {41.1}One-Sample T-test}{221}{section.41.1}
+\contentsline {subsection}{\numberline {41.1.1}T-Statistic}{221}{subsection.41.1.1}
+\contentsline {subsection}{\numberline {41.1.2}Definitions and Terminology}{221}{subsection.41.1.2}
+\contentsline {subsection}{\numberline {41.1.3}Hypotheses}{221}{subsection.41.1.3}
+\contentsline {subsection}{\numberline {41.1.4}Decision Rule}{222}{subsection.41.1.4}
+\contentsline {subsection}{\numberline {41.1.5}Power}{223}{subsection.41.1.5}
+\contentsline {subsection}{\numberline {41.1.6}Confidence Interval}{224}{subsection.41.1.6}
+\contentsline {section}{\numberline {41.2}Two-Sample T-test}{225}{section.41.2}
+\contentsline {subsection}{\numberline {41.2.1}T-Statistic}{225}{subsection.41.2.1}
+\contentsline {subsection}{\numberline {41.2.2}Definitions and Terminology}{225}{subsection.41.2.2}
+\contentsline {subsection}{\numberline {41.2.3}Hypotheses}{225}{subsection.41.2.3}
+\contentsline {subsection}{\numberline {41.2.4}Decision Rule}{226}{subsection.41.2.4}
+\contentsline {subsubsection}{\numberline {41.2.4.1}Two Sided Test}{226}{subsubsection.41.2.4.1}
+\contentsline {section}{\numberline {41.3}One Sided Test}{226}{section.41.3}
+\contentsline {subsection}{\numberline {41.3.1}Power}{227}{subsection.41.3.1}
+\contentsline {subsection}{\numberline {41.3.2}Confidence Interval}{228}{subsection.41.3.2}
+\contentsline {section}{\numberline {41.4}References}{229}{section.41.4}
+\contentsline {chapter}{\numberline {42}Uniform Distribution}{231}{chapter.42}
+\contentsline {section}{\numberline {42.1}Probability Density Function}{231}{section.42.1}
+\contentsline {section}{\numberline {42.2}Cumulative Density Function}{231}{section.42.2}
+\contentsline {section}{\numberline {42.3}Expected Values}{234}{section.42.3}
+\contentsline {section}{\numberline {42.4}Moment Generating Function}{235}{section.42.4}
+\contentsline {section}{\numberline {42.5}Theorems for the Uniform Distribution}{235}{section.42.5}
+\contentsline {section}{\numberline {42.6}Validity of the Distribution}{235}{section.42.6}
+\contentsline {chapter}{\numberline {43}Variance Parameter}{237}{chapter.43}
+\contentsline {section}{\numberline {43.1}Defining Variance With Expected Values}{237}{section.43.1}
+\contentsline {section}{\numberline {43.2}Unbiased Estimator}{239}{section.43.2}
+\contentsline {section}{\numberline {43.3}Computational Formulae}{242}{section.43.3}
+\contentsline {subsection}{\numberline {43.3.1}Computational Formula for \(\sigma \)\^{}2}{242}{subsection.43.3.1}
+\contentsline {subsection}{\numberline {43.3.2}Computational Formula for \(s\)\^{}2}{243}{subsection.43.3.2}
+\contentsline {subsection}{\numberline {43.3.3}Corollary: Alternative Computational Formula for \(s^2\)}{243}{subsection.43.3.3}
+\contentsline {subsubsection}{\numberline {43.3.3.1}Application}{244}{subsubsection.43.3.3.1}
+\contentsline {chapter}{\numberline {44}Weibull Distribution}{247}{chapter.44}
+\contentsline {section}{\numberline {44.1}Probability Distribution Function}{247}{section.44.1}
+\contentsline {section}{\numberline {44.2}Cumulative Distribution Function}{247}{section.44.2}
+\contentsline {section}{\numberline {44.3}Expected Values}{248}{section.44.3}
+\contentsline {section}{\numberline {44.4}Theorems for the Weibull Distribution}{249}{section.44.4}
+\contentsline {subsection}{\numberline {44.4.1}Validity of the Distribution}{249}{subsection.44.4.1}
+\contentsline {chapter}{\numberline {45}Z-test of Sample Proportions}{251}{chapter.45}
+\contentsline {section}{\numberline {45.1}One-Sample Z-test}{251}{section.45.1}
+\contentsline {subsection}{\numberline {45.1.1}Z-Statistic}{251}{subsection.45.1.1}
+\contentsline {subsection}{\numberline {45.1.2}Definitions and Terminology}{251}{subsection.45.1.2}
+\contentsline {subsection}{\numberline {45.1.3}Hypotheses}{251}{subsection.45.1.3}
+\contentsline {subsection}{\numberline {45.1.4}Decision Rule}{252}{subsection.45.1.4}
+\contentsline {subsection}{\numberline {45.1.5}Power}{253}{subsection.45.1.5}
+\contentsline {subsection}{\numberline {45.1.6}Confidence Interval}{255}{subsection.45.1.6}
+\contentsline {section}{\numberline {45.2}References}{255}{section.45.2}
+\contentsline {chapter}{\numberline {46}Z-test}{257}{chapter.46}
+\contentsline {section}{\numberline {46.1}One-Sample Z-test}{257}{section.46.1}
+\contentsline {subsection}{\numberline {46.1.1}Z-Statistic}{257}{subsection.46.1.1}
+\contentsline {subsection}{\numberline {46.1.2}Definitions and Terminology}{257}{subsection.46.1.2}
+\contentsline {subsection}{\numberline {46.1.3}Hypotheses}{257}{subsection.46.1.3}
+\contentsline {subsection}{\numberline {46.1.4}Decision Rule}{258}{subsection.46.1.4}
+\contentsline {subsection}{\numberline {46.1.5}Power}{259}{subsection.46.1.5}
+\contentsline {subsection}{\numberline {46.1.6}Confidence Interval}{260}{subsection.46.1.6}
+\contentsline {section}{\numberline {46.2}Two-Sample T-test}{261}{section.46.2}
+\contentsline {subsection}{\numberline {46.2.1}T-Statistic}{261}{subsection.46.2.1}
+\contentsline {subsection}{\numberline {46.2.2}Definitions and Terminology}{261}{subsection.46.2.2}
+\contentsline {subsection}{\numberline {46.2.3}Hypotheses}{261}{subsection.46.2.3}
+\contentsline {subsection}{\numberline {46.2.4}Decision Rule}{261}{subsection.46.2.4}
+\contentsline {subsubsection}{\numberline {46.2.4.1}Two Sided Test}{262}{subsubsection.46.2.4.1}
+\contentsline {section}{\numberline {46.3}One Sided Test}{262}{section.46.3}
+\contentsline {subsection}{\numberline {46.3.1}Power}{263}{subsection.46.3.1}
+\contentsline {subsection}{\numberline {46.3.2}Confidence Interval}{264}{subsection.46.3.2}
+\contentsline {section}{\numberline {46.4}References}{265}{section.46.4}
+\contentsline {chapter}{\numberline {47}Z-test of Sample Means}{267}{chapter.47}
+\contentsline {section}{\numberline {47.1}One-Sample Z-test}{267}{section.47.1}
+\contentsline {subsection}{\numberline {47.1.1}Z-Statistic}{267}{subsection.47.1.1}
+\contentsline {subsection}{\numberline {47.1.2}Definitions and Terminology}{267}{subsection.47.1.2}
+\contentsline {subsection}{\numberline {47.1.3}Hypotheses}{267}{subsection.47.1.3}
+\contentsline {subsection}{\numberline {47.1.4}Decision Rule}{268}{subsection.47.1.4}
+\contentsline {subsection}{\numberline {47.1.5}Power}{269}{subsection.47.1.5}
+\contentsline {subsection}{\numberline {47.1.6}Confidence Interval}{270}{subsection.47.1.6}
+\contentsline {section}{\numberline {47.2}Two-Sample Z-test}{271}{section.47.2}
+\contentsline {subsection}{\numberline {47.2.1}Z-Statistic}{271}{subsection.47.2.1}
+\contentsline {subsection}{\numberline {47.2.2}Definitions and Terminology}{271}{subsection.47.2.2}
+\contentsline {subsection}{\numberline {47.2.3}Hypotheses}{271}{subsection.47.2.3}
+\contentsline {subsection}{\numberline {47.2.4}Decision Rule}{271}{subsection.47.2.4}
+\contentsline {subsubsection}{\numberline {47.2.4.1}Two Sided Test}{272}{subsubsection.47.2.4.1}
+\contentsline {section}{\numberline {47.3}One Sided Test}{272}{section.47.3}
+\contentsline {subsection}{\numberline {47.3.1}Power}{273}{subsection.47.3.1}
+\contentsline {subsection}{\numberline {47.3.2}Confidence Interval}{274}{subsection.47.3.2}
+\contentsline {section}{\numberline {47.4}References}{275}{section.47.4}
+\contentsline {chapter}{\numberline {48}References}{277}{chapter.48}

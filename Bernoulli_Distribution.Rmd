@@ -49,7 +49,7 @@ ggplot(data = Bernoulli,
 
 $$ 
 \begin{aligned}
-E(X) 
+\E(X) 
   &= \sum\limits_{i=0}^{1} x\cdot \Pr(X = x) \\
 	&= \sum\limits_{i=0}^{1} x \cdot \pi^{x} (1-\pi)^{1-x}\\
   &= 0 \cdot \pi^{0} (1-\pi)^{1-0} + 1 \cdot \pi^{1} (1-\pi)^{1-1}\\
@@ -57,7 +57,7 @@ E(X)
 	&= \pi\\
 	\\
 	\\
-E(X^{2}) 
+\E(X^{2}) 
   &= \sum\limits_{i=0}^{1} x^2 \cdot \Pr(X = x)\\
   &= \sum\limits_{i=0}^{1} x^{2} \cdot \pi^x (1-\pi)^{1-x}\\
   &= \sum\limits_{i=0}^{1} 0^{2} \cdot \pi^0 (1-\pi)^{1-0} + 1^2 \cdot \pi^1 (1-\pi)^{1-1}\\
@@ -66,11 +66,11 @@ E(X^{2})
  	&= \pi\\
  	\\
  	\\
-\mu	&= E(X) = \pi\\
+\mu	&= \E(X) = \pi\\
   \\
   \\
 \sigma^2 
-  &= E(X^2) - E(X)^2 \\
+  &= \E(X^2) - \E(X)^2 \\
   &= \pi-\pi^2 \\
   &= \pi(1-\pi)
 \end{aligned}
@@ -80,12 +80,12 @@ $$
 
 $$\begin{aligned}
 M_{X}(t)
-	&= E(e^{tX}) \\
+	&= \E(e^{tX}) \\
 	&= \sum\limits_{i=0}^{1} e^{tx} p(x) \\
 	&= \sum\limits_{i=0}^{1} e^{tx} \pi^{x} (1-\pi)^{1-x}\\
 	&= e^{t0} \pi^0 (1-\pi)^{1-0} + e^t \pi^t (1-\pi)^{1-1}\\
 	&= (1-\pi) + e^t \pi\\
-	&=\pi e^t + (1-\pi) \\
+	&= \pi e^t + (1-\pi) \\
 	\\
 	\\
 M^{(1)}_X(t) &= \pi e^t\\
@@ -94,26 +94,26 @@ M^{(1)}_X(t) &= \pi e^t\\
 M^{(2)}_X(t) &= \pi e^t\\
   \\
   \\
-E(X)
+\E(X)
 	&=M^{(1)}_X(0)\\
 	&= \pi e^0\\
 	&= \pi e^0\\
 	&= \pi\\
 	\\
 	\\
-E(X^2)
+\E(X^2)
 	&= M^{(2)}_X(0)\\
 	&= \pi e^0\\
 	&= \pi\\
 	\\
 	\\
 \mu
-  &= E(X)\\
+  &= \E(X)\\
 	&= \pi\\
   \\
   \\
 \sigma^2
-	&= E(X^2) - E(X)^2 \\
+	&= \E(X^2) - \E(X)^2 \\
 	&= \pi - \pi^2 \\
 	&= \pi (1-\pi)
 \end{aligned}
@@ -144,9 +144,9 @@ Then $Y\sim$ Binomial$(n,\pi)$
 _Proof:_
 $$\begin{aligned}
 M_Y(t)
-	&= E(e^{tY}) \\
-	&= E(e^{tX_1} e^{tX_2} \cdots e^{tX_n}) \\
-	&= E(e^{tX_1}) E(e^{tX_2}) \cdots E(e^{tX_n}) \\
+	&= \E(e^{tY}) \\
+	&= \E(e^{tX_1} e^{tX_2} \cdots e^{tX_n}) \\
+	&= \E(e^{tX_1}) \E(e^{tX_2}) \cdots \E(e^{tX_n}) \\
   &= (\pi e^t+(1-\pi)) (\pi e^t+(1-\pi)) \cdots (\pi e^t+(1-\pi)) \\
 	&= (\pi e^t+(1-\pi))^n
 \end{aligned}$$

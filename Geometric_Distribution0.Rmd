@@ -1,0 +1,111 @@
+# Geometric Distribution (0)
+
+The Geometric Distribution random variable may be considered as the number of failures that occur before the first success. The support of the distribution is the non-negative integers.  
+
+## Probability Mass Function
+
+A random variable $X$ is said to have a Geometric Distribution with parameter $p$ if its probability mass function is
+
+\[\Pr(X = x) = \left\{
+	\begin{array}{ll}
+		p(1-p)^{x}, & x= 0,1,2,3,\ldots\\
+		0 & otherwise 
+	\end{array} \right. 
+\]
+
+where $p$ is the probability of a success on any given trial and $x$ is the number of trials until the first success.
+
+
+## Cumulative Distribution Function
+
+The cumulative probability of $x$ is computed as the $x^{th}$ partial sum of the Geometric Series
+	See \@ref(geometric-series-partial-and-infinite-summations).
+	
+$$\begin{aligned} 
+\Pr(X \leq x) 
+	&= \sum\limits_{i=0}^{x}p(1-p)^{x+1} \\
+	&= \frac{p-p(1-p)^{x+1}}{1-(1-p)} \\
+	&= \frac{p[1-(1-p)^{x + 1}]}{p} \\
+	&= 1-(1-p)^{x + 1}
+\end{aligned}$$
+
+So
+
+\[\Pr(x) = \left\{
+	\begin{array}{ll}
+		1-(1-p)^{x + 1},& x=0, 1,2,3,\ldots\\
+		0 & otherwise 
+	\end{array} \right. 
+\]
+
+A recursive form of the cdf can be derived and has some usefulness in computer applications.  With it, one need only initiate the first value and additional cumulative probabilities can be calculated.  It is derived as follows:
+
+$$\begin{aligned}
+P(X=x+1)
+	&= p \cdot (1-p)^{x+1 + 1} \\
+	&= p \cdot (1 - p) ^ {x + 2} \\
+	&= (1-p) \cdot p \cdot (1-p)^{x+1} \\
+	&= (1-p) \cdot \Pr(X = x)
+\end{aligned}$$
+
+```{r, echo = FALSE, fig.path = 'figures/', fig.cap = 'The figures on the left and right display the Geometric probability and cumulative distirubtion functions, respectively, for the combinations of $p=.3$.'}
+Geometric <- 
+  data.frame(x = 0:5) %>%
+  mutate(pmf = dgeom(x, p = 0.3),
+         cmf = pgeom(x, p = 0.3),
+         x = x) %>%
+  gather(cumulative, prob, -x) %>%
+  mutate(cumulative = factor(cumulative,
+                             c("pmf", "cmf"),
+                             c("Probability Mass",
+                               "Cumulative Mass")))
+
+ggplot(data = Geometric,
+       mapping = aes(x = x)) + 
+  geom_bar(mapping = aes(y = prob), 
+           stat = "identity",
+           fill = palette[1]) + 
+  facet_grid(~ cumulative) + 
+  scale_x_continuous(breaks = 0:5) + 
+  ylab("P(x)") + 
+  theme_bw()
+```
+
+
+
+## Expected Values
+
+$$\begin{aligned}
+\E[X]
+  &= \sum\limits_{i = 0}^{\infty} x \cdot p \cdot (1 - p)^x \\
+  &= p \cdot \sum\limits_{i = 0}^{\infty} x \cdot (1 - p) ^ x \\
+^{[1]}
+  &= p \cdot \sum\limits_{i = 0}^{\infty}
+            x \cdot q ^ x \\
+  &= p \cdot q \cdot \sum\limits_{i = 0}^{\infty}
+            x \cdot q ^ {x - 1} \\
+^{[2]}
+  &= p \cdot q \frac{d}{dq} \sum\limits_{i = 0}{\infty} q ^ x \\
+  &= p \cdot q \frac{d}{dq} \sum\limits_{i = 0}{\infty} q \cdot q^{x - 1} \\
+^{[3]}
+  &= p \cdot q \frac{d}{dq} \frac{q}{1 - q} \\
+^{[4]}
+  &= p \cdot q \frac{(1 - q) \cdot 1 - q \cdot (-1)}{(1 - q)^2} \\
+  &= p \cdot q \frac{(1 - q) + q}{(1 - q)^2} \\
+  &= p \cdot q \frac{1}{(1 - q)^2} \\
+  &= \frac{p \cdot q}{(1 - q)^2} \\
+^{[5]}
+  &= \frac{p \cdot (1 - p)}{\left(1 - (1 - p)\right)^2} \\
+  &= \frac{p \cdot (1 - p)}{p^2} \\
+  &= \frac{1 - p}{p}
+\end{aligned}$$
+
+> 1. Let $q = 1 - p$
+> 2. $a\cdot x^{a-1}=\frac{d}{dx}(x^a)$
+> 3. $\sum\limits_{i=0}^{\infty}ar^{i}=\frac{a}{1-r}$ (Geometric Series \@ref(geometric-series-partial-and-infinite-summations)).
+> 4. Product Rule for Differentiation:  
+		$\frac{d}{dx}(\frac{f(x)}{g(x)})
+		= \frac{g\prime(x)\cdot f(x)-f\prime(x)\cdot g(x)}{g^2(x)}$
+> 5. $q = 1- p \ \ \Rightarrow p=1-q$
+
+

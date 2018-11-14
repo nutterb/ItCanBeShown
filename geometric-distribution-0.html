@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="somers-d.html">
-<link rel="next" href="analysis-of-variance-1.html">
+<link rel="prev" href="gaussian-integral.html">
+<link rel="next" href="geometric-distribution-1.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -628,132 +628,89 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="summation-chapter" class="section level1">
-<h1><span class="header-section-number">38</span> Summation</h1>
-<div id="theorems-of-summation" class="section level2">
-<h2><span class="header-section-number">38.1</span> Theorems of Summation</h2>
-<div id="summation-theorem-1" class="section level3">
-<h3><span class="header-section-number">38.1.1</span> Theorem</h3>
-<p>If <span class="math inline">\(c\)</span> is a constant then <span class="math display">\[\sum\limits_{i=1}^{n}c = nc\]</span></p>
-<p><em>Proof:</em></p>
-<p><span class="math display">\[
-\sum\limits_{i=1}^{n}c
-    = \underbrace{c+c+\cdots+c}_{n\ \rm terms}
-    = nc
+<div id="geometric-distribution-0" class="section level1">
+<h1><span class="header-section-number">19</span> Geometric Distribution (0)</h1>
+<p>The Geometric Distribution random variable may be considered as the number of failures that occur before the first success. The support of the distribution is the non-negative integers.</p>
+<div id="probability-mass-function-2" class="section level2">
+<h2><span class="header-section-number">19.1</span> Probability Mass Function</h2>
+<p>A random variable <span class="math inline">\(X\)</span> is said to have a Geometric Distribution with parameter <span class="math inline">\(p\)</span> if its probability mass function is</p>
+<p><span class="math display">\[\Pr(X = x) = \left\{
+    \begin{array}{ll}
+        p(1-p)^{x}, &amp; x= 0,1,2,3,\ldots\\
+        0 &amp; otherwise 
+    \end{array} \right. 
 \]</span></p>
+<p>where <span class="math inline">\(p\)</span> is the probability of a success on any given trial and <span class="math inline">\(x\)</span> is the number of trials until the first success.</p>
 </div>
-<div id="summation-theorem-2" class="section level3">
-<h3><span class="header-section-number">38.1.2</span> Theorem</h3>
-<p>If <span class="math inline">\(a_1,a_2,\ldots,a_n\)</span> are real numbers and <span class="math inline">\(c\)</span> is a constant, then <span class="math display">\[
-\sum\limits_{i=1}^{n}ca_i
-    = c\sum\limits_{i=1}^{n}a_i
-\]</span></p>
-<p><em>Proof:</em></p>
+<div id="cumulative-distribution-function-3" class="section level2">
+<h2><span class="header-section-number">19.2</span> Cumulative Distribution Function</h2>
+<p>The cumulative probability of <span class="math inline">\(x\)</span> is computed as the <span class="math inline">\(x^{th}\)</span> partial sum of the Geometric Series See <a href="geometric-series.html#geometric-series-partial-and-infinite-summations">21.1</a>.</p>
 <p><span class="math display">\[\begin{aligned} 
-\sum\limits_{i=1}^{n}ca_i
-    &amp;= ca_1 + ca_2 + \cdots + ca_n \\
-    &amp;= c(a_1+a_2+\cdots+a_n) \\
-    &amp;= c\sum\limits_{i=1}^{n}a_i
+\Pr(X \leq x) 
+    &amp;= \sum\limits_{i=0}^{x}p(1-p)^{x+1} \\
+    &amp;= \frac{p-p(1-p)^{x+1}}{1-(1-p)} \\
+    &amp;= \frac{p[1-(1-p)^{x + 1}]}{p} \\
+    &amp;= 1-(1-p)^{x + 1}
 \end{aligned}\]</span></p>
-</div>
-<div id="summation-theorem-3" class="section level3">
-<h3><span class="header-section-number">38.1.3</span> Theorem</h3>
-<p>If <span class="math inline">\(a_1,_2,\ldots,a_n\)</span> are real numbers and <span class="math inline">\(b_1,b_2,\ldots,b_n\)</span> are real numbers, then <span class="math display">\[
-\sum\limits_{i=1}^{n}(a_i+b_i)
-    = \sum\limits_{i=1}^{n}a_i + \sum\limits_{i=1}^{n}b_i
+<p>So</p>
+<p><span class="math display">\[\Pr(x) = \left\{
+    \begin{array}{ll}
+        1-(1-p)^{x + 1},&amp; x=0, 1,2,3,\ldots\\
+        0 &amp; otherwise 
+    \end{array} \right. 
 \]</span></p>
-<p><em>Proof:</em></p>
+<p>A recursive form of the cdf can be derived and has some usefulness in computer applications. With it, one need only initiate the first value and additional cumulative probabilities can be calculated. It is derived as follows:</p>
 <p><span class="math display">\[\begin{aligned}
-\sum\limits_{i=1}^{n}(a_i+b_i)
-    &amp;= a_1 + b_1 + a_2 + b_2 + \cdots + a_n + b_n \\
-  &amp;= a_1 + a_2 + \cdots + a_n + b_1 + b_2 + \cdots + b_n \\
-    &amp;= \sum\limits_{i=1}^{n}a_i + \sum\limits_{i=1}^{n}b_i
+P(X=x+1)
+    &amp;= p \cdot (1-p)^{x+1 + 1} \\
+    &amp;= p \cdot (1 - p) ^ {x + 2} \\
+    &amp;= (1-p) \cdot p \cdot (1-p)^{x+1} \\
+    &amp;= (1-p) \cdot \Pr(X = x)
 \end{aligned}\]</span></p>
+<div class="figure"><span id="fig:unnamed-chunk-7"></span>
+<img src="figures/unnamed-chunk-7-1.png" alt="The figures on the left and right display the Geometric probability and cumulative distirubtion functions, respectively, for the combinations of $p=.3$." width="672" />
+<p class="caption">
+Figure 19.1: The figures on the left and right display the Geometric probability and cumulative distirubtion functions, respectively, for the combinations of <span class="math inline">\(p=.3\)</span>.
+</p>
 </div>
-<div id="summation-theorem-4" class="section level3">
-<h3><span class="header-section-number">38.1.4</span> Theorem</h3>
-<p>If <span class="math inline">\(a_i\)</span> and <span class="math inline">\(b_j\)</span> are real numbers for <span class="math inline">\(i=1,2,\ldots,n\)</span>, <span class="math inline">\(j=1,2,\ldots,m\)</span>, then then</p>
-<p><span class="math display">\[
-\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_i b_j
-    = a_{+} b_{+}
-\]</span></p>
-<p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{aligned}
-\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_i b_j
-    &amp;= \sum\limits_{i=1}^{n}\bigg(a_i\sum\limits_{j=1}^{m}b_j\bigg) \\
-    &amp;= \sum\limits_{i=1}^{n}a_i b_{+} \\
-    &amp;= b_{+} \sum\limits_{i=1}^{n}a_i \\
-    &amp;= a_{+} b_{+}
-\end{aligned}\]</span></p>
 </div>
-<div id="summation-theorem-5" class="section level3">
-<h3><span class="header-section-number">38.1.5</span> Theorem</h3>
-<p>If <span class="math inline">\(a_i\)</span> is a real number for <span class="math inline">\(i=1,2,\ldots,n\)</span> and <span class="math inline">\(b\)</span> is a real number, then <span class="math display">\[
-\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_i b
-    = m a_{+} b
-\]</span></p>
-<p><em>Proof:</em></p>
+<div id="expected-values-5" class="section level2">
+<h2><span class="header-section-number">19.3</span> Expected Values</h2>
 <p><span class="math display">\[\begin{aligned}
-\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_i b
-    &amp;= \sum\limits_{i=1}^{n}m a_i b \\
-    &amp;= m b\sum\limits_{i=1}^{n}a_i \\
-    &amp;= m a_{+} b
+{\mathrm{E}}[X]
+  &amp;= \sum\limits_{i = 0}^{\infty} x \cdot p \cdot (1 - p)^x \\
+  &amp;= p \cdot \sum\limits_{i = 0}^{\infty} x \cdot (1 - p) ^ x \\
+^{[1]}
+  &amp;= p \cdot \sum\limits_{i = 0}^{\infty}
+            x \cdot q ^ x \\
+  &amp;= p \cdot q \cdot \sum\limits_{i = 0}^{\infty}
+            x \cdot q ^ {x - 1} \\
+^{[2]}
+  &amp;= p \cdot q \frac{d}{dq} \sum\limits_{i = 0}{\infty} q ^ x \\
+  &amp;= p \cdot q \frac{d}{dq} \sum\limits_{i = 0}{\infty} q \cdot q^{x - 1} \\
+^{[3]}
+  &amp;= p \cdot q \frac{d}{dq} \frac{q}{1 - q} \\
+^{[4]}
+  &amp;= p \cdot q \frac{(1 - q) \cdot 1 - q \cdot (-1)}{(1 - q)^2} \\
+  &amp;= p \cdot q \frac{(1 - q) + q}{(1 - q)^2} \\
+  &amp;= p \cdot q \frac{1}{(1 - q)^2} \\
+  &amp;= \frac{p \cdot q}{(1 - q)^2} \\
+^{[5]}
+  &amp;= \frac{p \cdot (1 - p)}{\left(1 - (1 - p)\right)^2} \\
+  &amp;= \frac{p \cdot (1 - p)}{p^2} \\
+  &amp;= \frac{1 - p}{p}
 \end{aligned}\]</span></p>
-</div>
-<div id="summation-theorem-6" class="section level3">
-<h3><span class="header-section-number">38.1.6</span> Theorem</h3>
-<p>If <span class="math inline">\(a_j\)</span> is a real number for <span class="math inline">\(j=1,2,\ldots,m\)</span> and <span class="math inline">\(b\)</span> is a real number, then <span class="math display">\[
-\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_j b
-    = n a_{+} b
-\]</span></p>
-<p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{aligned}
-\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_j b
-    &amp;= \sum\limits_{i=1}^{n}\bigg( b \sum\limits_{j=1}^{m} a_j \bigg) \\
-    &amp;= \sum\limits_{i=1}^{n}a_{+}b \\
-    &amp;= n a_{+} b
-\end{aligned}\]</span></p>
-</div>
-<div id="summation-theorem-7" class="section level3">
-<h3><span class="header-section-number">38.1.7</span> Theorem</h3>
-<p>If <span class="math inline">\(a_i\)</span> and <span class="math inline">\(b_{ij}\)</span> are real numbers for <span class="math inline">\(i=1,2,\ldots,n\)</span>, <span class="math inline">\(j=1,2,\ldots,m\)</span>, then <span class="math display">\[
-\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_{ij}
-    = \sum\limits_{i=1}^{n}a_ib_{i+}
-\]</span></p>
-<p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{aligned}
-\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_ib_{ij}
-    &amp;= \sum\limits_{i=1}^{n}\bigg(a_i\sum\limits_{j=1}^{m}b_{ij}\bigg) \\
-    &amp;= \sum\limits_{i=1}^{n}a_ib_{i+}
-\end{aligned}\]</span></p>
-</div>
-<div id="summation-theorem-8" class="section level3">
-<h3><span class="header-section-number">38.1.8</span> Theorem</h3>
-<p>If <span class="math inline">\(a_j\)</span> and <span class="math inline">\(b_{ij}\)</span> are real numbers for <span class="math inline">\(i=1,2,\ldots,n\)</span>, <span class="math inline">\(j=1,2,\ldots,m\)</span>, then</p>
-<p><span class="math display">\[\
-\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_jb_{ij}
-    = \sum\limits_{i=1}^{n}a_jb_{+ j}
-\]</span></p>
-<p><em>Proof:</em></p>
-<p><span class="math display">\[\begin{aligned}
-\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}a_jb_{ij}
-  &amp;= a_1b_{11}+a_2b_{12}+\cdots+a_mb_{1m} \\
-  &amp; \ \ \ \  +a_1b_{21}+a_2b_{22}+\cdots+a_mb_{2m} \\
-  &amp; \ \ \ \ \vdots \\
-  &amp; \ \ \ \ +a_1b_{n1}+a_1b_{n1}+\cdots+a_1b_{nm} \\
-  &amp;= a_1b_{11}+a_1b_{21}+\cdots+a_1b_{n1} \\
-  &amp; \ \ \ \ +a_2b_{12}+a_2b_{22}+\cdots+a_2b_{n2} \\
-  &amp; \ \ \ \ \vdots \\
-  &amp; \ \ \ \ +a_mb_{1m}+a_mb_{2m}+\cdots+a_nb_{nm} \\
-  &amp;= a_1(b_{11}+b_{21}+\cdots+b_{n1}) \\
-  &amp; \ \ \ \ +a_2(b_{12}+b_{22}+\cdots+b_{n2}) \\
-  &amp; \ \ \ \ \vdots \\
-  &amp; \ \ \ \ +a_m(b_{1m}+b_{2m}+\cdots+b_{nm}) \\
-  &amp;= a_1b_{+ 1}+a_2b_{+ 2}+\cdots+a_mb_{+ m} \\
-  &amp;=\sum\limits_{j=1}^{m}a_jb_{+ j}
-\end{aligned}\]</span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Let <span class="math inline">\(q = 1 - p\)</span></li>
+<li><span class="math inline">\(a\cdot x^{a-1}=\frac{d}{dx}(x^a)\)</span></li>
+<li><span class="math inline">\(\sum\limits_{i=0}^{\infty}ar^{i}=\frac{a}{1-r}\)</span> (Geometric Series <a href="geometric-series.html#geometric-series-partial-and-infinite-summations">21.1</a>).</li>
+<li>Product Rule for Differentiation:<br />
+<span class="math inline">\(\frac{d}{dx}(\frac{f(x)}{g(x)}) = \frac{g\prime(x)\cdot f(x)-f\prime(x)\cdot g(x)}{g^2(x)}\)</span></li>
+<li><span class="math inline">\(q = 1- p \ \ \Rightarrow p=1-q\)</span></li>
+</ol>
+</blockquote>
 
-</div>
 </div>
 </div>
             </section>
@@ -761,8 +718,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="somers-d.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="analysis-of-variance-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="gaussian-integral.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="geometric-distribution-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -792,7 +749,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/nutterb/ItCanBeShown/edit/gh-pages/Summation.Rmd",
+"link": "https://github.com/nutterb/ItCanBeShown/edit/gh-pages/Geometric_Distribution0.Rmd",
 "text": "Edit"
 },
 "download": ["_main.pdf"],
