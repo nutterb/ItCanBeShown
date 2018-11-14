@@ -24,6 +24,13 @@ header-includes:
 - \allowdisplaybreaks
 ---
 
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\F}{\mathrm{F}}
+\newcommand{\Srv}{\mathrm{S}}
+\newcommand{\Lik}{\mathcal{L}}
+
 ```{r, warning = FALSE, message = FALSE, echo = FALSE}
 library(dplyr)
 library(ggplot2)

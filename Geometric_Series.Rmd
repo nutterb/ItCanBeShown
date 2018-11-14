@@ -1,46 +1,92 @@
 # Geometric Series
 
-## Series Starts at $k = 1$
+A Geometric Series on the natural numbers is a series of the form $\sum\limits_{i=1}^{\infty}a \cdot r ^ {i-1}$ 
+where $a\neq 0,\ r\neq 0,1$.  Expanding the series gives 
 
-A Geometric Series is a series of the form $\sum\limits_{k=1}^{\infty}ar^{k-1}$ 
-where $a\neq 0,\ r\neq 0,1$.  Expanding the series gives $\sum\limits_{k=1}^{\infty}ar^{k-1}=a+ar+ar^2+ar^3+\cdots$.
+$$\begin{aligned}
+\sum\limits_{i=1}^{\infty} a \cdot r^{i-1} 
+  &= a \cdot r^0 + a \cdot r ^ 1 + a \cdot r ^ 2 + 
+     a \cdot r ^ 3 + \cdots
+\end{aligned}$$
+
+Alternatively, a Geometric Series may be parameterized on the non-negative integers in the form $\sum\limits_{i = 0}^{\infty} a \cdot r ^ i$ where $a\neq 0,\ r\neq 0,1$. Expanding this series gives 
+
+$$
+\sum\limits_{i=0}^{\infty} a \cdot r^{i} 
+  = a \cdot r^0 + a \cdot r ^ 1 + a \cdot r ^ 2 + 
+    a \cdot r ^ 3 + \cdots
+$$
 
 
-### Partial and Infinite Summations {#geometric-series-partial-and-infinite-summations}
+## Partial Summation {#geometric-series-partial-and-infinite-summations}
+
+### Summation for the Series on the Natural Numbers {#geometric-series-partial-summation-natural}
 
 Let $S_k$ denote the sum of a series over $k$ terms (or the $k^{th}$ partial sum).  For the Geometric Series\\
 
 $$\begin{aligned}
 S_k
-	&= \sum\limits_{k=1}^{k}ar^{k-1} \\
-	&= a + ar + ar^2 + ar^3 + \cdots + ar^{k-1} \\
-  &= ar^0 + ar^2 + ar^2 + \cdots + ar^{k-1} \\
-	&= a + ar + ar^2 + \cdots + ar^{k-1}
+	&= \sum\limits_{i=1}^{k} a \cdot r^{i-1} \\
+	&= a \cdot r^{1 - 1} + a \cdot r^{2 - 1} + 
+	   a \cdot r^{3 - 1} + a \cdot r^{4 - 1} + 
+	    \cdots + a \cdot r^{k-1} \\
+	&= a \cdot r^{0} + a \cdot r^{1} + 
+	   a \cdot r^{2} + a \cdot r^{3} + 
+	    \cdots + a \cdot r^{k-1} \\
+	&= a + a \cdot r + a \cdot r^2 + a \cdot r^3 + 
+	    \cdots + a \cdot r^{k-1} \\
 \end{aligned}$$
 
-Notice that $rS_k = ar + ar^2+ a r^3 + \cdots + ar^k$.  So
+Notice that 
 
 $$\begin{aligned}
-S_k - rS_k
-	&= (a + ar + \cdots + ar^{k-1}) - (ar + ar^2 + \cdots + ar^k) \\
-  &= a + ar - ar + ar^2 - ar^2 + \cdots + ar^{k-2} - ar^{k-2} + ar^{k-1} - ar^{k-1} - ar^k \\
-  &= a - ar^k
+r \cdot S_k 
+  &= r \cdot \left(a + a \cdot r + a \cdot r^2 + 
+      a \cdot r^3 + \cdots + a \cdot r^{k-1} \right) \\
+  &= a \cdot r + a \cdot r^2+ a \cdot r^3 + \cdots + 
+      a \cdot r^k  
 \end{aligned}$$
 
-Observing that $S_k - rS_k = S_k(1 - r)$, we may conclude
+Taking the difference of these equalities yields:
 
-$$\begin{aligned} 
-S_k(1-r) 
-  &= S_k - rS_k \\
-	&= a - ar^k \\
-\Rightarrow S_k &= \frac{a-ar^k}{1-r}
+$$\begin{array}{rrcl}
+  & S_k - r \cdot S_k
+  &=& \left(a + a \cdot r + a \cdot r^2 + a \cdot r^3 + 
+	    \cdots + a \cdot r^{k-1}\right) - \\
+	&&& \left(a \cdot r + a \cdot r^2+ a \cdot r^3 + \cdots + 
+      a \cdot r^k\right) \\
+  &&=& a + a \cdot r - a \cdot r + 
+       a \cdot r^2 - a \cdot r^2 + \cdots + 
+       a \cdot r^{k - 1} - a \cdot r^{k - 1} - 
+       a \cdot r ^ k \\
+  &&=& a + a \cdot r ^ k \\
+\Rightarrow &
+  (1 - r) \cdot S_k
+  &=& a - a \cdot r ^ k \\
+\Rightarrow &
+  S_k
+  &=& \frac{a - a \cdot r ^ k}{1 - r}
+\end{array}$$
+
+### Summation for the Series on the Non-negative Integers
+
+Let $S_k$ be the summation of the first $k$ terms of the geometric series. Whereas the series is on the non-negative integers--that is, the first term is for $i = 0$, the $k^{th}$ terms is $i = k - 1$. This provides
+
+$$\begin{aligned}
+S_k
+  &= \sum\limits_{i=0}^{k - 1} a \cdot r^{i} \\
+  &= a \cdot r^{0} + a \cdot r^{1} + 
+	   a \cdot r^{2} + a \cdot r^{3} + 
+	    \cdots + a \cdot r^{k-1} \\
+	&= a + a \cdot r + a \cdot r^2 + a \cdot r^3 + 
+	    \cdots + a \cdot r^{k-1}
 \end{aligned}$$
 
+This is identical to the partial summation described in Section \@ref(geometric-series-partial-summation-natural), and the derivation of the partial sum is identical.
 
+## Proofs of Convergence
 
-### Proofs of Convergence
-
-$\sum\limits_{k=1}^{\infty}ar^{k-1}$ converges when $|r|<1$ and diverges when $|r|>1$.
+$\sum\limits_{i=1}^{\infty}ar^{i-1}$ converges when $|r|<1$ and diverges when $|r|>1$.
 
 _Proof:_
 
@@ -48,10 +94,12 @@ Recall that the $k^{th}$ partial sum of the Geometric Series is
 
 $$
 S_k 
-	= \frac{a-ar^k}{1-r}
+	= \frac{a-a \cdot r^k}{1-r}
 $$
 
 And let $S$ denote the sum of the infinite series, i.e. the sum as$k\rightarrow\infty$.
+
+Note that since $S_k$ is identical whether the series is parameterized on the natural numbers or the non-negative integers, the result is the same for either case.
 
 _Case 1:_ $|r|<1$
 
@@ -77,79 +125,3 @@ S
 \end{aligned}$$
 
 So $\sum\limits_{k=1}^{\infty}ar^{k-1}$ diverges whern $|r|>1$.
-
-
-## Series Starts at $k = 0$
-
-A Geometric Series is a series of the form $\sum\limits_{k=0}^{\infty}ar^{k}$ 
-where $a\neq 0,\ r\neq 0,1$.  Expanding the series gives $\sum\limits_{k=0}^{\infty}ar^{k}=a+ar+ar^2+ar^3+\cdots$.
-
-### Partial and Infinite Summations {#geometric-series-partialk0-and-infinite-summations}
-
-Let $S_k$ denote the sum of a series over $k$ terms (or the $k^{th}$ partial sum).  For the Geometric Series\\
-
-$$\begin{aligned}
-S_k
-	&= \sum\limits_{k=0}^{n}ar^{k} \\
-	&= a + ar + ar^2 + ar^3 + \cdots + ar^{k} \\
-  &= ar^0 + ar^2 + ar^2 + \cdots + ar^{k} \\
-	&= a + ar + ar^2 + \cdots + ar^{k}
-\end{aligned}$$
-
-Notice that $rS_k = ar + ar^2+ a r^3 + \cdots + ar^k$.  So
-
-$$\begin{aligned}
-S_k - rS_k
-	&= (a + ar + \cdots + ar^{k}) - (ar + ar^2 + \cdots + ar^{k+1}) \\
-  &= a + ar - ar + ar^2 - ar^2 + \cdots + ar^{k-1} - ar^{k-1} + ar^k + ar^k - ar^{k + 1}\\
-  &= a - ar^{k+1}
-\end{aligned}$$
-
-Observing that $S_k - rS_k = S_k(1 - r)$, we may conclude
-
-$$\begin{aligned} 
-S_k(1-r) 
-  &= S_k - rS_k \\
-	&= a - ar^{k+1} \\
-\Rightarrow S_k &= \frac{a-ar^{k+1}}{1-r}
-\end{aligned}$$
-
-### Proofs of Convergence
-
-$\sum\limits_{k=0}^{\infty}ar^{k}$ converges when $|r|<1$ and diverges when $|r|>1$.
-
-_Proof:_
-
-Recall that the $k^{th}$ partial sum of the Geometric Series is 
-
-$$
-S_k 
-	= \frac{a-ar^{k+1}}{1-r}
-$$
-
-And let $S$ denote the sum of the infinite series, i.e. the sum as$k\rightarrow\infty$.
-
-_Case 1:_ $|r|<1$
-
-$$\begin{aligned}
-S
-	&= \lim\limits_{k\rightarrow\infty}S_k \\
-	&=  \lim\limits_{k\rightarrow\infty} \frac{a-ar^{k+1}}{1-r} \\
-  &= \frac{a-\lim\limits_{k\rightarrow\infty}ar^{k+1}}{1-r} \\
-	&= \frac{a}{1-r}
-\end{aligned}$$
-
-So $\sum\limits_{k=1}^{\infty}ar^{k}$ converges when $|r|<1$ and $S=\frac{a}{1-r}$
-
-
-_Case 2:_ $|r|>1$
-$$\begin{aligned}
-S
-	&= \lim\limits_{k\rightarrow\infty}S_k \\
-	&= \lim\limits_{k\rightarrow\infty} \frac{a-ar^{k+1}}{1-r} \\
-  &= \frac{a-\lim\limits_{k\rightarrow\infty}ar^{k+1}}{1-r} \\
-	&= \frac{a-\infty}{1-r}
-\end{aligned}$$
-
-So $\sum\limits_{k=1}^{\infty}ar^{k-1}$ diverges whern $|r|>1$.
-
